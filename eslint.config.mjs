@@ -25,6 +25,7 @@ export default [
       "**/out/**",
       "**/coverage/**",
       "**/public/**",
+      "**/build/**"
     ],
     plugins: {
       prettier: prettierPlugin,
