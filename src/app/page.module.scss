@@ -1,0 +1,11 @@
+@use "../../styles/colors" as *;
+
+.page {
+  background: $reversed-grey;
+  display:flex;
+}
+
+.main {
+  display:flex;
+}
+
