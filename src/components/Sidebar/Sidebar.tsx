@@ -12,20 +12,20 @@ export default function Sidebar() {
 <div className={styles.mainMenu}>
 
          <div>
-            <Image src="/home.svg" width={24} height={24} alt="logo" />
+            <Image src="/icons/Sidebar/home.svg" width={24} height={24} alt="logo" />
             <p>home</p>
          </div>
          <div>
-            <Image src="/recommendations.svg" width={24} height={24} alt="logo" />
+            <Image src="/icons/Sidebar/recommendations.svg" width={24} height={24} alt="logo" />
             <p>recommendations</p>
 
          </div>
          <div>
-            <Image src="/topHits.svg" width={24} height={24} alt="logo" />
+            <Image src="/icons/Sidebar/topHits.svg" width={24} height={24} alt="logo" />
             <p>top hits</p>
          </div>
          <div>
-            <Image src="/topCharts.svg" width={24} height={24} alt="logo" />            
+            <Image src="/icons/Sidebar/topCharts.svg" width={24} height={24} alt="logo" />            
             <p>top charts</p>
 
          </div>
@@ -34,11 +34,11 @@ export default function Sidebar() {
       <div className={styles.collectionMenu}>
          <h4>collection</h4>
          <div>
-            <Image src="/playlists.svg" width={24} height={24} alt="logo" />
+            <Image src="/icons/Sidebar/playlists.svg" width={24} height={24} alt="logo" />
             <p>playlists</p>
          </div>
          <div>
-            <Image src="/favorites.svg" width={24} height={24} alt="logo" />            
+            <Image src="/icons/Sidebar/favorites.svg" width={24} height={24} alt="logo" />            
             <p>favorites</p>
          </div>
       </div>
@@ -47,11 +47,11 @@ export default function Sidebar() {
       <div className={styles.discoverMenu}>
          <h4>discover</h4>
          <div>
-            <Image src="/artist.svg" width={24} height={24} alt="logo" />
+            <Image src="/icons/Sidebar/artist.svg" width={24} height={24} alt="logo" />
             <p>artist</p>
          </div>
          <div>
-            <Image src="/album.svg" width={24} height={24} alt="logo" />            
+            <Image src="/icons/Sidebar/album.svg" width={24} height={24} alt="logo" />            
             <p>album</p>
          </div>
       </div>

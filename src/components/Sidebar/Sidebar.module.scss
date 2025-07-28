@@ -1,6 +1,8 @@
 @use "../../../styles/colors" as *;
 
 
+
+
 .sidebar {
    position: fixed; /* tu ekrani pataraa vidre 872px scroll ar eqneba amis gamo problema gvardeba roca mainshi contentis height gaxdeba 872px ze meti || tu arada chatgpt axsnis */
    display: flex;
@@ -10,8 +12,12 @@
    max-width: 280px;
    top: 0;
    left: 0;
-   height: 100vh;
+   /*height: 100vh;*/
    padding: 40px 20px;
+   @media (max-height:763px){ /* */
+   position: static;
+  
+   }
 }
 
 .frisson {
