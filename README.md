@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎧 Frisson Music Streaming Website
 
-## Getting Started
+Frisson არის თანამედროვე მუსიკალური სტრიმინგის ვებსაიტი, რომელიც აგებულია **Next.js (frontend)** და **NestJS (backend)** ტექნოლოგიებზე. პროექტი იყენებს TypeScript-ს, მოდულურ არქიტექტურას და გაყოფილია ფრონტ- და ბექენდ ნაწილებად.
 
-First, run the development server:
+---
+
+## 📁 პროექტის სტრუქტურა
+
+Frisson-Music-Streaming-Website/
+├── frontend/ # Next.js + TypeScript
+├── backend/ # NestJS + TypeScript
+├── .gitignore # Git ignore წესები
+└── README.md # მთავარი დოკუმენტაცია
+
+## 🚀 გაშვების ინსტრუქცია
+
+### 🔷 Front ntend (Next.js)
 
 ```bash
+cd frontend
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+➡️ იხილე: http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 🔷  Backend (NestJS)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+cd backend
+npm install
+npm run start:dev
 
-## Learn More
+➡️ იხილე: http://localhost:5000
 
-To learn more about Next.js, take a look at the following resources:
+ ### 📦 ძირითადი სქრიპტები
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| მხარე   | ბრძანება             | აღწერა                      |
+|--------|----------------------|------------------------------|
+| ფრონტი | `npm run dev`        | Next.js development server  |
+| ბექი   | `npm run start:dev`  | NestJS watcher              |
+| ორივე  | `npm install`        | პაკეტების დაყენება           |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+Frisson Team — 2025
+ლიცენზია: MIT
+GitHub: https://github.com/your-username/Frisson-Music-Streaming-Website
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
