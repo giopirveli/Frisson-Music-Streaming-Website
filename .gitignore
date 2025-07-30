@@ -1,5 +1,12 @@
 # Node.js
 node_modules/
+dist/
+.next/
+.env
+*.log
+
+# OS/System
+.DS_Store
 
 # NestJS
 dist/
