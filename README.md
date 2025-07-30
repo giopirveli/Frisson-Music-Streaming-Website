@@ -10,6 +10,7 @@ Frisson-Music-Streaming-Website/
 ├── frontend/ # Next.js + TypeScript
 ├── backend/ # NestJS + TypeScript
 ├── .gitignore # Git ignore წესები
+├── LICENSE # ლიცენზია: MIT
 └── README.md # მთავარი დოკუმენტაცია
 
 ## 🚀 გაშვების ინსტრუქცია
@@ -41,7 +42,6 @@ npm run start:dev
 
 
 Frisson Team — 2025
-ლიცენზია: MIT
 GitHub: https://github.com/your-username/Frisson-Music-Streaming-Website
 
 
