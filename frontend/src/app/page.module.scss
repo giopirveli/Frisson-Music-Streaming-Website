@@ -15,6 +15,11 @@
   flex-direction: column;
   gap:40px;
   width:100%;
+  @media (min-height:763px){ /* */
+    position: relative;
+    left:280px;
+   }
+  // @media{left:280px;}
   /*max-width: 1160px;*/
 }
 

@@ -1,0 +1,14 @@
+@use "../../../styles/colors" as *;
+
+.searchbar {
+   font-family: "Plus Jakarta Sans";
+   color:$stone-cold;
+   background-color: inherit;
+   border:0;
+   
+   
+   &:focus{
+      outline:none; /* onFocus color, acts like border */
+   }
+}
+
