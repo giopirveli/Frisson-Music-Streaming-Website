@@ -2,19 +2,24 @@
 
 .page {
   background: $reversed-grey;
-  display:flex;
-  width:100vw;
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  justify-content: center;
+}
+
+.allSemanticTag {
+  display: flex;
+  width: 100%;
 }
 
 .main {
-  display:flex;
+  display: flex;
 }
 
 .container {
-  display:flex;
+  margin-left: 240px; 
+  width: 100%;
+  display: flex;
   flex-direction: column;
-  gap:40px;
-  width:100%;
-  /*max-width: 1160px;*/
 }
-

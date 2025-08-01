@@ -4,7 +4,8 @@
 
 
 .sidebar {
-   position: fixed; /* tu ekrani pataraa vidre 872px scroll ar eqneba amis gamo problema gvardeba roca mainshi contentis height gaxdeba 872px ze meti || tu arada chatgpt axsnis */
+   position: fixed;
+   /* tu ekrani pataraa vidre 872px scroll ar eqneba amis gamo problema gvardeba roca mainshi contentis height gaxdeba 872px ze meti || tu arada chatgpt axsnis */
    display: flex;
    flex-direction: column;
    gap: 56px;
@@ -12,12 +13,9 @@
    max-width: 280px;
    top: 0;
    left: 0;
-   /*height: 100vh;*/
    padding: 40px 20px;
-   @media (max-height:763px){ /* */
-   position: static;
-  
-   }
+   height: 100vh;
+   z-index: 1000;
 }
 
 .frisson {
@@ -28,15 +26,14 @@
 .menu {
    width: 100%;
    max-width: 240px;
-   display:flex;
+   display: flex;
    flex-direction: column;
-justify-content: center;
-gap:32px;
+   justify-content: center;
+   gap: 32px;
 }
 
 .mainMenu,
-.collectionMenu
-.discoverMenunn {
+.collectionMenu .discoverMenunn {
    display: flex;
    flex-direction: column;
    gap: 8px;
@@ -74,10 +71,5 @@ gap:32px;
    font-style: normal;
    font-weight: 500;
    line-height: normal;
-   padding:0 0 16px 16px ;
+   padding: 0 0 16px 16px;
 }
-
-
-
-
-
