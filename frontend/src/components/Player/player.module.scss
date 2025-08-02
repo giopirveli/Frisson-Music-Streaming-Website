@@ -140,7 +140,7 @@
     width: 100%;
     height: 8px;
     appearance: none;
-    background: transparent; // აქ მთავარია ფონი იყოს გამჭვირვალე, მართვას ჩვენ ავიღებთ
+    background: transparent; 
 
     // Full track (gray)
     &::-webkit-slider-runnable-track {
@@ -154,7 +154,7 @@
         appearance: none;
         width: 12px;
         height: 12px;
-        background: transparent; // ან rgba(0,0,0,0)
+        background: transparent; 
         border: none;
         margin-top: -2px;
         cursor: pointer;
@@ -240,6 +240,7 @@
 
 .slider {
     -webkit-appearance: none;
+    appearance: none; 
     width: 100%;
     height: 8px;
     border-radius: 4px;

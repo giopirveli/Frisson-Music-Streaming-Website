@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import  Style  from "./heart.module.scss"; // აქ სტილი
+import  Style  from "./heart.module.scss"; 
 import Image from "next/image";
 
 export default function heartBtn() {

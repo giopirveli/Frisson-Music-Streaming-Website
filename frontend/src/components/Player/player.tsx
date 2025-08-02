@@ -1,4 +1,3 @@
-// Spotify-style progress bar with thumb drag preview (muted seek)
 "use client";
 import Style from "./player.module.scss";
 import Image from "next/image";
