@@ -4,9 +4,9 @@ import Style from "./player.module.scss";
 import Image from "next/image";
 import { useRef, useState,} from "react";
 import { useAudioControls } from "@/hooks/useAudioControls";
+import HeartBtn from "../heartBtn/heartBtn";
 
 export default function Player() {
-    const [liked, setLiked] = useState(false);
     const audioRef = useRef<HTMLAudioElement | null>(null);
     const progressRef = useRef<HTMLDivElement | null>(null);
 
@@ -34,17 +34,7 @@ export default function Player() {
             <div className={Style.mainControlBox}>
                 <div className={Style.controlBoxesDurection}>
                     <div className={Style.controlBoxFirstPart}>
-                        <button
-                            className={`${Style.heartButton} ${liked ? Style.liked : ""}`}
-                            onClick={() => setLiked(!liked)}
-                        >
-                            <Image
-                                alt="Heart icon"
-                                src="/icons/Player/heart-syle-1.svg"
-                                width={24}
-                                height={24}
-                            />
-                        </button>
+                    <HeartBtn/>
 
                         <div className={Style.rangeControlBox}>
                             <span>{formatTime(isDragging ? previewTime : currentTime)}</span>
