@@ -10,7 +10,9 @@ type Props = {
 
 
 
-
+function anzori(){
+  console.log("")
+}
 
 export default function Searchbar({
   value,
