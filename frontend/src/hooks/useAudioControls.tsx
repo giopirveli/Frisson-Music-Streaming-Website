@@ -6,7 +6,7 @@ export function useAudioControls(audioRef: RefObject<HTMLAudioElement | null>, p
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [volume, setVolume] = useState(0.3);
+  const [volume, setVolume] = useState(30);
 
   const [isDragging, setIsDragging] = useState(false);
   const [previewTime, setPreviewTime] = useState(0);
@@ -38,9 +38,16 @@ export function useAudioControls(audioRef: RefObject<HTMLAudioElement | null>, p
 
   useEffect(() => {
     if (audioRef.current) {
-      audioRef.current.volume = volume;
+      audioRef.current.volume = volume / 100; // ✅ ეს დაამატე
     }
   }, [volume]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newVolume = Number(e.target.value);
+    console.log("volume:", newVolume); // ✅ აქ უნდა დაიბეჭდოს 0–100
+    setVolume(newVolume);
+  };
+
 
   const togglePlay = () => {
     const audio = audioRef.current;
@@ -60,20 +67,6 @@ export function useAudioControls(audioRef: RefObject<HTMLAudioElement | null>, p
     audio.play();
   };
 
-  const handleSeekStart = () => {
-    audioRef.current?.pause();
-  };
-
-  const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCurrentTime(Number(e.target.value));
-  };
-
-  const handleSeekEnd = (e: React.MouseEvent<HTMLInputElement>) => {
-    const newTime = Number(e.currentTarget.value);
-    if (!audioRef.current) return;
-    audioRef.current.currentTime = newTime;
-    if (isPlaying) audioRef.current.play();
-  };
 
   const handleClickProgressBar = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
@@ -142,5 +135,6 @@ export function useAudioControls(audioRef: RefObject<HTMLAudioElement | null>, p
     progressPercent,
     isDragging,
     previewTime,
+    handleChange,
   };
 }

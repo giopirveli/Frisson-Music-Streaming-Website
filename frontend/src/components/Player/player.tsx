@@ -2,7 +2,7 @@
 "use client";
 import Style from "./player.module.scss";
 import Image from "next/image";
-import { useRef, useState,} from "react";
+import { useRef, useEffect } from "react";
 import { useAudioControls } from "@/hooks/useAudioControls";
 import HeartBtn from "../heartBtn/heartBtn";
 
@@ -19,12 +19,20 @@ export default function Player() {
         reapetSong,
         volume,
         setVolume,
-         handleClickProgressBar,
+        handleClickProgressBar,
         handleThumbMouseDown,
         progressPercent,
         isDragging,
-        previewTime,        // ✅ from hook
-    } = useAudioControls(audioRef,progressRef);
+        previewTime,
+        handleChange,        // ✅ from hook
+    } = useAudioControls(audioRef, progressRef);
+
+
+
+
+ 
+
+
 
 
 
@@ -34,7 +42,7 @@ export default function Player() {
             <div className={Style.mainControlBox}>
                 <div className={Style.controlBoxesDurection}>
                     <div className={Style.controlBoxFirstPart}>
-                    <HeartBtn/>
+                        <HeartBtn />
 
                         <div className={Style.rangeControlBox}>
                             <span>{formatTime(isDragging ? previewTime : currentTime)}</span>
@@ -126,11 +134,17 @@ export default function Player() {
                             <input
                                 type="range"
                                 min={0}
-                                max={1}
-                                step={0.01}
+                                max={100}
                                 value={volume}
-                                onChange={(e) => setVolume(Number(e.target.value))}
+                                onChange={handleChange}
+                                style={{
+                                    background: `linear-gradient(to right, white 0%, white ${volume}%, #444 ${volume}%, #444 100%)`
+                                }}
+                                className={Style.slider}
                             />
+
+
+
 
                         </div>
                     </div>
