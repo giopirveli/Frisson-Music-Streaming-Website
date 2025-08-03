@@ -1,3 +1,42 @@
-node_modules
-dist
+# Node.js
+node_modules/
+dist/
+.next/
 .env
+*.log
+
+# OS/System
+.DS_Store
+
+# NestJS
+dist/
+build/
+
+# Next.js
+.next/
+out/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Env variables
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+
+# Coverage
+coverage/
+.nyc_output/
+
+# OS junk
+.DS_Store
+
+# IDE configs
+.vscode/
+.idea/
