@@ -17,7 +17,10 @@ export class Music {
   title: string;
 
   @Column({ nullable: true })
-  url?: string;
+  url: string;
+
+  @Column({ nullable: true })
+  image: string;
 
   @ManyToOne(() => Author, (author) => author.music, { eager: true })
   @JoinColumn({ name: 'authorId' })

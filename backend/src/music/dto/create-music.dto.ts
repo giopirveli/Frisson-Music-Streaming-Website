@@ -15,5 +15,7 @@ export class CreateMusicDto {
 
   @IsString()
   @IsOptional()
-  artistName?: string;
+  artistName: string;
+
+  image: string;
 }

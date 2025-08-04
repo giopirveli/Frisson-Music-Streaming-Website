@@ -12,8 +12,7 @@ export class MusicService {
   ) {}
 
   async create(createMusicDto: CreateMusicDto) {
-    const music = this.musicRepo.create(createMusicDto);
-    if (!music) return null;
+    const music = await this.musicRepo.create(createMusicDto);
     return music;
   }
 
