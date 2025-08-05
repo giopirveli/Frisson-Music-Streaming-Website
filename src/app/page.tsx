@@ -2,6 +2,8 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import MusicCard  from "@/components/MusicCard/MusicCard";
 import { MuseoModerno } from "next/font/google";
+import AlbumCard from "@/components/AlbumCard/AlbumCard";
+import NewsComponent from "@/components/News Component/NewsComponent";
 
 export default function Home() {
   return (
@@ -15,13 +17,29 @@ export default function Home() {
           height={38}
           priority
         />
-        <MusicCard/>
         <ol>
           <li>
             Get started by editing <code>src/app/page.tsx</code>.
           </li>
           <li>Save and see your changes instantly.</li>
         </ol>
+
+        <NewsComponent
+          imageUrl="/images/placeholder.jpg"
+          title="Top Hit Of the week"
+          plays={795900}
+        />
+        
+        <AlbumCard
+          title="Loading..."
+          artist="Loading..."
+          imageUrl="/images/placeholder.jpg"
+        />
+      <MusicCard
+        title="Loading..."
+        artist="Loading..."
+        imageUrl="/MusicPhoto.jpg"
+      />
 
         <div className={styles.ctas}>
           <a
@@ -49,6 +67,7 @@ export default function Home() {
           </a>
         </div>
       </main>
+      
       <footer className={styles.footer}>
         <a
           href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"

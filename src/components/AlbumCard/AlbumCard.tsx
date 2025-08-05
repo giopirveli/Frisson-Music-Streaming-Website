@@ -1,16 +1,18 @@
 "use client";
-import styles from "../MusicCard/MusicCard.module.scss";
-import { useState } from "react";
+import styles from "../AlbumCard/AlbumCard.module.scss";
+import Image from "next/image";
+import AlbumPhoto from "../AlbumCard/AlbumPhoto.jpg";
 import HeartBtn from "../heartBtn/heartBtn";
 import ThreeDotsBtn from "../3dots/3dots";
+import { useState } from "react";
 
-export interface MusicCardProps {
+interface AlbumCardProps {
   title: string;
   artist: string;
   imageUrl: string;
 }
 
-export default function MusicCard({ title, artist, imageUrl }: MusicCardProps) {
+export default function AlbumCard({ title, artist, imageUrl }: AlbumCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <div
@@ -19,7 +21,7 @@ export default function MusicCard({ title, artist, imageUrl }: MusicCardProps) {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className={styles.imageWrapper}>
-        <img src={imageUrl} alt="Music Card" className={styles.musicImage} />
+        <Image src={AlbumPhoto} alt="Music Card" className={styles.musicImage} />
       </div>
       {isHovered && (
         <div className={styles.heartButton}>
