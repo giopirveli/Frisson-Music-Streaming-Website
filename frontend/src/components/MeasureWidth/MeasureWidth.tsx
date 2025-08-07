@@ -14,7 +14,7 @@ export default function MeasureWidth() {
       const contentWidth = document.documentElement.clientWidth; // viewport without scrollbar
 
       // Width of vertical scrollbar (usually 15-17px)
-      const scrollbarWidth = viewportWidth - contentWidth; // viewport - scrollbar width
+      const scrollbarWidth = viewportWidth - contentWidth; // viewport (with sidebar) -  viewport (without sidebar)
 
       // Estimate sidebar width (Opera's left sidebar or similar)
       // It is total screen width minus viewport width minus scrollbar width
