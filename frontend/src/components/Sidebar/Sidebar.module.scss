@@ -14,9 +14,12 @@
    top: 0;
    left: 0;
    padding: 40px 20px;
-   @media (max-height:763px){ /* */
-   position: static;
+
+   @media (max-height:763px) {
+      gap:38px;
+      padding:20px 20px;
    }
+
    height: 100vh;
    z-index: 1000;
 }
@@ -33,6 +36,10 @@
    flex-direction: column;
    justify-content: center;
    gap: 32px;
+
+   @media (max-height:763px) {
+      gap: 16px;
+   }
 }
 
 .mainMenu,
@@ -40,6 +47,9 @@
    display: flex;
    flex-direction: column;
    gap: 8px;
+   @media (max-height:763px){
+      gap:4px;
+   }
 }
 
 .mainMenu div,
@@ -52,6 +62,8 @@
    color: $mission-control;
    display: flex;
    gap: 8px;
+   
+
 
    font-size: 16px;
    font-style: normal;

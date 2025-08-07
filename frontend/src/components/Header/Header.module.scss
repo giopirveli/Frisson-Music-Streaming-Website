@@ -5,7 +5,6 @@
    justify-content: space-between;
    align-items: center;
    padding: 40px 24px 0 24px;
-   width: 100%;
 }
 
 .searchbar {
@@ -20,9 +19,4 @@
    margin-right: 24px;
 }
 
-.user {
-   @media(min-height:763px) {
-      position: relative;
-      left: -280px;
-   }
-}
+// .user {}
