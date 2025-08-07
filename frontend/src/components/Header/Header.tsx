@@ -12,7 +12,7 @@ export default function Header(){
          <Searchbar placeholder={"artists, tracks, albums"} />
          
       </div>
-      <Image src="/icons/Header/user.svg" className={styles.user} width={32} height={32} alt="user icon" />
+      <Image src="/icons/Header/user.svg" className={styles.user} width={32} height={32} alt="user icon" /> {/* assetshi unda iyos amis icon */}
    </header>
    )
 }

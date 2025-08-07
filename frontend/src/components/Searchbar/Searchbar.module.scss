@@ -2,13 +2,18 @@
 
 .searchbar {
    font-family: "Plus Jakarta Sans";
-   color:$stone-cold;
+   color:$white; // $stone-cold
    background-color: inherit;
    border:0;
-   
-   
+   width:100%;
+
+
    &:focus{
-      outline:none; /* onFocus color, acts like border */
+      outline:1px solid $white; /* onFocus color, acts like border */
    }
 }
 
+
+.wrapper{
+   width:100%;
+}
