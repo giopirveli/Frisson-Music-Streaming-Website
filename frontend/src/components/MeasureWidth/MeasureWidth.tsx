@@ -59,7 +59,7 @@ export default function MeasureWidth() {
 scss variables:
 
  '--scrollbar-width'  that calculates scrollbar width
-'--sidebar-width' opera has sidebar : calculates size of opera sidebar
-'--total-taken-width' // opera sidebar(if they use opera) + sidebar size number
+ '--sidebar-width' opera has sidebar : calculates size of opera sidebar
+ '--total-taken-width' // opera sidebar(if they use opera) + sidebar size number
 
 */

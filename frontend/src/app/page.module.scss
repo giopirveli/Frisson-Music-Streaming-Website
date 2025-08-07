@@ -26,7 +26,8 @@
   position: relative;
   right:-280px;
   width:100%;
-  max-width: calc(100vw - 295px); // 280px 
+  max-width: calc(100vw - 280px - var(--scrollbar-width, 0px)); // 280px width of sidebar
+  // only weakness is horizontal scroll after refreshing and disappears in seconds
 
   
 }
