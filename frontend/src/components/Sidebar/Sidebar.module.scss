@@ -3,6 +3,7 @@
 
 
 
+
 .sidebar {
    position: fixed;
    /* tu ekrani pataraa vidre 872px scroll ar eqneba amis gamo problema gvardeba roca mainshi contentis height gaxdeba 872px ze meti || tu arada chatgpt axsnis */
@@ -50,7 +51,9 @@
    @media (max-height:763px){
       gap:4px;
    }
+
 }
+
 
 .mainMenu div,
 .collectionMenu div,
@@ -58,7 +61,7 @@
    padding: 12px 0 12px 16px;
    justify-content: flex-start;
    align-items: center;
-   font-family: 'Plus Jakarta Sans';
+   font-family: 'jakarta', sans-serif;
    color: $mission-control;
    display: flex;
    gap: 8px;
@@ -80,7 +83,7 @@
 .collectionMenu h4,
 .discoverMenu h4 {
    text-transform: uppercase;
-   font-family: 'Plus Jakarta Sans';
+   font-family: 'jakarta', sans-serif;
    color: $white;
    font-size: 16px;
    font-style: normal;
