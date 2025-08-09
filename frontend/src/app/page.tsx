@@ -2,7 +2,8 @@
 import styles from "./page.module.scss";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import Header from "@/components/Header/Header";
-import AlbumCard from "@/components/AlbumCard/AlbumCard";
+import MusicCard from "@/components/MusicCard/MusicCard";
+
 
 export default function Home() {
   return (
