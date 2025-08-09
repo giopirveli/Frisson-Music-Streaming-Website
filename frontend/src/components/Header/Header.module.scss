@@ -1,28 +1,22 @@
 @use "../../../styles/colors" as *;
 
-.header{
-   display:flex;
+.header {
+   display: flex;
    justify-content: space-between;
    align-items: center;
-   padding:40px 24px 0 24px;
-   width:100%;
+   padding: 40px 24px 0 24px;
 }
 
-.searchbar{
-   display:flex;
-   gap:4px;
+.searchbar {
+   display: flex;
+   gap: 4px;
    align-items: center;
    max-width: 548px;
-   width:100%;
-   padding:16px 0 16px 24px;
+   width: 100%;
+   padding: 16px 24px 16px 24px;
    border-radius: 8px;
-   border:1px solid $hawks-eye;
-   margin-right:24px;
+   border: 1px solid $hawks-eye;
+   margin-right: 24px;
 }
 
-.searchbar input{
-   font-family: "Plus Jakarta Sans";
-   color:$stone-cold;
-   background-color: inherit;
-   border:0;
-}
+// .user {}
