@@ -14,11 +14,9 @@ export default function Home() {
       <div className={styles.container}>
         <Header></Header>
         <main className={styles.main}>
-          
         </main>
-
       </div>
-        <Player/>
+      <Player />
     </div>
   );
 }
