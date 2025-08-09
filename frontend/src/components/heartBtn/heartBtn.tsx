@@ -13,6 +13,7 @@ export default function heartBtn() {
             <Image
                 alt="Heart icon"
                 src="/icons/HerartBtn/heart-syle-1.svg"
+
                 width={24}
                 height={24}
             />

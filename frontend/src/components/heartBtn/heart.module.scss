@@ -2,7 +2,7 @@
     background: transparent;
     border: none;
     cursor: pointer;
-    flex: 0.15;
+
 }
 
 .heartButton img {
@@ -19,4 +19,16 @@
 
 .heartButton.liked img {
     content: url("/icons/HerartBtn/heart-syle-3.svg");
+=======
+    background-color: white;
+    border-radius: 50%;
+    padding: 2px;
+}
+
+.heartButton:hover img {
+    content: url('/icons/HeartButton/heart-syle-2.svg');
+}
+
+.heartButton.liked img {
+    content: url("/icons/HeartButton/heart-syle-3.svg");
 }
