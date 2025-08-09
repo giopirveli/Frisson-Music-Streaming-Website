@@ -2,6 +2,7 @@
 import styles from "./page.module.scss";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import Header from "@/components/Header/Header";
+
 import MusicCard from "@/components/MusicCard/MusicCard";
 
 
