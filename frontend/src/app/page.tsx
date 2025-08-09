@@ -2,8 +2,8 @@
 import styles from "./page.module.scss";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import Header from "@/components/Header/Header";
+import Player from "@/components/Player/player";
 
-import MusicCard from "@/components/MusicCard/MusicCard";
 
 
 export default function Home() {
@@ -20,8 +20,9 @@ export default function Home() {
           imageUrl= {'string'}
           ></AlbumCard>
         </main>
-      </div>
 
+      </div>
+        <Player/>
     </div>
   );
 }
