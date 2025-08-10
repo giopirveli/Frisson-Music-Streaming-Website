@@ -1,5 +1,6 @@
 // Searchbar.tsx
 import styles from "./Searchbar.module.scss";
+import Image from "next/image";
 
 type Props = {
   value?: string;
@@ -20,7 +21,7 @@ export default function Searchbar({
   return (
     <div className={styles.wrapper}>
       {iconName && (
-        <img
+        <Image
           src={`/${iconName}`}
           alt="icon"
           className={styles.icon}
@@ -29,7 +30,7 @@ export default function Searchbar({
       )}
       <input
         type="text"
-        className={styles.searchbar}
+        className={styles.search}
         value={value}
         onChange={onChange}
         placeholder={placeholder}
