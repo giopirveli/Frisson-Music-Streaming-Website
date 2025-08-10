@@ -10,19 +10,12 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <Sidebar></Sidebar>
-
       <div className={styles.container}>
         <Header></Header>
         <main className={styles.main}>
-          <AlbumCard
-          title= {'string'}
-          artist= {'string'}
-          imageUrl= {'string'}
-          ></AlbumCard>
         </main>
-
       </div>
-        <Player/>
+      <Player />
     </div>
   );
 }

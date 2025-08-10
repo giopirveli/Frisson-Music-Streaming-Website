@@ -18,7 +18,7 @@
 
 .title {
   color: #FFF;
-  font-family: "SF Pro Display";
+  font-family: var(--font-display), sans-serif;
   font-size: 64px;
   font-style: normal;
   font-weight: 800;
@@ -28,7 +28,7 @@
 
 .plays{
   color: #BCBCBE;
-  font-family: "Plus Jakarta Sans";
+  font-family: var(--font-jakarta),sans-serif;
   font-size: 24px;
   font-style: normal;
   font-weight: 500;
