@@ -1,7 +1,7 @@
 @use "../../../styles/colors" as *;
 
 .searchbar {
-   font-family: "Plus Jakarta Sans";
+   font-family: var(--font-jakarta), sans-serif;
    color:$white; // $stone-cold
    background-color: inherit;
    border:0;

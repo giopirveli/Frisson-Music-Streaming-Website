@@ -1,8 +1,5 @@
 @use "../../../styles/colors" as *;
 
-
-
-
 .sidebar {
    position: fixed;
    display: flex;
@@ -49,9 +46,7 @@
    @media (max-height:763px){
       gap:4px;
    }
-
 }
-
 
 .mainMenu div,
 .collectionMenu div,
@@ -59,13 +54,11 @@
    padding: 12px 0 12px 16px;
    justify-content: flex-start;
    align-items: center;
-   font-family: 'jakarta', sans-serif;
+   font-family: var(--font-jakarta), sans-serif;
    color: $mission-control;
    display: flex;
    gap: 8px;
    
-
-
    font-size: 16px;
    font-style: normal;
    font-weight: 500;
@@ -81,7 +74,7 @@
 .collectionMenu h4,
 .discoverMenu h4 {
    text-transform: uppercase;
-   font-family: 'jakarta', sans-serif;
+   font-family: var(--font-jakarta), sans-serif;
    color: $white;
    font-size: 16px;
    font-style: normal;

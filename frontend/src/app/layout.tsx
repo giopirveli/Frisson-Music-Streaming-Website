@@ -1,15 +1,37 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.scss";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+// Manrope (100–900, normal)
+const manrope = localFont({
+  src: [
+    { path: "../fonts/manrope/Manrope-VariableFont.woff2", weight: "100 900", style: "normal" },
+    { path: "../fonts/manrope/Manrope-VariableFont.woff", weight: "100 900", style: "normal" },
+  ],
+  variable: "--font-manrope",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+// Plus Jakarta Sans (100–900, normal + italic)
+const plusJakartaSans = localFont({
+  src: [
+    // Normal
+    { path: "../fonts/plusJakartaSans/PlusJakartaSans-VariableFont.woff2", weight: "100 900", style: "normal" },
+    { path: "../fonts/plusJakartaSans/PlusJakartaSans-VariableFont.woff", weight: "100 900", style: "normal" },
+
+    // Italic
+    { path: "../fonts/plusJakartaSans/PlusJakartaSans-Italic-VariableFont.woff2", weight: "100 900", style: "italic" },
+    { path: "../fonts/plusJakartaSans/PlusJakartaSans-Italic-VariableFont.woff", weight: "100 900", style: "italic" },
+  ],
+  variable: "--font-jakarta",
+});
+
+// SF Pro Display (900, normal)
+const sfProDisplay = localFont({
+  src: [
+    { path: "../fonts/sfprodisplayheavy/sfprodisplayheavy.woff2", weight: "900", style: "normal" },
+    { path: "../fonts/sfprodisplayheavy/sfprodisplayheavy.woff", weight: "900", style: "normal" },
+  ],
+  variable: "--font-display",
 });
 
 export const metadata: Metadata = {
@@ -19,12 +41,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>{children}</body>
+      <body className={`${manrope.variable} ${plusJakartaSans.variable} ${sfProDisplay.variable}`}>
+        {children}
+      </body>
     </html>
   );
 }
