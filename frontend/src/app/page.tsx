@@ -3,6 +3,7 @@ import styles from "./page.module.scss";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import Header from "@/components/Header/Header";
 import Player from "@/components/Player/player";
+import Table from "@/components/Table/Table";
 
 
 
@@ -13,6 +14,7 @@ export default function Home() {
       <div className={styles.container}>
         <Header></Header>
         <main className={styles.main}>
+          <Table></Table>
         </main>
       </div>
       <Player />

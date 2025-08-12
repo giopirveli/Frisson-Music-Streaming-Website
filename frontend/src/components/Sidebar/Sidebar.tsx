@@ -14,7 +14,7 @@ export default function Sidebar() {
 
                   <div>
                      <Image src="/icons/Sidebar/home.svg" width={24} height={24} alt="logo" />
-                     <p>home</p>
+                     <p>home as as</p>
                   </div>
 
                   <div>

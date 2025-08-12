@@ -1,0 +1,78 @@
+@use "../../../styles/colors" as *;
+
+
+.chart {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 12px;
+  &:hover{
+  border-bottom: 4px solid $gradient-apolo;
+  }
+
+  > div {
+    @extend .title;
+    font-weight: 600; 
+    padding:12px 24px;
+  }
+}
+
+
+.title{
+   
+}
+.title.active{
+   color: $white;
+font-family: var(--font-jakarta),sans-serif;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: 100%; /* 16px */
+text-transform: capitalize;
+}
+
+
+
+
+.table {
+  
+  padding: 16px;
+   }
+
+
+.imageWrapper // for image resizing and styling
+
+
+.list {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+
+.list th,
+.list td {
+  padding: 10px 8px;
+  border-bottom: 1px solid #ddd;
+  vertical-align: middle;
+}
+
+.list th {
+  color: $mission-control;
+font-family: var(--font-jakarta),sans-serif;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+
+.list td:last-child {
+  text-align: center;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.list td:nth-last-child(2) {
+  text-align: center;
+  font-size: 18px;
+  user-select: none;
+}
