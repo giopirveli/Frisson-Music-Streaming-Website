@@ -3,23 +3,36 @@
 .page {
   background: $reversed-grey;
   display: flex;
-  height: 100vh;
+  height: 300vh;
   width: 100%;
-  justify-content: center;
+  justify-content: space-between;
+
 }
+
+
+
+.main {
+  display: flex;
+}
+
+
+
 
 .allSemanticTag {
   display: flex;
   width: 100%;
 }
 
-.main {
-  display: flex;
-}
 
 .container {
-  margin-left: 240px; 
-  width: 100%;
-  display: flex;
+  display:flex;
   flex-direction: column;
+  gap:40px;
+  position: relative;
+  right:-280px;
+  width:100%;
+  max-width: calc(100vw - 280px - var(--scrollbar-width, 0px)); // 280px width of sidebar
+  // only weakness is horizontal scroll after refreshing and disappears in seconds
+
+  
 }

@@ -1,0 +1,52 @@
+@import '../../../styles/colors';
+
+.card {
+    background-color: $dark-void;
+    box-sizing: border-box;
+    height: 288px;
+    max-width: 266px;
+    width: 100%;
+    border-radius: 8px;
+    position:relative;
+}
+
+.musicImage{
+    width: 234px;
+    height: 202px;
+    border-radius: 8px;
+    object-fit: cover;
+    max-width: 100%;
+    transition: filter 0.3s ease;
+    display: block;
+}
+
+.imageWrapper{
+    margin: 16px 16px 12px
+}
+
+.textWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+}
+
+.textTop {
+  font-size: 14px;
+  color: $shady-lady;
+  margin-bottom: 6px;
+}
+
+.textBottom {
+  font-size: 16px;
+  color: #FFFF
+}
+
+.heartButton{
+  display:flex;
+  gap: 8px;
+  position: absolute;
+  top: 180px;
+  z-index: 10;
+  left: 39%;
+}
+ 
