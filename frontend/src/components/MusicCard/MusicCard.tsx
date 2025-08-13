@@ -1,8 +1,8 @@
 "use client";
 import styles from "../MusicCard/MusicCard.module.scss";
 import { useState } from "react";
-import HeartBtn from "../heartBtn/heartBtn";
-import ThreeDotsBtn from "../3dots/3dots";
+import HeartBtn from "../HeartBtn/HeartBtn";
+import ThreeDotsBtn from "../3dots/ThreeDotsBtn";
 
 interface MusicCardProps {
   title: string;

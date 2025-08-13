@@ -1,13 +1,18 @@
 "use client";
+import {Colors} from "../../../styles/colors.enum";
 import { useState } from "react";
-import  Style  from "./heart.module.scss"; 
+import  style  from "./heart.module.scss"; 
 import Image from "next/image";
 
-export default function heartBtn() {
+type props ={
+    bgcolor?:Colors
+}
+
+export default function HeartBtn({bgcolor}:props) {
     const [liked, setLiked] = useState(false);
     return (
         <button
-            className={`${Style.heartButton} ${liked ? Style.liked : ""}`}
+            className={`${style.heartButton } ${liked ? style.liked : ""}`}
             onClick={() => setLiked(!liked)}
         >
             <Image
@@ -16,7 +21,7 @@ export default function heartBtn() {
 
                 width={24}
                 height={24}
-            />
+            /> {/* propebi daamate rom zomebi chaewodebodes */}
         </button>
     )
 }

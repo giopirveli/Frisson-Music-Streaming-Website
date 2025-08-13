@@ -2,8 +2,8 @@
 import styles from "../AlbumCard/AlbumCard.module.scss";
 import Image from "next/image";
 import AlbumPhoto from "../AlbumCard/AlbumPhoto.jpg";
-import HeartBtn from "../heartBtn/heartBtn";
-import ThreeDotsBtn from "../3dots/3dots";
+import HeartBtn from "../HeartBtn/HeartBtn";
+import ThreeDotsBtn from "../3dots/ThreeDotsBtn";
 import { useState } from "react";
 
 interface AlbumCardProps {
