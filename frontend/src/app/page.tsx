@@ -4,6 +4,7 @@ import Sidebar from "@/components/Sidebar/Sidebar";
 import Header from "@/components/Header/Header";
 import AlbumCard from "@/components/AlbumCard/AlbumCard";
 import ArtistCard from "@/components/ArtistCard/ArtistCard"
+import TopCharts from "@/components/TopCharts/TopCharts";
 
 export default function Home() {
   return (
@@ -23,6 +24,13 @@ export default function Home() {
            title= {'Billie yle'}  
            imageUrl= {'string'}
           ></ArtistCard>
+
+          <TopCharts
+            title= {'string'}
+            artist= {'string'}
+            imageUrl= {'string'}
+            duration= {240}
+          ></TopCharts>
         </main>
       </div>
 
