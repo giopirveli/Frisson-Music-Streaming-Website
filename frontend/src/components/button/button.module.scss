@@ -1,0 +1,27 @@
+@import "../../../styles/colors";
+
+.basicButtonStyle {
+  display: flex;
+  gap: 4px;
+  cursor: pointer;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding: 12px 20px;
+  border-radius: 8px;
+  background: $gradient-apolo;
+  border: none;
+}
+.basicButtonStyle > span {
+  color: #fff;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
