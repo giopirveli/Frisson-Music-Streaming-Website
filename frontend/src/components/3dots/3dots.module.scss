@@ -2,14 +2,11 @@
     background: transparent;
     border: none;
     cursor: pointer;
+    padding: 4px;
 }
 
 .threeDotsBtn img {
     display: block;
-    width: 25px;
-    height: 25px;
-    object-fit: contain;
-    background-color: white;
-    border-radius: 50%;
-    padding: 2px;
+    width: 24px;
+    height: 24px;
 }
