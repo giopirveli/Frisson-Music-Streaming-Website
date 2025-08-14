@@ -19,7 +19,7 @@ export default function ArtistCard({ title, imageUrl }: ArtistCardProps) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className={styles.imageWrapper}>
+      <div className={`${styles.imageWrapper} ${isHovered && styles.hoveredImgWrapper}`}>
         <Image src={imageUrl} alt="Artist Card" className={styles.artistImage} width={234} height={226} />
       </div>
       {isHovered && (
