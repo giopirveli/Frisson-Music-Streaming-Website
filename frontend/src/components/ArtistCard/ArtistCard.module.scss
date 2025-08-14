@@ -1,0 +1,50 @@
+@import '../../../styles/colors';
+
+.card {
+    background-color: $dark-void;
+    box-sizing: border-box;
+    height: 288px;
+    max-width: 266px;
+    width: 100%;
+    border-radius: 8px;
+    position: relative;
+}
+
+
+.artistImage{
+    width: 234px;
+    height: 226px;
+    border-radius: 200px;
+    object-fit: cover;
+    max-width: 100%;
+    transition: filter 0.3s ease;
+    display: block;
+}
+
+.imageWrapper{
+  margin: 16px 16px 0px;
+}
+
+.textWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+  margin-top: 8px;
+}
+
+.textTop {
+   font-size: 16px;
+   color: #FFFF
+
+}
+
+
+.heartButton{
+  margin-top: 10px;
+  display:flex;
+  gap: 8px;
+  position: absolute;
+  top: 180px;
+  z-index: 10;
+  left: 39%;
+}
