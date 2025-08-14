@@ -5,6 +5,8 @@ import Header from "@/components/Header/Header";
 import Player from "@/components/Player/player";
 import NewsComponent from "@/components/NewsComponent/NewsComponent";
 import MusicCard from "@/components/MusicCard/MusicCard";
+import AlbumCard from "@/components/AlbumCard/AlbumCard";
+import ArtistCard from "@/components/ArtistCard/ArtistCard";
 export default function Home() {
   return (
     <div className={styles.page}>
@@ -19,10 +21,9 @@ export default function Home() {
             <span>See all</span>
             </div>
             <div className={styles.topHitsSectionCardsBox}>
-              <MusicCard title="Anyma" imageUrl="/Images/MusicCard/MusicCardPhoto.jpg" artist="Anyma" />
-              <MusicCard title="Anyma" imageUrl="/Images/MusicCard/MusicCardPhoto.jpg" artist="Anyma" />
-              <MusicCard title="Anyma" imageUrl="/Images/MusicCard/MusicCardPhoto.jpg" artist="Anyma" />
-              <MusicCard title="Anyma" imageUrl="/Images/MusicCard/MusicCardPhoto.jpg" artist="Anyma" />
+ <AlbumCard title="eee" artist="eeee" imageUrl="/Images/AlbumCard/AlbumPhoto.jpg"/>
+          <MusicCard title="eee" artist="eeee" imageUrl="/Images/MusicCard/MusicCardPhoto.jpg" />
+          <ArtistCard  title="eee"  imageUrl="/Images/ArtistCard/ArtistPhoto.jpg"/>
             </div>
 
           </section>
