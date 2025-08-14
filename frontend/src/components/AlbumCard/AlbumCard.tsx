@@ -1,7 +1,6 @@
 "use client";
 import styles from "../AlbumCard/AlbumCard.module.scss";
 import Image from "next/image";
-import AlbumPhoto from "../AlbumCard/AlbumPhoto.jpg";
 import HeartBtn from "../heartBtn/heartBtn";
 import ThreeDotsBtn from "../3dots/3dots";
 import { useState } from "react";
@@ -21,12 +20,16 @@ export default function AlbumCard({ title, artist, imageUrl }: AlbumCardProps) {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className={styles.imageWrapper}>
-        <Image src={AlbumPhoto} alt="Music Card" className={styles.musicImage} />
+        <Image src={imageUrl} alt="Music Card" className={styles.musicImage} width={234} height={202} />
       </div>
       {isHovered && (
         <div className={styles.heartButton}>
-          <HeartBtn />
-          <ThreeDotsBtn />
+          <div className={styles.btnWhiteBackground}>
+            <HeartBtn />
+          </div>
+          <div className={styles.btnWhiteBackground}>
+            <ThreeDotsBtn />
+          </div>
         </div>
       )}
       <div className={styles.textWrapper}>
