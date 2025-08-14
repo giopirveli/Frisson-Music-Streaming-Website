@@ -19,7 +19,7 @@ export default function AlbumCard({ title, artist, imageUrl }: AlbumCardProps) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className={styles.imageWrapper}>
+      <div className={`${styles.imageWrapper} ${isHovered && styles.hoveredImgWrapper}`}>
         <Image src={imageUrl} alt="Music Card" className={styles.musicImage} width={234} height={202} />
       </div>
       {isHovered && (
