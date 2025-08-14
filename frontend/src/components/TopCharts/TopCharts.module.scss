@@ -25,13 +25,13 @@
 
 .textTop{
 color: #FFF;
-font-family: "Plus Jakarta Sans";
+  font-family: --var(--font-jakarta),sans-serif;
 font-size: 16px;
 }
 
 .textBottom{
   color: #9E9A9F;
-  font-family: "Plus Jakarta Sans";
+  font-family: --var(--font-jakarta),sans-serif;
   font-size: 14px;
   margin-top: 8px;
 }
@@ -42,7 +42,7 @@ margin-top: 30px;
 
 .durationTime{
   color: #9E9A9F;
-  font-family: "Plus Jakarta Sans";
+  font-family: --var(--font-jakarta),sans-serif;
   font-size: 14px;
   font-weight: 600;
 }

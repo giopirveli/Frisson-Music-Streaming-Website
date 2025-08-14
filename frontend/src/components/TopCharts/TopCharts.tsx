@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import styles from "../TopCharts/TopCharts.module.scss";
-import TopChartsImage from '../TopCharts/TopChartsImage.jpg'
 import Image from "next/image";
 import HeartBtn from "../heartBtn/heartBtn";
 import ThreeDotsBtn from "../3dots/3dots";
@@ -29,11 +28,11 @@ export default function TopCharts({ title, artist, duration, imageUrl }: TopChar
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className={styles.imageWrapper}>
-        <Image src={TopChartsImage} alt="Top Chart" className={styles.image} />
+        <Image src={imageUrl} alt="Top Chart" className={styles.image} width={72} height={72} />
       </div>
         <div className={styles.textWrapper}>
-          <p className={styles.textTop}>{"Illusion"}</p>
-          <p className={styles.textBottom}>{"By Dua Lipa"}</p>
+          <p className={styles.textTop}>{title}</p>
+          <p className={styles.textBottom}>{artist}</p>
         </div>
 
         <div className={styles.durationWrapper}>
