@@ -1,28 +1,28 @@
 @import '../../../styles/colors';
 
 .card {
-    background-color: $dark-void;
-    box-sizing: border-box;
-    height: 288px;
-    max-width: 266px;
-    width: 100%;
-    border-radius: 8px;
-    position: relative;
+  background-color: $dark-void;
+  box-sizing: border-box;
+  height: 288px;
+  max-width: 266px;
+  width: 100%;
+  border-radius: 8px;
+  position: relative;
 }
 
 
-.albumImage{
-    width: 234px;
-    height: 202px;
-    border-radius: 8px;
-    object-fit: cover;
-    max-width: 100%;
-    transition: filter 0.3s ease;
-    display: block;
+.albumImage {
+  width: 234px;
+  height: 202px;
+  border-radius: 8px;
+  object-fit: cover;
+  max-width: 100%;
+  transition: filter 0.3s ease;
+  display: block;
 }
 
-.imageWrapper{
-    margin: 16px 16px 12px
+.imageWrapper {
+  margin: 16px 16px 12px
 }
 
 .textWrapper {
@@ -35,18 +35,32 @@
   font-size: 14px;
   color: $shady-lady;
   margin-bottom: 6px;
+  font-family: var(--font-jakarta), sans-serif;
 }
 
 .textBottom {
   font-size: 16px;
-  color: #FFFF
+  color: #FFFF;
+  font-family: var(--font-jakarta), sans-serif;
 }
 
-.heartButton{
-  display:flex;
+.heartButton {
+  display: flex;
   gap: 8px;
   position: absolute;
-  top: 180px;
+  top: 170px;
   z-index: 10;
-  left: 39%;
+  left: 35%;
+}
+
+.btnWhiteBackground {
+  background-color: $white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hoveredImgWrapper{
+  filter: brightness(1.1) opacity(0.7);
 }

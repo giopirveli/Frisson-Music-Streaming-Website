@@ -4,19 +4,10 @@
   background-color: $dark-void;
   box-sizing: border-box;
   height: 288px;
+  max-width: 266px;
   width: 100%;
   border-radius: 8px;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  padding: 16px;
-  justify-content: end;
-}
-
-.hoveredWrapper {
-  filter: brightness(80%);
 }
 
 .musicImage {
@@ -27,6 +18,13 @@
   max-width: 100%;
   transition: filter 0.3s ease;
   display: block;
+}
+
+.imageWrapper {
+  margin: 16px 16px 12px
+}
+.hoveredImgWrapper{
+  filter: brightness(1.1) opacity(0.7);
 }
 
 .textWrapper {
@@ -40,27 +38,28 @@
   font-size: 14px;
   color: $shady-lady;
   margin-bottom: 6px;
+  font-family: var(--font-jakarta), sans-serif;
 }
 
 .textBottom {
   font-size: 16px;
-  color: #FFFF
+  color: #FFFF;
+  font-family: var(--font-jakarta), sans-serif;
 }
 
 .heartButton {
   display: flex;
   gap: 8px;
   position: absolute;
-  top: 180px;
+  top: 170px;
   z-index: 10;
-  left: 39%;
+  left: 35%;
 }
 
-.backGroundForHeartBtn {
-  border-radius: 50%;
-  background: #FFF;
+.btnWhiteBackground {
+  background-color: $white;
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding: 4px;
+  justify-content: center;
+  border-radius: 50%;
 }

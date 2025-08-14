@@ -34,17 +34,27 @@
 
 .textTop {
    font-size: 16px;
-   color: #FFFF
-
+   color: #FFFF;
+   font-family: var(--font-jakarta),sans-serif;
 }
 
+.btnWhiteBackground{
+  background-color: $white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
 
 .heartButton{
-  margin-top: 10px;
   display:flex;
   gap: 8px;
+  justify-content: center;
   position: absolute;
   top: 180px;
   z-index: 10;
-  left: 39%;
+  left: 36%;
+}
+.hoveredImgWrapper{
+  filter: brightness(1.1) opacity(0.7);
 }

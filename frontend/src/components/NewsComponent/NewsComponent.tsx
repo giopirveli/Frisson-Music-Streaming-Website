@@ -1,5 +1,7 @@
-import styles from "./NewsComponent.module.scss";
+"use client";
 import Button from "../button/button";
+import styles from "./NewsComponent.module.scss";
+import Image from "next/image";
 interface NewsComponentProps {
   imageUrl: string;
   title: string;
@@ -8,14 +10,21 @@ interface NewsComponentProps {
 
 export default function NewsComponent({ imageUrl, title, plays }: NewsComponentProps) {
   return (
-    <div className={styles.card} style={{ backgroundImage: `url(${imageUrl})` }} >
+
+    <div className={styles.wrapper}>
+      <Image className={styles.card} fill src={imageUrl} alt="banner" />
+
+
       <div className={styles.content}>
         <div className={styles.textBox}>
-          <h2 className={styles.title}>{title}</h2>
-        <p className={styles.plays}>{plays.toLocaleString()} Plays</p>
+          <h1 className={styles.title}>{title}</h1>
+          <p className={styles.plays}>{plays.toLocaleString()} Plays</p>
         </div>
-        <Button text="Listen Now" width={153} height={44}/>
+        <Button text="play again" width={150} height={50} />
       </div>
     </div>
+
+
+
   );
 }
