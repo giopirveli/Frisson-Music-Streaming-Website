@@ -13,11 +13,45 @@
 
 .main {
   display: flex;
+  // padding: 24px 24px 24px 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 }
-
-
-
-
+.topHitsSection h2{
+color: #FFF;
+font-family: var(--font-jakarta),sans-serif;
+font-size: 20px;
+font-style: normal;
+font-weight: 600;
+line-height: 100%; 
+}
+.topHitsSection{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.topHitsSectionCardsBox{
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+.topHitsSectionCardsBox >*{
+  flex: 1 0 220px; /* grow=0 (არ იზრდება), shrink=1 (შეიკუმშოს), basis=220px */
+}
+.topHitsSectionTextBox{
+display: flex;
+justify-content: space-between;  
+}
+.topHitsSectionTextBox span{
+color: $mission-control;
+font-family: var(--font-jakarta),sans-serif;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 100%; 
+}
 .allSemanticTag {
   display: flex;
   width: 100%;
@@ -27,12 +61,12 @@
 .container {
   display:flex;
   flex-direction: column;
-  gap:40px;
+  gap: 32px;
   position: relative;
   right:-280px;
   width:100%;
   max-width: calc(100vw - 280px - var(--scrollbar-width, 0px)); // 280px width of sidebar
   // only weakness is horizontal scroll after refreshing and disappears in seconds
-
-  
+      // padding: 40px 24px 0px;
+      padding: 40px 40px 0px 24px;
 }

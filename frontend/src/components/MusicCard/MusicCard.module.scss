@@ -1,33 +1,39 @@
 @import '../../../styles/colors';
 
 .card {
-    background-color: $dark-void;
-    box-sizing: border-box;
-    height: 288px;
-    max-width: 266px;
-    width: 100%;
-    border-radius: 8px;
-    position:relative;
+  background-color: $dark-void;
+  box-sizing: border-box;
+  height: 288px;
+  width: 100%;
+  border-radius: 8px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  justify-content: end;
 }
 
-.musicImage{
-    width: 234px;
-    height: 202px;
-    border-radius: 8px;
-    object-fit: cover;
-    max-width: 100%;
-    transition: filter 0.3s ease;
-    display: block;
+.hoveredWrapper {
+  filter: brightness(80%);
 }
 
-.imageWrapper{
-    margin: 16px 16px 12px
+.musicImage {
+  width: 234px;
+  height: 202px;
+  border-radius: 8px;
+  object-fit: cover;
+  max-width: 100%;
+  transition: filter 0.3s ease;
+  display: block;
 }
 
 .textWrapper {
+  align-self: flex-start;
   display: flex;
   flex-direction: column;
-  margin-left: 15px;
+  gap: 4px;
 }
 
 .textTop {
@@ -41,12 +47,20 @@
   color: #FFFF
 }
 
-.heartButton{
-  display:flex;
+.heartButton {
+  display: flex;
   gap: 8px;
   position: absolute;
   top: 180px;
   z-index: 10;
   left: 39%;
 }
- 
+
+.backGroundForHeartBtn {
+  border-radius: 50%;
+  background: #FFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+}

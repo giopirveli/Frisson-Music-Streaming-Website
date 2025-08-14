@@ -18,12 +18,15 @@ export default function MusicCard({ title, artist, imageUrl }: MusicCardProps) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className={styles.imageWrapper}>
+      <div className={`${styles.imageWrapper} ${isHovered && styles.hoveredWrapper}`}>
         <img src={imageUrl} alt="Music Card" className={styles.musicImage} />
       </div>
       {isHovered && (
         <div className={styles.heartButton}>
+          <div className={styles.backGroundForHeartBtn}>
           <HeartBtn />
+          </div>
+
           <ThreeDotsBtn />
         </div>
       )}
