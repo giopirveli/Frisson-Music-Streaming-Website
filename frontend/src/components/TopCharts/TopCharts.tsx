@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import styles from "./ArtistCard.module.scss";
+import styles from "../TopCharts/TopCharts.module.scss";
 import Image from "next/image";
 import HeartBtn from "../heartBtn/heartBtn";
 import ThreeDotsBtn from "../3dots/3dots";

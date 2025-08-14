@@ -1,0 +1,59 @@
+@import '../../../styles/colors';
+
+.TopChartsDiv{
+  display: flex;
+  background-color: $dark-void;
+  max-width: 548px;
+  height: 104px;
+  width: 100%;
+  border-radius: 8px;
+  position: relative;
+}
+
+.image{
+  width: 72px;
+  height: 72px;
+  border-radius: 8px;
+  margin: 16px 16px;
+}
+
+
+.buttons{
+  display: flex
+ 
+}
+
+.textTop{
+color: #FFF;
+  font-family: --var(--font-jakarta),sans-serif;
+font-size: 16px;
+}
+
+.textBottom{
+  color: #9E9A9F;
+  font-family: --var(--font-jakarta),sans-serif;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.textWrapper{
+margin-top: 30px;
+}
+
+.durationTime{
+  color: #9E9A9F;
+  font-family: --var(--font-jakarta),sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.durationWrapper{
+  margin-top: 45px;
+  margin-left: 200px;
+  margin-right: 60px;
+}
+
+.buttonsWrapper{
+  display: flex;
+  gap: 8px;
+}
