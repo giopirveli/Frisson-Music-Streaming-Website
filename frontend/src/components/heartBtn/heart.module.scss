@@ -2,32 +2,19 @@
     background: transparent;
     border: none;
     cursor: pointer;
-
+    padding: 4px;
 }
 
 .heartButton img {
     display: block;
-    width: 25px;
-    height: 25px;
-    object-fit: contain;
+    width: 24px;
+    height: 24px;
 }
 
 .heartButton:hover img {
     content: url("/icons/HerartBtn/heart-syle-2.svg");
-    transform: scale(1.1);
 }
 
 .heartButton.liked img {
     content: url("/icons/HerartBtn/heart-syle-3.svg");
-    background-color: white;
-    border-radius: 50%;
-    padding: 2px;
-}
-
-.heartButton:hover img {
-    content: url('/icons/HeartButton/heart-syle-2.svg');
-}
-
-.heartButton.liked img {
-    content: url("/icons/HeartButton/heart-syle-3.svg");
 }
