@@ -1,7 +1,7 @@
 "use client";
 import Style from "./player.module.scss";
 import Image from "next/image";
-import { useRef, useEffect } from "react";
+import { useRef,} from "react";
 import { useAudioControls } from "@/hooks/useAudioControls";
 import HeartBtn from "../HeartBtn/HeartBtn";
 
