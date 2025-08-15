@@ -14,7 +14,7 @@ interface Song {
    name?: string;
    album?: string;
    time?: string;
-   liked?: boolean;
+   liked?: boolean;// artist name 
 }
 
 export default function Table({ id, pic, name, album, time, liked }: Song) {
