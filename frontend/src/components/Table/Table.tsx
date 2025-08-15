@@ -8,7 +8,7 @@ import photo from "../../assets/images/table/artistphoto.png";
 import albumPhoto from "../../assets/images/table/albumphoto.png";
 import ThreeDotsBtn from "../3dots/ThreeDotsBtn";
 
-interface Song {
+interface Song { // Song aris prop
    id?: number | string;
    pic?: string;
    name?: string;
@@ -18,8 +18,8 @@ interface Song {
 }
 
 export default function Table({ id, pic, name, album, time, liked }: Song) {
-   const [activeTab, setActiveTab] = useState(1); // songs
-   const [songs, setSongs] = useState<Song[]>([]);
+   const [activeTab, setActiveTab] = useState(1); 
+   const [songs, setSongs] = useState<Song[]>([]); // songs aris array
 
 
  
