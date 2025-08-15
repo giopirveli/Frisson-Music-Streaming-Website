@@ -28,11 +28,16 @@
 
   &>div:hover {
     color: $white;
-    border-image: $gradient-apolo 1;
-    border-image-slice: 1;
+    //   border-image: $gradient-apolo 1;
+    //   border-image-slice: 1;
   }
 }
 
+.active {
+  // color: $white;
+  border-image: $gradient-apolo 1;
+  border-image-slice: 1;
+}
 
 // list of songs
 
@@ -129,6 +134,12 @@
 
 .imageWrapper {
   padding: 10px;
+  &>img{
+  width: 100%;
+  max-width: 48px;
+  height: 48px;
+  border-radius:4px;
+  }
 }
 
 
@@ -153,6 +164,49 @@
   font-weight: 500;
   line-height: normal;
 }
+
+
+// album
+
+.album {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(234px, 1fr));
+  gap: 16px;
+  overflow-x: auto;
+  /* scroll if items exceed row */
+  grid-auto-flow: column;
+}
+
+.album>div {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 266px;
+  height: 280px;
+  background-color: $dark-void;
+  padding: 16px;
+  border-radius: 8px;
+
+  &>p {
+    @extend .titleStyles;
+    color: $white;
+    align-self: flex-start;
+
+  }
+
+  &>img {
+    border-radius: 8px;
+    width: 100%;
+    max-width: 234px;
+    height: 220px;
+  }
+}
+
+
+
+
 
 
 // default copy-paste style

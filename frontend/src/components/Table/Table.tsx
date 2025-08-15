@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Image from "next/image";
 import HeartBtn from "../HeartBtn/HeartBtn";
-import photo from "../../assets/images/table/artistphoto.png"
+import photo from "../../assets/images/table/artistphoto.png";
+import albumPhoto from "../../assets/images/table/albumphoto.png";
 import ThreeDotsBtn from "../3dots/ThreeDotsBtn";
 
 interface Song {
@@ -17,8 +18,11 @@ interface Song {
 }
 
 export default function Table({ id, pic, name, album, time, liked }: Song) {
-   const [activeTab, setActiveTab] = useState("songs");
+   const [activeTab, setActiveTab] = useState(1); // songs
    const [songs, setSongs] = useState<Song[]>([]);
+
+
+ 
    /*
       useEffect(() => {
          axios
@@ -34,13 +38,26 @@ export default function Table({ id, pic, name, album, time, liked }: Song) {
       <div className={styles.table}>
          {/* Tabs */}
          <div className={styles.tabs}>
-            <div className={styles.nugo}>top songs</div>
-            <div>albums</div>
-            <div>biography</div>
+            <div
+               className={activeTab === 1 ? styles.active : ""}
+               onClick={() => setActiveTab(1)}>
+               top songs
+            </div>
+            <div 
+            onClick={() => setActiveTab(2)}
+            className={activeTab === 2?styles.active: ""}>
+               albums
+               </div>
+            <div 
+            onClick={() => setActiveTab(3)}
+            className={activeTab === 3?styles.active:""}>
+                  biography
+                  </div>
          </div>
 
          {/* Table */}
-         <table className={styles.list}>
+
+         {activeTab === 1 && <table className={styles.list}>
             <thead>
                <tr className={styles.thead}>
                   <th className={styles.hash}>#</th>
@@ -61,8 +78,7 @@ export default function Table({ id, pic, name, album, time, liked }: Song) {
                         <Image
                            src={photo}
                            alt={"song name"}
-                           width={48}
-                           height={48}
+                           
 
                         />
                      </div>
@@ -76,11 +92,7 @@ export default function Table({ id, pic, name, album, time, liked }: Song) {
                   <td><ThreeDotsBtn /></td>
                </tr>
 
-               
-
-
-
-               {/* ThreeDotsBtn still needs component
+               {/* this is top Songs   ||  ThreeDotsBtn still needs component
 songs.map((song, i) => (
    <tr key={song.id}>
       <td>{(i + 1) || "?"}</td>
@@ -102,13 +114,55 @@ songs.map((song, i) => (
       </td>
       <td><ThreeDotsBtn /></td> }
             </tr>
-            ))
-
-*/}
-
+            ))*/}
 
             </tbody>
          </table>
+         }
+
+
+         {activeTab === 2 &&
+            <div className={styles.album}>
+
+                  <div>
+                     <Image src={albumPhoto} alt="Artist Image"  />
+                     <p>no information</p>
+                  </div>
+               
+                  <div>
+                     <Image src={albumPhoto} alt="Artist Image"  />
+                     <p>no information</p>
+                  </div>
+               
+                  <div>
+                     <Image src={albumPhoto} alt="Artist Image"  />
+                     <p>no information</p>
+                  </div>
+               
+                  <div>
+                     <Image src={albumPhoto} alt="Artist Image" />
+                     <p>no information</p>
+                  </div>
+               
+
+            </div>}
+
+
+
+
+
+         {/*activeTab === 2 &&
+            <div className={styles.album}>
+               {songs.map((song, i) => (
+                  <div key={song.id}>
+                     <Image src={song.pic || photo} alt="Artist Image"  />
+                     <p>{song.name}</p>
+                  </div>
+               ))}
+
+            </div>*/}
+
+
       </div >
    );
 }
