@@ -72,7 +72,7 @@ export default function Table({ id, pic, name, album, time, liked }: Song) {
             <tbody className={styles.tbody}>
 
                <tr>
-                  <td className={styles.songId}>{"?"}</td>
+                  <td className={styles.songId}>?</td>
                   <td className={styles.songName}>
                      <div className={styles.imageWrapper}>
                         <Image
@@ -101,8 +101,7 @@ songs.map((song, i) => (
             <Image
                src={song.pic || photo}
                alt={song.name || "song name"}
-               width={48}
-               height={48}
+               
             />
          </div>
          {song.name || "no information"}
@@ -125,22 +124,22 @@ songs.map((song, i) => (
             <div className={styles.album}>
 
                   <div>
-                     <Image src={albumPhoto} alt="Artist Image"  />
+                     <Image src={albumPhoto} onClick={()=>setActiveTab(3)} alt="Artist Image"  />
                      <p>no information</p>
                   </div>
                
                   <div>
-                     <Image src={albumPhoto} alt="Artist Image"  />
+                     <Image src={albumPhoto} onClick={()=>setActiveTab(3)} alt="Artist Image"  />
                      <p>no information</p>
                   </div>
                
                   <div>
-                     <Image src={albumPhoto} alt="Artist Image"  />
+                     <Image src={albumPhoto} onClick={()=>setActiveTab(3)} alt="Artist Image"  />
                      <p>no information</p>
                   </div>
                
                   <div>
-                     <Image src={albumPhoto} alt="Artist Image" />
+                     <Image src={albumPhoto} onClick={()=>setActiveTab(3)} alt="Artist Image" />
                      <p>no information</p>
                   </div>
                
@@ -151,16 +150,16 @@ songs.map((song, i) => (
 
 
 
-         {/*activeTab === 2 &&
+         {activeTab === 2 &&
             <div className={styles.album}>
                {songs.map((song, i) => (
-                  <div key={song.id}>
+                  <div key={song.id} onClick={()=>setActiveTab(3)}>
                      <Image src={song.pic || photo} alt="Artist Image"  />
                      <p>{song.name}</p>
                   </div>
                ))}
 
-            </div>*/}
+            </div>}
 
 
       </div >
