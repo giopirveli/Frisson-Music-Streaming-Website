@@ -7,6 +7,7 @@ import NewsComponent from "@/components/NewsComponent/NewsComponent";
 import MusicCard from "@/components/MusicCard/MusicCard";
 import AlbumCard from "@/components/AlbumCard/AlbumCard";
 import ArtistCard from "@/components/ArtistCard/ArtistCard";
+import TopChart from "@/components/TopCharts/TopCharts";
 export default function Home() {
   return (
     <div className={styles.page}>
@@ -14,18 +15,59 @@ export default function Home() {
       <div className={styles.container}>
         <Header></Header>
         <main className={styles.main}>
-          <NewsComponent title="lddlld" imageUrl="/Images/NewComponentTest.jpg" plays={22222} />
+
+          <NewsComponent title="Top Hit  Of the week" imageUrl="/Images/NewComponentTest.jpg" plays={22222} />
+
           <section className={styles.topHitsSection}>
             <div className={styles.topHitsSectionTextBox}>
-            <h2>Top Hits</h2>
-            <span>See all</span>
+              <h2>Top Hits</h2>
+              <span>See all</span>
             </div>
             <div className={styles.topHitsSectionCardsBox}>
- <AlbumCard title="eee" artist="eeee" imageUrl="/Images/AlbumCard/AlbumPhoto.jpg"/>
-          <MusicCard title="eee" artist="eeee" imageUrl="/Images/MusicCard/MusicCardPhoto.jpg" />
-          <ArtistCard  title="eee"  imageUrl="/Images/ArtistCard/ArtistPhoto.jpg"/>
+              <MusicCard title="Anyma" artist="Genesys II" imageUrl="/Images/MusicCard/MusicCardPhoto.jpg" />
+              <MusicCard title="Anyma" artist="Genesys II" imageUrl="/Images/MusicCard/MusicCardPhoto.jpg" />
+              <MusicCard title="Anyma" artist="Genesys II" imageUrl="/Images/MusicCard/MusicCardPhoto.jpg" />
+              <MusicCard title="Anyma" artist="Genesys II" imageUrl="/Images/MusicCard/MusicCardPhoto.jpg" />
             </div>
+          </section>
 
+          <section className={styles.topChartsSection}>
+            <div className={styles.topChartsSectionTextBox}>
+              <h2>Top Charts</h2>
+              <span>See all</span>
+            </div>
+            <div className={styles.topChartSectionCardsBox}>
+              <TopChart title="Sugar (feat. Francesco)" artist="By Robin Schulz" imageUrl="/Images/TopCharts/TopChartsImage.jpg" duration={345} />
+              <TopChart title="Sugar (feat. Francesco)" artist="By Robin Schulz" imageUrl="/Images/TopCharts/TopChartsImage.jpg" duration={345} />
+              <TopChart title="Sugar (feat. Francesco)" artist="By Robin Schulz" imageUrl="/Images/TopCharts/TopChartsImage.jpg" duration={345} />
+              <TopChart title="Sugar (feat. Francesco)" artist="By Robin Schulz" imageUrl="/Images/TopCharts/TopChartsImage.jpg" duration={345} />
+            </div>
+          </section>
+
+          <section className={styles.albumSection}>
+            <div className={styles.albumSectionTextBox}>
+              <h2>Popular Artists</h2>
+              <span>See all</span>
+            </div>
+            <div className={styles.albumSectionCardsBox}>
+              <AlbumCard title="Of Monsters And Men" artist="Fever Dream" imageUrl="/Images/AlbumCard/AlbumPhoto.jpg" />
+              <AlbumCard title="Of Monsters And Men" artist="Fever Dream" imageUrl="/Images/AlbumCard/AlbumPhoto.jpg" />
+              <AlbumCard title="Of Monsters And Men" artist="Fever Dream" imageUrl="/Images/AlbumCard/AlbumPhoto.jpg" />
+              <AlbumCard title="Of Monsters And Men" artist="Fever Dream" imageUrl="/Images/AlbumCard/AlbumPhoto.jpg" />
+            </div>
+          </section>
+
+          <section className={styles.artistSection}>
+            <div className={styles.artistSectionTextBox}>
+              <h2>Popular Albums</h2>
+              <span>See all</span>
+            </div>
+            <div className={styles.artistSectionCardsBox}>
+              <ArtistCard title="Billie Eilish" imageUrl="/Images/ArtistCard/ArtistPhoto.jpg" />
+              <ArtistCard title="Billie Eilish" imageUrl="/Images/ArtistCard/ArtistPhoto.jpg" />
+              <ArtistCard title="Billie Eilish" imageUrl="/Images/ArtistCard/ArtistPhoto.jpg" />
+              <ArtistCard title="Billie Eilish" imageUrl="/Images/ArtistCard/ArtistPhoto.jpg" />
+            </div>
           </section>
         </main>
       </div>
