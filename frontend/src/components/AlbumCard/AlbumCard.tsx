@@ -6,9 +6,9 @@ import ThreeDotsBtn from "../3dots/ThreeDotsBtn";
 import { useState } from "react";
 
 interface AlbumCardProps {
-  title: string;
+  title?: string;
   artist: string;
-  imageUrl: string;
+  imageUrl: string | any;
 }
 
 export default function AlbumCard({ title, artist, imageUrl }: AlbumCardProps) {
@@ -20,7 +20,7 @@ export default function AlbumCard({ title, artist, imageUrl }: AlbumCardProps) {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className={`${styles.imageWrapper} ${isHovered && styles.hoveredImgWrapper}`}>
-        <Image src={imageUrl} alt="Music Card" className={styles.musicImage} width={234} height={202} />
+        <Image src={imageUrl} alt="Music Card" className={styles.musicImage}  />
       </div>
       {isHovered && (
         <div className={styles.heartButton}>

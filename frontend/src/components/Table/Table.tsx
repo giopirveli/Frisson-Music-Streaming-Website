@@ -7,6 +7,7 @@ import HeartBtn from "../HeartBtn/HeartBtn";
 import photo from "../../assets/images/table/artistphoto.png";
 import albumPhoto from "../../assets/images/table/albumphoto.png";
 import ThreeDotsBtn from "../3dots/ThreeDotsBtn";
+import AlbumCard from "../AlbumCard/AlbumCard";
 
 interface Song { // Song aris prop
    id?: number | string;
@@ -127,6 +128,7 @@ songs.map((song, i) => (
                      <Image src={albumPhoto} onClick={()=>setActiveTab(3)} alt="Artist Image"  />
                      <p>no information</p>
                   </div>
+                  <AlbumCard artist="misi dzma" imageUrl={albumPhoto} />
                
                   <div>
                      <Image src={albumPhoto} onClick={()=>setActiveTab(3)} alt="Artist Image"  />

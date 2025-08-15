@@ -14,7 +14,7 @@ export default function Home() {
       <div className={styles.container}>
         <Header></Header>
         <main className={styles.main}>
-          <Table liked={true} pic="/Images/MusicCard/MusicCardPhoto.jpg" name="good"></Table>
+          <Table></Table>
         </main>
       </div>
       <Player />
