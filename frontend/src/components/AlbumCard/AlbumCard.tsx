@@ -6,8 +6,8 @@ import ThreeDotsBtn from "../3dots/3dots";
 import { useState } from "react";
 
 interface AlbumCardProps {
-  title: string;
-  artist: string;
+  title?: string;
+  artist?: string;
   imageUrl: string;
 }
 

@@ -27,19 +27,22 @@ export default function TopCharts({ title, artist, duration, imageUrl }: TopChar
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className={styles.imageWrapper}>
-        <Image src={imageUrl} alt="Top Chart" className={styles.image} width={72} height={72} />
-      </div>
+      <div className={styles.imgAndWrapperBox}>
+        <div className={styles.imageWrapper}>
+          <Image src={imageUrl} alt="Top Chart" className={styles.image} width={72} height={72} />
+        </div>
         <div className={styles.textWrapper}>
           <p className={styles.textTop}>{title}</p>
           <p className={styles.textBottom}>{artist}</p>
         </div>
+      </div>
 
-        <div className={styles.durationWrapper}>
-          <p className={styles.durationTime}>
-            {formatDuration(duration)}
-          </p>
-        </div>
+
+      <div className={styles.durectionAndButtonsBox}>
+        <p className={styles.durationTime}>
+          {formatDuration(duration)}
+        </p>
+
 
         <div className={styles.buttons}>
           <div className={styles.buttonsWrapper} >
@@ -47,6 +50,8 @@ export default function TopCharts({ title, artist, duration, imageUrl }: TopChar
             <ThreeDotsBtn />
           </div>
         </div>
+
+      </div>
     </div>
   )
 }
