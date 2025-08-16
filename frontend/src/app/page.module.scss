@@ -1,13 +1,6 @@
 @use "../../styles/colors" as *;
 
-.page {
-  background: $reversed-grey;
-  display: flex;
-  height: 300vh;
-  width: 100%;
-  justify-content: space-between;
 
-}
 
 
 
@@ -31,7 +24,7 @@
   position: relative;
   right:-280px;
   width:100%;
-  max-width: calc(100vw - 280px - var(--scrollbar-width, 0px)); // 280px width of sidebar
+  max-width: calc(100vw - 280px - var(--scrollbar-width,0px)); // 280px width of sidebar
   // only weakness is horizontal scroll after refreshing and disappears in seconds
 
   

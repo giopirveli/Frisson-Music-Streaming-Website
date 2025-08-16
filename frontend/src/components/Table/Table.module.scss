@@ -135,11 +135,12 @@
 
 .imageWrapper {
   padding: 10px;
-  &>img{
-  width: 100%;
-  max-width: 48px;
-  height: 48px;
-  border-radius:4px;
+
+  &>img {
+    width: 100%;
+    max-width: 48px;
+    height: 48px;
+    border-radius: 4px;
   }
 }
 
@@ -206,6 +207,46 @@
 }
 
 
+// Biography
+
+.bio {
+  @extend .titleStyles;
+  display: flex;
+  padding: 24px 16px;
+  gap: 24px;
+  max-width: 1112px;
+  width: 100%;
+  height:auto;  
+  
+  .bioTexts{
+    display:flex;
+    flex-direction:column;
+    justify-content: flex-start;
+    gap:16px;
+  }
+
+
+  &>img{
+    max-width: 360px;
+    width:100%;
+    height:325px;
+  }
+
+  & h1 {
+    color:$white;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 100%;
+  }
+
+  & p {
+    text-align: justify;
+    color:$shady-lady;
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+}
 
 
 

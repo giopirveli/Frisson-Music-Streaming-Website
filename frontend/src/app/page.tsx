@@ -9,7 +9,7 @@ import Table from "@/components/Table/Table";
 
 export default function Home() {
   return (
-    <div className={styles.page}>
+    <>
       <Sidebar></Sidebar>
       <div className={styles.container}>
         <Header></Header>
@@ -18,6 +18,6 @@ export default function Home() {
         </main>
       </div>
       <Player />
-    </div>
+  </>
   );
 }

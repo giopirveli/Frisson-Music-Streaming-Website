@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.scss";
+import MeasureWidth from '../components/MeasureWidth/MeasureWidth'; // import it at the top
+import Sidebar from "@/components/Sidebar/Sidebar";
+import Player from "@/components/Player/player";
 
 // Manrope (100–900, normal)
 const manrope = localFont({
@@ -43,8 +46,11 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={`${manrope.variable} ${plusJakartaSans.variable} ${sfProDisplay.variable}`}>
-        {children}
+      <body className={`${manrope.variable} ${plusJakartaSans.variable} ${sfProDisplay.variable}`}> <MeasureWidth />
+        <Sidebar></Sidebar>
+        <div className="page">
+        {children}</div>
+        <Player />
       </body>
     </html>
   );
