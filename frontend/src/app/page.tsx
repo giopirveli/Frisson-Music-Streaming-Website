@@ -11,8 +11,6 @@ export default function Home() {
       <div className={styles.container}>
         <Header></Header>
         <main className={styles.main}>
-           <AlbumCard  title="dddd" artist="fffff" imageUrl="/Images/AlbumCard/AlbumPhoto.jpg"/>
-
         </main>
       </div>
       <Player />

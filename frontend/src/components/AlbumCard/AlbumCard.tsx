@@ -17,7 +17,7 @@ export default function AlbumCard({ title, artist, imageUrl }: AlbumCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <div
-      className={styles.card}
+      className={`${styles.card} ${artist ? "" : styles.cardHight280}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -39,7 +39,7 @@ export default function AlbumCard({ title, artist, imageUrl }: AlbumCardProps) {
       </div>
 
       <div className={styles.textWrapper}>
-        <p className={styles.textBottom}>{artist}</p>
+        {artist && <p className={styles.textBottom}>{artist}</p>}
         <p className={styles.textTop}>{title}</p>
       </div>
     </div>
