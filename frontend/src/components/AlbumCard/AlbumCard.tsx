@@ -17,7 +17,7 @@ export default function AlbumCard({ title, artist, imageUrl }: AlbumCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <div
-      className={`${styles.card} ${artist ? "" : styles.cardHight280}`}
+      className={`${styles.card} ${artist ? "" : styles.cardHightPx}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
