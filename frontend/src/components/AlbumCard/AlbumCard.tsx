@@ -7,34 +7,40 @@ import { useState } from "react";
 
 interface AlbumCardProps {
   title: string;
-  artist: string;
+  artist?: string;
   imageUrl: string;
+  width?: string | number;
+  hight?: string | number
 }
 
 export default function AlbumCard({ title, artist, imageUrl }: AlbumCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <div
-      className={styles.card}
+      className={`${styles.card} ${artist ? "" : styles.cardHight280}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className={`${styles.imageWrapper} ${isHovered && styles.hoveredImgWrapper}`}>
-        <Image src={imageUrl} alt="Music Card" className={styles.musicImage} width={234} height={202} />
-      </div>
-      {isHovered && (
-        <div className={styles.heartButton}>
-          <div className={styles.btnWhiteBackground}>
-            <HeartBtn />
-          </div>
-          <div className={styles.btnWhiteBackground}>
-            <ThreeDotsBtn />
-          </div>
+      <div className={`${styles.imageWrapperBox}`}>
+        <div className={`${styles.imageWrapper} ${isHovered && styles.hoveredImgWrapper}`} >
+          <Image src={imageUrl} alt="Music Card" className={styles.musicImage} fill />
         </div>
-      )}
+
+        {isHovered && (
+          <div className={styles.heartButton}>
+            <div className={styles.btnWhiteBackground}>
+              <HeartBtn />
+            </div>
+            <div className={styles.btnWhiteBackground}>
+              <ThreeDotsBtn />
+            </div>
+          </div>
+        )}
+      </div>
+
       <div className={styles.textWrapper}>
+        {artist && <p className={styles.textBottom}>{artist}</p>}
         <p className={styles.textTop}>{title}</p>
-        <p className={styles.textBottom}>{artist}</p>
       </div>
     </div>
   );
