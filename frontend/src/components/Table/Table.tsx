@@ -20,7 +20,7 @@ interface Song { // Song aris prop
    biography?: string;
 }
 
-export default function Table({ id, pic, name, album, time, liked }: Song) {
+export default function Table({ id, pic, name, album, time, liked,artist,biography }: Song) {
    const [activeTab, setActiveTab] = useState(1);
    const [songs, setSongs] = useState<Song[]>([]); // songs aris array
 
