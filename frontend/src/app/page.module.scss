@@ -1,177 +1,167 @@
 @use "../../styles/colors" as *;
 
-@mixin ordinarySectionH2() {
-  color: #FFF;
-  font-family: var(--font-jakarta), sans-serif;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 100%;
-}
-
-@mixin ordinarySection() {
-  display: flex;
-  flex-direction: column;
-  gap: 24px
-}
-
-@mixin ordinarySectionCardsBox() {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  align-content: flex-start;
-}
-
-@mixin ordinarySectionTextBoxSpan() {
-  color: $mission-control;
-  font-family: var(--font-jakarta), sans-serif;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 100%;
-}
-
-@mixin ordinarySectionTextBox() {
-  align-items: center;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-
-
-
-.page {
-  background: $reversed-grey;
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-
-}
-
 .main {
   display: flex;
   flex-direction: column;
   gap: 32px;
 }
 
-//                                                                    Top Hit
+// --------------------------------------------------
+// Reusable style classes
+
+.ordinarySection {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.ordinarySectionCardsBox {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+.ordinarySectionTextBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.ordinarySectionTextBoxSpan {
+  color: $mission-control;
+  font-family: var(--font-jakarta), sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 100%;
+}
+
+.ordinarySectionH2 {
+  color: #FFF;
+  font-family: var(--font-jakarta), sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 100%;
+}
+
+// --------------------------------------------------
+// All Semantic Tag
+.allSemanticTag {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+// --------------------------------------------------
+// Top Hits
 .topHitsSection {
-  @include ordinarySection();
+  @extend .ordinarySection;
 }
 
 .topHitsSectionCardsBox {
-  @include ordinarySectionCardsBox()
+  @extend .ordinarySectionCardsBox;
 }
 
-.topHitsSectionTextBox {
-  @include ordinarySectionTextBox();
-
-  & span {
-    @include ordinarySectionTextBoxSpan()
-  }
-
-  & h2 {
-    @include ordinarySectionH2()
-  }
-}
-
-.topHitsSectionCardsBox>* {
+.topHitsSectionCardsBox > * {
   flex: 1 0 220px;
 }
 
+.topHitsSectionTextBox {
+  @extend .ordinarySectionTextBox;
 
-//                                                                            Artists
+  & span {
+    @extend .ordinarySectionTextBoxSpan;
+  }
 
+  & h2 {
+    @extend .ordinarySectionH2;
+  }
+}
+
+// --------------------------------------------------
+// Artists
 .artistSection {
-  @include ordinarySection();
-
+  @extend .ordinarySection;
 }
 
 .artistSectionCardsBox {
-  @include ordinarySectionCardsBox()
+  @extend .ordinarySectionCardsBox;
 }
 
-.artistSectionCardsBox>* {
+.artistSectionCardsBox > * {
   flex: 1 0 220px;
 }
 
 .artistSectionTextBox {
-  @include ordinarySectionTextBox();
+  @extend .ordinarySectionTextBox;
 
   & span {
-    @include ordinarySectionTextBoxSpan()
+    @extend .ordinarySectionTextBoxSpan;
   }
 
   & h2 {
-    @include ordinarySectionH2()
+    @extend .ordinarySectionH2;
   }
-
 }
 
-
-
-//                                                                                    Album
-
-
+// --------------------------------------------------
+// Album
 .albumSection {
-  @include ordinarySection()
+  @extend .ordinarySection;
 }
 
 .albumSectionCardsBox {
-  @include ordinarySectionCardsBox()
+  @extend .ordinarySectionCardsBox;
 }
 
-.albumSectionCardsBox>* {
+.albumSectionCardsBox > * {
   flex: 1 0 220px;
 }
 
 .albumSectionTextBox {
-  @include ordinarySectionTextBox();
+  @extend .ordinarySectionTextBox;
 
   & span {
-    @include ordinarySectionTextBoxSpan()
+    @extend .ordinarySectionTextBoxSpan;
   }
 
   & h2 {
-    @include ordinarySectionH2()
+    @extend .ordinarySectionH2;
   }
 }
 
-
-
-//                                                                                Charts
-
+// --------------------------------------------------
+// Charts
 .topChartsSection {
-  @include ordinarySection()
+  @extend .ordinarySection;
 }
 
 .topChartSectionCardsBox {
-  @include ordinarySectionCardsBox()
+  @extend .ordinarySectionCardsBox;
 }
 
 .topChartsSectionTextBox {
-  @include ordinarySectionTextBox();
+  @extend .ordinarySectionTextBox;
 
   & span {
-    @include ordinarySectionTextBoxSpan()
+    @extend .ordinarySectionTextBoxSpan;
   }
 
   & h2 {
-    @include ordinarySectionH2()
+    @extend .ordinarySectionH2;
   }
 }
 
-
-
-
+// --------------------------------------------------
+// Container
 .container {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 40px;
   position: relative;
   right: -280px;
   width: 100%;
   max-width: calc(100vw - 280px - var(--scrollbar-width, 0px)); // 280px width of sidebar
   // only weakness is horizontal scroll after refreshing and disappears in seconds
-  padding: 40px 40px 0px 24px;
 }

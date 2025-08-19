@@ -3,14 +3,19 @@ import styles from "./page.module.scss";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import Header from "@/components/Header/Header";
 import Player from "@/components/Player/player";
+import Table from "@/components/Table/Table";
+import SongListTable from "@/components/SongListTable/SongListTable";
 import NewsComponent from "@/components/NewsComponent/NewsComponent";
 import MusicCard from "@/components/MusicCard/MusicCard";
+import TopCharts from "@/components/TopCharts/TopCharts";
 import AlbumCard from "@/components/AlbumCard/AlbumCard";
 import ArtistCard from "@/components/ArtistCard/ArtistCard";
-import TopChart from "@/components/TopCharts/TopCharts";
+
+
+
 export default function Home() {
   return (
-    <div className={styles.page}>
+<div className={styles.page}>
       <Sidebar></Sidebar>
       <div className={styles.container}>
         <Header></Header>
@@ -37,10 +42,10 @@ export default function Home() {
               <span>See all</span>
             </div>
             <div className={styles.topChartSectionCardsBox}>
-              <TopChart title="Sugar (feat. Francesco)" artist="By Robin Schulz" imageUrl="/Images/TopCharts/TopChartsImage.jpg" duration={345} />
-              <TopChart title="Sugar (feat. Francesco)" artist="By Robin Schulz" imageUrl="/Images/TopCharts/TopChartsImage.jpg" duration={345} />
-              <TopChart title="Sugar (feat. Francesco)" artist="By Robin Schulz" imageUrl="/Images/TopCharts/TopChartsImage.jpg" duration={345} />
-              <TopChart title="Sugar (feat. Francesco)" artist="By Robin Schulz" imageUrl="/Images/TopCharts/TopChartsImage.jpg" duration={345} />
+              <TopCharts title="Sugar (feat. Francesco)" artist="By Robin Schulz" imageUrl="/Images/TopCharts/TopChartsImage.jpg" duration={345} />
+              <TopCharts title="Sugar (feat. Francesco)" artist="By Robin Schulz" imageUrl="/Images/TopCharts/TopChartsImage.jpg" duration={345} />
+              <TopCharts title="Sugar (feat. Francesco)" artist="By Robin Schulz" imageUrl="/Images/TopCharts/TopChartsImage.jpg" duration={345} />
+              <TopCharts title="Sugar (feat. Francesco)" artist="By Robin Schulz" imageUrl="/Images/TopCharts/TopChartsImage.jpg" duration={345} />
             </div>
           </section>
 

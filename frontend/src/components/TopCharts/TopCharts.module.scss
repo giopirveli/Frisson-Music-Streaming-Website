@@ -8,15 +8,13 @@
   width: 100%;
   border-radius: 8px;
   position: relative;
-  padding: 16px;
-  align-items: center;
-  justify-content: space-between;
 }
 
 .image{
   width: 72px;
   height: 72px;
   border-radius: 8px;
+  margin: 16px 16px;
 }
 
 
@@ -35,13 +33,11 @@ font-size: 16px;
   color: #9E9A9F;
   font-family: --var(--font-jakarta),sans-serif;
   font-size: 14px;
+  margin-top: 8px;
 }
 
 .textWrapper{
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  width: 100%;
+margin-top: 30px;
 }
 
 .durationTime{
@@ -51,19 +47,13 @@ font-size: 16px;
   font-weight: 600;
 }
 
-
+.durationWrapper{
+  margin-top: 45px;
+  margin-left: 200px;
+  margin-right: 60px;
+}
 
 .buttonsWrapper{
   display: flex;
   gap: 8px;
-}
-.imgAndWrapperBox{
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-.durectionAndButtonsBox{
-    display: flex;
-  gap: 40px;
-  align-items: center;
 }

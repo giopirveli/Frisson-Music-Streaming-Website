@@ -2,8 +2,8 @@
 import { useState } from "react";
 import styles from "../TopCharts/TopCharts.module.scss";
 import Image from "next/image";
-import HeartBtn from "../heartBtn/heartBtn";
-import ThreeDotsBtn from "../3dots/3dots";
+import HeartBtn from "../HeartBtn/HeartBtn";
+import ThreeDotsBtn from "../3dots/ThreeDotsBtn";
 
 
 interface TopChartsProps {
@@ -27,22 +27,19 @@ export default function TopCharts({ title, artist, duration, imageUrl }: TopChar
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className={styles.imgAndWrapperBox}>
-        <div className={styles.imageWrapper}>
-          <Image src={imageUrl} alt="Top Chart" className={styles.image} width={72} height={72} />
-        </div>
+      <div className={styles.imageWrapper}>
+        <Image src={imageUrl} alt="Top Chart" className={styles.image} width={72} height={72} />
+      </div>
         <div className={styles.textWrapper}>
           <p className={styles.textTop}>{title}</p>
           <p className={styles.textBottom}>{artist}</p>
         </div>
-      </div>
 
-
-      <div className={styles.durectionAndButtonsBox}>
-        <p className={styles.durationTime}>
-          {formatDuration(duration)}
-        </p>
-
+        <div className={styles.durationWrapper}>
+          <p className={styles.durationTime}>
+            {formatDuration(duration)}
+          </p>
+        </div>
 
         <div className={styles.buttons}>
           <div className={styles.buttonsWrapper} >
@@ -50,8 +47,6 @@ export default function TopCharts({ title, artist, duration, imageUrl }: TopChar
             <ThreeDotsBtn />
           </div>
         </div>
-
-      </div>
     </div>
   )
 }
