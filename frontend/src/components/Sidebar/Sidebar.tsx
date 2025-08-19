@@ -5,7 +5,7 @@ export default function Sidebar() {
    return (
       <>
          <aside className={styles.sidebar}>
-            <Image src="/icons/Sidebar/logo.png" className={styles.frisson} width={98} height={83} alt="logo" />
+            <Image src="/icons/Sidebar/logo.png" className={styles.frisson} width={78} height={63} alt="logo" />
 
 
             <div className={styles.menu}>
