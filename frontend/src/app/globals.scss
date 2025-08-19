@@ -9,7 +9,6 @@ body {
   overflow-x: hidden;
   background-color: $reversed-grey;
   font-family: var(--font-jakarta), sans-serif; //font-family: "webdings";
-
 }
 
 
@@ -36,5 +35,6 @@ a {
   display: flex;
   width: 100%;
   justify-content: space-between;
+  height:500vh; // player height === 128px; we need formula so it will fit main perfectly
 
 }

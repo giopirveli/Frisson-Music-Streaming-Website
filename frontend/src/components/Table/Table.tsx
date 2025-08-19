@@ -95,7 +95,7 @@ export default function Table({ id, pic, name, album, time, liked,artist,biograp
 
 
 
-         {activeTab === 2 &&
+         {/*activeTab === 2 &&
             <div className={styles.album}>
                {songs.map((song, i) => (
                   <div key={song.id} onClick={() => setActiveTab(3)}>
@@ -104,7 +104,7 @@ export default function Table({ id, pic, name, album, time, liked,artist,biograp
                   </div>
                ))}
 
-            </div>}
+            </div>*/}
 
 
          {/* {activeTab === 3 && 
