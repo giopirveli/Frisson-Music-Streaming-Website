@@ -2,7 +2,7 @@
 import { useState } from "react";
 import styles from "../TopCharts/TopCharts.module.scss";
 import Image from "next/image";
-import HeartBtn from "../HeartBtn/heartBtn";
+import HeartBtn from "../HeartBtn/HeartBtn";
 import ThreeDotsBtn from "../3dots/ThreeDotsBtn";
 
 
