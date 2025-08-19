@@ -8,6 +8,7 @@ import photo from "../../assets/images/table/artistphoto.png";
 import albumPhoto from "../../assets/images/table/albumphoto.png";
 import ThreeDotsBtn from "../3dots/ThreeDotsBtn";
 import AlbumCard from "../AlbumCard/AlbumCard";
+import SongListTable from "../SongListTable/SongListTable";
 
 interface Song { // Song aris prop
    id?: number | string;
@@ -60,66 +61,7 @@ export default function Table({ id, pic, name, album, time, liked,artist,biograp
 
          {/* Table */}
 
-         {activeTab === 1 && <table className={styles.list}>
-            <thead>
-               <tr className={styles.thead}>
-                  <th className={styles.hash}>#</th>
-                  <th className={styles.songTitle}>Song Name</th>
-                  <th className={styles.albumTitle}>Album</th>
-                  <th className={styles.timeTitle}>Time</th>
-                  <th></th>
-                  <th></th>
-               </tr>
-            </thead>
-
-            <tbody className={styles.tbody}>
-
-               <tr>
-                  <td className={styles.songId}>?</td>
-                  <td className={styles.songName}>
-                     <div className={styles.imageWrapper}>
-                        <Image
-                           src={photo}
-                           alt={"song name"}
-
-
-                        />
-                     </div>
-                     {"no information"}
-                  </td>
-                  <td>{"no information"}</td>
-                  <td>{"no information"}</td>
-                  <td>
-                     <HeartBtn />
-                  </td>
-                  <td><ThreeDotsBtn /></td>
-               </tr>
-
-               {/* this is top Songs   ||  ThreeDotsBtn still needs component
-songs.map((song, i) => (
-   <tr key={song.id}>
-      <td>{(i + 1) || "?"}</td>
-      <td className={styles.songName}>
-         <div className={styles.imageWrapper}>
-            <Image
-               src={song.pic || photo}
-               alt={song.name || "song name"}
-               
-            />
-         </div>
-         {song.name || "no information"}
-      </td>
-      <td>{song.album || "no information"}</td>
-      <td>{song.time || "no information"}</td>
-      <td>
-         <HeartBtn />
-      </td>
-      <td><ThreeDotsBtn /></td> }
-            </tr>
-            ))*/}
-
-            </tbody>
-         </table>
+         {activeTab === 1 && <SongListTable />
          }
 
 
