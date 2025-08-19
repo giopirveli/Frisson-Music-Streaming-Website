@@ -20,12 +20,9 @@ function formatDuration(duration: number) {
 }
 
 export default function TopCharts({ title, artist, duration, imageUrl }: TopChartsProps) {
-  const [isHovered, setIsHovered] = useState(false);
   return (
     <div
       className={styles.TopChartsDiv}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
       <div className={styles.imgAndWrapperBox}>
         <div className={styles.imageWrapper}>
