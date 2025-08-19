@@ -16,7 +16,7 @@
 
 // Artists
 
-@mixin ordinarySectionH2() {
+.ordinarySectionH2 {
   color: #FFF;
   font-family: var(--font-jakarta), sans-serif;
   font-size: 20px;
@@ -25,20 +25,21 @@
   line-height: 100%;
 }
 
-@mixin ordinarySection() {
+
+.ordinarySection {
   display: flex;
   flex-direction: column;
   gap: 24px
 }
 
-@mixin ordinarySectionCardsBox() {
+.ordinarySectionCardsBox {
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
   align-content: flex-start;
 }
 
-@mixin ordinarySectionTextBoxSpan() {
+.ordinarySectionTextBoxSpan {
   color: $mission-control;
   font-family: var(--font-jakarta), sans-serif;
   font-size: 14px;
@@ -47,7 +48,7 @@
   line-height: 100%;
 }
 
-@mixin ordinarySectionTextBox() {
+.ordinarySectionTextBox {
   align-items: center;
   width: 100%;
   display: flex;
@@ -72,22 +73,22 @@
 
 //                                                                    Top Hit
 .topHitsSection {
-  @include ordinarySection();
+  @extend .ordinarySection;
 }
 
 .topHitsSectionCardsBox {
-  @include ordinarySectionCardsBox()
+  @extend .ordinarySectionCardsBox;
 }
 
 .topHitsSectionTextBox {
-  @include ordinarySectionTextBox();
+  @extend .ordinarySectionTextBox;
 
   & span {
-    @include ordinarySectionTextBoxSpan()
+    @extend.ordinarySectionTextBoxSpan;
   }
 
   & h2 {
-    @include ordinarySectionH2()
+    @extend .ordinarySectionH2;
   }
 }
 
@@ -96,15 +97,15 @@
 }
 
 
-//                                                                            Artists
+//  Artists
 
 .artistSection {
-  @include ordinarySection();
+  @extend .ordinarySection; ;
 
 }
 
 .artistSectionCardsBox {
-  @include ordinarySectionCardsBox()
+  @extend .ordinarySectionCardsBox; 
 }
 
 .artistSectionCardsBox>* {
@@ -112,14 +113,14 @@
 }
 
 .artistSectionTextBox {
-  @include ordinarySectionTextBox();
+  @extend .ordinarySectionTextBox;  ;
 
   & span {
-    @include ordinarySectionTextBoxSpan()
+    @extend .ordinarySectionTextBoxSpan;  
   }
 
   & h2 {
-    @include ordinarySectionH2()
+    @extend .ordinarySectionH2; 
   }
 
 }
@@ -130,11 +131,11 @@
 
 
 .albumSection {
-  @include ordinarySection()
+  @extend .ordinarySection; 
 }
 
 .albumSectionCardsBox {
-  @include ordinarySectionCardsBox()
+  @extend .ordinarySectionCardsBox; 
 }
 
 .albumSectionCardsBox>* {
@@ -142,14 +143,14 @@
 }
 
 .albumSectionTextBox {
-  @include ordinarySectionTextBox();
+  @extend .ordinarySectionTextBox;  ;
 
   & span {
-    @include ordinarySectionTextBoxSpan()
+    @extend .ordinarySectionTextBoxSpan;  
   }
 
   & h2 {
-    @include ordinarySectionH2()
+    @extend .ordinarySectionH2; 
   }
 }
 
@@ -158,22 +159,22 @@
 //                                                                                Charts
 
 .topChartsSection {
-  @include ordinarySection()
+  @extend .ordinarySection; 
 }
 
 .topChartSectionCardsBox {
-  @include ordinarySectionCardsBox()
+  @extend .ordinarySectionCardsBox; 
 }
 
 .topChartsSectionTextBox {
-  @include ordinarySectionTextBox();
+  @extend .ordinarySectionTextBox;  ;
 
   & span {
-    @include ordinarySectionTextBoxSpan()
+    @extend .ordinarySectionTextBoxSpan;  
   }
 
   & h2 {
-    @include ordinarySectionH2()
+    @extend .ordinarySectionH2; 
   }
 }
 
@@ -189,5 +190,5 @@
   width:100%;
   max-width: calc(100vw - 280px - var(--scrollbar-width,0px)); // 280px width of sidebar
   // only weakness is horizontal scroll after refreshing and disappears in seconds
-  //padding: 40px 40px 0px 24px;
+  
 }
