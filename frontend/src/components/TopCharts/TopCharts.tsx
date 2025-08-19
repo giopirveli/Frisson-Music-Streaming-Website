@@ -2,8 +2,8 @@
 import { useState } from "react";
 import styles from "../TopCharts/TopCharts.module.scss";
 import Image from "next/image";
-import HeartBtn from "../heartBtn/heartBtn";
-import ThreeDotsBtn from "../3dots/3dots";
+import HeartBtn from "../HeartBtn/HeartBtn";
+import ThreeDotsBtn from "../3dots/ThreeDotsBtn";
 
 
 interface TopChartsProps {

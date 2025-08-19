@@ -1,7 +1,7 @@
 "use client";
 import {Colors} from "../../../styles/colors.enum";
 import { useState } from "react";
-import  style  from "./heart.module.scss"; 
+import  style  from "./Heart.module.scss"; 
 import Image from "next/image";
 
 type props ={
