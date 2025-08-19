@@ -3,7 +3,7 @@ import Style from "./player.module.scss";
 import Image from "next/image";
 import { useRef,} from "react";
 import { useAudioControls } from "@/hooks/useAudioControls";
-import HeartBtn from "../HeartBtn/heartBtn";
+import HeartBtn from "../HeartBtn/HeartBtn";
 
 export default function Player() {
     const audioRef = useRef<HTMLAudioElement | null>(null);
