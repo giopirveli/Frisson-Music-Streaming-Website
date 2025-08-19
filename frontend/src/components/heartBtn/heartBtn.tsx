@@ -18,7 +18,6 @@ export default function HeartBtn({bgcolor}:props) {
             <Image
                 alt="Heart icon"
                 src="/icons/HerartBtn/heart-syle-1.svg"
-
                 width={24}
                 height={24}
             /> {/* propebi daamate rom zomebi chaewodebodes */}
