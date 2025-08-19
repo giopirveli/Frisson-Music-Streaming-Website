@@ -60,7 +60,124 @@
 .allSemanticTag {
   display: flex;
   width: 100%;
+  justify-content: space-between;
+
 }
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+//                                                                    Top Hit
+.topHitsSection {
+  @include ordinarySection();
+}
+
+.topHitsSectionCardsBox {
+  @include ordinarySectionCardsBox()
+}
+
+.topHitsSectionTextBox {
+  @include ordinarySectionTextBox();
+
+  & span {
+    @include ordinarySectionTextBoxSpan()
+  }
+
+  & h2 {
+    @include ordinarySectionH2()
+  }
+}
+
+.topHitsSectionCardsBox>* {
+  flex: 1 0 220px;
+}
+
+
+//                                                                            Artists
+
+.artistSection {
+  @include ordinarySection();
+
+}
+
+.artistSectionCardsBox {
+  @include ordinarySectionCardsBox()
+}
+
+.artistSectionCardsBox>* {
+  flex: 1 0 220px;
+}
+
+.artistSectionTextBox {
+  @include ordinarySectionTextBox();
+
+  & span {
+    @include ordinarySectionTextBoxSpan()
+  }
+
+  & h2 {
+    @include ordinarySectionH2()
+  }
+
+}
+
+
+
+//                                                                                    Album
+
+
+.albumSection {
+  @include ordinarySection()
+}
+
+.albumSectionCardsBox {
+  @include ordinarySectionCardsBox()
+}
+
+.albumSectionCardsBox>* {
+  flex: 1 0 220px;
+}
+
+.albumSectionTextBox {
+  @include ordinarySectionTextBox();
+
+  & span {
+    @include ordinarySectionTextBoxSpan()
+  }
+
+  & h2 {
+    @include ordinarySectionH2()
+  }
+}
+
+
+
+//                                                                                Charts
+
+.topChartsSection {
+  @include ordinarySection()
+}
+
+.topChartSectionCardsBox {
+  @include ordinarySectionCardsBox()
+}
+
+.topChartsSectionTextBox {
+  @include ordinarySectionTextBox();
+
+  & span {
+    @include ordinarySectionTextBoxSpan()
+  }
+
+  & h2 {
+    @include ordinarySectionH2()
+  }
+}
+
+
 
 
 .container {
