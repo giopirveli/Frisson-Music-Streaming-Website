@@ -74,6 +74,9 @@ export default function Home() {
               <ArtistCard title="Billie Eilish" imageUrl="/Images/ArtistCard/ArtistPhoto.jpg" />
             </div>
           </section>
+          <section>
+            <Table></Table>
+          </section>
         </main>
       </div>
       <Player />
