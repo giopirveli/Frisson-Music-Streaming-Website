@@ -11,57 +11,47 @@
 }
 
 // Top Hit
-.topHitsSection {
-  @include ordinarySection();
-}
 
-.topHitsSectionCardsBox {
-  @include ordinarySectionCardsBox()
-}
-
-.topHitsSectionTextBox {
-  @include ordinarySectionTextBox();
-
-  & span {
-    @include ordinarySectionTextBoxSpan()
-  }
-
-  & h2 {
-    @include ordinarySectionH2()
-  }
-}
-
-.topHitsSectionCardsBox>* {
-  flex: 1 0 220px;
-}
 
 
 // Artists
 
-.artistSection {
-  @include ordinarySection();
-
+@mixin ordinarySectionH2() {
+  color: #FFF;
+  font-family: var(--font-jakarta), sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%;
 }
 
-.artistSectionCardsBox {
-  @include ordinarySectionCardsBox()
+@mixin ordinarySection() {
+  display: flex;
+  flex-direction: column;
+  gap: 24px
 }
 
-.artistSectionCardsBox>* {
-  flex: 1 0 220px;
+@mixin ordinarySectionCardsBox() {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-content: flex-start;
 }
 
-.artistSectionTextBox {
-  @include ordinarySectionTextBox();
+@mixin ordinarySectionTextBoxSpan() {
+  color: $mission-control;
+  font-family: var(--font-jakarta), sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+}
 
-  & span {
-    @include ordinarySectionTextBoxSpan()
-  }
-
-  & h2 {
-    @include ordinarySectionH2()
-  }
-
+@mixin ordinarySectionTextBox() {
+  align-items: center;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 
