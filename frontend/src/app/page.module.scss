@@ -6,7 +6,6 @@
 
 .main {
   display: flex;
-<<<<<<< HEAD
   flex-direction: column;
   gap: 32px;
 }
@@ -63,8 +62,6 @@
     @include ordinarySectionH2()
   }
 
-=======
->>>>>>> parent of a78a1a39d (Merge branch 'main' into feat/CODN-23/Reusable-Table)
 }
 
 
@@ -85,10 +82,5 @@
   width:100%;
   max-width: calc(100vw - 280px - var(--scrollbar-width,0px)); // 280px width of sidebar
   // only weakness is horizontal scroll after refreshing and disappears in seconds
-<<<<<<< HEAD
   //padding: 40px 40px 0px 24px;
-=======
-
-  
->>>>>>> parent of a78a1a39d (Merge branch 'main' into feat/CODN-23/Reusable-Table)
 }
