@@ -8,7 +8,6 @@ import styles from "./Sidebar.module.scss";
 function NavItem({ href, icon, label }: { href: string; icon: string; label: string }) {
    const pathname = usePathname();
    const isActive = pathname === href || (href !== "/" && pathname.startsWith(href));
-   const BASE = "/auth";
    return (
       <Link
          href={href}
@@ -22,6 +21,7 @@ function NavItem({ href, icon, label }: { href: string; icon: string; label: str
 }
 
 export default function Sidebar() {
+      const base = "/auth";
    return (
       <aside className={styles.sidebar}>
          <Link href="/" aria-label="Home" className={styles.frissonMainLogo}>
@@ -33,7 +33,7 @@ export default function Sidebar() {
                <NavItem href="/" icon="/icons/Sidebar/home.svg" label="home" />
                <NavItem href="/recommendations" icon="/icons/Sidebar/recommendations.svg" label="recommendations" />
                <NavItem href="/top-hits" icon="/icons/Sidebar/topHits.svg" label="top hits" />
-               <NavItem href="/TopCharts" icon="/icons/Sidebar/topCharts.svg" label="top charts" />
+               <NavItem href={`${base}/TopCharts`} icon="/icons/Sidebar/topCharts.svg" label="top charts" />
             </div>
 
             <div className={styles.collectionMenu}>
