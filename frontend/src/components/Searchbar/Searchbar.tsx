@@ -1,40 +1,39 @@
-// Searchbar.tsx
+"use client"
 import styles from "./Searchbar.module.scss";
 import Image from "next/image";
-
 type Props = {
   value?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void; /* we need to replace void using the function name */
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
-  iconName?: string; // example: "search.svg"
+  iconName?: string;
 };
 
-
-
-
 export default function Searchbar({
-  value,
   onChange,
   placeholder = "Search...",
-  iconName,
 }: Props) {
+
   return (
-    <div className={styles.wrapper}>
-      {iconName && (
+      <div className={`${styles.wrapper}`}>
         <Image
-          src={`/${iconName}`}
-          alt="icon"
           className={styles.icon}
-          draggable={false}
+          src="/icons/Header/magnifier.svg"
+          width={24}
+          height={24}
+          alt="search icon"
         />
-      )}
-      <input
-        type="text"
-        className={styles.search}
-        value={value}
-        onChange={onChange}
-        placeholder={placeholder}
-      />
-    </div>
+
+        <input
+          type="text"
+          className={styles.search}
+          onChange={onChange}
+          placeholder={placeholder}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              console.log("გაუშვი search ფუნქცია:", e.currentTarget.value);
+            }
+          }}
+          />
+      </div>
   );
 }
