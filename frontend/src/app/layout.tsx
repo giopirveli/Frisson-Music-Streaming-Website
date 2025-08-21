@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
+import type { Metadata, Redirect } from "next";
 import localFont from "next/font/local";
 import "./globals.scss";
 import MeasureWidth from '../components/MeasureWidth/MeasureWidth'; // import it at the top
 import Sidebar from "@/components/Sidebar/Sidebar";
 import Player from "@/components/Player/player";
-
+import Header from "@/components/Header/Header";
 // Manrope (100–900, normal)
 const manrope = localFont({
   src: [
@@ -49,7 +49,11 @@ export default function RootLayout({
       <body className={`${manrope.variable} ${plusJakartaSans.variable} ${sfProDisplay.variable}`}> <MeasureWidth />
         <Sidebar></Sidebar>
         <div className="page">
-        {children}</div>
+          <div className="container">
+            <Header/>
+            {children}
+          </div>
+        </div>
         <Player />
       </body>
     </html>

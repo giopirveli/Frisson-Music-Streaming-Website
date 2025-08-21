@@ -17,7 +17,6 @@ export default function Player() {
         formatTime,
         reapetSong,
         volume,
-        setVolume,
         handleClickProgressBar,
         handleThumbMouseDown,
         progressPercent,
