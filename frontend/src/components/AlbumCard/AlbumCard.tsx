@@ -11,6 +11,7 @@ interface AlbumCardProps {
   imageUrl: string | StaticImageData;
   width?: string | number;
   hight?: string | number;
+  onClick?: () => void;
 }
 
 export default function AlbumCard({ title, artist, imageUrl }: AlbumCardProps) {
@@ -21,7 +22,7 @@ export default function AlbumCard({ title, artist, imageUrl }: AlbumCardProps) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className={`${styles.imageWrapperBox}`}>
+      <div className={`${styles.imageWrapperBox}`}> 
         <div className={`${styles.imageWrapper} ${isHovered && styles.hoveredImgWrapper}`} >
           <Image src={imageUrl} alt="Music Card" className={styles.musicImage} fill />
         </div>
