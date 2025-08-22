@@ -1,9 +1,9 @@
 @import '../../../styles/colors';
 
-.card {
+.card{
   background-color: $dark-void;
   box-sizing: border-box;
-  max-width: 288px;
+  max-height: 309px;
   max-width: 266px;
   width: 100%;
   border-radius: 8px;
@@ -16,22 +16,18 @@
   padding-top: 16px;
 }
 
-.musicImage {
+.playlistImage{
   width: 234px;
-  height: 200px;
+  height: 251px;
   border-radius: 8px;
   object-fit: cover;
   max-width: 100%;
   transition: filter 0.3s ease;
   display: block;
+
 }
 
-
-.hoveredImgWrapper{
-  filter: brightness(1.1) opacity(0.7);
-}
-
-.textWrapper {
+.textWrapper{
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -40,31 +36,18 @@
   align-self: flex-start;
 }
 
-.textTop {
-  font-size: 14px;
-  color: $shady-lady;
-  font-family: var(--font-jakarta), sans-serif;
-}
-
-.textBottom {
-  font-size: 16px;
-  color: #FFFF;
-  font-family: var(--font-jakarta), sans-serif;
-}
-
-.heartButton {
+.PenButton {
   display: flex;
   gap: 8px;
   position: absolute;
   z-index: 10;
-  left: 35%;
-  top: 170px;
+  left: 38%;
+  top: 203px;
 }
 
-.btnWhiteBackground {
-  background-color: $white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
+.text{
+  font-family: "Plus Jakarta Sans";
+  color: $shady-lady;
+  font-size: 14px;
+
 }

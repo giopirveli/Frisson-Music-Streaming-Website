@@ -10,7 +10,7 @@ import MusicCard from "@/components/MusicCard/MusicCard";
 import TopCharts from "@/components/TopCharts/TopCharts";
 import AlbumCard from "@/components/AlbumCard/AlbumCard";
 import ArtistCard from "@/components/ArtistCard/ArtistCard";
-
+import PlaylistComponent from "@/components/PlaylistComponent/Playlist";
 
 
 export default function Home() {
@@ -68,18 +68,21 @@ export default function Home() {
               <span>See all</span>
             </div>
             <div className={styles.artistSectionCardsBox}>
+              <PlaylistComponent title="Playlist name" imageUrl="/Images/PlaylistComponent/PlaylistComponentPhoto.jpg"/>
+              {/* <ArtistCard title="Billie Eilish" imageUrl="/Images/ArtistCard/ArtistPhoto.jpg" />
               <ArtistCard title="Billie Eilish" imageUrl="/Images/ArtistCard/ArtistPhoto.jpg" />
               <ArtistCard title="Billie Eilish" imageUrl="/Images/ArtistCard/ArtistPhoto.jpg" />
-              <ArtistCard title="Billie Eilish" imageUrl="/Images/ArtistCard/ArtistPhoto.jpg" />
-              <ArtistCard title="Billie Eilish" imageUrl="/Images/ArtistCard/ArtistPhoto.jpg" />
+              <ArtistCard title="Billie Eilish" imageUrl="/Images/ArtistCard/ArtistPhoto.jpg" /> */}
             </div>
           </section>
           <section>
-            <Table></Table>
+            <Table>
+            </Table>
           </section>
         </main>
       </div>
       <Player />
     </div>
+    
   );
 }
