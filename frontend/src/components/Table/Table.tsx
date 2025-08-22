@@ -1,7 +1,7 @@
 "use client";
 import styles from "./Table.module.scss";
 import { useState, useEffect } from "react";
-import axios from "axios";
+// import axios from "axios";
 import Image from "next/image";
 import photo from "../../assets/images/table/artistphoto.png";
 import albumPhoto from "../../assets/images/table/albumphoto.png";
@@ -83,10 +83,10 @@ export default function Table({ id, pic, name, album, time, liked,artist,biograp
                   <p>no information</p>
                </div>
 
-               <div>
+
                   <AlbumCard title="no information" imageUrl={albumPhoto}></AlbumCard>
                 
-               </div>
+
 
 
             </div>}
