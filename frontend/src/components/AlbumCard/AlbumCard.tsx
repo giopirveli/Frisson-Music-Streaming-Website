@@ -1,6 +1,6 @@
 "use client";
 import styles from "../AlbumCard/AlbumCard.module.scss";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import HeartBtn from "../HeartBtn/HeartBtn";
 import ThreeDotsBtn from "../3dots/ThreeDotsBtn";
 import { useState } from "react";
@@ -8,9 +8,9 @@ import { useState } from "react";
 interface AlbumCardProps {
   title: string;
   artist?: string;
-  imageUrl: string;
+  imageUrl: string | StaticImageData;
   width?: string | number;
-  hight?: string | number
+  hight?: string | number;
 }
 
 export default function AlbumCard({ title, artist, imageUrl }: AlbumCardProps) {

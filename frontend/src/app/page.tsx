@@ -14,7 +14,7 @@ export default function Home() {
 
     <main className={styles.main}>
 
-      <NewsComponent title="Top Hit  Of the week" imageUrl="/Images/NewsComponent/NewComponentTest.jpg" plays={22222} />
+      <NewsComponent title="Top Hit  Of the week" imageUrl="/Images/NewsComponent/NewComponentTest.jpg" plays={`22222 Plays`} />
 
       <section className={styles.topHitsSection}>
         <div className={styles.topHitsSectionTextBox}>
