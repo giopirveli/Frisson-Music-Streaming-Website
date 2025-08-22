@@ -8,11 +8,10 @@ export default function ExamplePage() {
 
   return (
     <main className={styles.main}>
-      <NewsComponent plays={"795,900 Plays"} title="Top Chart  Of the week" imageUrl="/Images/NewsComponent/NewComponentTest.jpg" />
+      <NewsComponent plays={"795,900 Plays"} title="Top Hit  Of the week" imageUrl="/Images/NewsComponent/NewComponentTest.jpg" />
       <div className={styles.searchbar}>
-        <Searchbar placeholder={"Search Top Chart"} />
+        <Searchbar placeholder={"Search Top Hit"} />
       </div>
-
       <SongListTable />
     </main>
   );

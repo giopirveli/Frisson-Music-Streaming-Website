@@ -32,7 +32,7 @@ export default function Sidebar() {
             <div className={styles.mainMenu}>
                <NavItem href="/" icon="/icons/Sidebar/home.svg" label="home" />
                <NavItem href="/recommendations" icon="/icons/Sidebar/recommendations.svg" label="recommendations" />
-               <NavItem href="/top-hits" icon="/icons/Sidebar/topHits.svg" label="top hits" />
+               <NavItem href={`${base}/TopHitsPage`} icon="/icons/Sidebar/topHits.svg" label="top hits" />
                <NavItem href={`${base}/TopChartsPage`} icon="/icons/Sidebar/topCharts.svg" label="top charts" />
             </div>
 
