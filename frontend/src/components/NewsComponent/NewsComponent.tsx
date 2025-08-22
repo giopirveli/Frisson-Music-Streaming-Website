@@ -2,13 +2,20 @@
 import Button from "../button/button";
 import styles from "./NewsComponent.module.scss";
 import Image from "next/image";
+import {Colors} from "../../../styles/colors.enum";
+
 interface NewsComponentProps {
   imageUrl: string;
   title: string;
-  plays: number;
+  plays: number | string;
+  artist?: string; // albat male wavshli
+  verified?:boolean; // icon + text of verified
+  button?:string;
+  titleColor?:any;
+  color?:Colors;
 }
 
-export default function NewsComponent({ imageUrl, title, plays }: NewsComponentProps) {
+export default function NewsComponent({ imageUrl, title, plays ,artist,verified,button,color}: NewsComponentProps) {
   return (
 
     <div className={styles.wrapper}>
@@ -17,10 +24,16 @@ export default function NewsComponent({ imageUrl, title, plays }: NewsComponentP
 
       <div className={styles.content}>
         <div className={styles.textBox}>
-          <h1 className={styles.title}>{title}</h1>
-          <p className={styles.plays}>{plays.toLocaleString()} Plays</p>
+          {verified && 
+            <div className={styles.verified}>
+              <Image src="/Images/NewsComponent/Vector.png" width={22} height={21} alt="verified icon"></Image>
+              <p>verified artist</p>
+            </div>
+            }
+          <h1 className={styles.title}>{artist || title}</h1>
+          <p className={styles.plays} style={{color:Colors.White}}>{plays.toLocaleString()} </p>
         </div>
-        <Button text="play again" width={150} height={50} />
+        <Button text={button || "play again"} width={150} height={50} />
       </div>
     </div>
 

@@ -1,0 +1,8 @@
+@use "../../../../styles/colors" as *;
+
+.main {
+   display: flex;
+  flex-direction: column;
+  gap: 32px;    
+  padding:0 24px;
+}
