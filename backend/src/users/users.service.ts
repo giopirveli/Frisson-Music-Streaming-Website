@@ -5,7 +5,6 @@ import {
 } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { UsersRepository } from './users.repository';
 import * as bcrypt from 'bcrypt';
 import { User } from './entities/user.entity';
 import { CreateMusicDto } from 'src/music/dto/create-music.dto';
@@ -17,13 +16,14 @@ import { Music } from 'src/music/entities/music.entity';
 @Injectable()
 export class UsersService {
   constructor(
-    private readonly usersRepo: UsersRepository,
+    @InjectRepository(User)
+    private readonly usersRepo: Repository<User>,
     @InjectRepository(Music)
     private readonly musicRepo: Repository<Music>,
   ) {}
 
   async findUser(id: number): Promise<User> {
-    const user = await this.usersRepo.findOne(id);
+    const user = await this.usersRepo.findOneBy({ id });
     if (!user) throw new NotFoundException('User not found');
     return user;
   }
@@ -37,16 +37,17 @@ export class UsersService {
     return music;
   }
 
-  async create(createUserDto: CreateUserDto): Promise<User> {
+  async create(createUserDto: CreateUserDto): Promise<void> {
     const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
-    return this.usersRepo.create({
+    const user = this.usersRepo.create({
       ...createUserDto,
       password: hashedPassword,
     });
+    await this.usersRepo.save(user);
   }
 
   async findAll(): Promise<User[]> {
-    return this.usersRepo.findAll();
+    return this.usersRepo.find();
   }
 
   async findOne(id: number): Promise<User> {
@@ -61,11 +62,12 @@ export class UsersService {
     return this.findUser(id);
   }
 
-  async delete(id: number): Promise<void> {
+  async delete(id: number): Promise<{ message: string }> {
     await this.findUser(id);
-    return this.usersRepo.delete(id);
+    await this.usersRepo.delete(id);
+    return { message: 'User deleted successfully' };
   }
-
+  
   async addMusic(
     userId: number,
     createMusicDto: CreateMusicDto,

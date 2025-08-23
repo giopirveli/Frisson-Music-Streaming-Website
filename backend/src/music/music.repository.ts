@@ -20,7 +20,9 @@ export class MusicRepository {
     if (!user) throw new NotFoundException('User not found');
 
     const music = this.musicRepo.create({ ...dto, user });
-    return await this.musicRepo.save(music);
+    await this.musicRepo.save(music);
+
+    return { message: 'Successfully created music' };
   }
 
   async findAll(): Promise<Music[]> {
