@@ -22,7 +22,7 @@ interface Song { // Song aris prop
 }
 
 export default function Table({ id, pic, name, album, time, liked, artist, biography }: Song) {
-   const [activeTab, setActiveTab] = useState(2);
+   const [activeTab, setActiveTab] = useState(1);
    const [songs, setSongs] = useState<Song[]>([]); // songs aris array
 
 
@@ -67,25 +67,11 @@ export default function Table({ id, pic, name, album, time, liked, artist, biogr
          {activeTab === 2 &&
             <div className={styles.album}>
 
-               <div>
-                  <Image src={albumPhoto} onClick={() => setActiveTab(3)} alt="Artist Image" />
-                  <p>no information</p>
-               </div>
-               {/* <AlbumCard artist="misi dzma" imageUrl={albumPhoto} /> */}
+               <AlbumCard title="no information"  imageUrl={albumPhoto}></AlbumCard>
+               <AlbumCard title="no information"  imageUrl={albumPhoto}></AlbumCard>
+               <AlbumCard title="no information"  imageUrl={albumPhoto}></AlbumCard>
+               <AlbumCard title="no information"  imageUrl={albumPhoto}></AlbumCard>
 
-               <div>
-                  <Image src={albumPhoto} onClick={() => setActiveTab(3)} alt="Artist Image" />
-                  <p>no information</p>
-               </div>
-
-               <div>
-                  <Image src={albumPhoto} onClick={() => setActiveTab(3)} alt="Artist Image" />
-                  <p>no information</p>
-               </div>
-
-
-                  <AlbumCard title="no information" imageUrl={albumPhoto}></AlbumCard>
-                
 
 
 

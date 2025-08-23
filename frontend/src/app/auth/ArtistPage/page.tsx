@@ -12,14 +12,20 @@ export default function ArtistPage(){
 const [activeTab,setActiveTab] = useState(2);
 
    return(
-   <main className={styles.main}>
-      {/* <NewsComponent color={Colors.White} title="peggy gou" button="follow" imageUrl="/Images/NewsComponent/peggyGou.jpg" verified plays={`745,090 fans`}></NewsComponent> */}
-      {activeTab ===1 && <></>}              {/* onClick={()=>setActiveTab(2)} */}
+   <main className={styles.main}> {/* onClick={()=>setActiveTab(2)} */} {/* page changing code */}
+      {activeTab ===1 && <>
+         
+
+      </>}              
+      
       
 
-      
-      {activeTab === 2 && <Table></Table>
-}
+      {activeTab === 2 &&
+      <> 
+      <NewsComponent color={Colors.White} title="peggy gou" button="follow" imageUrl="/Images/NewsComponent/peggyGou.jpg" verified plays={`745,090 fans`}></NewsComponent>
+      <Table></Table>
+      </>
+      }
    
    </main>
 

@@ -4,7 +4,7 @@
    position: fixed;
    display: flex;
    flex-direction: column;
-   gap: 56px;
+   gap: 38px;// 56px
    width: 100%;
    max-width: 280px;
    top: 0;
@@ -19,6 +19,7 @@
    height: 100vh;
    z-index: 1000;
 }
+
 
 .frissonMainLogo {
    display: flex;
@@ -40,12 +41,31 @@
    display: flex;
    flex-direction: column;
    justify-content: center;
-   gap: 32px;
+   gap: 25px; //32px
 
    @media (max-height:763px) {
       gap: 12px;
    }
 }
+.menu {
+  .mainMenu,
+  .collectionMenu,
+  .discoverMenu {
+    .item {
+      // default styles
+      padding: 16px 0 16px 20px;
+
+      & >img{
+         width:24px;height:24px;
+      }
+
+      @media (max-height: 763px) {
+        padding: 12px 0 12px 16px;
+      }
+    }
+  }
+}
+
 
 
 .mainMenu,
@@ -62,7 +82,7 @@
 .mainMenu div,
 .collectionMenu div,
 .discoverMenu div {
-   padding: 12px 0 12px 16px;
+   
    justify-content: flex-start;
    align-items: center;
    font-family: var(--font-jakarta), sans-serif;
@@ -74,6 +94,8 @@
    font-style: normal;
    font-weight: 500;
    line-height: normal;
+
+   
 }
 
 

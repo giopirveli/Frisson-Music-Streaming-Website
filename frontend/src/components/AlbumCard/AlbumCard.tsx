@@ -14,14 +14,15 @@ interface AlbumCardProps {
   onClick?: () => void;
 }
 
-export default function AlbumCard({ title, artist, imageUrl }: AlbumCardProps) {
+export default function AlbumCard({ title, artist, imageUrl,onClick }: AlbumCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <div
       className={`${styles.card} ${artist ? "" : styles.cardHightPx}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-    >
+ onClick={onClick}
+     >
       <div className={`${styles.imageWrapperBox}`}> 
         <div className={`${styles.imageWrapper} ${isHovered && styles.hoveredImgWrapper}`} >
           <Image src={imageUrl} alt="Music Card" className={styles.musicImage} fill />
@@ -30,7 +31,7 @@ export default function AlbumCard({ title, artist, imageUrl }: AlbumCardProps) {
         {isHovered && (
           <div className={styles.heartButton}>
             <div className={styles.btnWhiteBackground}>
-              <HeartBtn />
+              <HeartBtn  />
             </div>
             <div className={styles.btnWhiteBackground}>
               <ThreeDotsBtn />
