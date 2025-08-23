@@ -1,8 +1,58 @@
 @use "../../../../styles/colors" as *;
 
 .main {
-   display: flex;
+  display: flex;
   flex-direction: column;
-  gap: 32px;    
-  padding:0 24px;
+  gap: 32px;
+  padding: 0 24px;
+}
+
+.artistPage {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  & h4 {
+    color: $white;
+    font-family: "Plus Jakarta Sans";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 100%;
+    /* 20px */
+  }
+}
+
+.artistCard {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); // 4 equal columns // repeat(4, 1fr)
+  gap: 16px;
+  @media (max-width:1620px){ // 1620px
+  grid-template-columns: repeat(4,1fr);
+
+  }
+}
+
+
+.artistCard {
+  gap: 16px;
+  justify-content: space-between;
+
+  & img {
+    border-radius: 9999px;
+    width: 100%;
+    max-width: 234px;
+    height: 228px;
+  }
+
+  &>div {
+    max-width: 266px;
+    width: 100%;
+    height: 288px;
+    border-radius: 8px;
+
+    @media (max-width:1620px){ // 1620px
+    
+  }
+  }
 }

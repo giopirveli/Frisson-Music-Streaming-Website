@@ -2,7 +2,7 @@
 import styles from "./Table.module.scss";
 import { useState, useEffect } from "react";
 // import axios from "axios";
-import Image from "next/image";
+import Image, {StaticImageData} from "next/image";
 import photo from "../../assets/images/table/artistphoto.png";
 import albumPhoto from "../../assets/images/table/albumphoto.png";
 import ThreeDotsBtn from "../3dots/ThreeDotsBtn";
@@ -12,7 +12,7 @@ import SongListTable from "../SongListTable/SongListTable";
 
 interface Song { // Song aris prop
    id?: number | string;
-   pic?: string;
+   pic?: string | StaticImageData;
    name?: string;
    album?: string;
    time?: string;
