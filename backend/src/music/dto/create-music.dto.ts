@@ -1,14 +1,15 @@
-import { IsInt, IsOptional, IsString, IsUrl } from 'class-validator';
+import { IsInt, IsNotEmpty, IsNumber, IsOptional, IsString, IsUrl } from 'class-validator';
 
 export class CreateMusicDto {
   @IsString()
+  @IsNotEmpty()
   title: string;
 
   @IsUrl()
   url: string;
 
-  @IsOptional()
-  albumId?: number;
+  @IsNumber()
+  albumId: number;
 
   @IsInt()
   authorId: number;
@@ -19,4 +20,7 @@ export class CreateMusicDto {
 
   @IsString()
   image: string;
+
+  @IsNumber()
+  userId: number;
 }

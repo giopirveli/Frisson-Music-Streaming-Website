@@ -5,6 +5,7 @@ import { SearchModule } from './search/search.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AlbumsModule } from './album/albums.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { AlbumsModule } from './album/albums.module';
     MusicModule,
     AlbumsModule,
     SearchModule,
+    UsersModule,
   ],
 })
 export class AppModule {}

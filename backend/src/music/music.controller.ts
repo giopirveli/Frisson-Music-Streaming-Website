@@ -2,10 +2,10 @@ import {
   Controller,
   Get,
   Post,
-  Body,
   Patch,
-  Param,
   Delete,
+  Param,
+  Body,
   ParseIntPipe,
 } from '@nestjs/common';
 import { MusicService } from './music.service';
@@ -16,9 +16,12 @@ import { UpdateMusicDto } from './dto/update-music.dto';
 export class MusicController {
   constructor(private readonly musicService: MusicService) {}
 
-  @Post()
-  create(@Body() createMusicDto: CreateMusicDto) {
-    return this.musicService.create(createMusicDto);
+  @Post(':userId')
+  create(
+    @Param('userId', ParseIntPipe) userId: number,
+    @Body() createMusicDto: CreateMusicDto,
+  ) {
+    return this.musicService.create(userId, createMusicDto);
   }
 
   @Get()
@@ -31,16 +34,25 @@ export class MusicController {
     return this.musicService.findOne(id);
   }
 
-  @Patch(':id')
-  update(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() updateMusicDto: UpdateMusicDto,
-  ) {
-    return this.musicService.update(id, updateMusicDto);
+  @Get('user/:userId')
+  getUserMusic(@Param('userId', ParseIntPipe) userId: number) {
+    return this.musicService.getUserMusic(userId);
   }
 
-  @Delete(':id')
-  delete(@Param('id', ParseIntPipe) id: number) {
-    return this.musicService.delete(id);
+  @Patch(':userId/:musicId')
+  update(
+    @Param('userId', ParseIntPipe) userId: number,
+    @Param('musicId', ParseIntPipe) musicId: number,
+    @Body() updateMusicDto: UpdateMusicDto,
+  ) {
+    return this.musicService.update(userId, musicId, updateMusicDto);
+  }
+
+  @Delete(':userId/:musicId')
+  delete(
+    @Param('userId', ParseIntPipe) userId: number,
+    @Param('musicId', ParseIntPipe) musicId: number,
+  ) {
+    return this.musicService.delete(userId, musicId);
   }
 }
