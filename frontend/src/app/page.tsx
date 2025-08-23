@@ -37,7 +37,11 @@ export default function Home() {
       <section className={styles.topChartsSection}>
         <div className={styles.topChartsSectionTextBox}>
           <h2>Top Charts</h2>
-          <span>See all</span>
+          <Link
+            href={"auth/TopCharts"}
+          >
+            <span>See all</span>
+          </Link >
         </div>
         <div className={styles.topChartSectionCardsBox}>
           <TopCharts title="Sugar (feat. Francesco)" artist="By Robin Schulz" imageUrl="/Images/TopCharts/TopChartsImage.jpg" duration={345} />
