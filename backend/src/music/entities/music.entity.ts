@@ -1,5 +1,6 @@
 import { Album } from 'src/album/entities/album.entity';
 import { Author } from 'src/author/entities/author.entity';
+import { User } from 'src/users/entities/user.entity';
 import {
   Column,
   Entity,
@@ -28,4 +29,7 @@ export class Music {
 
   @ManyToOne(() => Album, (album) => album.music, { nullable: true })
   album: Album;
+
+  @ManyToOne(() => User, (user) => user.music, { onDelete: 'CASCADE' })
+  user: User;
 }
