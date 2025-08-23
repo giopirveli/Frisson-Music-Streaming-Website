@@ -42,16 +42,16 @@ export default function ArtistPage({ id, pic, name, album, time, liked, artist, 
 
             <div className={styles.artistCard}>
 
-<AlbumCard imageUrl={photo} title="taylor swift"></AlbumCard>
-<AlbumCard imageUrl={photo} title="bellie eilish"></AlbumCard>
-<AlbumCard imageUrl={photo} title="sza"></AlbumCard>
-<AlbumCard imageUrl={photo} title="ed sheeran"></AlbumCard>
-<AlbumCard imageUrl={photo} title="Ariana Grande"></AlbumCard>
+<AlbumCard imageUrl={photo} onClick={()=>setActiveTab(2)} title="taylor swift"></AlbumCard>
+<AlbumCard imageUrl={photo} onClick={()=>setActiveTab(2)} title="bellie eilish"></AlbumCard>
+<AlbumCard imageUrl={photo} onClick={()=>setActiveTab(2)} title="sza"></AlbumCard>
+<AlbumCard imageUrl={photo} onClick={()=>setActiveTab(2)} title="ed sheeran"></AlbumCard>
+<AlbumCard imageUrl={photo} onClick={()=>setActiveTab(2)} title="Ariana Grande"></AlbumCard>
 
 
 
 {/*songs.map((song,i) =>(
-               <ArtistCard key={song.id} imageUrl={song.pic} title={song.artist}></ArtistCard>
+               <ArtistCard key={song.id} onClick={()=>setActiveTab(2)} imageUrl={song.pic} title={song.artist}></ArtistCard>
 )) this is logic for backend*/} 
                
             </div>
