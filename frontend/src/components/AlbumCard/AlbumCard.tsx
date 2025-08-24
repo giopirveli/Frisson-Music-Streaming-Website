@@ -31,7 +31,7 @@ export default function AlbumCard({ title, artist, imageUrl,onClick }: AlbumCard
         {isHovered && (
           <div className={styles.heartButton}>
             <div className={styles.btnWhiteBackground}>
-              <HeartBtn  />
+              <HeartBtn iconColor="black" />
             </div>
             <div className={styles.btnWhiteBackground}>
               <ThreeDotsBtn iconColor="black"/>

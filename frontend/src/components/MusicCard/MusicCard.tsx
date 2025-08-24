@@ -24,7 +24,7 @@ export default function MusicCard({ title, artist, imageUrl }: MusicCardProps) {
       {isHovered && (
         <div className={styles.heartButton}>
           <div className={styles.btnWhiteBackground}>
-            <HeartBtn />
+            <HeartBtn iconColor="black" />
           </div>
           <div className={styles.btnWhiteBackground}>
             <ThreeDotsBtn iconColor="black" />

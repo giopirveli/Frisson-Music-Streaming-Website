@@ -43,7 +43,7 @@ export default function TopCharts({ title, artist, duration, imageUrl }: TopChar
 
         <div className={styles.buttons}>
           <div className={styles.buttonsWrapper} >
-            <HeartBtn />
+            <HeartBtn iconColor="gray" />
             <ThreeDotsBtn iconColor="gray" />
           </div>
         </div>

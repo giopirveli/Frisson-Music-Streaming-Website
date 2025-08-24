@@ -26,7 +26,7 @@ export default function ArtistCard({ title, imageUrl }: ArtistCardProps) {
         <div className={styles.heartButton}>
           
           <div className={styles.btnWhiteBackground}>
-            <HeartBtn />
+            <HeartBtn iconColor="black" />
           </div>
           <div className={styles.btnWhiteBackground}>
             <ThreeDotsBtn iconColor="black" />

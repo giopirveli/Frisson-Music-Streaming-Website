@@ -64,7 +64,7 @@ export default function SongListTable({ id, pic, name, album, time, liked }: Son
                      <td>{"no information"}</td>
                      <td>{"no information"}</td>
                      <td>
-                        <HeartBtn />
+                        <HeartBtn iconColor="gray" />
                      </td>
                      <td><ThreeDotsBtn iconColor="white" /></td>
                   </tr>
