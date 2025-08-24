@@ -2,7 +2,7 @@
 import styles from "../AlbumCard/AlbumCard.module.scss";
 import Image, { StaticImageData } from "next/image";
 import HeartBtn from "../HeartBtn/HeartBtn";
-import ThreeDotsBtn from "../3dots/ThreeDotsBtn";
+import ThreeDotsBtn from "../ThreeDots/ThreeDotsBtn";
 import { useState } from "react";
 
 interface AlbumCardProps {
@@ -34,7 +34,7 @@ export default function AlbumCard({ title, artist, imageUrl,onClick }: AlbumCard
               <HeartBtn  />
             </div>
             <div className={styles.btnWhiteBackground}>
-              <ThreeDotsBtn />
+              <ThreeDotsBtn iconColor="black"/>
             </div>
           </div>
         )}

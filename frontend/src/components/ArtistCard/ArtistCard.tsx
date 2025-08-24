@@ -2,7 +2,7 @@
 import styles from "../ArtistCard/ArtistCard.module.scss";
 import Image from "next/image";
 import HeartBtn from "../HeartBtn/HeartBtn";
-import ThreeDotsBtn from "../3dots/ThreeDotsBtn";
+import ThreeDotsBtn from "../ThreeDots/ThreeDotsBtn";
 import { useState } from "react";
 
 
@@ -29,7 +29,7 @@ export default function ArtistCard({ title, imageUrl }: ArtistCardProps) {
             <HeartBtn />
           </div>
           <div className={styles.btnWhiteBackground}>
-            <ThreeDotsBtn />
+            <ThreeDotsBtn iconColor="black" />
           </div>
 
         </div>

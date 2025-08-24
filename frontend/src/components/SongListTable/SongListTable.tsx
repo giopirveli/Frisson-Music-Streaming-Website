@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styles from "./SongListTable.module.scss";
 import HeartBtn from "../HeartBtn/HeartBtn";
-import ThreeDotsBtn from "../3dots/ThreeDotsBtn";
+import ThreeDotsBtn from "../ThreeDots/ThreeDotsBtn";
 import photo from "../../assets/images/table/artistphoto.png";
 import { useState } from "react";
 
@@ -66,7 +66,7 @@ export default function SongListTable({ id, pic, name, album, time, liked }: Son
                      <td>
                         <HeartBtn />
                      </td>
-                     <td><ThreeDotsBtn /></td>
+                     <td><ThreeDotsBtn iconColor="white" /></td>
                   </tr>
 
                {/* this is top Songs   ||  ThreeDotsBtn still needs component

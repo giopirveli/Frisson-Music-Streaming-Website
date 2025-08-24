@@ -2,7 +2,7 @@
 import styles from "../MusicCard/MusicCard.module.scss";
 import { useState } from "react";
 import HeartBtn from "../HeartBtn/HeartBtn";
-import ThreeDotsBtn from "../3dots/ThreeDotsBtn";
+import ThreeDotsBtn from "../ThreeDots/ThreeDotsBtn";
 
 interface MusicCardProps {
   title: string;
@@ -27,7 +27,7 @@ export default function MusicCard({ title, artist, imageUrl }: MusicCardProps) {
             <HeartBtn />
           </div>
           <div className={styles.btnWhiteBackground}>
-            <ThreeDotsBtn />
+            <ThreeDotsBtn iconColor="black" />
           </div>
         </div>
       )}
