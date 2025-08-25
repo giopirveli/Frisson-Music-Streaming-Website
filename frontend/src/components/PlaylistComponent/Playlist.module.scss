@@ -42,12 +42,12 @@
   position: absolute;
   z-index: 10;
   left: 38%;
-  top: 203px;
+  top: 215px;
 }
 
 .text{
-  font-family: "Plus Jakarta Sans";
   color: $shady-lady;
   font-size: 14px;
+  font-family: var(--font-jakarta), sans-serif;
 
 }

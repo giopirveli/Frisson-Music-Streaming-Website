@@ -2,6 +2,7 @@
 import styles from "../PlaylistComponent/Playlist.module.scss"
 import { useState } from "react";
 import PenButton from "../PenBtn/PenButton";
+import BinButton from "../DeleteBinBtn/BinButton";
 
 
 interface PlaylistProps {
@@ -27,7 +28,7 @@ export default function PlaylistComponent({ title, imageUrl }: PlaylistProps) {
             <PenButton />
           </div>
           <div className={styles.btnWhiteBackground}>
-            {/* <Btn /> */}
+            <BinButton />
           </div>
         </div>
       )}
