@@ -1,8 +1,8 @@
 "use client";
 import styles from "../ArtistCard/ArtistCard.module.scss";
 import Image from "next/image";
-import HeartBtn from "../heartBtn/heartBtn";
-import ThreeDotsBtn from "../3dots/3dots";
+import HeartBtn from "../HeartBtn/HeartBtn";
+import ThreeDotsBtn from "../ThreeDots/ThreeDotsBtn";
 import { useState } from "react";
 
 
@@ -26,10 +26,10 @@ export default function ArtistCard({ title, imageUrl }: ArtistCardProps) {
         <div className={styles.heartButton}>
           
           <div className={styles.btnWhiteBackground}>
-            <HeartBtn />
+            <HeartBtn iconColor="black" />
           </div>
           <div className={styles.btnWhiteBackground}>
-            <ThreeDotsBtn />
+            <ThreeDotsBtn iconColor="black" />
           </div>
 
         </div>

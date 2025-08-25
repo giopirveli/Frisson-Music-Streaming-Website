@@ -1,21 +1,26 @@
 "use client";
 import { useState } from "react";
-import  Style  from "./heart.module.scss"; 
+import  style  from "./Heart.module.scss"; 
 import Image from "next/image";
 
-export default function heartBtn() {
+type props ={
+    iconColor: "gray" | "black"
+}
+
+export default function HeartBtn({iconColor}:props) {
     const [liked, setLiked] = useState(false);
+    const src = iconColor === "black" ? "/icons/HeartButton/defaultBlack.svg" : "/icons/HeartButton/defaultGray.svg";
     return (
         <button
-            className={`${Style.heartButton} ${liked ? Style.liked : ""}`}
+            className={`${style.heartButton } ${liked ? style.liked : ""}`}
             onClick={() => setLiked(!liked)}
         >
             <Image
                 alt="Heart icon"
-                src="/icons/HerartBtn/heart-syle-1.svg"
+                src={src}
                 width={24}
                 height={24}
-            />
+            /> {/* propebi daamate rom zomebi chaewodebodes */}
         </button>
     )
 }
