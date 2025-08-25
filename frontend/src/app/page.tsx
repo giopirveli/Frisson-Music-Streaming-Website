@@ -6,6 +6,7 @@ import TopCharts from "@/components/TopCharts/TopCharts";
 import AlbumCard from "@/components/AlbumCard/AlbumCard";
 import ArtistCard from "@/components/ArtistCard/ArtistCard";
 import Link from "next/link";
+import PlaylistComponent from "@/components/PlaylistComponent/Playlist";
 
 
 
@@ -76,6 +77,7 @@ export default function Home() {
           <ArtistCard title="Billie Eilish" imageUrl="/Images/ArtistCard/ArtistPhoto.jpg" />
         </div>
       </section>
+      <PlaylistComponent title="ewqrgtrgr" imageUrl="/Images/PlaylistComponent/PlaylistComponentPhoto.jpg"/>
     </main>
 
   );
