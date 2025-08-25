@@ -22,7 +22,7 @@ export default function Home() {
           <h2>Top Hits</h2>
 
           <Link
-            href={"auth/top-charts"}
+            href={"auth/TopHitsPage"}
           >
             <span>See all</span>
           </Link >
@@ -39,7 +39,7 @@ export default function Home() {
         <div className={styles.topChartsSectionTextBox}>
           <h2>Top Charts</h2>
           <Link
-            href={"auth/TopCharts"}
+            href={"auth/TopChartsPage"}
           >
             <span>See all</span>
           </Link >
@@ -54,8 +54,12 @@ export default function Home() {
 
       <section className={styles.albumSection}>
         <div className={styles.albumSectionTextBox}>
-          <h2>Popular Artists</h2>
-          <span>See all</span>
+          <h2>Popular Albums</h2>
+          <Link
+            href={"auth/AlbumPage"}
+          >
+            <span>See all</span>
+          </Link >
         </div>
         <div className={styles.albumSectionCardsBox}>
           <AlbumCard title="Of Monsters And Men" artist="Fever Dream" imageUrl="/Images/AlbumCard/AlbumPhoto.jpg" />
@@ -67,8 +71,12 @@ export default function Home() {
 
       <section className={styles.artistSection}>
         <div className={styles.artistSectionTextBox}>
-          <h2>Popular Albums</h2>
-          <span>See all</span>
+          <h2>Popular Artists</h2>
+          <Link
+            href={"auth/ArtistPage"}
+          >
+            <span>See all</span>
+          </Link >
         </div>
         <div className={styles.artistSectionCardsBox}>
           <ArtistCard title="Billie Eilish" imageUrl="/Images/ArtistCard/ArtistPhoto.jpg" />
@@ -77,7 +85,6 @@ export default function Home() {
           <ArtistCard title="Billie Eilish" imageUrl="/Images/ArtistCard/ArtistPhoto.jpg" />
         </div>
       </section>
-      <PlaylistComponent title="ewqrgtrgr" imageUrl="/Images/PlaylistComponent/PlaylistComponentPhoto.jpg"/>
     </main>
 
   );
