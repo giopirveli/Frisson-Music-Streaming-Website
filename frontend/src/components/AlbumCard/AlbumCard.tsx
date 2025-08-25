@@ -4,6 +4,10 @@ import Image, { StaticImageData } from "next/image";
 import HeartBtn from "../HeartBtn/HeartBtn";
 import ThreeDotsBtn from "../ThreeDots/ThreeDotsBtn";
 import { useState } from "react";
+import black from "/public/icons/HeartButton/defaultBlack.svg";
+import gray from "/public/icons/HeartButton/defaultGray.svg";
+
+
 
 interface AlbumCardProps {
   title: string;
@@ -14,16 +18,18 @@ interface AlbumCardProps {
   onClick?: () => void;
 }
 
-export default function AlbumCard({ title, artist, imageUrl,onClick }: AlbumCardProps) {
+export default function AlbumCard({ title, artist, imageUrl, onClick }: AlbumCardProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
   return (
     <div
       className={`${styles.card} ${artist ? "" : styles.cardHightPx}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
- onClick={onClick}
-     >
-      <div className={`${styles.imageWrapperBox}`}> 
+      // onClick={()=>setIsLiked(2)}
+      onClick={onClick}
+    >
+      <div className={`${styles.imageWrapperBox}`}>
         <div className={`${styles.imageWrapper} ${isHovered && styles.hoveredImgWrapper}`} >
           <Image src={imageUrl} alt="Music Card" className={styles.musicImage} fill />
         </div>
@@ -31,10 +37,10 @@ export default function AlbumCard({ title, artist, imageUrl,onClick }: AlbumCard
         {isHovered && (
           <div className={styles.heartButton}>
             <div className={styles.btnWhiteBackground}>
-              <HeartBtn iconColor="black" />
+              <HeartBtn iconColor={isLiked?"black":"gray"}  liked={isLiked} onToggle={()=>setIsLiked(prev=>!prev)}/>
             </div>
             <div className={styles.btnWhiteBackground}>
-              <ThreeDotsBtn iconColor="black"/>
+              <ThreeDotsBtn iconColor="black" />
             </div>
           </div>
         )}

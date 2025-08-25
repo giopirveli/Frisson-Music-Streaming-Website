@@ -13,6 +13,7 @@ interface ArtistCardProps {
 
 export default function ArtistCard({ title, imageUrl }: ArtistCardProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const [isLiked,setIsLiked] = useState(false);
   return (
     <div
       className={styles.card}
@@ -26,7 +27,7 @@ export default function ArtistCard({ title, imageUrl }: ArtistCardProps) {
         <div className={styles.heartButton}>
           
           <div className={styles.btnWhiteBackground}>
-            <HeartBtn iconColor="black" />
+            <HeartBtn iconColor={isLiked?"black":"gray"} liked={isLiked} onToggle={()=>setIsLiked(prev=>!prev)} />
           </div>
           <div className={styles.btnWhiteBackground}>
             <ThreeDotsBtn iconColor="black" />

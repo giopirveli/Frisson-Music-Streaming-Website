@@ -12,13 +12,22 @@ body {
 }
 
 
-
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
   text-transform: capitalize;
 }
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 0 24px;
+}
+
+
+
 
 img {
   // object-fit: cover;
