@@ -1,16 +1,17 @@
 "use client";
-import styles from "../MusicCard/MusicCard.module.scss";
+import styles from "../PlaylistComponent/Playlist.module.scss"
 import { useState } from "react";
-import HeartBtn from "../HeartBtn/HeartBtn";
-import ThreeDotsBtn from "../ThreeDots/ThreeDotsBtn";
+import PenButton from "../PenBtn/PenButton";
+import BinButton from "../DeleteBinBtn/BinButton";
 
-interface MusicCardProps {
+
+interface PlaylistProps {
   title: string;
-  artist: string;
   imageUrl: string;
 }
 
-export default function MusicCard({ title, artist, imageUrl }: MusicCardProps) {
+
+export default function PlaylistComponent({ title, imageUrl }: PlaylistProps) {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <div
@@ -19,21 +20,20 @@ export default function MusicCard({ title, artist, imageUrl }: MusicCardProps) {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className={`${styles.imageWrapper} ${isHovered && styles.hoveredImgWrapper}`}>
-        <img src={imageUrl} alt="Music Card" className={styles.musicImage} />
+        <img src={imageUrl} alt="Playlist Button" className={styles.playlistImage} />
       </div>
       {isHovered && (
-        <div className={styles.heartButton}>
+        <div className={styles.PenButton}>
           <div className={styles.btnWhiteBackground}>
-            <HeartBtn iconColor="black" />
+            <PenButton />
           </div>
           <div className={styles.btnWhiteBackground}>
-            <ThreeDotsBtn iconColor="black" />
+            <BinButton />
           </div>
         </div>
       )}
       <div className={styles.textWrapper}>
-        <p className={styles.textTop}>{title}</p>
-        <p className={styles.textBottom}>{artist}</p>
+        <p className={styles.text}>{title}</p>
       </div>
     </div>
   );

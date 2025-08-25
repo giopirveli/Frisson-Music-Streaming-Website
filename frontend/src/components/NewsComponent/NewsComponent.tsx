@@ -1,5 +1,5 @@
 "use client";
-import Button from "../button/button";
+import Button from "../Button/Button";
 import styles from "./NewsComponent.module.scss";
 import Image from "next/image";
 import {Colors} from "../../../styles/colors.enum";
@@ -33,7 +33,7 @@ export default function NewsComponent({ imageUrl, title, plays ,artist,verified,
           <h1 className={styles.title}>{artist || title}</h1>
           <p className={styles.plays} style={{color:Colors.White}}>{plays.toLocaleString()} </p>
         </div>
-        <Button text={button || "play again"} width={150} height={50} />
+        <Button text={button || "Listen Now"} width={150} height={50} icon="/icons/Button/Play.svg" />
       </div>
     </div>
 

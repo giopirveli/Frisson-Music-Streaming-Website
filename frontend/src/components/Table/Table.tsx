@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import Image, {StaticImageData} from "next/image";
 import photo from "../../assets/images/table/artistphoto.png";
 import albumPhoto from "../../assets/images/table/albumphoto.png";
-import ThreeDotsBtn from "../3dots/ThreeDotsBtn";
+import ThreeDotsBtn from "../ThreeDots/ThreeDotsBtn";
 import AlbumCard from "../AlbumCard/AlbumCard";
 import SongListTable from "../SongListTable/SongListTable";
 

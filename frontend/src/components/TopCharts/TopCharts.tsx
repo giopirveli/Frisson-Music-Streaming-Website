@@ -3,7 +3,7 @@ import { useState } from "react";
 import styles from "../TopCharts/TopCharts.module.scss";
 import Image from "next/image";
 import HeartBtn from "../HeartBtn/HeartBtn";
-import ThreeDotsBtn from "../3dots/ThreeDotsBtn";
+import ThreeDotsBtn from "../ThreeDots/ThreeDotsBtn";
 
 
 interface TopChartsProps {
@@ -43,8 +43,8 @@ export default function TopCharts({ title, artist, duration, imageUrl }: TopChar
 
         <div className={styles.buttons}>
           <div className={styles.buttonsWrapper} >
-            <HeartBtn />
-            <ThreeDotsBtn />
+            <HeartBtn iconColor="gray" />
+            <ThreeDotsBtn iconColor="gray" />
           </div>
         </div>
 
