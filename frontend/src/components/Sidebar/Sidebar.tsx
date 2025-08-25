@@ -45,7 +45,7 @@ export default function Sidebar() {
             <div className={styles.discoverMenu}>
                <h4>discover</h4>
                <NavItem href="/auth/ArtistPage" icon="/icons/Sidebar/artist.svg" label="artist" />
-               <NavItem href="/albums" icon="/icons/Sidebar/album.svg" label="album" />
+               <NavItem href="/auth/AlbumPage" icon="/icons/Sidebar/album.svg" label="album" />
             </div>
          </nav>
       </aside>
