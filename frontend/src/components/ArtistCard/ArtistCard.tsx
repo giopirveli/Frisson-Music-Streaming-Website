@@ -27,7 +27,7 @@ export default function ArtistCard({ title, imageUrl }: ArtistCardProps) {
         <div className={styles.heartButton}>
           
           <div className={styles.btnWhiteBackground}>
-            <HeartBtn iconColor={isLiked?"black":"gray"} liked={isLiked} onToggle={()=>setIsLiked(prev=>!prev)} />
+            <HeartBtn iconColor={isLiked?"black":"gray"} liked={isLiked} onToggle={()=>setIsLiked(!isLiked)} />
           </div>
           <div className={styles.btnWhiteBackground}>
             <ThreeDotsBtn iconColor="black" />
