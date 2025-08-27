@@ -2,8 +2,8 @@
 import { useState } from "react";
 import styles from "../TopCharts/TopCharts.module.scss";
 import Image from "next/image";
-import HeartBtn from "../heartBtn/heartBtn";
-import ThreeDotsBtn from "../3dots/3dots";
+import HeartBtn from "../HeartBtn/HeartBtn";
+import ThreeDotsBtn from "../ThreeDots/ThreeDotsBtn";
 
 
 interface TopChartsProps {
@@ -20,12 +20,9 @@ function formatDuration(duration: number) {
 }
 
 export default function TopCharts({ title, artist, duration, imageUrl }: TopChartsProps) {
-  const [isHovered, setIsHovered] = useState(false);
   return (
     <div
       className={styles.TopChartsDiv}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
       <div className={styles.imgAndWrapperBox}>
         <div className={styles.imageWrapper}>
@@ -46,8 +43,8 @@ export default function TopCharts({ title, artist, duration, imageUrl }: TopChar
 
         <div className={styles.buttons}>
           <div className={styles.buttonsWrapper} >
-            <HeartBtn />
-            <ThreeDotsBtn />
+            <HeartBtn iconColor="gray" />
+            <ThreeDotsBtn iconColor="gray" />
           </div>
         </div>
 

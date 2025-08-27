@@ -1,8 +1,8 @@
 "use client";
 import styles from "../MusicCard/MusicCard.module.scss";
 import { useState } from "react";
-import HeartBtn from "../heartBtn/heartBtn";
-import ThreeDotsBtn from "../3dots/3dots";
+import HeartBtn from "../HeartBtn/HeartBtn";
+import ThreeDotsBtn from "../ThreeDots/ThreeDotsBtn";
 
 interface MusicCardProps {
   title: string;
@@ -12,6 +12,7 @@ interface MusicCardProps {
 
 export default function MusicCard({ title, artist, imageUrl }: MusicCardProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const [isLiked,setIsLiked]= useState(false)
   return (
     <div
       className={styles.card}
@@ -24,10 +25,10 @@ export default function MusicCard({ title, artist, imageUrl }: MusicCardProps) {
       {isHovered && (
         <div className={styles.heartButton}>
           <div className={styles.btnWhiteBackground}>
-            <HeartBtn />
+            <HeartBtn iconColor={isLiked?"black":"gray"} liked={isLiked} onToggle={()=>setIsLiked(prev=>!prev)} />
           </div>
           <div className={styles.btnWhiteBackground}>
-            <ThreeDotsBtn />
+            <ThreeDotsBtn iconColor="black" />
           </div>
         </div>
       )}

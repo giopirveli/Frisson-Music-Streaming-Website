@@ -1,25 +1,33 @@
 "use client";
 import styles from "../AlbumCard/AlbumCard.module.scss";
-import Image from "next/image";
-import HeartBtn from "../heartBtn/heartBtn";
-import ThreeDotsBtn from "../3dots/3dots";
+import Image, { StaticImageData } from "next/image";
+import HeartBtn from "../HeartBtn/HeartBtn";
+import ThreeDotsBtn from "../ThreeDots/ThreeDotsBtn";
 import { useState } from "react";
+import black from "/public/icons/HeartButton/defaultBlack.svg";
+import gray from "/public/icons/HeartButton/defaultGray.svg";
+
+
 
 interface AlbumCardProps {
   title: string;
   artist?: string;
-  imageUrl: string;
+  imageUrl: string | StaticImageData;
   width?: string | number;
-  hight?: string | number
+  hight?: string | number;
+  onClick?: () => void;
 }
 
-export default function AlbumCard({ title, artist, imageUrl }: AlbumCardProps) {
+export default function AlbumCard({ title, artist, imageUrl, onClick }: AlbumCardProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
   return (
     <div
       className={`${styles.card} ${artist ? "" : styles.cardHightPx}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      // onClick={()=>setIsLiked(2)}
+      onClick={onClick}
     >
       <div className={`${styles.imageWrapperBox}`}>
         <div className={`${styles.imageWrapper} ${isHovered && styles.hoveredImgWrapper}`} >
@@ -29,10 +37,10 @@ export default function AlbumCard({ title, artist, imageUrl }: AlbumCardProps) {
         {isHovered && (
           <div className={styles.heartButton}>
             <div className={styles.btnWhiteBackground}>
-              <HeartBtn />
+              <HeartBtn iconColor={isLiked?"black":"gray"}  liked={isLiked} onToggle={()=>setIsLiked(prev=>!prev)}/>
             </div>
             <div className={styles.btnWhiteBackground}>
-              <ThreeDotsBtn />
+              <ThreeDotsBtn iconColor="black" />
             </div>
           </div>
         )}
