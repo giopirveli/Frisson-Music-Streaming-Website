@@ -56,17 +56,9 @@ export interface LayoutProps {
 // Layout component
 // ========================
 export default function RootLayout({ children }: LayoutProps) {
-  const pathname = usePathname();  // 'usePathname' = keyword, 'pathname' = ours
 
-  // ========================
-  // Hide Header on certain pages
-  // ========================
-  const hideHeaderOn = [
-    "/auth/playlists", 
-    "/auth/playlists-page" // link 
-  ];
 
-  const hideHeader = hideHeaderOn.some(route => pathname.toLowerCase().startsWith(route));
+
 
   return (
     <html lang="en">
@@ -75,7 +67,7 @@ export default function RootLayout({ children }: LayoutProps) {
         <Sidebar />
         <div className="page">
           <div className="container">
-            {!hideHeader && <Header />}  {/* only show header if not in hidden routes */}
+            <Header />
             {children}
           </div>
         </div>
