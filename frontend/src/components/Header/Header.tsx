@@ -25,11 +25,14 @@ export default function Header({ onArrowClick, showArrow = false }: Props) {
    return (
       <header className={styles.header}> {/* only show header if not in hidden routes */}
          <div className={styles.searchbar}>
-            {
-               hideSearchbar
-                  ? <Image src={arrow} className={styles.arrow} alt="arrow" onClick={onArrowClick} />
-                  : <Searchbar placeholder={"artists, tracks, albums"} />
-            }
+            {hideSearchbar ? (
+               <Image src={arrow} className={styles.arrow} alt="arrow" onClick={onArrowClick} />
+            ) : (
+               <div className={styles.searchArrow}>
+                  <Image src={arrow} className={styles.arrow} alt="arrow" onClick={onArrowClick} />
+                  <Searchbar placeholder="artists, tracks, albums" />
+               </div>
+            )}
          </div>
          <Image src="/icons/Header/user.svg" className={styles.user} width={32} height={32} alt="user icon" /> {/* assetshi unda iyos amis icon */}
       </header>
