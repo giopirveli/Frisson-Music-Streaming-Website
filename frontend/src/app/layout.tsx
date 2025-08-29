@@ -7,7 +7,7 @@ const manrope = localFont({
     { path: "./fonts/manrope/Manrope-VariableFont.woff2", weight: "100 900", style: "normal" },
     { path: "./fonts/manrope/Manrope-VariableFont.woff", weight: "100 900", style: "normal" },
   ],
-  variable: "--font-manrope",
+  variable: '--font-manrope',
 });
 const plusJakartaSans = localFont({
   src: [
@@ -16,14 +16,14 @@ const plusJakartaSans = localFont({
     { path: "./fonts/plusJakartaSans/PlusJakartaSans-VariableFont.woff", weight: "100 900", style: "italic" },
     { path: "./fonts/plusJakartaSans/PlusJakartaSans-VariableFont.woff2", weight: "100 900", style: "italic" },
   ],
-  variable: "--font-jakarta",
+  variable: '--font-jakarta',
 });
 const sfProDisplay = localFont({
   src: [
     { path: "./fonts/sfprodisplayheavy/sfprodisplayheavy.woff2", weight: "900", style: "normal" },
     { path: "./fonts/sfprodisplayheavy/sfprodisplayheavy.woff", weight: "900", style: "normal" },
   ],
-  variable: "--font-display",
+  variable: '--font-display',
 });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

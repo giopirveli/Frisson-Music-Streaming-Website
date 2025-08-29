@@ -14,7 +14,7 @@ export default function Searchbar({
 }: Props) {
 
   return (
-      <div className={`${styles.wrapper}`}>
+      <div className={`${styles.wrapper} .searchbar-global`}>
         <Image
           className={styles.icon}
           src="/icons/Header/magnifier.svg"
@@ -24,7 +24,7 @@ export default function Searchbar({
         />
 
         <input
-          type="text"
+          type="text" 
           className={styles.search}
           onChange={onChange}
           placeholder={placeholder}

@@ -36,8 +36,8 @@ export default function Sidebar() {
 
             <div className={styles.collectionMenu}>
                <h4>collection</h4>
-               <NavItem href="/playlists" icon="/icons/Sidebar/playlists.svg" label="playlists" />
-               <NavItem href="/favorites" icon="/icons/Sidebar/favorites.svg" label="favorites" />
+               <NavItem href="/auth/playlists-page" icon="/icons/Sidebar/playlists.svg" label="playlists" />
+               <NavItem href="/auth/favorites" icon="/icons/Sidebar/favorites.svg" label="favorites" />
             </div>
 
             <div className={styles.discoverMenu}>
