@@ -22,9 +22,9 @@ export default function Home() {
           <h2>Top Hits</h2>
 
           <Link
-            href={"/sign-in"}
+            href={"/topHitsPage"}
           >
-            <span>რეგისტერ</span>
+            <span>See all</span>
           </Link >
         </div>
         <div className={styles.topHitsSectionCardsBox}>
@@ -39,7 +39,7 @@ export default function Home() {
         <div className={styles.topChartsSectionTextBox}>
           <h2>Top Charts</h2>
           <Link
-            href={"auth/TopChartsPage"}
+            href={"/TopChartsPage"}
           >
             <span>See all</span>
           </Link >

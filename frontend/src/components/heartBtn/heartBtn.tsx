@@ -3,8 +3,8 @@ import Image from "next/image";
 import black from "/public/icons/HeartButton/defaultBlack.svg";
 import gray from "/public/icons/HeartButton/defaultGray.svg";
 type props = {
-    liked: boolean;
-    onToggle: () => void;
+    liked?: boolean;
+    onToggle?: () => void;
     iconColor: "gray" | "black";
 }
 

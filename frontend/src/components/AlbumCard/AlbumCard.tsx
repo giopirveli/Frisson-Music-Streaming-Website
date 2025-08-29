@@ -4,8 +4,7 @@ import Image, { StaticImageData } from "next/image";
 import HeartBtn from "../HeartBtn/HeartBtn";
 import ThreeDotsBtn from "../ThreeDots/ThreeDotsBtn";
 import { useState } from "react";
-import black from "/public/icons/HeartButton/defaultBlack.svg";
-import gray from "/public/icons/HeartButton/defaultGray.svg";
+
 
 
 
