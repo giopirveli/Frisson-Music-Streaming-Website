@@ -4,4 +4,5 @@ export default interface ButtonProps {
   width: string | number;
   height: string | number;
   text: string;
+
 }

@@ -1,0 +1,223 @@
+* {
+   box-sizing: border-box;
+   text-transform: capitalize;
+   margin: 0;
+   padding: 0;
+   border: 0;
+}
+
+body {
+   font-family: Inter;
+}
+
+button,
+input {
+   background-color: inherit;
+}
+
+aside {
+   display: none;
+}
+
+ul {
+   list-style-type: none;
+}
+
+.header ul {
+   display: flex;
+}
+
+a {
+   text-decoration: none;
+}
+
+.header {
+   display: flex;
+   max-width: 1028px;
+   width: 100%;
+   height:100px;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.center {
+   display: flex;
+   flex-direction: column;
+   max-width: 1048px;
+   width: 100%;
+   align-items: center;
+   gap: 32px;
+}
+
+.footer {
+   display: flex;
+   max-width: 1028px;
+   width: 100%;
+   align-items: center;
+}
+
+header {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+main {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+
+footer {
+   display: flex;
+   justify-content: center;
+   align-items: flex-start;
+}
+
+
+/* flexes */
+
+.dflex {
+   display: flex;
+}
+
+.cflex {
+   display: flex;
+   flex-direction: column;
+}
+
+.ais {
+   display: flex;
+   align-items: flex-start;
+}
+
+.aie {
+   display: flex;
+   align-items: flex-end;
+}
+
+.aic {
+   display: flex;
+   align-items: center;
+}
+
+.jcs {
+   display: flex;
+   justify-content: flex-start;
+}
+
+.jce {
+   display: flex;
+   justify-content: flex-end;
+}
+
+.jcc {
+   display: flex;
+   justify-content: center;
+}
+
+.jcb {
+   display: flex;
+   justify-content: space-between;
+}
+
+/* numbers */
+
+.samocdaotxi {
+   display: flex;
+   gap: 64px;
+}
+
+.samoci {
+   display: flex;
+   gap: 60px;
+}
+
+.ormocdarva {
+   display: flex;
+   gap: 48px;
+}
+
+.ormoci {
+   display: flex;
+   gap: 40px;
+}
+
+.ocdatvrameti {
+   display: flex;
+   gap: 38px;
+}
+
+.ocdateqsvmeti {
+   display: flex;
+   gap: 36px;
+}
+
+.ocdatotxmeti {
+   display: flex;
+   gap: 34px;
+}
+
+.ocdatormeti {
+   display: flex;
+   gap: 32px;
+}
+
+.ocdaati {
+   display: flex;
+   gap: 30px;
+}
+
+.ocdaxuti {
+   display: flex;
+   gap: 25px;
+}
+
+.ocdaotxi {
+   display: flex;
+   gap: 24px;
+}
+
+.oci {
+   display: flex;
+   gap: 20px
+}
+
+.tvrameti {
+   display: flex;
+   gap: 18px;
+}
+
+.teqsvmeti {
+   display: flex;
+   gap: 16px;
+}
+
+.tormeti {
+   display: flex;
+   gap: 12px;
+}
+
+.ati {
+   display: flex;
+   gap: 10px;
+}
+
+.rva {
+   display: flex;
+   gap: 8px;
+}
+
+.eqvsi {
+   display: flex;
+   gap: 6px;
+}
+
+.otxi {
+   display: flex;
+   gap: 4px;
+}
+
+/* pad */
+

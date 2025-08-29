@@ -26,14 +26,14 @@ export default function NewsComponent({ imageUrl, title, plays ,artist,verified,
         <div className={styles.textBox}>
           {verified && 
             <div className={styles.verified}>
-              <Image src="/Images/NewsComponent/Vector.png" width={22} height={21} alt="verified icon"></Image>
+              <Image src="/Images/NewsComponent/Vector.png" width={22} height={21} alt="verified icon" />
               <p>verified artist</p>
             </div>
             }
           <h1 className={styles.title}>{artist || title}</h1>
           <p className={styles.plays} style={{color:Colors.White}}>{plays.toLocaleString()} </p>
         </div>
-        <Button text={button || "Listen Now"} width={150} height={50} icon="/icons/Button/Play.svg" />
+        <Button text={button || "Listen Now"} width={150} height={50}  icon="/icons/Button/Play.svg" />
       </div>
     </div>
 

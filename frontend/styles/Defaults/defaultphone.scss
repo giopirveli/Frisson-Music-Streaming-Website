@@ -1,0 +1,143 @@
+@media screen and (max-width:768px) {
+   .pdflex {
+      display: flex;
+   }
+
+   .pcflex {
+      display: flex;
+      flex-direction: column;
+   }
+
+   .pais {
+      display: flex;
+      align-items: flex-start;
+   }
+
+   .paie {
+      display: flex;
+      align-items: flex-end;
+   }
+
+   .paic {
+      display: flex;
+      align-items: center;
+   }
+
+   .pjcs {
+      display: flex;
+      justify-content: flex-start;
+   }
+
+   .pjce {
+      display: flex;
+      justify-content: flex-end;
+   }
+
+   .pjcc {
+      display: flex;
+      justify-content: center;
+   }
+
+   .pjcb {
+      display: flex;
+      justify-content: space-between;
+   }
+
+   /* numbers */
+
+   .p-samocdaotxi {
+      display: flex;
+      gap: 64px;
+   }
+
+   .p-samoci {
+      display: flex;
+      gap: 60px;
+   }
+
+   .p-ormocdarva {
+      display: flex;
+      gap: 48px;
+   }
+
+   .p-ormoci {
+      display: flex;
+      gap: 40px;
+   }
+
+   .p-ocdatvrameti {
+      display: flex;
+      gap: 38px;
+   }
+
+   .p-ocdateqvsmeti {
+      display: flex;
+      gap: 36px;
+   }
+
+   .p-ocdatotxmeti {
+      display: flex;
+      gap: 34px;
+   }
+
+   .p-ocdatormeti {
+      display: flex;
+      gap: 32px;
+   }
+
+   .p-ocdaati {
+      display: flex;
+      gap: 30px;
+   }
+
+   .p-ocdaxuti {
+      display: flex;
+      gap: 25px;
+   }
+
+   .p-ocdaotxi {
+      display: flex;
+      gap: 24px;
+   }
+
+   .p-oci {
+      display: flex;
+      gap: 20px
+   }
+
+   .p-tvrameti {
+      display: flex;
+      gap: 18px;
+   }
+
+   .p-teqsvmeti {
+      display: flex;
+      gap: 16px;
+   }
+
+   .p-tormeti {
+      display: flex;
+      gap: 12px;
+   }
+
+   .p-ati {
+      display: flex;
+      gap: 10px;
+   }
+
+   .p-rva {
+      display: flex;
+      gap: 8px;
+   }
+
+   .p-eqvsi {
+      display: flex;
+      gap: 6px;
+   }
+
+   .p-otxi {
+      display: flex;
+      gap: 4px;
+   }
+
+}

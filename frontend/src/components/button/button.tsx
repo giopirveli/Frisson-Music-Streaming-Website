@@ -1,22 +1,26 @@
 "use client";
 import React, { useState } from "react";
-import Style from "./button.module.scss";
+import styles from "./button.module.scss";
+import Image, { StaticImageData } from "next/image";
+import plusIcon from "@/../public/icons/Button/plusIcon.svg";
 
 interface Props {
-  icon?: string;                                
+  icon?: string | StaticImageData;
   onClick?: () => void | Promise<void>;
-  width?: string | number;
+  width?: string | number; // button size
   height?: string | number;
   text: string;
   className?: string;
+  iwidth?: number; // icon size
+  iheight?: number;
 }
 
 export default function Button(props: Props) {
-  const { onClick, icon, text, width, height, className } = props;
+  const { onClick, icon, text, width, height, className, iwidth, iheight } = props;
   const [loading, setLoading] = useState(false);
 
   const handleClick = async () => {
-    if (!onClick || loading) return;            
+    if (!onClick || loading) return;
     try {
       setLoading(true);
       await onClick();
@@ -33,11 +37,21 @@ export default function Button(props: Props) {
       onClick={handleClick}
       disabled={loading}
       aria-busy={loading}
-      className={`${Style.basicButtonStyle} ${loading ? Style.disabled : ""} ${className ?? ""}`}
+      className={`${styles.basicButtonStyle} ${loading ? styles.disabled : ""} ${className ?? ""}`}
       style={{ width, height }}
     >
-      {icon && <img src={icon} alt="" className={Style.icon} />}
-      <span className={Style.label}>{text}</span>
+      {icon && (
+        <img
+          src={typeof icon === "string" ? icon : (icon as StaticImageData).src}
+          width={iwidth}
+          height={iheight}
+          className={styles.icon}
+          alt="icon"
+        />
+      )
+      }
+
+      <span className={styles.label}>{text}</span>
     </button>
   );
 }
