@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "forceConsistentCasingInFileNames": true,
     "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -18,6 +19,7 @@
         "name": "next"
       }
     ],
+    
     "paths": {
       "@/*": ["./src/*"]
     }

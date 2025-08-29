@@ -1,11 +1,10 @@
 "use client";
 import styles from "../AlbumCard/AlbumCard.module.scss";
 import Image, { StaticImageData } from "next/image";
-import HeartBtn from "../HeartBtn/HeartBtn";
+import HeartBtn from "../HeartBtn/heartBtn";
 import ThreeDotsBtn from "../ThreeDots/ThreeDotsBtn";
 import { useState } from "react";
-import black from "/public/icons/HeartButton/defaultBlack.svg";
-import gray from "/public/icons/HeartButton/defaultGray.svg";
+
 
 
 
