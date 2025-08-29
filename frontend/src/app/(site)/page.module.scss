@@ -1,0 +1,155 @@
+@use "../../../styles/colors" as *;
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;    
+  padding:0 24px;
+}
+
+// --------------------------------------------------
+// Reusable style classes
+
+.ordinarySection {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.ordinarySectionCardsBox {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+.ordinarySectionTextBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.ordinarySectionTextBoxSpan {
+  color: $mission-control;
+  font-family: var(--font-jakarta), sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 100%;
+}
+
+.ordinarySectionH2 {
+  color: #FFF;
+  font-family: var(--font-jakarta), sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 100%;
+}
+
+// --------------------------------------------------
+// All Semantic Tag
+.allSemanticTag {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+// --------------------------------------------------
+// Top Hits
+.topHitsSection {
+  @extend .ordinarySection;
+}
+
+.topHitsSectionCardsBox {
+  @extend .ordinarySectionCardsBox;
+}
+
+.topHitsSectionCardsBox > * {
+  flex: 1 0 220px;
+}
+
+.topHitsSectionTextBox {
+  @extend .ordinarySectionTextBox;
+
+  & span {
+    @extend .ordinarySectionTextBoxSpan;
+  }
+
+  & h2 {
+    @extend .ordinarySectionH2;
+  }
+}
+
+// --------------------------------------------------
+// Artists
+.artistSection {
+  @extend .ordinarySection;
+}
+
+.artistSectionCardsBox {
+  @extend .ordinarySectionCardsBox;
+}
+
+.artistSectionCardsBox > * {
+  flex: 1 0 220px;
+}
+
+.artistSectionTextBox {
+  @extend .ordinarySectionTextBox;
+
+  & span {
+    @extend .ordinarySectionTextBoxSpan;
+  }
+
+  & h2 {
+    @extend .ordinarySectionH2;
+  }
+}
+
+// --------------------------------------------------
+// Album
+.albumSection {
+  @extend .ordinarySection;
+}
+
+.albumSectionCardsBox {
+  @extend .ordinarySectionCardsBox;
+}
+
+.albumSectionCardsBox > * {
+  flex: 1 0 220px;
+}
+
+.albumSectionTextBox {
+  @extend .ordinarySectionTextBox;
+
+  & span {
+    @extend .ordinarySectionTextBoxSpan;
+  }
+
+  & h2 {
+    @extend .ordinarySectionH2;
+  }
+}
+
+// --------------------------------------------------
+// Charts
+.topChartsSection {
+  @extend .ordinarySection;
+}
+
+.topChartSectionCardsBox {
+  @extend .ordinarySectionCardsBox;
+}
+
+.topChartsSectionTextBox {
+  @extend .ordinarySectionTextBox;
+
+  & span {
+    @extend .ordinarySectionTextBoxSpan;
+  }
+
+  & h2 {
+    @extend .ordinarySectionH2;
+  }
+}

@@ -1,0 +1,17 @@
+@use "../../../styles/colors" as *;
+
+.formSubmitBtn {
+    display: flex;
+    max-width: 368px;
+    padding: 16px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    background: $gradient-apolo;
+    color: $white;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 100%;
+    cursor: pointer;
+    border: none;
+}

@@ -21,31 +21,29 @@ function NavItem({ href, icon, label }: { href: string; icon: string; label: str
 }
 
 export default function Sidebar() {
-      const base = "/auth";
    return (
       <aside className={styles.sidebar}>
          <Link href="/" aria-label="Home" className={styles.frissonMainLogo}>
             <Image src="/icons/Sidebar/logo.png" className={styles.frissonMainLogo} width={98} height={83} alt="Frisson logo" />
          </Link>
-
          <nav className={styles.menu}>
             <div className={styles.mainMenu}>
                <NavItem href="/" icon="/icons/Sidebar/home.svg" label="home" />
                <NavItem href="/recommendations" icon="/icons/Sidebar/recommendations.svg" label="recommendations" />
-               <NavItem href={`${base}/top-hits-page`} icon="/icons/Sidebar/topHits.svg" label="top hits" />
-               <NavItem href={`${base}/top-charts-page`} icon="/icons/Sidebar/topCharts.svg" label="top charts" />
+               <NavItem href="/top-hits-page" icon="/icons/Sidebar/topHits.svg" label="top hits" />
+               <NavItem href="/top-charts-page " icon="/icons/Sidebar/topCharts.svg" label="top charts" />
             </div>
 
             <div className={styles.collectionMenu}>
                <h4>collection</h4>
-               <NavItem href="/auth/playlists-page" icon="/icons/Sidebar/playlists.svg" label="playlists" />
+               <NavItem href="/playlists-page" icon="/icons/Sidebar/playlists.svg" label="playlists" />
                <NavItem href="/auth/favorites" icon="/icons/Sidebar/favorites.svg" label="favorites" />
             </div>
 
             <div className={styles.discoverMenu}>
                <h4>discover</h4>
-               <NavItem href="/auth/artist-page" icon="/icons/Sidebar/artist.svg" label="artist" />
-               <NavItem href={`${base}/album-page`} icon="/icons/Sidebar/album.svg" label="album" />
+               <NavItem href="/artist-page" icon="/icons/Sidebar/artist.svg" label="artist" />
+               <NavItem href={`/album-page`} icon="/icons/Sidebar/album.svg" label="album" />
             </div>
          </nav>
       </aside>
