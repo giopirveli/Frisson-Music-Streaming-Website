@@ -3,19 +3,22 @@
   justify-content: space-between;
   align-items: center;
   padding: 40px 24px 0 24px;
+  gap: 16px;
 }
 
-.searchbar {
+
+.searchbar { // 548px
   display: flex;
   height: 56px;
-  align-items: center;   // ⬅ makes single arrow vertically centered
+  max-width: 548px;
+  width: 100%;
+  align-items: center;   // makes single arrow vertically centered
 }
 
 .arrow {
   width: 32px;
   height: 32px;
 }
-
 
 .searchArrow {
   display: flex;
@@ -24,5 +27,3 @@
   flex: 1;
   min-width: 0;         // ensures Searchbar can shrink correctly
 }
-
-
