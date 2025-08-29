@@ -21,19 +21,17 @@ function NavItem({ href, icon, label }: { href: string; icon: string; label: str
 }
 
 export default function Sidebar() {
-      const base = "/auth";
    return (
       <aside className={styles.sidebar}>
          <Link href="/" aria-label="Home" className={styles.frissonMainLogo}>
             <Image src="/icons/Sidebar/logo.png" className={styles.frissonMainLogo} width={98} height={83} alt="Frisson logo" />
          </Link>
-
          <nav className={styles.menu}>
             <div className={styles.mainMenu}>
                <NavItem href="/" icon="/icons/Sidebar/home.svg" label="home" />
                <NavItem href="/recommendations" icon="/icons/Sidebar/recommendations.svg" label="recommendations" />
-               <NavItem href={`${base}/TopHitsPage`} icon="/icons/Sidebar/topHits.svg" label="top hits" />
-               <NavItem href={`${base}/TopChartsPage`} icon="/icons/Sidebar/topCharts.svg" label="top charts" />
+               <NavItem href={`/TopHitsPage`} icon="/icons/Sidebar/topHits.svg" label="top hits" />
+               <NavItem href={`/TopChartsPage`} icon="/icons/Sidebar/topCharts.svg" label="top charts" />
             </div>
 
             <div className={styles.collectionMenu}>
@@ -44,8 +42,8 @@ export default function Sidebar() {
 
             <div className={styles.discoverMenu}>
                <h4>discover</h4>
-               <NavItem href="/auth/ArtistPage" icon="/icons/Sidebar/artist.svg" label="artist" />
-               <NavItem href={`${base}/AlbumPage`} icon="/icons/Sidebar/album.svg" label="album" />
+               <NavItem href="/ArtistPage" icon="/icons/Sidebar/artist.svg" label="artist" />
+               <NavItem href={`/AlbumPage`} icon="/icons/Sidebar/album.svg" label="album" />
             </div>
          </nav>
       </aside>

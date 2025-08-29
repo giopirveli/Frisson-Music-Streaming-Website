@@ -1,14 +1,14 @@
 "use client";
 import Style from "./player.module.scss";
 import Image from "next/image";
-import { useRef,} from "react";
+import { useRef, useState } from "react";
 import { useAudioControls } from "@/hooks/useAudioControls";
-import HeartBtn from "../HeartBtn/HeartBtn";
+import HeartBtn from "../HeartBtn/heartBtn";
 
 export default function Player() {
     const audioRef = useRef<HTMLAudioElement | null>(null);
     const progressRef = useRef<HTMLDivElement | null>(null);
-
+    const [isLiked, setIsLiked] = useState(false);
     const {
         isPlaying,
         currentTime,
@@ -28,7 +28,7 @@ export default function Player() {
 
 
 
- 
+
 
 
 
@@ -40,7 +40,7 @@ export default function Player() {
             <div className={Style.mainControlBox}>
                 <div className={Style.controlBoxesDurection}>
                     <div className={Style.controlBoxFirstPart}>
-                        <HeartBtn />
+                        <HeartBtn iconColor="gray" liked={isLiked} onToggle={() => setIsLiked(!isLiked)} />
 
                         <div className={Style.rangeControlBox}>
                             <span>{formatTime(isDragging ? previewTime : currentTime)}</span>
