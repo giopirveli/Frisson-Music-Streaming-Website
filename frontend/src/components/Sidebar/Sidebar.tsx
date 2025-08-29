@@ -30,20 +30,20 @@ export default function Sidebar() {
             <div className={styles.mainMenu}>
                <NavItem href="/" icon="/icons/Sidebar/home.svg" label="home" />
                <NavItem href="/recommendations" icon="/icons/Sidebar/recommendations.svg" label="recommendations" />
-               <NavItem href={`/TopHitsPage`} icon="/icons/Sidebar/topHits.svg" label="top hits" />
-               <NavItem href={`/TopChartsPage`} icon="/icons/Sidebar/topCharts.svg" label="top charts" />
+               <NavItem href="/top-hits-page" icon="/icons/Sidebar/topHits.svg" label="top hits" />
+               <NavItem href="/top-charts-page " icon="/icons/Sidebar/topCharts.svg" label="top charts" />
             </div>
 
             <div className={styles.collectionMenu}>
                <h4>collection</h4>
-               <NavItem href="/auth/playlists-page" icon="/icons/Sidebar/playlists.svg" label="playlists" />
+               <NavItem href="/playlists-page" icon="/icons/Sidebar/playlists.svg" label="playlists" />
                <NavItem href="/auth/favorites" icon="/icons/Sidebar/favorites.svg" label="favorites" />
             </div>
 
             <div className={styles.discoverMenu}>
                <h4>discover</h4>
-               <NavItem href="/ArtistPage" icon="/icons/Sidebar/artist.svg" label="artist" />
-               <NavItem href={`/AlbumPage`} icon="/icons/Sidebar/album.svg" label="album" />
+               <NavItem href="/artist-page" icon="/icons/Sidebar/artist.svg" label="artist" />
+               <NavItem href={`/album-page`} icon="/icons/Sidebar/album.svg" label="album" />
             </div>
          </nav>
       </aside>

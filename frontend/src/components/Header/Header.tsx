@@ -2,6 +2,7 @@
 import Searchbar from "../Searchbar/Searchbar";
 import styles from "./Header.module.scss";
 import Image from "next/image";
+import Link from "next/link";
 import { usePathname } from 'next/navigation';
 import arrow from "@/../public/icons/Header/arrow.svg";
 
@@ -34,7 +35,7 @@ export default function Header({ onArrowClick, showArrow = false }: Props) {
                </div>
             )}
          </div>
-         <Image src="/icons/Header/user.svg" className={styles.user} width={32} height={32} alt="user icon" /> {/* assetshi unda iyos amis icon */}
+         <Link href={"sign-in"} ><Image src="/icons/Header/user.svg" className={styles.user} width={32} height={32} alt="user icon" /> {/* assetshi unda iyos amis icon */}</Link>
       </header>
 
    )
