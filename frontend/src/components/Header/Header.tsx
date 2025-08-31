@@ -18,8 +18,8 @@ export default function Header({ onArrowClick, showArrow = false }: Props) {
    // Hide Searchbar on certain pages
    // ========================
    const hideSearchbarOn = [
-      "/auth/playlists", // random useless link
-      "/auth/playlists-page" // link 
+      "/playlists", // random useless link
+      "/playlists-page" // link 
    ];
 
    const hideSearchbar = hideSearchbarOn.some(route => pathname.toLowerCase().startsWith(route));

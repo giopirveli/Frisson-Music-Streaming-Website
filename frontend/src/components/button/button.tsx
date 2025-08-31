@@ -48,7 +48,7 @@ export default function Button(props: Props) {
           className={styles.icon}
           alt="icon"
         />
-      )
+        )
       }
 
       <span className={styles.label}>{text}</span>

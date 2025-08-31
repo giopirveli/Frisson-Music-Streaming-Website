@@ -1,34 +1,11 @@
-@use "../../../../styles/colors" as *;
+@use "../colors" as *;
 
-.main {
-   gap: 24px;
-}
+// instructions:
 
-.h1 {
-   display: flex;
-   flex-direction: column;
-   gap: 24px;
-
-   &>h1 {
-      color: $white;
-      font-family: "Plus Jakarta Sans";
-      font-size: 32px;
-      font-style: normal;
-      font-weight: 500;
-      line-height: normal;
-   }
-}
-
-.searchbar{
-   display:flex;
-   align-items:center;
-   justify-content: space-between;
-}
+// mianiwet albumcard mshobel divs da tavad gadaawyobs yvela shvilobil komponents
+// tavisi responsiulobis mixedvit yvela rezoluciaze
 
 
-
-
-// grid
 
 .albumCard {
   justify-content: space-between;

@@ -3,11 +3,12 @@ import styles from "../PlaylistComponent/Playlist.module.scss"
 import { useState } from "react";
 import PenButton from "../PenBtn/PenButton";
 import BinButton from "../DeleteBinBtn/BinButton";
+import { StaticImageData } from "next/image";
 
 
 interface PlaylistProps {
   title: string;
-  imageUrl: string;
+  imageUrl: string | StaticImageData;
 }
 
 
@@ -20,7 +21,7 @@ export default function PlaylistComponent({ title, imageUrl }: PlaylistProps) {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className={`${styles.imageWrapper} ${isHovered && styles.hoveredImgWrapper}`}>
-        <img src={imageUrl} alt="Playlist Button" className={styles.playlistImage} />
+        <img src={typeof imageUrl === "string"?imageUrl :imageUrl.src} alt="Playlist Button" className={styles.playlistImage} />
       </div>
       {isHovered && (
         <div className={styles.PenButton}>
