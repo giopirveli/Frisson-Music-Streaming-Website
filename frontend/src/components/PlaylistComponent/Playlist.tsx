@@ -9,16 +9,18 @@ import { StaticImageData } from "next/image";
 interface PlaylistProps {
   title: string;
   imageUrl: string | StaticImageData;
+  onClick?: () => void;
 }
 
 
-export default function PlaylistComponent({ title, imageUrl }: PlaylistProps) {
+export default function PlaylistComponent({ title, imageUrl,onClick }: PlaylistProps) {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <div
       className={styles.card}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={onClick}
     >
       <div className={`${styles.imageWrapper} ${isHovered && styles.hoveredImgWrapper}`}>
         <img src={typeof imageUrl === "string"?imageUrl :imageUrl.src} alt="Playlist Button" className={styles.playlistImage} />

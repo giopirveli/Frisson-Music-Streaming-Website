@@ -1,11 +1,11 @@
 "use client";
 import Button from "../Button/Button";
 import styles from "./NewsComponent.module.scss";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import {Colors} from "../../../styles/colors.enum";
 
 interface NewsComponentProps {
-  imageUrl: string;
+  imageUrl: string | StaticImageData;
   title: string;
   plays: number | string;
   artist?: string; // albat male wavshli
@@ -19,7 +19,7 @@ export default function NewsComponent({ imageUrl, title, plays ,artist,verified,
   return (
 
     <div className={styles.wrapper}>
-      <Image className={styles.card} fill src={imageUrl} alt="banner" />
+      <Image className={styles.card} fill src={typeof imageUrl==="string"? imageUrl : imageUrl.src} alt="banner" />
 
 
       <div className={styles.content}>

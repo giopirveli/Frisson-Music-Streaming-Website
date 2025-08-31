@@ -1,3 +1,4 @@
+/*
 * {
    box-sizing: border-box;
    text-transform: capitalize;
@@ -75,7 +76,7 @@ footer {
    align-items: flex-start;
 }
 
-
+*/
 /* flexes */
 
 .dflex {
@@ -132,6 +133,16 @@ footer {
 .samoci {
    display: flex;
    gap: 60px;
+}
+
+.ormocdatvrameti{
+   display:flex;
+   gap:58px;
+}
+
+.ormocdatotxmeti{
+   display:flex;
+   gap:54px;
 }
 
 .ormocdarva {
