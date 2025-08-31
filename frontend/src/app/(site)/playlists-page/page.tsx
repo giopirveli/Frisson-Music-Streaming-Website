@@ -10,6 +10,8 @@ import NewsComponent from "@/components/NewsComponent/NewsComponent";
 import Table from "@/components/Table/Table";
 import banner from "@/../public/Images/playlistsPage/playlist.jpg";
 import { useActiveTab } from "@/components/Context/ActiveTabContext";
+import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 import "@/../styles/defaults/default.scss";
 
 interface Album {
@@ -19,6 +21,12 @@ interface Album {
 
 export default function PlaylistPage({ albums = [] }: { albums?: Album[] }) {
   const { activeTab, setActiveTab } = useActiveTab();
+  const pathname = usePathname();
+
+  // Reset activeTab to 1 when navigating back to this page
+  useEffect(() => {
+    setActiveTab(1);
+  }, [pathname, setActiveTab]);
 
   return (
     <main className={styles.main}>
@@ -33,13 +41,20 @@ export default function PlaylistPage({ albums = [] }: { albums?: Album[] }) {
           </div>
 
           <div className={styles.albumCard}>
+            {/* 7 static playlists */}
             {[...Array(7)].map((_, i) => (
-              <PlaylistComponent key={i} onClick={() => setActiveTab(2)} imageUrl={photo} title={`Playlist name 1`} />
+              <PlaylistComponent
+                key={i}
+                onClick={() => setActiveTab(2)}
+                imageUrl={photo}
+                title={`Playlist name 1`}
+              />
             ))}
 
+            {/* Dynamic mapping for backend albums */}
             {albums.map((album, i) => (
               <PlaylistComponent
-                key={i + 100}
+                key={i + 100} // avoid duplicate keys
                 onClick={() => setActiveTab(2)}
                 imageUrl={album.imageUrl || photo}
                 title={album.albumName || `playlist ${i + 1}`}
@@ -51,7 +66,11 @@ export default function PlaylistPage({ albums = [] }: { albums?: Album[] }) {
 
       {activeTab === 2 && (
         <div className={`ormocdatotxmeti cflex ${styles.nugo}`}>
-          <NewsComponent imageUrl={banner} plays="11 songs" title={albums[0]?.albumName || "playlist 1"} />
+          <NewsComponent
+            imageUrl={banner}
+            plays="11 songs"
+            title={albums[0]?.albumName || "playlist 1"}
+          />
           <div className={`ocdatormeti cflex`}>
             <Searchbar />
             <Table />
