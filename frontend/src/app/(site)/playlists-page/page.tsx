@@ -14,6 +14,8 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import "@/../styles/defaults/default.scss";
 
+
+
 interface Album {
   imageUrl?: string | StaticImageData;
   albumName?: string;
@@ -35,7 +37,7 @@ export default function PlaylistPage({ albums = [] }: { albums?: Album[] }) {
           <div className={styles.h1}>
             <h1 className={styles.h1}>my playlists</h1>
             <div className={styles.searchbar}>
-              <Searchbar />
+              <Searchbar placeholder="search in your album"/>
               <Button text="new playlist" icon={plusIcon} />
             </div>
           </div>
@@ -50,6 +52,9 @@ export default function PlaylistPage({ albums = [] }: { albums?: Album[] }) {
                 title={`Playlist name 1`}
               />
             ))}
+
+
+        
 
             {/* Dynamic mapping for backend albums */}
             {albums.map((album, i) => (

@@ -5,55 +5,50 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import arrow from "@/../public/icons/Header/arrow.svg";
+import { useActiveTab } from "@/components/Context/ActiveTabContext";
 
-type Props = {
-   onArrowClick?: () => void;
-   showArrow?: boolean;
-}
+export default function Header() {
+  const pathname = usePathname();
+  const { setActiveTab } = useActiveTab(); // ← use context
 
-export default function Header({ onArrowClick, showArrow = false }: Props) {
-   const pathname = usePathname();
+  // Hide Searchbar on specific routes
+  const hideSearchbarOn = ["/playlists", "/playlists-page","/top-hits-page"];
+  const hideSearchbar = hideSearchbarOn.some(route =>
+    pathname.toLowerCase().startsWith(route)
+  );
 
-   // Hide Searchbar on specific routes
-   const hideSearchbarOn = [
-      "/playlists",
-      "/playlists-page"
-   ];
+  return (
+    <header className={styles.header}>
+      <div className={styles.searchbar}>
+        {hideSearchbar ? (
+          <Image
+            src={arrow}
+            className={styles.arrow}
+            alt="arrow"
+            onClick={() => setActiveTab(1)} // ← reset to tab 1
+          />
+        ) : (
+          <div className={styles.searchArrow}>
+            <Image
+              src={arrow}
+              className={styles.arrow}
+              alt="arrow"
+              onClick={() => setActiveTab(1)} // ← reset to tab 1
+            />
+            <Searchbar placeholder="artists, tracks, albums" />
+          </div>
+        )}
+      </div>
 
-   const hideSearchbar = hideSearchbarOn.some(route => pathname.toLowerCase().startsWith(route));
-
-   return (
-      <header className={styles.header}>
-         <div className={styles.searchbar}>
-            {hideSearchbar ? (
-               <Image
-                 src={arrow}
-                 className={styles.arrow}
-                 alt="arrow"
-                 onClick={onArrowClick} // ← will reset activeTab
-               />
-            ) : (
-               <div className={styles.searchArrow}>
-                  <Image
-                    src={arrow}
-                    className={styles.arrow}
-                    alt="arrow"
-                    onClick={onArrowClick} // ← same here
-                  />
-                  <Searchbar placeholder="artists, tracks, albums" />
-               </div>
-            )}
-         </div>
-
-         <Link href="sign-in">
-           <Image
-             src="/icons/Header/user.svg"
-             className={styles.user}
-             width={32}
-             height={32}
-             alt="user icon"
-           />
-         </Link>
-      </header>
-   )
+      <Link href="sign-in">
+        <Image
+          src="/icons/Header/user.svg"
+          className={styles.user}
+          width={32}
+          height={32}
+          alt="user icon"
+        />
+      </Link>
+    </header>
+  );
 }
