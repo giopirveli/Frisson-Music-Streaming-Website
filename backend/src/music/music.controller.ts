@@ -31,7 +31,7 @@ export class MusicController {
 
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.musicService.findOne(id);
+    return this.musicService.findOneMusic(id);
   }
 
   @Get('user/:userId')
@@ -45,14 +45,14 @@ export class MusicController {
     @Param('musicId', ParseIntPipe) musicId: number,
     @Body() updateMusicDto: UpdateMusicDto,
   ) {
-    return this.musicService.update(userId, musicId, updateMusicDto);
+    return this.musicService.updateMusic(userId, musicId, updateMusicDto);
   }
 
   @Delete(':userId/:musicId')
-  delete(
+  deleteMusic(
     @Param('userId', ParseIntPipe) userId: number,
     @Param('musicId', ParseIntPipe) musicId: number,
   ) {
-    return this.musicService.delete(userId, musicId);
+    return this.musicService.deleteMusic(userId, musicId);
   }
 }

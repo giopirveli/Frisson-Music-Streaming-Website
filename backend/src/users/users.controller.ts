@@ -2,10 +2,10 @@ import {
   Controller,
   Get,
   Post,
-  Body,
   Patch,
-  Param,
   Delete,
+  Param,
+  Body,
   ParseIntPipe,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
@@ -18,9 +18,11 @@ import { UpdateMusicDto } from 'src/music/dto/update-music.dto';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
+  // ----------- Users -----------
+
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
+    return this.usersService.createUser(createUserDto);
   }
 
   @Get()
@@ -28,9 +30,14 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.usersService.findOne(id);
+  @Get('id/:id')
+  findOneById(@Param('id', ParseIntPipe) id: number) {
+    return this.usersService.findOneById(id);
+  }
+
+  @Get('email/:email')
+  findOneByEmail(@Param('email') email: string) {
+    return this.usersService.findOneByEmail(email);
   }
 
   @Patch(':id')
@@ -45,6 +52,8 @@ export class UsersController {
   delete(@Param('id', ParseIntPipe) id: number) {
     return this.usersService.delete(id);
   }
+
+  // ----------- Music -----------
 
   @Post(':id/music')
   addMusic(

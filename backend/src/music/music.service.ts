@@ -40,18 +40,18 @@ export class MusicService {
     return this.musicRepo.find({ relations: ['user', 'author', 'album'] });
   }
 
-  async findOne(id: number): Promise<Music> {
+  async findOneMusic(id: number): Promise<Music> {
     return this.findMusicOrFail(id);
   }
 
-  async update(userId: number, musicId: number, updateMusicDto: UpdateMusicDto): Promise<Music> {
+  async updateMusic(userId: number, musicId: number, updateMusicDto: UpdateMusicDto): Promise<Music> {
     const music = await this.findMusicOrFail(musicId);
     if (music.user.id !== userId) throw new ForbiddenException('Cannot edit music of another user');
     Object.assign(music, updateMusicDto);
     return this.musicRepo.save(music);
   }
 
-  async delete(userId: number, musicId: number): Promise<{ message: string }> {
+  async deleteMusic(userId: number, musicId: number): Promise<{ message: string }> {
     const music = await this.findMusicOrFail(musicId);
     if (music.user.id !== userId) throw new ForbiddenException('Cannot delete music of another user');
     await this.musicRepo.delete(musicId);

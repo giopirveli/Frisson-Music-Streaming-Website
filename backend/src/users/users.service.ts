@@ -3,32 +3,36 @@ import {
   NotFoundException,
   ForbiddenException,
 } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 import * as bcrypt from 'bcrypt';
-import { User } from './entities/user.entity';
-import { CreateMusicDto } from 'src/music/dto/create-music.dto';
-import { UpdateMusicDto } from 'src/music/dto/update-music.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { User } from './entities/user.entity';
 import { Music } from 'src/music/entities/music.entity';
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
+import { CreateMusicDto } from 'src/music/dto/create-music.dto';
+import { UpdateMusicDto } from 'src/music/dto/update-music.dto';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User)
-    private readonly usersRepo: Repository<User>,
+    readonly usersRepository: Repository<User>,
+    private readonly jwtService: JwtService,
     @InjectRepository(Music)
     private readonly musicRepo: Repository<Music>,
   ) {}
 
-  async findUser(id: number): Promise<User> {
-    const user = await this.usersRepo.findOneBy({ id });
+  // ----------- Helpers -----------
+
+  private async findUserOrThrowById(id: number): Promise<User> {
+    const user = await this.usersRepository.findOne({ where: { id } });
     if (!user) throw new NotFoundException('User not found');
     return user;
   }
 
-  async findMusic(musicId: number): Promise<Music> {
+  private async findMusic(musicId: number): Promise<Music> {
     const music = await this.musicRepo.findOne({
       where: { id: musicId },
       relations: ['user', 'author', 'album'],
@@ -37,48 +41,71 @@ export class UsersService {
     return music;
   }
 
-  async create(createUserDto: CreateUserDto): Promise<void> {
+  // ----------- Users -----------
+
+  async createUser(createUserDto: CreateUserDto) {
     const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
-    const user = this.usersRepo.create({
+    const user = this.usersRepository.create({
       ...createUserDto,
       password: hashedPassword,
     });
-    await this.usersRepo.save(user);
+    const savedUser = await this.usersRepository.save(user);
+
+    const token = this.jwtService.sign({
+      email: savedUser.email,
+      id: savedUser.id,
+    });
+
+    const { password, ...result } = savedUser;
+    return { user: result, token };
   }
 
   async findAll(): Promise<User[]> {
-    return this.usersRepo.find();
+    return this.usersRepository.find();
   }
 
-  async findOne(id: number): Promise<User> {
-    return this.findUser(id);
+  async findOneById(id: number): Promise<User> {
+    return this.findUserOrThrowById(id);
+  }
+
+  async findOneByEmail(email: string): Promise<User | null> {
+    const user = await this.usersRepository.findOne({
+      where: { email },
+      select: ['id', 'email', 'password'],
+    });
+
+    if (!user) throw new NotFoundException('User not found');
+    return user;
   }
 
   async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
     if (updateUserDto.password) {
       updateUserDto.password = await bcrypt.hash(updateUserDto.password, 10);
     }
-    await this.usersRepo.update(id, updateUserDto);
-    return this.findUser(id);
+    const user = await this.usersRepository.preload({ id, ...updateUserDto });
+    if (!user) throw new NotFoundException('User not found');
+    return this.usersRepository.save(user);
   }
 
   async delete(id: number): Promise<{ message: string }> {
-    await this.findUser(id);
-    await this.usersRepo.delete(id);
+    const result = await this.usersRepository.delete(id);
+    if (result.affected === 0) throw new NotFoundException('User not found');
     return { message: 'User deleted successfully' };
   }
-  
+
+  // ----------- Music -----------
+
   async addMusic(
     userId: number,
     createMusicDto: CreateMusicDto,
   ): Promise<Music> {
-    const user = await this.findUser(userId);
+    const user = await this.findUserOrThrowById(userId);
     const music = this.musicRepo.create({ ...createMusicDto, user });
     return this.musicRepo.save(music);
   }
 
   async getUserMusic(userId: number): Promise<Music[]> {
-    await this.findUser(userId);
+    await this.findUserOrThrowById(userId);
     return this.musicRepo.find({
       where: { user: { id: userId } },
       relations: ['user', 'author', 'album'],
