@@ -24,10 +24,7 @@ export class User {
   password: string;
 
   @Column({ type: 'enum', enum: Role, default: Role.USER })
-  role: Role; // поле теперь role, не roles
-
-  @Column({ nullable: true })
-  refreshToken?: string;
+  role: Role; 
 
   @CreateDateColumn()
   createdAt: Date;

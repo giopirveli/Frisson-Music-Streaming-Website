@@ -7,6 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AlbumsModule } from './album/albums.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { TokenBlacklistsModule } from './token-blacklists/token-blacklists.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { AuthModule } from './auth/auth.module';
     SearchModule,
     UsersModule,
     AuthModule,
+    TokenBlacklistsModule,
   ],
 })
 export class AppModule {}

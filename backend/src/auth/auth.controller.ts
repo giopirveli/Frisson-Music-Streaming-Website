@@ -1,49 +1,53 @@
 import {
-  Controller,
-  Request,
-  Post,
-  UseGuards,
-  Get,
   Body,
+  Controller,
+  HttpException,
+  HttpStatus,
+  Post,
+  Request,
+  UseGuards,
 } from '@nestjs/common';
-import { LocalAuthGuard } from './guards/local-auth.guards';
 import { AuthService } from './auth.service';
-import { JwtAuthGuard } from './guards/jwt-auth.guard';
-import { Roles } from './guards/roles.decorator';
+import { Public } from './guard/jwt-strategies';
+import { Roles } from './guard/jwt-roles.guard';
 import { Role } from 'src/roles/roles';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
+import { AuthGuard } from './guard/jwt-auth.guard';
 
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post('login')
-  @UseGuards(LocalAuthGuard)
-  login(@Request() req) {
-    return this.authService.login(req.user);
-  }
-
-  @Post('refresh')
-  refresh(@Body('refreshToken') refreshToken: string) {
-    return this.authService.refreshToken(refreshToken);
-  }
-
-  @Get('profile')
-  @UseGuards(JwtAuthGuard)
-  getProfile(@Request() req) {
-    return req.user;
-  }
-
-  @Get('admin')
-  @UseGuards(JwtAuthGuard)
-  @Roles(Role.ADMIN)
-  getAdmin(@Request() req) {
-    return { message: 'Hello Admin!', user: req.user };
-  }
-  
-
+  @Public()
   @Post('register')
   async register(@Body() createUserDto: CreateUserDto) {
     return this.authService.register(createUserDto);
+  }
+
+  @Post('login')
+  @Roles(Role.USER, Role.ADMIN)
+  @Public()
+  async login(@Body() body: { email: string; password: string }) {
+    return this.authService.login(body.email, body.password);
+  }
+
+  @Post('login/admin')
+  @Roles(Role.ADMIN)
+  @Public()
+  async loginAdmin(@Body() createUserDto: CreateUserDto) {
+    return this.authService.loginAdmin(createUserDto);
+  }
+
+  @Post('logout')
+  @UseGuards(AuthGuard)
+  async logout(@Request() req: any) {
+    const token = req.headers.authorization?.split(' ')[1];
+    const userId = req.user.id;
+
+    if (!token) {
+      throw new HttpException('No token provided', HttpStatus.BAD_REQUEST);
+    }
+
+    return this.authService.logout(token, userId);
   }
 }

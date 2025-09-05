@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  ForbiddenException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Music } from './entities/music.entity';
@@ -44,25 +48,34 @@ export class MusicService {
     return this.findMusicOrFail(id);
   }
 
-  async updateMusic(userId: number, musicId: number, updateMusicDto: UpdateMusicDto): Promise<Music> {
-    const music = await this.findMusicOrFail(musicId);
-    if (music.user.id !== userId) throw new ForbiddenException('Cannot edit music of another user');
-    Object.assign(music, updateMusicDto);
-    return this.musicRepo.save(music);
-  }
-
-  async deleteMusic(userId: number, musicId: number): Promise<{ message: string }> {
-    const music = await this.findMusicOrFail(musicId);
-    if (music.user.id !== userId) throw new ForbiddenException('Cannot delete music of another user');
-    await this.musicRepo.delete(musicId);
-    return { message: 'Music deleted successfully' };
-  }
-
   async getUserMusic(userId: number): Promise<Music[]> {
     await this.findUserOrFail(userId);
     return this.musicRepo.find({
       where: { user: { id: userId } },
       relations: ['user', 'author', 'album'],
     });
+  }
+
+  async updateMusic(
+    userId: number,
+    musicId: number,
+    updateMusicDto: UpdateMusicDto,
+  ): Promise<Music> {
+    const music = await this.findMusicOrFail(musicId);
+    if (music.user.id !== userId)
+      throw new ForbiddenException('Cannot edit music of another user');
+    Object.assign(music, updateMusicDto);
+    return this.musicRepo.save(music);
+  }
+
+  async deleteMusic(
+    userId: number,
+    musicId: number,
+  ): Promise<{ message: string }> {
+    const music = await this.findMusicOrFail(musicId);
+    if (music.user.id !== userId)
+      throw new ForbiddenException('Cannot delete music of another user');
+    await this.musicRepo.delete(musicId);
+    return { message: 'Music deleted successfully' };
   }
 }
