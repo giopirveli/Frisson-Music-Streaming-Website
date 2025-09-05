@@ -9,12 +9,12 @@ import { User } from './entities/user.entity';
 export class UsersRepository {
   constructor(
     @InjectRepository(User)
-    private readonly usersRepo: Repository<User>,
+    readonly usersRepo: Repository<User>,
   ) {}
 
   async create(createUserDto: CreateUserDto): Promise<User> {
-    const user = this.usersRepo.create(createUserDto);
-    return this.usersRepo.save(user);
+    const newUser = this.usersRepo.create(createUserDto);
+    return this.usersRepo.save(newUser);
   }
 
   async findAll(): Promise<User[]> {

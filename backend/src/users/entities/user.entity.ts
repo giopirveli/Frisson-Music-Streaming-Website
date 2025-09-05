@@ -1,5 +1,5 @@
-import { Exclude } from 'class-transformer';
 import { Music } from 'src/music/entities/music.entity';
+import { Role } from 'src/roles/roles';
 import {
   Column,
   CreateDateColumn,
@@ -22,6 +22,9 @@ export class User {
 
   @Column({ select: false })
   password: string;
+
+  @Column({ type: 'enum', enum: Role, default: Role.USER })
+  role: Role; 
 
   @CreateDateColumn()
   createdAt: Date;
