@@ -11,6 +11,6 @@ import { User } from 'src/users/entities/user.entity';
   imports: [TypeOrmModule.forFeature([Music, User]), AuthorModule],
   controllers: [MusicController],
   providers: [MusicService, MusicRepository],
-  exports: [MusicRepository],
+  exports: [MusicRepository, MusicService],
 })
 export class MusicModule {}

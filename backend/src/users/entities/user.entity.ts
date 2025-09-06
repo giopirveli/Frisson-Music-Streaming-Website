@@ -1,3 +1,4 @@
+import { Listener } from 'src/listeners-table/entities/listeners-table.entity';
 import { Music } from 'src/music/entities/music.entity';
 import { Role } from 'src/roles/roles';
 import {
@@ -24,7 +25,10 @@ export class User {
   password: string;
 
   @Column({ type: 'enum', enum: Role, default: Role.USER })
-  role: Role; 
+  role: Role;
+
+  @OneToMany(() => Listener, (listener) => listener.user)
+  listeners: Listener[];
 
   @CreateDateColumn()
   createdAt: Date;

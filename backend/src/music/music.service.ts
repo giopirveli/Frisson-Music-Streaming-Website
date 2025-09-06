@@ -4,7 +4,7 @@ import {
   ForbiddenException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { Music } from './entities/music.entity';
 import { CreateMusicDto } from './dto/create-music.dto';
 import { UpdateMusicDto } from './dto/update-music.dto';
@@ -19,7 +19,7 @@ export class MusicService {
     private readonly userRepo: Repository<User>,
   ) {}
 
-  private async findMusicOrFail(musicId: number): Promise<Music> {
+  async findMusicOrFail(musicId: number): Promise<Music> {
     const music = await this.musicRepo.findOne({
       where: { id: musicId },
       relations: ['user', 'author', 'album'],
@@ -28,7 +28,7 @@ export class MusicService {
     return music;
   }
 
-  private async findUserOrFail(userId: number): Promise<User> {
+  async findUserOrFail(userId: number): Promise<User> {
     const user = await this.userRepo.findOneBy({ id: userId });
     if (!user) throw new NotFoundException('User not found');
     return user;
@@ -42,6 +42,10 @@ export class MusicService {
 
   async findAll(): Promise<Music[]> {
     return this.musicRepo.find({ relations: ['user', 'author', 'album'] });
+  }
+
+  async findByIds(ids: number[]): Promise<Music[]> {
+    return this.musicRepo.findBy({ id: In(ids) });
   }
 
   async findOneMusic(id: number): Promise<Music> {
