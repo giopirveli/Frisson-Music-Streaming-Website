@@ -1,6 +1,13 @@
 import { Album } from 'src/album/entities/album.entity';
 import { Music } from 'src/music/entities/music.entity';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity('authors')
 export class Author {
@@ -10,9 +17,15 @@ export class Author {
   @Column()
   name: string;
 
-  @Column({nullable: true})
+  @Column({ nullable: true })
   url?: string;
 
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+  
   @OneToMany(() => Music, (music) => music.author)
   music: Music[];
 

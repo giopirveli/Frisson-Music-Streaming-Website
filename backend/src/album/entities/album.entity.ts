@@ -2,11 +2,13 @@ import { Author } from 'src/author/entities/author.entity';
 import { Music } from 'src/music/entities/music.entity';
 import {
   Column,
+  CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 
 @Entity('albums')
@@ -22,6 +24,12 @@ export class Album {
 
   @Column()
   artistName: string;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 
   @ManyToOne(() => Author, (author) => author.albums, { eager: true })
   @JoinColumn({ name: 'authorId' })
