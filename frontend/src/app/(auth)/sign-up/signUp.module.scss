@@ -1,36 +1,20 @@
 @use "../../../../styles/colors" as *;
 
+/* =======================
+   Layout
+======================= */
 .container {
-  width: 100%;
-  padding: 40px 0px 0px 60px;
-  color: #fff;
-  z-index: 999;
   width: 100vw;
-  bottom: -1%;
+  padding: 40px 0 0 60px;
   display: grid;
   grid-template-columns: clamp(280px, 42vw, 100%) minmax(0, 1fr);
   min-height: 100dvh;
-  overflow: hidden;
   max-height: 100vh;
-}
+  overflow: hidden;
 
-.header {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.logoSizeControl {
-  align-self: flex-start;
-  display: flex;
-  position: relative;
-  max-width: 350px;
-  width: 100%;
-  height: 136px;
-}
-
-.logoSizeControl img {
-  object-fit: cover;
+  color: #fff;
+  z-index: 999;
+  bottom: -1%;
 }
 
 .left {
@@ -42,6 +26,31 @@
   max-height: 100vh;
 }
 
+.right {
+  position: relative;
+  bottom: -1px;
+  overflow: hidden;
+}
+
+/* =======================
+   Logo
+======================= */
+.logoSizeControl {
+  align-self: flex-start;
+  display: flex;
+  position: relative;
+  width: 100%;
+  max-width: 350px;
+  height: 136px;
+
+  img {
+    object-fit: cover;
+  }
+}
+
+/* =======================
+   Left content
+======================= */
 .leftMainContent {
   display: flex;
   flex-direction: column;
@@ -50,17 +59,24 @@
   width: 100%;
 }
 
-
-.title {
-  font-size: 42px;
+/* =======================
+   Header / Title
+======================= */
+.header {
   display: flex;
   flex-direction: column;
+  gap: 8px;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  font-size: 42px;
   line-height: 1.1;
 
   span {
     color: $white;
   }
-
 }
 
 .titleFirtsPart {
@@ -68,12 +84,8 @@
   align-items: center;
   gap: 12px;
   font-family: var(--font-jakarta), sans-serif;
-  color: $white ;
+  color: $white;
 }
-
-
-
-
 
 .titleSecondPart {
   display: flex;
@@ -86,6 +98,7 @@
   -webkit-text-fill-color: transparent;
 }
 
+/* ზომების კონტროლი – იყენებ span-ებზე */
 .titleFirstStyle {
   font-size: 42px;
   font-weight: 400;
@@ -93,9 +106,12 @@
 
 .titleSecondStyle {
   font-size: 32px;
-    font-weight: 700;
+  font-weight: 700;
 }
 
+/* =======================
+   Form
+======================= */
 .form {
   display: flex;
   flex-direction: column;
@@ -103,66 +119,29 @@
   max-width: 498px;
 }
 
-
-
 .switchPage {
   color: $white;
   font-size: 14px;
   font-weight: 500;
+
+  > a {
+    color: $singapore-orchid;
+  }
 }
 
-.switchPage>a {
-  color: $singapore-orchid;
-}
-
-.right {
-  position: relative;
-  bottom: -1px;
-  overflow: hidden;
-}
-
+/* =======================
+   Right image
+======================= */
 .rightImg {
   position: relative;
   width: 30%;
   height: 30%;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@media(max-height:820px) {
-
+/* =======================
+   Media Queries
+======================= */
+@media (max-height: 820px) {
   .titleSecondSize {
     font-size: 32px;
   }

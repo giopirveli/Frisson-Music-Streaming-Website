@@ -62,9 +62,7 @@ const Input = forwardRef<HTMLInputElement, Props>(function Input(
           {...restProps}                             // ⬅️ ჯერ rest, რომ ჩვენი ჰენდლერები არ გადაიფაროს
           onChange={handleChange}
           onBlur={handleBlur}
-          className={`${styles.input} ${className ?? ""}`.trim()} // ⬅️ className merge
-          aria-invalid={!!error || undefined}
-          // თუ ოდესმე შეცდომას ქვემოთ ტექსტად გამოიტან, დაამატე aria-describedby აქ
+          className={`${styles.input}`} // ⬅️ className merge
         />
 
         {hideBtn && isPassword && (
@@ -72,8 +70,6 @@ const Input = forwardRef<HTMLInputElement, Props>(function Input(
             type="button"
             className={styles.showHideBtn}
             onClick={() => setShow((v) => !v)}
-            aria-label={show ? "Hide password" : "Show password"} // a11y
-            aria-pressed={show}                                    // toggle state
           >
             <Image
               width={16}
