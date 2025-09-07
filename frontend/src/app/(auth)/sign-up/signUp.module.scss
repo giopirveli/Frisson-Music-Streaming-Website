@@ -20,7 +20,7 @@
 .left {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 50px;
   align-items: flex-start;
   padding-bottom: 24px;
   max-height: 100vh;
@@ -142,6 +142,10 @@
    Media Queries
 ======================= */
 @media (max-height: 820px) {
+  .left{
+    justify-content: space-between;
+    gap: 0;
+  }
   .titleSecondSize {
     font-size: 32px;
   }
