@@ -71,71 +71,74 @@ export default function SignUpPage() {
       <div className={styles.left}>
 
         <div className={styles.logoSizeControl}>
-          <Image src="/icons/Sidebar/mainLogo.png"  fill alt="Frisson logo" />
+          <Image src="/icons/Sidebar/mainLogo.png" fill alt="Frisson logo" />
         </div>
 
         <div className={styles.leftMainContent}>
           <div className={styles.header}>
-          <h1 className={styles.title}>
-            <div className={styles.titleFirtsPart}>
-              <span className={styles.titleSecondSize}>Where</span>
-              <span className={styles.titleFirstStyle}>HARMONY</span>
-            </div>
-            <div className={styles.titleSecondPart}>
-              <span className={styles.titleFirstStyle}>MEETS</span>
-              <span className={styles.titleSecondSize}>MELODY</span>
-            </div>
-          </h1>
-          <span className={styles.subtitle}>The Future Of Music Streaming</span>
-        </div>
+            <h1 className={styles.title}>
+              <div className={styles.titleFirtsPart}>
+                <span className={styles.titleSecondSize}>Where</span>
+                <span className={styles.titleFirstStyle}>HARMONY</span>
+              </div>
+              <div className={styles.titleSecondPart}>
+                <span className={styles.titleFirstStyle}>MEETS</span>
+                <span className={styles.titleSecondSize}>MELODY</span>
+              </div>
+            </h1>
+            <span className={styles.subtitle}>The Future Of Music Streaming</span>
+          </div>
 
-        {/* ✅ რეგისტრაციის ფორმა */}
-        <form className={styles.form} noValidate onSubmit={handleSubmit(onSubmit, onInvalid)}>
-          <Input
-            type="email"
-            placeholder="Email"
-            autoComplete="email"
-            {...register("email")}
-            error={errors.email?.message}
-          />
+          {/* ✅ რეგისტრაციის ფორმა */}
+          <form className={styles.form} noValidate onSubmit={handleSubmit(onSubmit, onInvalid)}>
+            <Input
+              type="email"
+              placeholder="Email"
+              autoComplete="email"
+              {...register("email")}
+              error={errors.email?.message}
+            />
 
-          <Input
-            type="password"
-            placeholder="Password"
-            hideBtn
-            rules
-            autoComplete="new-password"
-            {...register("password")}
-            error={errors.password?.message}
-          />
+            <Input
+              type="password"
+              placeholder="Password"
+              hideBtn
+              rules
+              autoComplete="new-password"
+              {...register("password")}
+              error={errors.password?.message}
+            />
 
-          <Input
-            type="password"
-            placeholder="Confirm Password"
-            hideBtn
-            autoComplete="new-password"
-            {...register("confirmPassword")}
-            error={errors.confirmPassword?.message}
-          />
+            <Input
+              type="password"
+              placeholder="Confirm Password"
+              hideBtn
+              autoComplete="new-password"
+              {...register("confirmPassword")}
+              error={errors.confirmPassword?.message}
+            />
 
-          <Button text="Sign up" type="submit" />
+            <Button text="Sign up" type="submit" />
 
-          <span className={styles.switchPage}>
-            Already have an account?
-            <Link href="/sign-in"> Sign in</Link>
-          </span>
-        </form>
+            <span className={styles.switchPage}>
+              Already have an account?
+              <Link href="/sign-in"> Sign in</Link>
+            </span>
+          </form>
         </div>
       </div>
 
       <div className={styles.right}>
-        <Image
-          src="/Images/LoginRegister/upscalemedia-transformed.png"
-          alt="Statue with bubblegum and headphones"
-          fill
-          priority
-          className={styles.rightImg}
-        />
+        <div className={styles.rightImgSizesControl}>
+          <Image
+            src="/Images/LoginRegister/upscalemedia-transformed.png"
+            alt="Statue with bubblegum and headphones"
+            fill
+            priority
+            className={styles.rightImg}
+          />
+        </div>
+
       </div>
     </div>
   );

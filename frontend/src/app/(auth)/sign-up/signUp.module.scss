@@ -6,12 +6,11 @@
 .container {
   width: 100vw;
   padding: 40px 0 0 60px;
-  display: grid;
-  grid-template-columns: clamp(280px, 42vw, 100%) minmax(0, 1fr);
   min-height: 100dvh;
   max-height: 100vh;
   overflow: hidden;
-
+  display: flex;
+  justify-content: space-between;
   color: #fff;
   z-index: 999;
   bottom: -1%;
@@ -24,12 +23,8 @@
   align-items: flex-start;
   padding-bottom: 24px;
   max-height: 100vh;
-}
-
-.right {
-  position: relative;
-  bottom: -1px;
-  overflow: hidden;
+  max-width: 40vw;
+  width: 100%;
 }
 
 /* =======================
@@ -124,7 +119,7 @@
   font-size: 14px;
   font-weight: 500;
 
-  > a {
+  >a {
     color: $singapore-orchid;
   }
 }
@@ -132,20 +127,32 @@
 /* =======================
    Right image
 ======================= */
-.rightImg {
+.right {
+  display: flex;
+  justify-content: end;
+  width: 100%;
+}
+
+.rightImgSizesControl {
   position: relative;
-  width: 30%;
-  height: 30%;
+  bottom: -1px;
+  overflow: hidden;
+  max-height: 1000px;
+  height: 100%;
+  align-self: flex-end;
+  max-width: 1000px;
+  width: 100%;
 }
 
 /* =======================
    Media Queries
 ======================= */
 @media (max-height: 820px) {
-  .left{
+  .left {
     justify-content: space-between;
     gap: 0;
   }
+
   .titleSecondSize {
     font-size: 32px;
   }

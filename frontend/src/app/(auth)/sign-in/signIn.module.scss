@@ -183,10 +183,21 @@
 /* =======================
    Right image
 ======================= */
-.rightImg {
+.right {
+  display: flex;
+  justify-content: end;
+  width: 100%;
+}
+
+.rightImgSizesControl {
   position: relative;
-  width: 30%;
-  height: 30%;
+  bottom: -1px;
+  overflow: hidden;
+  max-height: 1000px;
+  height: 100%;
+  align-self: flex-end;
+  max-width: 1000px;
+  width: 100%;
 }
 
 /* =======================

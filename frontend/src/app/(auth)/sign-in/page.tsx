@@ -116,13 +116,16 @@ export default function SignInPage() {
       </div>
 
       <div className={styles.right}>
-        <Image
-          src="/Images/LoginRegister/upscalemedia-transformed.png"
-          alt="Statue with bubblegum and headphones"
-          fill
-          priority
-          className={styles.rightImg}
-        />
+        <div className={styles.rightImgSizesControl}>
+          <Image
+            src="/Images/LoginRegister/upscalemedia-transformed.png"
+            alt="Statue with bubblegum and headphones"
+            fill
+            priority
+            className={styles.rightImg}
+          />
+        </div>
+
       </div>
     </div>
   );
