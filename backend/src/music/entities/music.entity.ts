@@ -1,11 +1,13 @@
 import { Album } from 'src/album/entities/album.entity';
 import { Author } from 'src/author/entities/author.entity';
+import { Listener } from 'src/listeners-table/entities/listeners-table.entity';
 import { User } from 'src/users/entities/user.entity';
 import {
   Column,
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -22,6 +24,9 @@ export class Music {
 
   @Column({ nullable: true })
   image: string;
+
+  @OneToMany(() => Listener, (listener) => listener.user)
+  listeners: Listener[];
 
   @ManyToOne(() => Author, (author) => author.music, { eager: true })
   @JoinColumn({ name: 'authorId' })

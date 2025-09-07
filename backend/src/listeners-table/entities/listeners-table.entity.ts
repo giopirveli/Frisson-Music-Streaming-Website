@@ -1,22 +1,18 @@
-import { Music } from 'src/music/entities/music.entity';
+import { Entity, PrimaryGeneratedColumn, ManyToOne, Column } from 'typeorm';
 import { User } from 'src/users/entities/user.entity';
-import {
-  Entity,
-  JoinTable,
-  ManyToMany,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Music } from 'src/music/entities/music.entity';
 
 @Entity('listeners')
 export class Listener {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => User, (user) => user.listeners, { nullable: false })
+  @ManyToOne(() => User, (user) => user.listeners, { eager: true })
   user: User;
-  
-  @ManyToMany(() => Music)
-  @JoinTable()
-  subscriptions: Music[];
+
+  @ManyToOne(() => Music, (music) => music.listeners, { eager: true })
+  music: Music;
+
+  @Column({ default: 1 })
+  playCount: number;
 }

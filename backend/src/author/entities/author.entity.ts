@@ -3,6 +3,7 @@ import { Music } from 'src/music/entities/music.entity';
 import {
   Column,
   CreateDateColumn,
+  DeleteDateColumn,
   Entity,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -25,6 +26,9 @@ export class Author {
 
   @UpdateDateColumn()
   updatedAt: Date;
+  
+  @DeleteDateColumn()
+  deletedAt: Date;
   
   @OneToMany(() => Music, (music) => music.author)
   music: Music[];

@@ -3,6 +3,7 @@ import { Music } from 'src/music/entities/music.entity';
 import {
   Column,
   CreateDateColumn,
+  DeleteDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
@@ -30,6 +31,9 @@ export class Album {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @DeleteDateColumn()
+  deletedAt: Date;
 
   @ManyToOne(() => Author, (author) => author.albums, { eager: true })
   @JoinColumn({ name: 'authorId' })

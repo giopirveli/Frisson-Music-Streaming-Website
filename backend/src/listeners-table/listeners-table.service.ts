@@ -1,60 +1,44 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { Listener } from './entities/listeners-table.entity';
 import { CreateListenersTableDto } from './dto/create-listeners-table.dto';
-import { UpdateListenersTableDto } from './dto/update-listeners-table.dto';
 import { UsersService } from 'src/users/users.service';
 import { MusicService } from 'src/music/music.service';
+import { Listener } from './entities/listeners-table.entity';
+import { ListenersTableRepository } from './listeners-table.repository';
 
 @Injectable()
 export class ListenersTableService {
   constructor(
-    @InjectRepository(Listener)
-    private listenerRepo: Repository<Listener>,
-    private usersService: UsersService,
-    private musicService: MusicService,
+    private readonly listenersRepo: ListenersTableRepository,
+    private readonly usersService: UsersService,
+    private readonly musicService: MusicService,
   ) {}
 
-  async create(dto: CreateListenersTableDto): Promise<Listener> {
+  async listen(dto: CreateListenersTableDto): Promise<Listener> {
     const user = await this.usersService.findOneById(dto.userId);
     if (!user) throw new NotFoundException('User not found');
 
-    const subscriptions = dto.subscriptions?.length
-      ? await this.musicService.findByIds(dto.subscriptions)
-      : [];
+    const music = await this.musicService.findMusicOrFail(dto.musicId);
+    if (!music) throw new NotFoundException('Music not found');
 
-    const listener = this.listenerRepo.create({ user, subscriptions });
-    return this.listenerRepo.save(listener);
-  }
+    let listener = await this.listenersRepo.findByUserAndMusic(
+      dto.userId,
+      dto.musicId,
+    );
 
-  async findAll(): Promise<Listener[]> {
-    return this.listenerRepo.find({ relations: ['user', 'subscriptions'] });
-  }
-
-  async findOne(id: number): Promise<Listener> {
-    const listener = await this.listenerRepo.findOne({
-      where: { id },
-      relations: ['user', 'subscriptions'],
-    });
-    if (!listener) throw new NotFoundException('Listener not found');
-    return listener;
-  }
-
-  async update(id: number, dto: UpdateListenersTableDto): Promise<Listener> {
-    const listener = await this.findOne(id);
-
-    if (dto.subscriptions?.length) {
-      const music = await this.musicService.findByIds(dto.subscriptions);
-      listener.subscriptions = music;
+    if (listener) {
+      listener.playCount += 1;
+    } else {
+      listener = await this.listenersRepo.createAndSave({
+        user,
+        music,
+        playCount: 1,
+      });
     }
 
-    return this.listenerRepo.save(listener);
+    return this.listenersRepo.save(listener);
   }
 
-  async delete(id: number): Promise<{ message: string }> {
-    const listener = await this.findOne(id);
-    await this.listenerRepo.remove(listener);
-    return { message: 'Listener deleted successfully' };
+  async getUserHistory(userId: number): Promise<Listener[]> {
+    return this.listenersRepo.findUserHistory(userId);
   }
 }
