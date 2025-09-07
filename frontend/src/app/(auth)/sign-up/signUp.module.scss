@@ -1,86 +1,157 @@
 @use "../../../../styles/colors" as *;
 
+/* =======================
+   Layout
+======================= */
 .container {
-  display: flex;
-  width: 100%;
-  padding: 40px 0px 0px 60px;
-  color: #fff;
-  position: relative;
-  z-index: 999;
   width: 100vw;
+  padding: 40px 0 0 60px;
+  display: grid;
+  grid-template-columns: clamp(280px, 42vw, 100%) minmax(0, 1fr);
+  min-height: 100dvh;
+  max-height: 100vh;
+  overflow: hidden;
+
+  color: #fff;
+  z-index: 999;
   bottom: -1%;
 }
 
+.left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 24px;
+  max-height: 100vh;
+}
+
+.right {
+  position: relative;
+  bottom: -1px;
+  overflow: hidden;
+}
+
+/* =======================
+   Logo
+======================= */
+.logoSizeControl {
+  align-self: flex-start;
+  display: flex;
+  position: relative;
+  width: 100%;
+  max-width: 350px;
+  height: 136px;
+
+  img {
+    object-fit: cover;
+  }
+}
+
+/* =======================
+   Left content
+======================= */
+.leftMainContent {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding-bottom: 24px;
+  width: 100%;
+}
+
+/* =======================
+   Header / Title
+======================= */
 .header {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.left {
-  display: flex;
-  flex-direction: column;
-  flex: 0.2;
-  align-self: center;
-  gap: 32px;
-}
-
-.logo {
-  font-size: 32px;
-  font-weight: 700;
-}
-
 .title {
-  font-size: 42px;
-  font-weight: 700;
   display: flex;
   flex-direction: column;
+  font-size: 42px;
   line-height: 1.1;
 
   span {
-    color: #fff;
+    color: $white;
   }
-
 }
 
 .titleFirtsPart {
   display: flex;
+  align-items: center;
   gap: 12px;
+  font-family: var(--font-jakarta), sans-serif;
+  color: $white;
 }
 
 .titleSecondPart {
-  @extend .titleFirtsPart;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-jakarta), sans-serif;
+  background: $gradient-apolo;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.subtitle {
-  font-size: 16px;
-  color: #ccc;
+/* ზომების კონტროლი – იყენებ span-ებზე */
+.titleFirstStyle {
+  font-size: 42px;
+  font-weight: 400;
 }
 
+.titleSecondStyle {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+/* =======================
+   Form
+======================= */
 .form {
   display: flex;
   flex-direction: column;
   gap: 16px;
-}
-
-.right {
-  position: absolute;
-  bottom: 0px;
-  right: 0px;
-}
-
-.right img {
-  object-fit: cover;
-  width: 100%;
-  height: 80vh;
+  max-width: 498px;
 }
 
 .switchPage {
   color: $white;
   font-size: 14px;
   font-weight: 500;
+
+  > a {
+    color: $singapore-orchid;
+  }
 }
 
-.switchPage>a {
-  color: #AC13EC;
+/* =======================
+   Right image
+======================= */
+.rightImg {
+  position: relative;
+  width: 30%;
+  height: 30%;
+}
+
+/* =======================
+   Media Queries
+======================= */
+@media (max-height: 820px) {
+  .titleSecondSize {
+    font-size: 32px;
+  }
+
+  .titleFirstSize {
+    font-size: 42px;
+  }
+
+  .logoSizeControl {
+    max-width: 290px;
+    height: 110px;
+  }
 }

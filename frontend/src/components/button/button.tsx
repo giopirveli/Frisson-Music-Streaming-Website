@@ -7,16 +7,17 @@ import plusIcon from "@/../public/icons/Button/plusIcon.svg";
 interface Props {
   icon?: string | StaticImageData;
   onClick?: () => void | Promise<void>;
-  width?: string | number; // button size
+  width?: string | number;
+  type?:"submit" |"button" | "reset"
   height?: string | number;
   text: string;
   className?: string;
-  iwidth?: number; // icon size
+  iwidth?: number; 
   iheight?: number;
 }
 
 export default function Button(props: Props) {
-  const { onClick, icon, text, width, height, className, iwidth, iheight } = props;
+  const { onClick, icon, text, width, height, className, iwidth, iheight,type } = props;
   const [loading, setLoading] = useState(false);
 
   const handleClick = async () => {
@@ -33,7 +34,7 @@ export default function Button(props: Props) {
 
   return (
     <button
-      type="button"
+      type={type}
       onClick={handleClick}
       disabled={loading}
       aria-busy={loading}
