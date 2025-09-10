@@ -3,7 +3,7 @@ import styles from "./authGlobal.module.scss";
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
-    <main className={styles.main}>
+    <div className={styles.main}>
       <Image
         src="/Images/LoginRegister/defaultBackGround.png"
         alt=""
@@ -11,6 +11,6 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         className={styles.imageBg}
       />
       {children}
-    </main>
+    </div>
   );
 }

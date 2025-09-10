@@ -4,16 +4,15 @@
    position: fixed;
    display: flex;
    flex-direction: column;
-   gap: 38px;// 56px
+   gap: 32px; 
    width: 100%;
-   max-width: 280px;
+   max-width: 270px;
    top: 0;
    left: 0;
-   padding: 40px 20px;
+   padding: 30px 20px;
 
    @media (max-height:763px) {
-      gap: 32px;
-      padding: 20px 20px;
+      padding: 30px 20px;
    }
 
    height: 100vh;
@@ -24,17 +23,17 @@
 .frissonMainLogo {
    display: flex;
    align-self: center;
+   position: relative;
    width: 100%;
-   max-width: 98px;
-   height: 83px;
-
+   height: 85px;
+   object-fit: cover;
    @media(max-height:763px) {
-      width: 100%;
-      max-width: 78px;
-      height: 63px;
+      height: 80px;
    }
 }
-
+.frissonMainLogo  img{
+      object-fit: cover;
+}
 .menu {
    width: 100%;
    max-width: 240px;
@@ -47,23 +46,26 @@
       gap: 12px;
    }
 }
+
 .menu {
-  .mainMenu,
-  .collectionMenu,
-  .discoverMenu {
-    .item {
-      // default styles
-      padding: 9px 0 9px 20px;
 
-      & >img{
-         width:24px;height:24px;
-      }
+   .mainMenu,
+   .collectionMenu,
+   .discoverMenu {
+      .item {
+         // default styles
+         padding: 6px 0 9px 20px;
 
-      @media (max-height: 763px) {
-           padding: 9px 0 9px 16px;
+         &>img {
+            width: 24px;
+            height: 24px;
+         }
+
+         @media (max-height: 763px) {
+            padding: 6px 0 9px 16px;
+         }
       }
-    }
-  }
+   }
 }
 
 
@@ -82,7 +84,7 @@
 .mainMenu div,
 .collectionMenu div,
 .discoverMenu div {
-   
+
    justify-content: flex-start;
    align-items: center;
    font-family: var(--font-jakarta), sans-serif;
@@ -95,7 +97,7 @@
    font-weight: 500;
    line-height: normal;
 
-   
+
 }
 
 
@@ -174,6 +176,7 @@
       background: $dynamic-black;
       /* Hovered */
    }
+
    /* აიკონის პატარა დაკლება/გათეთრება აქტივისას */
    img {
       opacity: 0.9;
@@ -183,8 +186,8 @@
 
 /* Active მდგომარეობა (მიმდინარე route) */
 .active {
-      background: $dynamic-black;
-      color: $white;
+   background: $dynamic-black;
+   color: $white;
 
    /* Optional: icon brighten */
    img {
