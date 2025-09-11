@@ -1,6 +1,5 @@
 @use "../../../styles/colors" as *;
 
-
 // whole component
 .table {
   display: flex;
@@ -18,7 +17,7 @@
   display: flex;
   gap: 8px;
 
-  >div {
+  > div {
     @extend .titleStyles;
     padding: 12px 24px;
     border-bottom: 4px solid transparent;
@@ -26,13 +25,12 @@
     transition: 0.2s;
   }
 
-  &>div:hover {
+  & > div:hover {
     color: $white;
     //   border-image: $gradient-apolo 1;
     //   border-image-slice: 1;
   }
 }
-
 
 .active {
   // color: $white;
@@ -70,11 +68,11 @@
 
 .songTitle {
   padding-left: 10px;
-  width: 35% //width: 360px;
+  width: 35%; //width: 360px;
 }
 
 .albumTitle {
-  width: 25% // width: 308px;
+  width: 25%; // width: 308px;
 }
 
 .timeTitle {
@@ -82,8 +80,6 @@
 }
 
 // tbody untilities with minor styles
-
-
 
 .tbody tr {
   border-radius: 4px 0 0 4px;
@@ -118,7 +114,6 @@
   opacity: 1; // show gradient on hover
 }
 
-
 // tbody styling
 
 .songId {
@@ -136,15 +131,13 @@
 .imageWrapper {
   padding: 10px;
 
-  &>img {
+  & > img {
     width: 100%;
     max-width: 48px;
     height: 48px;
     border-radius: 4px;
   }
 }
-
-
 
 // untilities (general styles in current component)
 
@@ -155,7 +148,7 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  border-bottom: 1px solid $lead
+  border-bottom: 1px solid $lead;
 }
 
 .tbody {
@@ -166,7 +159,6 @@
   font-weight: 500;
   line-height: normal;
 }
-
 
 // album
 
@@ -179,7 +171,7 @@
   grid-auto-flow: column;
 }
 
-.album>div {
+.album > div {
   display: flex;
   gap: 8px;
   flex-direction: column;
@@ -187,26 +179,24 @@
   justify-content: center;
   max-width: 266px;
   height: 280px;
-  width:100%;
+  width: 100%;
   background-color: $dark-void;
   padding: 16px;
   border-radius: 8px;
 
-  &>p {
+  & > p {
     @extend .titleStyles;
     color: $white;
     align-self: flex-start;
-
   }
 
-  &>img {
+  & > img {
     border-radius: 8px;
     width: 100%;
     max-width: 234px;
     height: 220px;
   }
 }
-
 
 // Biography
 
@@ -217,24 +207,23 @@
   gap: 24px;
   max-width: 1112px;
   width: 100%;
-  height:auto;  
-  
-  .bioTexts{
-    display:flex;
-    flex-direction:column;
+  height: auto;
+
+  .bioTexts {
+    display: flex;
+    flex-direction: column;
     justify-content: flex-start;
-    gap:16px;
+    gap: 16px;
   }
 
-
-  &>img{
+  & > img {
     max-width: 360px;
-    width:100%;
-    height:325px;
+    width: 100%;
+    height: 325px;
   }
 
   & h1 {
-    color:$white;
+    color: $white;
     font-size: 32px;
     font-weight: 500;
     line-height: 100%;
@@ -242,15 +231,11 @@
 
   & p {
     text-align: justify;
-    color:$shady-lady;
+    color: $shady-lady;
     font-size: 14px;
     font-weight: 400;
   }
-
 }
-
-
-
 
 // default copy-paste style
 

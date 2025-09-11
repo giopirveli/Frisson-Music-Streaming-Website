@@ -36,7 +36,7 @@ const Input = forwardRef<HTMLInputElement, Props>(function Input(
   // RHF ჰენდლერები rest-იდან
   const {
     onChange: rhfOnChange,
-    onBlur:   rhfOnBlur,
+    onBlur: rhfOnBlur,
     ...restProps
   } = rest as React.InputHTMLAttributes<HTMLInputElement>;
 
@@ -58,24 +58,20 @@ const Input = forwardRef<HTMLInputElement, Props>(function Input(
           name={name}
           ref={ref}
           type={effectiveType}
-          placeholder={error ? error : placeholder}  // შენს არსებულ UX-ს ვტოვებ
-          {...restProps}                             // ⬅️ ჯერ rest, რომ ჩვენი ჰენდლერები არ გადაიფაროს
+          placeholder={error ? error : placeholder} // შენს არსებულ UX-ს ვტოვებ
+          {...restProps} // ⬅️ ჯერ rest, რომ ჩვენი ჰენდლერები არ გადაიფაროს
           onChange={handleChange}
           onBlur={handleBlur}
           className={`${styles.input}`} // ⬅️ className merge
         />
 
         {hideBtn && isPassword && (
-          <button
-            type="button"
-            className={styles.showHideBtn}
-            onClick={() => setShow((v) => !v)}
-          >
+          <button type="button" className={styles.showHideBtn} onClick={() => setShow((v) => !v)}>
             <Image
               width={16}
               height={16}
               src={show ? "/Images/LoginRegister/hide.svg" : "/Images/LoginRegister/show.svg"}
-              alt=""                 // დექორატიულია
+              alt="" // დექორატიულია
               aria-hidden="true"
             />
           </button>

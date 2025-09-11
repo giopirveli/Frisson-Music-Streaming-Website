@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import styles from "./page.module.scss";
 import NewsComponent from "@/components/NewsComponent/NewsComponent";
 import MusicCard from "@/components/MusicCard/MusicCard";
@@ -7,76 +7,119 @@ import AlbumCard from "@/components/AlbumCard/AlbumCard";
 import ArtistCard from "@/components/ArtistCard/ArtistCard";
 import Link from "next/link";
 
-
-
-
 export default function Home() {
   return (
-
     <main className={styles.main}>
-          
-      <NewsComponent title="Top Hit  Of the week" imageUrl="/Images/NewsComponent/NewComponentTest.jpg" plays={`22222 Plays`} />
+      <NewsComponent
+        title="Top Hit  Of the week"
+        imageUrl="/Images/NewsComponent/NewComponentTest.jpg"
+        plays={`22222 Plays`}
+      />
 
       <section className={styles.topHitsSection}>
         <div className={styles.topHitsSectionTextBox}>
           <h2>Top Hits</h2>
 
-          <Link
-            href={"/topHitsPage"}
-          >
+          <Link href={"/topHitsPage"}>
             <span>See all</span>
-          </Link >
+          </Link>
         </div>
         <div className={styles.topHitsSectionCardsBox}>
-          <MusicCard title="Anyma" artist="Genesys II" imageUrl="/Images/MusicCard/MusicCardPhoto.jpg" />
-          <MusicCard title="Anyma" artist="Genesys II" imageUrl="/Images/MusicCard/MusicCardPhoto.jpg" />
-          <MusicCard title="Anyma" artist="Genesys II" imageUrl="/Images/MusicCard/MusicCardPhoto.jpg" />
-          <MusicCard title="Anyma" artist="Genesys II" imageUrl="/Images/MusicCard/MusicCardPhoto.jpg" />
+          <MusicCard
+            title="Anyma"
+            artist="Genesys II"
+            imageUrl="/Images/MusicCard/MusicCardPhoto.jpg"
+          />
+          <MusicCard
+            title="Anyma"
+            artist="Genesys II"
+            imageUrl="/Images/MusicCard/MusicCardPhoto.jpg"
+          />
+          <MusicCard
+            title="Anyma"
+            artist="Genesys II"
+            imageUrl="/Images/MusicCard/MusicCardPhoto.jpg"
+          />
+          <MusicCard
+            title="Anyma"
+            artist="Genesys II"
+            imageUrl="/Images/MusicCard/MusicCardPhoto.jpg"
+          />
         </div>
       </section>
 
       <section className={styles.topChartsSection}>
         <div className={styles.topChartsSectionTextBox}>
           <h2>Top Charts</h2>
-          <Link
-            href={"/TopChartsPage"}
-          >
+          <Link href={"/TopChartsPage"}>
             <span>See all</span>
-          </Link >
+          </Link>
         </div>
         <div className={styles.topChartSectionCardsBox}>
-          <TopCharts title="Sugar (feat. Francesco)" artist="By Robin Schulz" imageUrl="/Images/TopCharts/TopChartsImage.jpg" duration={345} />
-          <TopCharts title="Sugar (feat. Francesco)" artist="By Robin Schulz" imageUrl="/Images/TopCharts/TopChartsImage.jpg" duration={345} />
-          <TopCharts title="Sugar (feat. Francesco)" artist="By Robin Schulz" imageUrl="/Images/TopCharts/TopChartsImage.jpg" duration={345} />
-          <TopCharts title="Sugar (feat. Francesco)" artist="By Robin Schulz" imageUrl="/Images/TopCharts/TopChartsImage.jpg" duration={345} />
+          <TopCharts
+            title="Sugar (feat. Francesco)"
+            artist="By Robin Schulz"
+            imageUrl="/Images/TopCharts/TopChartsImage.jpg"
+            duration={345}
+          />
+          <TopCharts
+            title="Sugar (feat. Francesco)"
+            artist="By Robin Schulz"
+            imageUrl="/Images/TopCharts/TopChartsImage.jpg"
+            duration={345}
+          />
+          <TopCharts
+            title="Sugar (feat. Francesco)"
+            artist="By Robin Schulz"
+            imageUrl="/Images/TopCharts/TopChartsImage.jpg"
+            duration={345}
+          />
+          <TopCharts
+            title="Sugar (feat. Francesco)"
+            artist="By Robin Schulz"
+            imageUrl="/Images/TopCharts/TopChartsImage.jpg"
+            duration={345}
+          />
         </div>
       </section>
 
       <section className={styles.albumSection}>
         <div className={styles.albumSectionTextBox}>
           <h2>Popular Albums</h2>
-          <Link
-            href={"/AlbumPage"}
-          >
+          <Link href={"/AlbumPage"}>
             <span>See all</span>
-          </Link >
+          </Link>
         </div>
         <div className={styles.albumSectionCardsBox}>
-          <AlbumCard title="Of Monsters And Men" artist="Fever Dream" imageUrl="/Images/AlbumCard/AlbumPhoto.jpg" />
-          <AlbumCard title="Of Monsters And Men" artist="Fever Dream" imageUrl="/Images/AlbumCard/AlbumPhoto.jpg" />
-          <AlbumCard title="Of Monsters And Men" artist="Fever Dream" imageUrl="/Images/AlbumCard/AlbumPhoto.jpg" />
-          <AlbumCard title="Of Monsters And Men" artist="Fever Dream" imageUrl="/Images/AlbumCard/AlbumPhoto.jpg" />
+          <AlbumCard
+            title="Of Monsters And Men"
+            artist="Fever Dream"
+            imageUrl="/Images/AlbumCard/AlbumPhoto.jpg"
+          />
+          <AlbumCard
+            title="Of Monsters And Men"
+            artist="Fever Dream"
+            imageUrl="/Images/AlbumCard/AlbumPhoto.jpg"
+          />
+          <AlbumCard
+            title="Of Monsters And Men"
+            artist="Fever Dream"
+            imageUrl="/Images/AlbumCard/AlbumPhoto.jpg"
+          />
+          <AlbumCard
+            title="Of Monsters And Men"
+            artist="Fever Dream"
+            imageUrl="/Images/AlbumCard/AlbumPhoto.jpg"
+          />
         </div>
       </section>
 
       <section className={styles.artistSection}>
         <div className={styles.artistSectionTextBox}>
           <h2>Popular Artists</h2>
-          <Link
-            href={"/ArtistPage"}
-          >
+          <Link href={"/ArtistPage"}>
             <span>See all</span>
-          </Link >
+          </Link>
         </div>
         <div className={styles.artistSectionCardsBox}>
           <ArtistCard title="Billie Eilish" imageUrl="/Images/ArtistCard/ArtistPhoto.jpg" />
@@ -86,6 +129,5 @@ export default function Home() {
         </div>
       </section>
     </main>
-
   );
 }

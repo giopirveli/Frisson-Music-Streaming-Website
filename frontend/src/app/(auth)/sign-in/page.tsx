@@ -11,13 +11,8 @@ import * as yup from "yup";
 
 // ✅ Yup სქემა (Email + ძლიერი პაროლი) + rememberMe (არავალდ)
 const schema = yup.object({
-  email: yup
-    .string()
-    .required("ელფოსტა სავალდებულოა")
-    .email("ელფოსტის ფორმატი არასწორია"),// აქ უნდა დავამათოთ წესი რომ შეამოწმოს არსებობს თუ არა მომხმარებელი
-  password: yup
-    .string()
-    .required("პაროლი არასწორია"),// აქ უნდა დავამათოთ წესი რომ შეამოწმოს არსებობს თუ არა მომხმარებელი
+  email: yup.string().required("ელფოსტა სავალდებულოა").email("ელფოსტის ფორმატი არასწორია"), // აქ უნდა დავამათოთ წესი რომ შეამოწმოს არსებობს თუ არა მომხმარებელი
+  password: yup.string().required("პაროლი არასწორია"), // აქ უნდა დავამათოთ წესი რომ შეამოწმოს არსებობს თუ არა მომხმარებელი
   rememberMe: yup.boolean().optional().default(false),
 });
 
@@ -55,7 +50,6 @@ export default function SignInPage() {
   return (
     <div className={styles.container}>
       <div className={styles.left}>
-
         <div className={styles.logoSizeControl}>
           <Image src="/icons/Sidebar/mainLogo.png" fill alt="Frisson logo" />
         </div>
@@ -96,7 +90,7 @@ export default function SignInPage() {
             {/* ✅ ეს ბლოკი ამატებს checkbox-ს და "Forgot your password?"-ს */}
             <div className={styles.options}>
               <label className={styles.remember}>
-                <input type="checkbox"  {...register("rememberMe")} />
+                <input type="checkbox" {...register("rememberMe")} />
                 Remember me
               </label>
 
@@ -112,7 +106,6 @@ export default function SignInPage() {
             </span>
           </form>
         </div>
-
       </div>
 
       <div className={styles.right}>
@@ -125,7 +118,6 @@ export default function SignInPage() {
             className={styles.rightImg}
           />
         </div>
-
       </div>
     </div>
   );

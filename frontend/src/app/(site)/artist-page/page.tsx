@@ -16,7 +16,7 @@ interface Song {
   album?: string;
   time?: string;
   liked?: boolean;
-  artist?: string;    // for bio
+  artist?: string; // for bio
   biography?: string;
 }
 

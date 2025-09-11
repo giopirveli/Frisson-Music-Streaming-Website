@@ -1,5 +1,4 @@
-@use "../../../styles/colors" as * ;
-
+@use "../../../styles/colors" as *;
 
 // table
 
@@ -12,8 +11,6 @@
   text-align: left;
   overflow-x: auto;
 }
-
-
 
 // list
 
@@ -35,9 +32,6 @@
   }
 }
 
-
-
-
 // thead
 
 .thead {
@@ -47,10 +41,8 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  border-bottom: 1px solid $lead
+  border-bottom: 1px solid $lead;
 }
-
-
 
 // thead children
 
@@ -62,19 +54,16 @@
 
 .songTitle {
   padding-left: 10px;
-  width: 35% //width: 360px;
+  width: 35%; //width: 360px;
 }
 
 .albumTitle {
-  width: 25% // width: 308px;
+  width: 25%; // width: 308px;
 }
 
 .timeTitle {
   width: 20%; // width: 390px;
 }
-
-
-
 
 // tbody
 
@@ -86,12 +75,8 @@
   font-weight: 500;
   line-height: normal;
 }
- 
-
-
 
 // tbody children
-
 
 .tbody tr {
   border-radius: 4px 0 0 4px;
@@ -126,7 +111,6 @@
   opacity: 1; // show gradient on hover
 }
 
-
 .songId {
   text-align: center;
 }
@@ -142,7 +126,7 @@
 .imageWrapper {
   padding: 10px;
 
-  &>img {
+  & > img {
     width: 100%;
     max-width: 48px;
     height: 48px;
@@ -150,13 +134,7 @@
   }
 }
 
-
-
-
-
-
 // default copy-paste style
-
 
 .titleStyles {
   font-family: var(--font-jakarta), sans-serif;

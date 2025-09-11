@@ -1,6 +1,6 @@
-@import '../../../styles/colors';
+@import "../../../styles/colors";
 
-.card{
+.card {
   background-color: $dark-void;
   box-sizing: border-box;
   max-height: 309px;
@@ -16,7 +16,7 @@
   padding-top: 16px;
 }
 
-.playlistImage{
+.playlistImage {
   width: 234px;
   height: 251px;
   border-radius: 8px;
@@ -24,15 +24,14 @@
   max-width: 100%;
   transition: filter 0.3s ease;
   display: block;
-
 }
 
-.textWrapper{
+.textWrapper {
   display: flex;
   flex-direction: column;
   gap: 8px;
   padding-left: 16px;
-  padding-bottom:16px ;
+  padding-bottom: 16px;
   align-self: flex-start;
 }
 
@@ -45,11 +44,11 @@
   top: 215px;
 }
 
-.text{
+.text {
   color: $shady-lady;
   font-size: 14px;
   font-family: var(--font-jakarta), sans-serif;
 }
-.hoveredImgWrapper{
-    filter: brightness(1.1) opacity(0.7);
+.hoveredImgWrapper {
+  filter: brightness(1.1) opacity(0.7);
 }

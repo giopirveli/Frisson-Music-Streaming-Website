@@ -5,7 +5,6 @@ import Image from "next/image";
 import HeartBtn from "../HeartBtn/HeartBtn";
 import ThreeDotsBtn from "../ThreeDots/ThreeDotsBtn";
 
-
 interface TopChartsProps {
   title: string;
   artist: string;
@@ -21,9 +20,7 @@ function formatDuration(duration: number) {
 
 export default function TopCharts({ title, artist, duration, imageUrl }: TopChartsProps) {
   return (
-    <div
-      className={styles.TopChartsDiv}
-    >
+    <div className={styles.TopChartsDiv}>
       <div className={styles.imgAndWrapperBox}>
         <div className={styles.imageWrapper}>
           <Image src={imageUrl} alt="Top Chart" className={styles.image} width={72} height={72} />
@@ -34,21 +31,16 @@ export default function TopCharts({ title, artist, duration, imageUrl }: TopChar
         </div>
       </div>
 
-
       <div className={styles.durectionAndButtonsBox}>
-        <p className={styles.durationTime}>
-          {formatDuration(duration)}
-        </p>
-
+        <p className={styles.durationTime}>{formatDuration(duration)}</p>
 
         <div className={styles.buttons}>
-          <div className={styles.buttonsWrapper} >
+          <div className={styles.buttonsWrapper}>
             <HeartBtn iconColor="gray" />
             <ThreeDotsBtn iconColor="gray" />
           </div>
         </div>
-
       </div>
     </div>
-  )
+  );
 }

@@ -1,10 +1,9 @@
 "use client";
-import styles from "../PlaylistComponent/Playlist.module.scss"
+import styles from "../PlaylistComponent/Playlist.module.scss";
 import { useState } from "react";
 import PenButton from "../PenBtn/PenButton";
 import BinButton from "../DeleteBinBtn/BinButton";
 import { StaticImageData } from "next/image";
-
 
 interface PlaylistProps {
   title: string;
@@ -12,8 +11,7 @@ interface PlaylistProps {
   onClick?: () => void;
 }
 
-
-export default function PlaylistComponent({ title, imageUrl,onClick }: PlaylistProps) {
+export default function PlaylistComponent({ title, imageUrl, onClick }: PlaylistProps) {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <div
@@ -23,7 +21,11 @@ export default function PlaylistComponent({ title, imageUrl,onClick }: PlaylistP
       onClick={onClick}
     >
       <div className={`${styles.imageWrapper} ${isHovered && styles.hoveredImgWrapper}`}>
-        <img src={typeof imageUrl === "string"?imageUrl :imageUrl.src} alt="Playlist Button" className={styles.playlistImage} />
+        <img
+          src={typeof imageUrl === "string" ? imageUrl : imageUrl.src}
+          alt="Playlist Button"
+          className={styles.playlistImage}
+        />
       </div>
       {isHovered && (
         <div className={styles.PenButton}>

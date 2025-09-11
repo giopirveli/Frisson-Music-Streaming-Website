@@ -1,108 +1,86 @@
 @use "../../../styles/colors" as *;
 
 .field {
-    padding: 16px;
-    position: relative;
-    border-radius: 8px;
-    background: transparent;
-    border: 1px solid $hawks-eye;
-    width: 100%;
-    max-width: 548px;
-    height: 56px;
-    display: flex;
-    align-items: center;
-    background-color: $white;
+  padding: 16px;
+  position: relative;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid $hawks-eye;
+  width: 100%;
+  max-width: 548px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  background-color: $white;
 
-    &:hover {
-        opacity: 0.9;
-    }
+  &:hover {
+    opacity: 0.9;
+  }
 
-    &:focus-within {
-        opacity: 1;
-        border: 2.2px solid transparent;
-        background:
+  &:focus-within {
+    opacity: 1;
+    border: 2.2px solid transparent;
+    background:
             /* შიგნითი ფონები */
-            linear-gradient($white, $white) padding-box,
-            /* გარე ბორდერის გრადიენტი */
-            $gradient-apolo border-box;
-    }
+      linear-gradient($white, $white) padding-box,
+      /* გარე ბორდერის გრადიენტი */ $gradient-apolo border-box;
+  }
 }
 
 .input {
-    border-radius: 6px;
-    border: 2.2px solid transparent;
-    outline: none;
-    font-size: 14px;
-    width: 100%;
-    height: 100%;
-    color: $log-reg-text;
+  border-radius: 6px;
+  border: 2.2px solid transparent;
+  outline: none;
+  font-size: 14px;
+  width: 100%;
+  height: 100%;
+  color: $log-reg-text;
 }
 
 /* ⬇⬇⬇ Chrome/Edge/Safari autofill override ⬇⬇⬇ */
 .input:-webkit-autofill,
 .input:-webkit-autofill:focus-within {
-    -webkit-text-fill-color: $log-reg-text !important;
-    transition: background-color 9999s ease-in-out 0s !important;
+  -webkit-text-fill-color: $log-reg-text !important;
+  transition: background-color 9999s ease-in-out 0s !important;
 }
 
 .showHideBtn {
-    border: none;
-    background-color: transparent;
-    display: flex;
-    align-self: center;
-    cursor: pointer;
+  border: none;
+  background-color: transparent;
+  display: flex;
+  align-self: center;
+  cursor: pointer;
 }
 
 .passwordRules {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .inputConteiner {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
-.passwordRules>span {
-    color: #B1B1B1;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
+.passwordRules > span {
+  color: #b1b1b1;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.errorInput  {
-    border: 2px solid $error;
+.errorInput {
+  border: 2px solid $error;
 }
-.errorInput input::placeholder{
-    color: $error;
+.errorInput input::placeholder {
+  color: $error;
 }
-@media(max-height:820px){
-    .field{
-        height: 48px;
-        padding: 12px;
-    }
+@media (max-height: 820px) {
+  .field {
+    height: 48px;
+    padding: 12px;
+  }
 }

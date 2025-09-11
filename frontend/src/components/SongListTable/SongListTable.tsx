@@ -5,22 +5,20 @@ import ThreeDotsBtn from "../ThreeDots/ThreeDotsBtn";
 import photo from "../../assets/images/table/artistphoto.png";
 import { useState } from "react";
 
-
-
-interface Song { // Song aris prop
-   id?: number | string;
-   pic?: string;
-   name?: string;
-   album?: string;
-   time?: string;
-   liked?: boolean;
-      
+interface Song {
+  // Song aris prop
+  id?: number | string;
+  pic?: string;
+  name?: string;
+  album?: string;
+  time?: string;
+  liked?: boolean;
 }
 
 export default function SongListTable({ id, pic, name, album, time, liked }: Song) {
-   const [songs, setSongs] = useState<Song[]>([]); // songs aris array
+  const [songs, setSongs] = useState<Song[]>([]); // songs aris array
 
-   /*
+  /*
        useEffect(() => {
           axios
              .get("/songs")
@@ -32,44 +30,40 @@ export default function SongListTable({ id, pic, name, album, time, liked }: Son
     
     */
 
-   return (
-      <div className={styles.table}>
-         <table className={styles.list}>
-            <thead>
-               <tr className={styles.thead}>
-                  <th className={styles.hash}>#</th>
-                  <th className={styles.songTitle}>Song Name</th>
-                  <th className={styles.albumTitle}>Album</th>
-                  <th className={styles.timeTitle}>Time</th>
-                  <th></th>
-                  <th></th>
-               </tr>
-            </thead>
+  return (
+    <div className={styles.table}>
+      <table className={styles.list}>
+        <thead>
+          <tr className={styles.thead}>
+            <th className={styles.hash}>#</th>
+            <th className={styles.songTitle}>Song Name</th>
+            <th className={styles.albumTitle}>Album</th>
+            <th className={styles.timeTitle}>Time</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
 
-            <tbody className={styles.tbody}>
+        <tbody className={styles.tbody}>
+          <tr>
+            <td className={styles.songId}>?</td>
+            <td className={styles.songName}>
+              <div className={styles.imageWrapper}>
+                <Image src={photo} alt={"song name"} />
+              </div>
+              {"no information"}
+            </td>
+            <td>{"no information"}</td>
+            <td>{"no information"}</td>
+            <td>
+              <HeartBtn iconColor="gray" />
+            </td>
+            <td>
+              <ThreeDotsBtn iconColor="white" />
+            </td>
+          </tr>
 
-                  <tr>
-                     <td className={styles.songId}>?</td>
-                     <td className={styles.songName}>
-                        <div className={styles.imageWrapper}>
-                           <Image
-                              src={photo}
-                              alt={"song name"}
-
-
-                           />
-                        </div>
-                        {"no information"}
-                     </td>
-                     <td>{"no information"}</td>
-                     <td>{"no information"}</td>
-                     <td>
-                        <HeartBtn iconColor="gray" />
-                     </td>
-                     <td><ThreeDotsBtn iconColor="white" /></td>
-                  </tr>
-
-               {/* this is top Songs   ||  ThreeDotsBtn still needs component
+          {/* this is top Songs   ||  ThreeDotsBtn still needs component
 songs.map((song, i) => (
    <tr key={song.id}>
       <td>{(i + 1) || "?"}</td>
@@ -91,13 +85,8 @@ songs.map((song, i) => (
       <td><ThreeDotsBtn /></td> }
             </tr>
             ))*/}
-
-            </tbody>
-         </table>
-         
-
-
-
-</div>
-   )
+        </tbody>
+      </table>
+    </div>
+  );
 }

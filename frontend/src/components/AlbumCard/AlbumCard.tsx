@@ -5,9 +5,6 @@ import HeartBtn from "../HeartBtn/HeartBtn";
 import ThreeDotsBtn from "../ThreeDots/ThreeDotsBtn";
 import { useState } from "react";
 
-
-
-
 interface AlbumCardProps {
   title: string;
   artist?: string;
@@ -29,14 +26,18 @@ export default function AlbumCard({ title, artist, imageUrl, onClick }: AlbumCar
       onClick={onClick}
     >
       <div className={`${styles.imageWrapperBox}`}>
-        <div className={`${styles.imageWrapper} ${isHovered && styles.hoveredImgWrapper}`} >
+        <div className={`${styles.imageWrapper} ${isHovered && styles.hoveredImgWrapper}`}>
           <Image src={imageUrl} alt="Music Card" className={styles.musicImage} fill />
         </div>
 
         {isHovered && (
           <div className={styles.heartButton}>
             <div className={styles.btnWhiteBackground}>
-              <HeartBtn iconColor={isLiked?"black":"gray"}  liked={isLiked} onToggle={()=>setIsLiked(prev=>!prev)}/>
+              <HeartBtn
+                iconColor={isLiked ? "black" : "gray"}
+                liked={isLiked}
+                onToggle={() => setIsLiked((prev) => !prev)}
+              />
             </div>
             <div className={styles.btnWhiteBackground}>
               <ThreeDotsBtn iconColor="black" />
