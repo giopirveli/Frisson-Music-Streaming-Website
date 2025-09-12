@@ -2,7 +2,10 @@
 import { useEffect, useState, useCallback } from "react";
 import type { RefObject } from "react";
 
-export function useAudioControls(audioRef: RefObject<HTMLAudioElement | null>, progressRef: RefObject<HTMLDivElement | null>) {
+export function useAudioControls(
+  audioRef: RefObject<HTMLAudioElement | null>,
+  progressRef: RefObject<HTMLDivElement | null>
+) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -48,7 +51,6 @@ export function useAudioControls(audioRef: RefObject<HTMLAudioElement | null>, p
     setVolume(newVolume);
   };
 
-
   const togglePlay = () => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -66,7 +68,6 @@ export function useAudioControls(audioRef: RefObject<HTMLAudioElement | null>, p
     audio.currentTime = 0;
     audio.play();
   };
-
 
   const handleClickProgressBar = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {

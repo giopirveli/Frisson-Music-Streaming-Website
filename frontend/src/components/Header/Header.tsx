@@ -12,10 +12,8 @@ export default function Header() {
   const { setActiveTab } = useActiveTab(); // ← use context
 
   // Hide Searchbar on specific routes
-  const hideSearchbarOn = ["/playlists", "/playlists-page","/top-hits-page"];
-  const hideSearchbar = hideSearchbarOn.some(route =>
-    pathname.toLowerCase().startsWith(route)
-  );
+  const hideSearchbarOn = ["/playlists", "/playlists-page", "/top-hits-page"];
+  const hideSearchbar = hideSearchbarOn.some((route) => pathname.toLowerCase().startsWith(route));
 
   return (
     <header className={styles.header}>

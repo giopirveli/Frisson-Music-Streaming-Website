@@ -2,24 +2,20 @@
 import Style from "./ThreeDotsBtn.module.scss";
 import Image from "next/image";
 
-
-interface props {
-  iconColor:"gray" | "white" | "black";
+interface Props {
+  iconColor: "gray" | "white" | "black";
 }
 
-
-export default function ThreeDotsBtn({iconColor}:props) {
-const iconSrc: any = {
-  gray:  "/icons/ThreeDots/grayThreeDots.svg",
-  black:  "/icons/ThreeDots/blackThreeDots.svg",
-  white:  "/icons/ThreeDots/whiteThreeDots.svg",
+const iconSrc: Record<Props["iconColor"], string> = {
+  gray: "/icons/ThreeDots/grayThreeDots.svg",
+  black: "/icons/ThreeDots/blackThreeDots.svg",
+  white: "/icons/ThreeDots/whiteThreeDots.svg",
 };
-const src = iconSrc[iconColor];
 
-
+export default function ThreeDotsBtn({ iconColor }: Props) {
   return (
-    <button className={`${Style.threeDotsBtn}`}>
-      <Image alt="Heart icon" src={src} width={24} height={24} /> {/* propebi daamate rom zomebi chaewodebodes */}
+    <button className={Style.threeDotsBtn}>
+      <Image alt="Three dots icon" src={iconSrc[iconColor]} width={24} height={24} />
     </button>
   );
 }

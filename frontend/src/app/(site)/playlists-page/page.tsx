@@ -14,16 +14,17 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import "@/../styles/defaults/default.scss";
 
-
-
 interface Album {
   imageUrl?: string | StaticImageData;
   albumName?: string;
 }
 
-export default function PlaylistPage({ albums = [] }: { albums?: Album[] }) {
+export default function PlaylistPage() {
   const { activeTab, setActiveTab } = useActiveTab();
   const pathname = usePathname();
+
+  // 👇 დროებით ლოკალური წყარო (საჭიროებისას შეცვლი fetch-ით/Server Actions-ით)
+  const albums: Album[] = [];
 
   // Reset activeTab to 1 when navigating back to this page
   useEffect(() => {
@@ -37,7 +38,7 @@ export default function PlaylistPage({ albums = [] }: { albums?: Album[] }) {
           <div className={styles.h1}>
             <h1 className={styles.h1}>my playlists</h1>
             <div className={styles.searchbar}>
-              <Searchbar placeholder="search in your album"/>
+              <Searchbar placeholder="search in your album" />
               <Button text="new playlist" icon={plusIcon} />
             </div>
           </div>
@@ -53,13 +54,10 @@ export default function PlaylistPage({ albums = [] }: { albums?: Album[] }) {
               />
             ))}
 
-
-        
-
             {/* Dynamic mapping for backend albums */}
             {albums.map((album, i) => (
               <PlaylistComponent
-                key={i + 100} // avoid duplicate keys
+                key={i + 100}
                 onClick={() => setActiveTab(2)}
                 imageUrl={album.imageUrl || photo}
                 title={album.albumName || `playlist ${i + 1}`}

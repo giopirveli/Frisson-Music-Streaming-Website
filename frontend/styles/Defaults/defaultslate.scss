@@ -1,144 +1,142 @@
-@media screen and (min-width:768px) and (max-width:1023px) {
-   .sdflex {
-      display: flex;
-   }
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .sdflex {
+    display: flex;
+  }
 
-   .scflex {
-      display: flex;
-      flex-direction: column;
-   }
+  .scflex {
+    display: flex;
+    flex-direction: column;
+  }
 
-   .sais {
-      display: flex;
-      align-items: flex-start;
-   }
+  .sais {
+    display: flex;
+    align-items: flex-start;
+  }
 
-   .saie {
-      display: flex;
-      align-items: flex-end;
-   }
+  .saie {
+    display: flex;
+    align-items: flex-end;
+  }
 
-   .saic {
-      display: flex;
-      align-items: center;
-   }
+  .saic {
+    display: flex;
+    align-items: center;
+  }
 
-   .sjcs {
-      display: flex;
-      justify-content: flex-start;
-   }
+  .sjcs {
+    display: flex;
+    justify-content: flex-start;
+  }
 
-   .sjce {
-      display: flex;
-      justify-content: flex-end;
-   }
+  .sjce {
+    display: flex;
+    justify-content: flex-end;
+  }
 
-   .sjcc {
-      display: flex;
-      justify-content: center;
-   }
+  .sjcc {
+    display: flex;
+    justify-content: center;
+  }
 
-   .sjcb {
-      display: flex;
-      justify-content: space-between;
-   }
+  .sjcb {
+    display: flex;
+    justify-content: space-between;
+  }
 
-   /* numbers */
+  /* numbers */
 
-   .s-samocdaotxi {
-      display: flex;
-      gap: 64px;
-   }
+  .s-samocdaotxi {
+    display: flex;
+    gap: 64px;
+  }
 
-   .s-samoci {
-      display: flex;
-      gap: 60px;
-   }
+  .s-samoci {
+    display: flex;
+    gap: 60px;
+  }
 
-   .s-ormocdarva {
-      display: flex;
-      gap: 48px;
-   }
+  .s-ormocdarva {
+    display: flex;
+    gap: 48px;
+  }
 
-   .s-ormoci {
-      display: flex;
-      gap: 40px;
-   }
+  .s-ormoci {
+    display: flex;
+    gap: 40px;
+  }
 
-   .s-ocdatvrameti {
-      display: flex;
-      gap: 38px;
-   }
+  .s-ocdatvrameti {
+    display: flex;
+    gap: 38px;
+  }
 
-   .s-ocdateqvsmeti {
-      display: flex;
-      gap: 36px;
-   }
+  .s-ocdateqvsmeti {
+    display: flex;
+    gap: 36px;
+  }
 
-   .s-ocdatotxmeti {
-      display: flex;
-      gap: 34px;
-   }
+  .s-ocdatotxmeti {
+    display: flex;
+    gap: 34px;
+  }
 
-   .s-ocdatormeti {
-      display: flex;
-      gap: 32px;
-   }
+  .s-ocdatormeti {
+    display: flex;
+    gap: 32px;
+  }
 
-   .s-ocdaati {
-      display: flex;
-      gap: 30px;
-   }
+  .s-ocdaati {
+    display: flex;
+    gap: 30px;
+  }
 
-   .s-ocdaxuti {
-      display: flex;
-      gap: 25px;
-   }
+  .s-ocdaxuti {
+    display: flex;
+    gap: 25px;
+  }
 
-   .s-ocdaotxi {
-      display: flex;
-      gap: 24px;
-   }
+  .s-ocdaotxi {
+    display: flex;
+    gap: 24px;
+  }
 
-   .s-oci {
-      display: flex;
-      gap: 20px
-   }
+  .s-oci {
+    display: flex;
+    gap: 20px;
+  }
 
-   .s-tvrameti {
-      display: flex;
-      gap: 18px;
-   }
+  .s-tvrameti {
+    display: flex;
+    gap: 18px;
+  }
 
-   .s-teqsvmeti {
-      display: flex;
-      gap: 16px;
-   }
+  .s-teqsvmeti {
+    display: flex;
+    gap: 16px;
+  }
 
-   .s-tormeti {
-      display: flex;
-      gap: 12px;
-   }
+  .s-tormeti {
+    display: flex;
+    gap: 12px;
+  }
 
-   .s-ati {
-      display: flex;
-      gap: 10px;
-   }
+  .s-ati {
+    display: flex;
+    gap: 10px;
+  }
 
-   .s-rva {
-      display: flex;
-      gap: 8px;
-   }
+  .s-rva {
+    display: flex;
+    gap: 8px;
+  }
 
-   .s-eqvsi {
-      display: flex;
-      gap: 6px;
-   }
+  .s-eqvsi {
+    display: flex;
+    gap: 6px;
+  }
 
-   .s-otxi {
-      display: flex;
-      gap: 4px;
-   }
-  
-   
+  .s-otxi {
+    display: flex;
+    gap: 4px;
+  }
 }

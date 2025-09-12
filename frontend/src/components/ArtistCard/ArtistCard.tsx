@@ -5,7 +5,6 @@ import HeartBtn from "../HeartBtn/HeartBtn";
 import ThreeDotsBtn from "../ThreeDots/ThreeDotsBtn";
 import { useState } from "react";
 
-
 interface ArtistCardProps {
   title: string;
   imageUrl: string;
@@ -13,7 +12,7 @@ interface ArtistCardProps {
 
 export default function ArtistCard({ title, imageUrl }: ArtistCardProps) {
   const [isHovered, setIsHovered] = useState(false);
-  const [isLiked,setIsLiked] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
   return (
     <div
       className={styles.card}
@@ -21,18 +20,26 @@ export default function ArtistCard({ title, imageUrl }: ArtistCardProps) {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className={`${styles.imageWrapper} ${isHovered && styles.hoveredImgWrapper}`}>
-        <Image src={imageUrl} alt="Artist Card" className={styles.artistImage} width={234} height={226} />
+        <Image
+          src={imageUrl}
+          alt="Artist Card"
+          className={styles.artistImage}
+          width={234}
+          height={226}
+        />
       </div>
       {isHovered && (
         <div className={styles.heartButton}>
-          
           <div className={styles.btnWhiteBackground}>
-            <HeartBtn iconColor={isLiked?"black":"gray"} liked={isLiked} onToggle={()=>setIsLiked(!isLiked)} />
+            <HeartBtn
+              iconColor={isLiked ? "black" : "gray"}
+              liked={isLiked}
+              onToggle={() => setIsLiked(!isLiked)}
+            />
           </div>
           <div className={styles.btnWhiteBackground}>
             <ThreeDotsBtn iconColor="black" />
           </div>
-
         </div>
       )}
       <div className={styles.textWrapper}>

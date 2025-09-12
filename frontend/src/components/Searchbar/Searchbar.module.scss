@@ -9,8 +9,8 @@
   width: 100%;
   outline: 0;
   padding: 16px 0 16px 48px; // default (ადგილი აიკონისთვის)
-  transition: padding .18s ease; // რომ რბილად შეიცვალოს
-  color: $stone-cold ;
+  transition: padding 0.18s ease; // რომ რბილად შეიცვალოს
+  color: $stone-cold;
 }
 
 /* ───────────────────────── WRAPPER ─────────────────────── */
@@ -53,11 +53,11 @@
 /* ── Focus ან ტექსტით სავსე მდგომარეობაში UI ჩასწორებები ── */
 .wrapper:focus-within,
 .wrapper:has(input:not(:placeholder-shown)) {
-  >.search {
+  > .search {
     padding: 16px 0 16px 24px;
   }
 
-  >img {
+  > img {
     display: none;
   }
 }
@@ -72,4 +72,3 @@
   height: 24px;
   pointer-events: none;
 }
-

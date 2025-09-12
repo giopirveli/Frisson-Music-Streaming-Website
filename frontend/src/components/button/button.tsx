@@ -8,16 +8,16 @@ interface Props {
   icon?: string | StaticImageData;
   onClick?: () => void | Promise<void>;
   width?: string | number;
-  type?:"submit" |"button" | "reset"
+  type?: "submit" | "button" | "reset";
   height?: string | number;
   text: string;
   className?: string;
-  iwidth?: number; 
+  iwidth?: number;
   iheight?: number;
 }
 
 export default function Button(props: Props) {
-  const { onClick, icon, text, width, height, className, iwidth, iheight,type } = props;
+  const { onClick, icon, text, width, height, className, iwidth, iheight, type } = props;
   const [loading, setLoading] = useState(false);
 
   const handleClick = async () => {
@@ -49,8 +49,7 @@ export default function Button(props: Props) {
           className={styles.icon}
           alt="icon"
         />
-        )
-      }
+      )}
 
       <span className={styles.label}>{text}</span>
     </button>

@@ -12,10 +12,7 @@ import * as yup from "yup";
 // ✅ Yup სქემა (Sign-up)
 const schema = yup
   .object({
-    email: yup
-      .string()
-      .required("ელფოსტა სავალდებულოა")
-      .email("ელფოსტის ფორმატი არასწორია"),
+    email: yup.string().required("ელფოსტა სავალდებულოა").email("ელფოსტის ფორმატი არასწორია"),
     password: yup
       .string()
       .required("პაროლი სავალდებულოა")
@@ -39,8 +36,8 @@ export default function SignUpPage() {
     resetField,
   } = useForm<SignUpForm>({
     resolver: yupResolver(schema),
-    mode: "onTouched",         // blur-ისასაც ამოწმებს
-    shouldFocusError: false,   // ❌ არ გადაიყვანოს ფოკუსი პირველ ერორზე
+    mode: "onTouched", // blur-ისასაც ამოწმებს
+    shouldFocusError: false, // ❌ არ გადაიყვანოს ფოკუსი პირველ ერორზე
   });
 
   // ✅ Submit (აქ ჩაანაცვლებ რეალურ API-თ)
@@ -69,7 +66,6 @@ export default function SignUpPage() {
   return (
     <div className={styles.container}>
       <div className={styles.left}>
-
         <div className={styles.logoSizeControl}>
           <Image src="/icons/Sidebar/mainLogo.png" fill alt="Frisson logo" />
         </div>
@@ -138,7 +134,6 @@ export default function SignUpPage() {
             className={styles.rightImg}
           />
         </div>
-
       </div>
     </div>
   );
