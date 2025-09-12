@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import styles from "./button.module.scss";
+import styles from "./Button.module.scss";
 import Image, { StaticImageData } from "next/image";
 import plusIcon from "@/../public/icons/Button/plusIcon.svg";
 

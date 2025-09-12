@@ -4,7 +4,7 @@ import Image from "next/image";
 import styles from "./signUp.module.scss";
 import Input from "@/components/LogInRegisterInput/Input";
 import Link from "next/link";
-import Button from "@/components/Button/button";
+import Button from "@/components/Button/Button";
 import { useForm, type FieldErrors } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
