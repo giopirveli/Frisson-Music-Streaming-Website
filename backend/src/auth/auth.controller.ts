@@ -13,6 +13,7 @@ import { Roles } from './guard/jwt-roles.guard';
 import { Role } from 'src/roles/roles';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { AuthGuard } from './guard/jwt-auth.guard';
+import { LoginAdminDto } from 'src/roles/login-admin.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -34,8 +35,8 @@ export class AuthController {
   @Post('login/admin')
   @Roles(Role.ADMIN)
   @Public()
-  async loginAdmin(@Body() createUserDto: CreateUserDto) {
-    return this.authService.loginAdmin(createUserDto);
+  async loginAdmin(@Body() loginAdminDto: LoginAdminDto) {
+    return this.authService.loginAdmin(loginAdminDto);
   }
 
   @Post('logout')

@@ -37,6 +37,10 @@ export class AlbumsService {
     return updatedAlbum;
   }
 
+  async search(query: string) {
+    return this.albumRepo.search(query);
+  }
+
   async delete(id: number) {
     const album = await this.albumRepo.findOne(id);
     if (!album) throw new NotFoundException('Album not found');

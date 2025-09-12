@@ -25,6 +25,9 @@ export class Music {
   @Column({ nullable: true })
   image: string;
 
+  @Column({ type: 'int', default: 0 })
+  duration?: number;
+
   @OneToMany(() => Listener, (listener) => listener.user)
   listeners: Listener[];
 

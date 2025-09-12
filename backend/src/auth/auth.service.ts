@@ -10,6 +10,7 @@ import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { UsersService } from 'src/users/users.service';
 import { Role } from 'src/roles/roles';
 import { TokenBlacklistService } from 'src/token-blacklists/token-blacklists.service';
+import { LoginAdminDto } from 'src/roles/login-admin.dto';
 
 @Injectable()
 export class AuthService {
@@ -24,12 +25,12 @@ export class AuthService {
 
     const existingUser = await this.usersService.findOneByEmail(email);
     if (existingUser) {
-      throw new HttpException('Email already in use', HttpStatus.BAD_REQUEST);
+      throw new UnauthorizedException('Email already in use');
     }
 
     const user = await this.usersService.createUser(createUserDto);
 
-    const payload = { sub: user.id, email: user.email, role: user.role };
+    const payload = { id: user.id, email: user.email, role: user.role };
     const accessToken = await this.jwtService.signAsync(payload, {
       secret: process.env.JWT_SECRET,
       expiresIn: process.env.JWT_ACCESS_EXP || '15m',
@@ -49,7 +50,7 @@ export class AuthService {
       throw new UnauthorizedException('Invalid email or password');
     }
 
-    const payload = { sub: user.id, email: user.email, role: user.role };
+    const payload = { id: user.id, email: user.email, role: user.role };
     const accessToken = await this.jwtService.signAsync(payload, {
       secret: process.env.JWT_SECRET,
       expiresIn: process.env.JWT_ACCESS_EXP || '15m',
@@ -92,9 +93,11 @@ export class AuthService {
     };
   }
 
-  async loginAdmin(createUserDto: CreateUserDto) {
-    const { email, password } = createUserDto;
-    const user = await this.usersService.findOneByEmail(email);
+  async loginAdmin(loginAdminDto: LoginAdminDto) {
+    const { email, password } = loginAdminDto;
+
+    const user = await this.usersService.findOneByEmail(email, true);
+
     const isPasswordCorrect =
       user && (await bcrypt.compare(password, user.password));
 
@@ -109,7 +112,7 @@ export class AuthService {
       throw new UnauthorizedException('Access denied. Admins only.');
     }
 
-    const payload = { sub: user.id, email: user.email, role: user.role };
+    const payload = { id: user.id, email: user.email, role: user.role };
     return this.generateToken(payload);
   }
 }
