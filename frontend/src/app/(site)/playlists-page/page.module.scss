@@ -11,7 +11,7 @@
 
   & > h1 {
     color: $white;
-    font-family: "Plus Jakarta Sans";
+    font-family: var(--font-jakarta), sans-serif;
     font-size: 32px;
     font-style: normal;
     font-weight: 500;
