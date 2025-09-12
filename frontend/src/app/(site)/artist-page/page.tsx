@@ -1,13 +1,15 @@
 "use client";
 
 import NewsComponent from "@/components/NewsComponent/NewsComponent";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Colors } from "../../../../styles/colors.enum";
 import styles from "./page.module.scss";
 import Table from "@/components/Table/Table";
 import ArtistCard from "@/components/ArtistCard/ArtistCard";
 import AlbumCard from "@/components/AlbumCard/AlbumCard";
 import photo from "../../../assets/images/table/albumphoto.png";
+import { usePathname } from "next/navigation";
+import { useActiveTab } from "@/components/Context/ActiveTabContext";
 
 interface Song {
   id?: number | string;
@@ -22,8 +24,13 @@ interface Song {
 
 // ✅ props ამოღებულია page-ის სიგნატურიდან
 export default function ArtistPage() {
+   const pathname = usePathname();
   const [songs, setSongs] = useState<Song[]>([]);
-  const [activeTab, setActiveTab] = useState(1);
+  const {activeTabd ,setActiveTab} = useActiveTab();
+
+  useEffect(() => {
+    setActiveTab(1);
+  }, [pathname, setActiveTab]);
 
   return (
     <main className={styles.main}>
