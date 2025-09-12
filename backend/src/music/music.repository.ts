@@ -49,14 +49,21 @@ export class MusicRepository {
     });
   }
 
-  async delete(id: number): Promise<void> {
-    await this.musicRepo.delete(id);
+  async search(query: string): Promise<Music[]> {
+    if (!query) return [];
+
+    return this.musicRepo
+      .createQueryBuilder('music')
+      .leftJoinAndSelect('music.author', 'author')
+      .leftJoinAndSelect('music.album', 'album')
+      .leftJoinAndSelect('music.user', 'user')
+      .where('music.title LIKE :query', { query: `%${query}%` })
+      .orWhere('author.name LIKE :query', { query: `%${query}%` })
+      .orWhere('album.title LIKE :query', { query: `%${query}%` })
+      .getMany();
   }
 
-  async search(query: string): Promise<Music[]> {
-    return await this.musicRepo.find({
-      where: query ? [{ title: Like(`%${query}%`) }] : [],
-      relations: ['author', 'user'],
-    });
+  async delete(id: number): Promise<void> {
+    await this.musicRepo.delete(id);
   }
 }

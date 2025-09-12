@@ -7,10 +7,12 @@ import {
   Param,
   Delete,
   ParseIntPipe,
+  Query,
 } from '@nestjs/common';
 import { AlbumsService } from './albums.service';
 import { CreateAlbumDto } from './dto/create-album.dto';
 import { UpdateAlbumDto } from './dto/update-album.dto';
+import { SearchMusicDto } from 'src/search/dto/search-music.dto';
 
 @Controller('albums')
 export class AlbumsController {
@@ -24,6 +26,11 @@ export class AlbumsController {
   @Get()
   findAll() {
     return this.albumsService.findAll();
+  }
+
+  @Get('search')
+  search(@Query() searchMusicDto: SearchMusicDto) {
+    return this.albumsService.search(searchMusicDto.query);
   }
 
   @Get(':id')

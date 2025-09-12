@@ -9,12 +9,14 @@ import { Music } from './entities/music.entity';
 import { CreateMusicDto } from './dto/create-music.dto';
 import { UpdateMusicDto } from './dto/update-music.dto';
 import { User } from 'src/users/entities/user.entity';
+import { MusicRepository } from './music.repository';
 
 @Injectable()
 export class MusicService {
   constructor(
     @InjectRepository(Music)
     private readonly musicRepo: Repository<Music>,
+    private readonly musicRepository: MusicRepository,
     @InjectRepository(User)
     private readonly userRepo: Repository<User>,
   ) {}
@@ -70,6 +72,10 @@ export class MusicService {
       throw new ForbiddenException('Cannot edit music of another user');
     Object.assign(music, updateMusicDto);
     return this.musicRepo.save(music);
+  }
+
+  async search(query: string) {
+    return this.musicRepository.search(query);
   }
 
   async deleteMusic(

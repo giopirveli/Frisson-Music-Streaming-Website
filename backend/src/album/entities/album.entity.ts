@@ -20,7 +20,7 @@ export class Album {
   @Column()
   title: string;
 
-  @Column()
+  @Column({ nullable: true })
   releaseDate: string;
 
   @Column()

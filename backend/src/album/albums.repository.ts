@@ -43,9 +43,19 @@ export class AlbumRepository {
   }
 
   async search(query: string): Promise<Album[]> {
-    return await this.albumRepo.find({
-      where: { title: Like(`%${query || ''}%`) },
-      relations: ['author', 'music'],
-    });
+    const qb = this.albumRepo
+      .createQueryBuilder('album')
+      .leftJoinAndSelect('album.author', 'author')
+      .leftJoinAndSelect('album.music', 'music');
+
+    if (query) {
+      qb.where('album.title LIKE :query', { query: `%${query}%` })
+        .orWhere('author.name LIKE :query', { query: `%${query}%` })
+        .orWhere('music.title LIKE :query', { query: `%${query}%` });
+    } else {
+      return [];
+    }
+
+    return qb.getMany();
   }
 }

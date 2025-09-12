@@ -7,10 +7,12 @@ import {
   Param,
   Body,
   ParseIntPipe,
+  Query,
 } from '@nestjs/common';
 import { MusicService } from './music.service';
 import { CreateMusicDto } from './dto/create-music.dto';
 import { UpdateMusicDto } from './dto/update-music.dto';
+import { SearchMusicDto } from 'src/search/dto/search-music.dto';
 
 @Controller('music')
 export class MusicController {
@@ -27,6 +29,11 @@ export class MusicController {
   @Get()
   findAll() {
     return this.musicService.findAll();
+  }
+
+  @Get('search')
+  search(@Query() searchMusicDto: SearchMusicDto) {
+    return this.musicService.search(searchMusicDto.query);
   }
 
   @Get(':id')
