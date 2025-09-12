@@ -26,7 +26,7 @@ interface Song {
 export default function ArtistPage() {
    const pathname = usePathname();
   const [songs, setSongs] = useState<Song[]>([]);
-  const {activeTabd ,setActiveTab} = useActiveTab();
+  const {activeTab ,setActiveTab} = useActiveTab();
 
   useEffect(() => {
     setActiveTab(1);
