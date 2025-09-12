@@ -45,23 +45,26 @@ export default function SongListTable({ id, pic, name, album, time, liked }: Son
         </thead>
 
         <tbody className={styles.tbody}>
-          <tr>
-            <td className={styles.songId}>?</td>
-            <td className={styles.songName}>
-              <div className={styles.imageWrapper}>
-                <Image src={photo} alt={"song name"} />
-              </div>
-              {"no information"}
-            </td>
-            <td>{"no information"}</td>
-            <td>{"no information"}</td>
-            <td>
-              <HeartBtn iconColor="gray" />
-            </td>
-            <td>
-              <ThreeDotsBtn iconColor="white" />
-            </td>
-          </tr>
+          {Array.from({ length: 4 }).map((_, i) => (
+            <tr key={i}>
+              <td className={styles.songId}>{i + 1}</td>
+              <td className={styles.songName}>
+                <div className={styles.imageWrapper}>
+                  <Image src={photo} alt="song name" />
+                </div>
+                {"no information"}
+              </td>
+              <td>{"no information"}</td>
+              <td>{"no information"}</td>
+              <td>
+                <HeartBtn iconColor="gray" />
+              </td>
+              <td>
+                <ThreeDotsBtn iconColor="white" />
+              </td>
+            </tr>
+          ))}
+
 
           {/* this is top Songs   ||  ThreeDotsBtn still needs component
 songs.map((song, i) => (
