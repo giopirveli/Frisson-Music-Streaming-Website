@@ -38,7 +38,7 @@ export default function AlbumPage() {
           <NewsComponent
             plays={"Released 07/12/2023"}
             title="Seek For Marktoop"
-            imageUrl="/Images/NewsComponent/NewComponentTest.jpg"
+            imageUrl="/Images/NewsComponent/banner.jpg"
           />
           <div>
             <SongListTable />
