@@ -11,18 +11,16 @@
   width: 100%;
   z-index: 9999;
   bottom: 0;
+  height: 125px;
 }
 
 .musicPhoto {
-  background: linear-gradient(
-    92deg,
-    rgba(255, 255, 255, 0.56) 0.23%,
-    rgba(255, 255, 255, 0.28) 100%
-  ); // $gradient-apolo
+  position: relative;   /* ← fill-სთვის აუცილებელია */
   max-width: 88px;
-  height: 88px;
-  border-radius: 8px;
   width: 100%;
+  aspect-ratio: 1 / 1;  /* ან height: 280px; როგორც გინდა */
+  overflow: hidden;
+  border-radius: 12px;  /* სურვილისამებრ */
 }
 
 .mainControlBox {
@@ -86,7 +84,10 @@
   align-items: center;
   gap: 4px;
 }
-
+.volumeControlBox button{
+position: relative;
+bottom: -2px;
+}
 .PlayPauseButton {
   cursor: pointer;
   background: none;
@@ -244,3 +245,4 @@
     border-radius: 4px;
   }
 }
+
