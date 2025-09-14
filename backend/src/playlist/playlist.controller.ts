@@ -12,7 +12,7 @@ import {
 import { PlaylistService } from './playlist.service';
 import { CreatePlaylistDto } from './dto/create-playlist.dto';
 import { UpdatePlaylistDto } from './dto/update-playlist.dto';
-import { PlaylistType } from 'src/common/playlist-type';
+import { PlaylistType } from 'src/common/playlist.enum';
 
 @Controller('playlists')
 export class PlaylistController {

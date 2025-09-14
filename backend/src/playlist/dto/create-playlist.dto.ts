@@ -1,5 +1,11 @@
-import { IsInt, IsNotEmpty, IsOptional, IsString } from 'class-validator';
-import { PlaylistType } from 'src/common/playlist-type';
+import {
+  IsEnum,
+  IsInt,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+} from 'class-validator';
+import { PlaylistType } from 'src/common/playlist.enum';
 
 export class CreatePlaylistDto {
   @IsString()
@@ -14,5 +20,6 @@ export class CreatePlaylistDto {
   musicId: number[];
 
   @IsOptional()
+  @IsEnum(PlaylistType)
   type?: PlaylistType;
 }

@@ -6,7 +6,7 @@ import { Playlist } from './entities/playlist.entity';
 import { In, Repository } from 'typeorm';
 import { Music } from 'src/music/entities/music.entity';
 import { User } from 'src/users/entities/user.entity';
-import { PlaylistType } from 'src/common/playlist-type';
+import { PlaylistType } from 'src/common/playlist.enum';
 
 @Injectable()
 export class PlaylistRepository {

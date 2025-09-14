@@ -1,22 +1,10 @@
 import { Author } from 'src/author/entities/author.entity';
+import { BaseEntity } from 'src/common/base.entity';
 import { Music } from 'src/music/entities/music.entity';
-import {
-  Column,
-  CreateDateColumn,
-  DeleteDateColumn,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  OneToMany,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 
 @Entity('albums')
-export class Album {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class Album extends BaseEntity {
   @Column()
   title: string;
 
@@ -25,15 +13,6 @@ export class Album {
 
   @Column()
   artistName: string;
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
-
-  @DeleteDateColumn()
-  deletedAt: Date;
 
   @ManyToOne(() => Author, (author) => author.albums, { eager: true })
   @JoinColumn({ name: 'authorId' })

@@ -1,21 +1,12 @@
+import { BaseEntity } from 'src/common/base.entity';
 import { Listener } from 'src/listeners-table/entities/listeners-table.entity';
 import { Music } from 'src/music/entities/music.entity';
 import { Playlist } from 'src/playlist/entities/playlist.entity';
 import { Role } from 'src/roles/roles';
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  OneToMany,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { Column, Entity, OneToMany } from 'typeorm';
 
 @Entity('users')
-export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class User extends BaseEntity {
   @Column()
   name: string;
 
@@ -35,12 +26,6 @@ export class User {
     onDelete: 'CASCADE',
   })
   playlists: Playlist[];
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
 
   @OneToMany(() => Music, (music) => music.user)
   music: Music[];

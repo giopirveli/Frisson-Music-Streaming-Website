@@ -1,21 +1,12 @@
 import { Album } from 'src/album/entities/album.entity';
 import { Author } from 'src/author/entities/author.entity';
+import { BaseEntity } from 'src/common/base.entity';
 import { Listener } from 'src/listeners-table/entities/listeners-table.entity';
 import { User } from 'src/users/entities/user.entity';
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 
 @Entity('music')
-export class Music {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class Music extends BaseEntity {
   @Column()
   title: string;
 

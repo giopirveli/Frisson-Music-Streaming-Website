@@ -1,4 +1,4 @@
-import { PlaylistType } from 'src/common/playlist-type';
+import { PlaylistType } from 'src/common/playlist.enum';
 import { Music } from 'src/music/entities/music.entity';
 import { User } from 'src/users/entities/user.entity';
 import {

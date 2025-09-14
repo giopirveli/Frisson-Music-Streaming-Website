@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreatePlaylistDto } from './dto/create-playlist.dto';
 import { UpdatePlaylistDto } from './dto/update-playlist.dto';
 import { PlaylistRepository } from './playlist.repository';
-import { PlaylistType } from 'src/common/playlist-type';
+import { PlaylistType } from 'src/common/playlist.enum';
 
 @Injectable()
 export class PlaylistService {
