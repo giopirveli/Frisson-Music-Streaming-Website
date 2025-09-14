@@ -31,10 +31,9 @@ export class AuthorService {
     return this.authorRepo.search(query);
   }
 
-  async delete(id: number): Promise<{ message: string }> {
+  async delete(id: number) {
     const author = await this.authorRepo.findOne(id);
     if (!author) throw new NotFoundException('Author not found');
-    await this.authorRepo.delete(id);
-    return { message: 'Author successfully deleted' };
+    return this.authorRepo.delete(id);
   }
 }

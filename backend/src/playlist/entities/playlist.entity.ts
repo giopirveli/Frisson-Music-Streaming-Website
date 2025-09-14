@@ -1,3 +1,4 @@
+import { BaseEntity } from 'src/common/base.entity';
 import { PlaylistType } from 'src/common/playlist.enum';
 import { Music } from 'src/music/entities/music.entity';
 import { User } from 'src/users/entities/user.entity';
@@ -14,10 +15,7 @@ import {
 } from 'typeorm';
 
 @Entity('playlist')
-export class Playlist {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class Playlist extends BaseEntity {
   @Column()
   title: string;
 
@@ -33,13 +31,4 @@ export class Playlist {
   @ManyToMany(() => Music)
   @JoinTable()
   music: Music[];
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
-
-  @DeleteDateColumn()
-  deletedAt: Date;
 }

@@ -48,9 +48,9 @@ export class AuthorRepository {
     }
     return qb.getMany();
   }
-  
-  async delete(id: number): Promise<void> {
-    await this.authorRepo.delete(id);
-  }
 
+  async delete(id: number): Promise<{ message: string }> {
+    await this.authorRepo.delete(id);
+    return { message: 'Author successfully deleted' };
+  }
 }
