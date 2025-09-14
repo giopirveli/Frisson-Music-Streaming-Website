@@ -1,5 +1,6 @@
 import { Listener } from 'src/listeners-table/entities/listeners-table.entity';
 import { Music } from 'src/music/entities/music.entity';
+import { Playlist } from 'src/playlist/entities/playlist.entity';
 import { Role } from 'src/roles/roles';
 import {
   Column,
@@ -29,6 +30,11 @@ export class User {
 
   @OneToMany(() => Listener, (listener) => listener.user)
   listeners: Listener[];
+
+  @OneToMany(() => Playlist, (playlist) => playlist.user, {
+    onDelete: 'CASCADE',
+  })
+  playlists: Playlist[];
 
   @CreateDateColumn()
   createdAt: Date;

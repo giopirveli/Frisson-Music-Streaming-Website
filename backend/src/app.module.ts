@@ -9,6 +9,7 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { TokenBlacklistsModule } from './token-blacklists/token-blacklists.module';
 import { ListenersTableModule } from './listeners-table/listeners-table.module';
+import { PlaylistModule } from './playlist/playlist.module';
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import { ListenersTableModule } from './listeners-table/listeners-table.module';
     AuthModule,
     TokenBlacklistsModule,
     ListenersTableModule,
+    PlaylistModule,
   ],
 })
 export class AppModule {}

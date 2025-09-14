@@ -6,9 +6,14 @@ import { Music } from './entities/music.entity';
 import { AuthorModule } from 'src/author/author.module';
 import { MusicRepository } from './music.repository';
 import { User } from 'src/users/entities/user.entity';
+import { AlbumsModule } from 'src/album/albums.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Music, User]), AuthorModule],
+  imports: [
+    TypeOrmModule.forFeature([Music, User]),
+    AuthorModule,
+    AlbumsModule,
+  ],
   controllers: [MusicController],
   providers: [MusicService, MusicRepository],
   exports: [MusicRepository, MusicService],

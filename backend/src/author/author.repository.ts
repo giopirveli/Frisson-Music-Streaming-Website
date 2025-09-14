@@ -33,10 +33,6 @@ export class AuthorRepository {
     return await this.authorRepo.findOneBy({ id });
   }
 
-  async delete(id: number): Promise<void> {
-    await this.authorRepo.delete(id);
-  }
-
   async search(query: string): Promise<Author[]> {
     const qb = this.authorRepo
       .createQueryBuilder('author')
@@ -52,4 +48,9 @@ export class AuthorRepository {
     }
     return qb.getMany();
   }
+  
+  async delete(id: number): Promise<void> {
+    await this.authorRepo.delete(id);
+  }
+
 }

@@ -1,10 +1,11 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Music } from './entities/music.entity';
-import { Like, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { CreateMusicDto } from './dto/create-music.dto';
 import { UpdateMusicDto } from './dto/update-music.dto';
 import { User } from 'src/users/entities/user.entity';
+import { AlbumRepository } from 'src/album/albums.repository';
 
 @Injectable()
 export class MusicRepository {
@@ -13,6 +14,7 @@ export class MusicRepository {
     private readonly musicRepo: Repository<Music>,
     @InjectRepository(User)
     private readonly userRepo: Repository<User>,
+    private readonly albumRepo: AlbumRepository,
   ) {}
 
   async create(dto: CreateMusicDto) {
@@ -51,7 +53,6 @@ export class MusicRepository {
 
   async search(query: string): Promise<Music[]> {
     if (!query) return [];
-
     return this.musicRepo
       .createQueryBuilder('music')
       .leftJoinAndSelect('music.author', 'author')

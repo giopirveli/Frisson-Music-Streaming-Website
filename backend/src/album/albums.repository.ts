@@ -38,10 +38,6 @@ export class AlbumRepository {
     return await this.albumRepo.save(album);
   }
 
-  async delete(id: number): Promise<void> {
-    await this.albumRepo.delete(id);
-  }
-
   async search(query: string): Promise<Album[]> {
     const qb = this.albumRepo
       .createQueryBuilder('album')
@@ -57,5 +53,9 @@ export class AlbumRepository {
     }
 
     return qb.getMany();
+  }
+  
+  async delete(id: number): Promise<void> {
+    await this.albumRepo.delete(id);
   }
 }
