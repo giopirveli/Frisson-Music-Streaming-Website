@@ -1,20 +1,20 @@
 @use "./../../styles/colors" as *;
 
-html,
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
+  min-height: 100%;
   max-width: 100vw;
   overflow-x: hidden;
   background-color: $reversed-grey;
-  font-family: var(--font-jakarta), sans-serif; //font-family: "webdings";
+  font-family: var(--font-jakarta), sans-serif;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  text-transform: capitalize;
-}
-
+/* 3) Base layout */
 main {
   display: flex;
   flex-direction: column;
@@ -33,6 +33,7 @@ a {
   width: 100%;
   justify-content: space-between;
 }
+
 .container {
   display: flex;
   flex-direction: column;
@@ -44,3 +45,18 @@ a {
   // only weakness is horizontal scroll after refreshing and disappears in seconds
   padding-bottom: 160px;
 }
+
+/* globals.scss (გლობალში) */
+
+/* WebKit: Chrome/Edge/Safari */
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-track { background: $cod-grey; border-radius: 999px; }
+*::-webkit-scrollbar-thumb {
+  background: $gradient-apolo;   /* გრადიენტი აქ იმუშავებს */
+  border-radius: 999px;
+  background-clip: content-box;
+  border: 2px solid transparent; /* ზედა/ქვედა ჰაერი */
+}
+
+// /* Firefox – გრადიენტი არ აქვს ნატივზე */
+* { scrollbar-width: thin; scrollbar-color: $fuchsia-flame $cod-grey; }
