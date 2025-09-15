@@ -67,7 +67,8 @@
 }
 
 .mainMenu,
-.collectionMenu {
+.collectionMenu,
+.discoverMenu {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -157,5 +158,14 @@
   /* როცა active-ზე mouse hover-დება — ცოტათი უფრო ნათელი */
   &:hover {
     background: #1a1a1a;
+  }
+}
+
+
+.sidebar{
+  background: $sidebar-gradient;
+  @media (max-height:763px){
+    background: $small-sidebar-gradient;
+
   }
 }
