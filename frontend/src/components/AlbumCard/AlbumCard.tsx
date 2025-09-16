@@ -10,37 +10,61 @@ interface AlbumCardProps {
   artist?: string;
   imageUrl: string | StaticImageData;
   width?: string | number;
-  hight?: string | number;
+  height?: string | number;
+  hight?: string | number; // თუ სადმე ჯერ კიდევ იყენებ
   onClick?: () => void;
+  hideHoverEfect?: boolean;
 }
 
-export default function AlbumCard({ title, artist, imageUrl, onClick }: AlbumCardProps) {
+export default function AlbumCard({
+  title,
+  artist,
+  imageUrl,
+  onClick,
+  hideHoverEfect = false,
+}: AlbumCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
+
+  const showHoverControls = isHovered && !hideHoverEfect;
+
+  const stopClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
   return (
     <div
       className={`${styles.card} ${artist ? "" : styles.cardHightPx}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      // onClick={()=>setIsLiked(2)}
       onClick={onClick}
     >
-      <div className={`${styles.imageWrapperBox}`}>
-        <div className={`${styles.imageWrapper} ${isHovered && styles.hoveredImgWrapper}`}>
-          <Image src={imageUrl} alt="Music Card" className={styles.musicImage} fill />
+      <div className={styles.imageWrapperBox}>
+        <div className={`${styles.imageWrapper} ${isHovered ? styles.hoveredImgWrapper : ""}`}>
+          <Image
+            src={imageUrl}
+            alt={`${title}${artist ? ` — ${artist}` : ""}`}
+            className={styles.musicImage}
+            fill
+            priority={false}
+          />
         </div>
 
-        {isHovered && (
+        {showHoverControls && (
           <div className={styles.heartButton}>
-            <div className={styles.btnWhiteBackground}>
+            <div className={styles.btnWhiteBackground} onMouseDown={(e) => e.stopPropagation()} onClick={stopClick}>
               <HeartBtn
-                iconColor={isLiked ? "black" : "gray"}
                 liked={isLiked}
-                onToggle={() => setIsLiked((prev) => !prev)}
+                iconColor={isLiked ? "black" : "gray"}
+                onToggle={() => setIsLiked((v) => !v)}  // ← მხოლოდ აქ ვტოგლავთ
               />
             </div>
-            <div className={styles.btnWhiteBackground}>
-              <ThreeDotsBtn iconColor="black" />
+
+            <div className={styles.btnWhiteBackground} onMouseDown={(e) => e.stopPropagation()} onClick={stopClick}>
+              <ThreeDotsBtn
+                iconColor="black"
+              />
             </div>
           </div>
         )}
