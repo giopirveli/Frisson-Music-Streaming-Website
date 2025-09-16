@@ -1,21 +1,19 @@
 import { Album } from 'src/album/entities/album.entity';
 import { Author } from 'src/author/entities/author.entity';
+import { BaseEntity } from 'src/common/base.entity';
 import { Listener } from 'src/listeners-table/entities/listeners-table.entity';
 import { User } from 'src/users/entities/user.entity';
 import {
   Column,
   Entity,
   JoinColumn,
+  ManyToMany,
   ManyToOne,
   OneToMany,
-  PrimaryGeneratedColumn,
 } from 'typeorm';
 
 @Entity('music')
-export class Music {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class Music extends BaseEntity {
   @Column()
   title: string;
 
@@ -40,4 +38,7 @@ export class Music {
 
   @ManyToOne(() => User, (user) => user.music, { onDelete: 'CASCADE' })
   user: User;
+
+  @ManyToMany(() => User, (user) => user.likedMusic)
+  likedByUsers: User[]; 
 }

@@ -41,9 +41,10 @@ export class AlbumsService {
     return this.albumRepo.search(query);
   }
 
-  async delete(id: number) {
+  async delete(id: number): Promise<{ message: string }> {
     const album = await this.albumRepo.findOne(id);
     if (!album) throw new NotFoundException('Album not found');
-    return this.albumRepo.delete(id);
+    await this.albumRepo.delete(id);
+    return { message: 'Album successfully deleted' };
   }
 }

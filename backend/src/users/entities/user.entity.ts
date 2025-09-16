@@ -1,20 +1,13 @@
+import { Album } from 'src/album/entities/album.entity';
+import { BaseEntity } from 'src/common/base.entity';
 import { Listener } from 'src/listeners-table/entities/listeners-table.entity';
 import { Music } from 'src/music/entities/music.entity';
+import { Playlist } from 'src/playlist/entities/playlist.entity';
 import { Role } from 'src/roles/roles';
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  OneToMany,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, OneToMany } from 'typeorm';
 
 @Entity('users')
-export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class User extends BaseEntity {
   @Column()
   name: string;
 
@@ -30,12 +23,18 @@ export class User {
   @OneToMany(() => Listener, (listener) => listener.user)
   listeners: Listener[];
 
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
+  @OneToMany(() => Playlist, (playlist) => playlist.user, {
+    onDelete: 'CASCADE',
+  })
+  playlists: Playlist[];
 
   @OneToMany(() => Music, (music) => music.user)
   music: Music[];
+
+  @ManyToMany(() => Music)
+  @JoinTable()
+  likedMusic: Music[];
+
+  @OneToMany(() => Album, (album) => album.user, { onDelete: 'CASCADE' })
+  albums: Album[];
 }
