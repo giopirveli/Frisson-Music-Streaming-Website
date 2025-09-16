@@ -1,6 +1,6 @@
 export enum PlaylistType {
-  CUSTOM = 'custom',
   FAVORITES = 'favorites',
-  TOP_TRACKS = 'top_tracks',
-  TOP_AUTHORS = 'top_authors',
+  TOP_CHARTS = 'top_charts',
+  TOP_HITS = 'top_hits',
+  RECOMMENDATIONS = 'recommendations',
 }

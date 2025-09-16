@@ -14,8 +14,8 @@ export class ListenersTableController {
   constructor(private readonly listenersService: ListenersTableService) {}
 
   @Post()
-  listen(@Body() dto: CreateListenersTableDto) {
-    return this.listenersService.listen(dto);
+  listen(@Body() createListenersTable: CreateListenersTableDto) {
+    return this.listenersService.listen(createListenersTable);
   }
 
   @Get('user/:id')

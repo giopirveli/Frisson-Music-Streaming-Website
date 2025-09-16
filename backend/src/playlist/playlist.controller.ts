@@ -1,18 +1,16 @@
 import {
   Controller,
   Get,
+  Param,
   Post,
   Body,
-  Patch,
-  Param,
-  Delete,
   ParseIntPipe,
-  Query,
+  Delete,
+  Patch,
 } from '@nestjs/common';
 import { PlaylistService } from './playlist.service';
-import { CreatePlaylistDto } from './dto/create-playlist.dto';
-import { UpdatePlaylistDto } from './dto/update-playlist.dto';
 import { PlaylistType } from 'src/common/playlist.enum';
+import { CreatePlaylistDto } from './dto/create-playlist.dto';
 
 @Controller('playlists')
 export class PlaylistController {
@@ -23,43 +21,34 @@ export class PlaylistController {
     @Param('userId', ParseIntPipe) userId: number,
     @Body() createPlaylistDto: CreatePlaylistDto,
   ) {
-    return this.playlistService.create(userId, createPlaylistDto);
+    return this.playlistService.create({ id: userId } as any, createPlaylistDto);
+  }
+
+  @Get('dynamic/:userId/:type')
+  generate(
+    @Param('userId', ParseIntPipe) userId: number,
+    @Param('type') type: PlaylistType,
+  ) {
+    return this.playlistService.generate(userId, type);
+  }
+
+  @Get('user/:userId')
+  getUserPlaylists(@Param('userId', ParseIntPipe) userId: number) {
+    return this.playlistService.getUserPlaylists(userId);
   }
 
   @Get()
-  findAll() {
-    return this.playlistService.findAll();
-  }
-
-  @Get('filter')
-  filter(
-    @Query('userId') userId?: number,
-    @Query('type') type?: PlaylistType,
-    @Query('title') title?: string,
-  ) {
-    return this.playlistService.filter({ userId, type, title });
-  }
-  
-  @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.playlistService.findOne(id);
+  getAll() {
+    return this.playlistService.getAll();
   }
 
   @Patch(':id')
-  update(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() updatePlaylistDto: UpdatePlaylistDto,
-  ) {
+  update(@Param('id', ParseIntPipe) id: number, @Body() updatePlaylistDto: any) {
     return this.playlistService.update(id, updatePlaylistDto);
   }
 
   @Delete(':id')
   delete(@Param('id', ParseIntPipe) id: number) {
     return this.playlistService.delete(id);
-  }
-
-  @Get('user/:userId')
-  getUserPlaylists(@Param('userId', ParseIntPipe) userId: number) {
-    return this.playlistService.getUserPlaylists(userId);
   }
 }

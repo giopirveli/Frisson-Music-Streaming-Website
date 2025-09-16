@@ -13,16 +13,16 @@ export class ListenersTableService {
     private readonly musicService: MusicService,
   ) {}
 
-  async listen(dto: CreateListenersTableDto): Promise<Listener> {
-    const user = await this.usersService.findOneById(dto.userId);
+  async listen(createListenersTableDto: CreateListenersTableDto): Promise<Listener> {
+    const user = await this.usersService.findOneById(createListenersTableDto.userId);
     if (!user) throw new NotFoundException('User not found');
 
-    const music = await this.musicService.findMusicOrFail(dto.musicId);
+    const music = await this.musicService.findMusicOrFail(createListenersTableDto.musicId);
     if (!music) throw new NotFoundException('Music not found');
 
     let listener = await this.listenersRepo.findByUserAndMusic(
-      dto.userId,
-      dto.musicId,
+      createListenersTableDto.userId,
+      createListenersTableDto.musicId,
     );
 
     if (listener) {

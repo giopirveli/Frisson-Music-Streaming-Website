@@ -16,7 +16,7 @@ export class CreatePlaylistDto {
   @IsOptional()
   description?: string;
 
-  @IsInt()
+  @IsInt({ each: true })
   musicId: number[];
 
   @IsOptional()

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Author } from './entities/author.entity';
-import { Like, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { CreateAuthorDto } from './dto/create-author.dto';
 import { UpdateAuthorDto } from './dto/update-author.dto';
 
@@ -12,8 +12,8 @@ export class AuthorRepository {
     private readonly authorRepo: Repository<Author>,
   ) {}
 
-  async create(dto: CreateAuthorDto): Promise<Author> {
-    const author = this.authorRepo.create(dto);
+  async create(createAuthorDto: CreateAuthorDto): Promise<Author> {
+    const author = this.authorRepo.create(createAuthorDto);
     return await this.authorRepo.save(author);
   }
 
@@ -28,8 +28,8 @@ export class AuthorRepository {
     });
   }
 
-  async update(id: number, updateDto: UpdateAuthorDto): Promise<Author | null> {
-    await this.authorRepo.update(id, updateDto);
+  async update(id: number, updateAuthorDto: UpdateAuthorDto): Promise<Author | null> {
+    await this.authorRepo.update(id, updateAuthorDto);
     return await this.authorRepo.findOneBy({ id });
   }
 
@@ -38,7 +38,6 @@ export class AuthorRepository {
       .createQueryBuilder('author')
       .leftJoinAndSelect('author.music', 'music')
       .leftJoinAndSelect('music.album', 'album');
-
     if (query) {
       qb.where('author.name LIKE :query', { query: `%${query}%` })
         .orWhere('music.title LIKE :query', { query: `%${query}%` })

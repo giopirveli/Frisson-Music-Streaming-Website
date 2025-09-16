@@ -3,7 +3,14 @@ import { Author } from 'src/author/entities/author.entity';
 import { BaseEntity } from 'src/common/base.entity';
 import { Listener } from 'src/listeners-table/entities/listeners-table.entity';
 import { User } from 'src/users/entities/user.entity';
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToMany,
+  ManyToOne,
+  OneToMany,
+} from 'typeorm';
 
 @Entity('music')
 export class Music extends BaseEntity {
@@ -31,4 +38,7 @@ export class Music extends BaseEntity {
 
   @ManyToOne(() => User, (user) => user.music, { onDelete: 'CASCADE' })
   user: User;
+
+  @ManyToMany(() => User, (user) => user.likedMusic)
+  likedByUsers: User[]; 
 }

@@ -1,12 +1,9 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { CreatePlaylistDto } from './dto/create-playlist.dto';
-import { UpdatePlaylistDto } from './dto/update-playlist.dto';
+import { Injectable } from '@nestjs/common';
+import { Repository, In } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Playlist } from './entities/playlist.entity';
-import { In, Repository } from 'typeorm';
 import { Music } from 'src/music/entities/music.entity';
 import { User } from 'src/users/entities/user.entity';
-import { PlaylistType } from 'src/common/playlist.enum';
 
 @Injectable()
 export class PlaylistRepository {
@@ -19,97 +16,72 @@ export class PlaylistRepository {
     private readonly userRepo: Repository<User>,
   ) {}
 
-  async create(createPlaylistDto: CreatePlaylistDto, userId: number) {
-    const user = await this.userRepo.findOneBy({ id: userId });
-    if (!user) throw new NotFoundException('User not found');
-
-    const music = await this.musicRepo.findBy({
-      id: In(createPlaylistDto.musicId),
-    });
-
-    const playlist = this.playlistRepo.create({
-      title: createPlaylistDto.title,
-      user,
-      music,
-    });
-
-    return this.playlistRepo.save(playlist);
+  async create(playlist: Partial<Playlist>) {
+    return this.playlistRepo.save(this.playlistRepo.create(playlist));
   }
 
-  async findAll(): Promise<Playlist[]> {
+  async findAll() {
     return this.playlistRepo.find({ relations: ['music', 'user'] });
   }
 
-  async findOne(id: number): Promise<Playlist | null> {
-    const playlist = await this.playlistRepo.findOne({
+  async findById(id: number) {
+    return this.playlistRepo.findOne({
       where: { id },
       relations: ['music', 'user'],
     });
-    if (!playlist) throw new NotFoundException('Playlist not found');
-    return playlist;
   }
 
-  async update(
-    id: number,
-    updatePlaylistDto: UpdatePlaylistDto,
-  ): Promise<Playlist> {
-    const playlist = await this.findOne(id);
-
-    if (!playlist) {
-      throw new NotFoundException(`Playlist with id ${id} not found`);
-    }
-
-    if (updatePlaylistDto.musicId) {
-      playlist.music = await this.musicRepo.findBy({
-        id: In(updatePlaylistDto.musicId),
-      });
-    }
-
-    Object.assign(playlist, updatePlaylistDto);
-    return await this.playlistRepo.save(playlist);
-  }
-
-  async findByUser(userId: number): Promise<Playlist[]> {
+  async findByUser(userId: number) {
     return this.playlistRepo.find({
       where: { user: { id: userId } },
       relations: ['music', 'user'],
     });
   }
 
-  async filterPlaylists(filters: {
-    userId?: number;
-    type?: PlaylistType;
-    title?: string;
-  }): Promise<Playlist[]> {
-    const qb = this.playlistRepo
-      .createQueryBuilder('playlist')
-      .leftJoinAndSelect('playlist.user', 'user')
-      .leftJoinAndSelect('playlist.music', 'music');
-
-    if (filters.userId) {
-      qb.andWhere('user.id = :userId', { userId: filters.userId });
-    }
-
-    if (filters.type) {
-      qb.andWhere('playlist.type = :type', { type: filters.type });
-    }
-
-    if (filters.title) {
-      qb.andWhere('playlist.title LIKE :title', {
-        title: `%${filters.title}%`,
-      });
-    }
-
-    qb.orderBy('playlist.createdAt', 'DESC');
-
-    return qb.getMany();
+  async findMusicByIds(ids: number[]) {
+    return this.musicRepo.findBy({ id: In(ids) });
   }
-  
+
+  async update(id: number, data: Partial<Playlist>) {
+    await this.playlistRepo.update(id, data);
+    return this.findById(id);
+  }
+
   async delete(id: number) {
-    const playlist = await this.findOne(id);
-    if (!playlist) {
-      throw new NotFoundException(`Playlist with id ${id} not found`);
-    }
-    return this.playlistRepo.delete(playlist.id);
+    return this.playlistRepo.delete(id);
+  }
+
+  async findFavoritesByUser(userId: number) {
+    const user = await this.userRepo.findOne({
+      where: { id: userId },
+      relations: ['likedMusic'],
+    });
+    return user?.likedMusic || [];
+  }
+
+  async findTopCharts(limit = 20) {
+    return this.musicRepo
+      .createQueryBuilder('music')
+      .orderBy('music.listenCount', 'DESC')
+      .limit(limit)
+      .getMany();
+  }
+
+  async findTopHits(limit = 20) {
+    return this.musicRepo
+      .createQueryBuilder('music')
+      .orderBy('music.likeCount', 'DESC')
+      .limit(limit)
+      .getMany();
+  }
+
+  async findRecommendations(userId: number, limit = 20) {
+    return this.musicRepo
+      .createQueryBuilder('music')
+      .leftJoin('music.listeners', 'listeners')
+      .where('listeners.userId = :userId', { userId })
+      .orderBy('listeners.count', 'DESC')
+      .limit(limit)
+      .getMany();
   }
 }

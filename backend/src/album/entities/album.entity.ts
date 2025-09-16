@@ -1,6 +1,7 @@
 import { Author } from 'src/author/entities/author.entity';
 import { BaseEntity } from 'src/common/base.entity';
 import { Music } from 'src/music/entities/music.entity';
+import { User } from 'src/users/entities/user.entity';
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 
 @Entity('albums')
@@ -20,4 +21,7 @@ export class Album extends BaseEntity {
 
   @OneToMany(() => Music, (music) => music.album)
   music: Music[];
+
+  @ManyToOne(() => User, (user) => user.albums, { onDelete: 'CASCADE' })
+  user: User;
 }

@@ -5,7 +5,6 @@ import { Repository } from 'typeorm';
 import { CreateMusicDto } from './dto/create-music.dto';
 import { UpdateMusicDto } from './dto/update-music.dto';
 import { User } from 'src/users/entities/user.entity';
-import { AlbumRepository } from 'src/album/albums.repository';
 
 @Injectable()
 export class MusicRepository {
@@ -14,14 +13,13 @@ export class MusicRepository {
     private readonly musicRepo: Repository<Music>,
     @InjectRepository(User)
     private readonly userRepo: Repository<User>,
-    private readonly albumRepo: AlbumRepository,
   ) {}
 
-  async create(dto: CreateMusicDto) {
-    const user = await this.userRepo.findOneBy({ id: dto.userId });
+  async create(createMusicDto: CreateMusicDto) {
+    const user = await this.userRepo.findOneBy({ id: createMusicDto.userId });
     if (!user) throw new NotFoundException('User not found');
 
-    const music = this.musicRepo.create({ ...dto, user });
+    const music = this.musicRepo.create({ ...createMusicDto, user });
     await this.musicRepo.save(music);
 
     return { message: 'Successfully created music' };
@@ -38,13 +36,16 @@ export class MusicRepository {
     });
   }
 
-  async update(id: number, updateDto: UpdateMusicDto): Promise<Music | null> {
-    if (updateDto.userId) {
-      const user = await this.userRepo.findOneBy({ id: updateDto.userId });
+  async update(
+    id: number,
+    updateMusicDto: UpdateMusicDto,
+  ): Promise<Music | null> {
+    if (updateMusicDto.userId) {
+      const user = await this.userRepo.findOneBy({ id: updateMusicDto.userId });
       if (!user) throw new NotFoundException('User not found');
-      updateDto['user'] = user;
+      updateMusicDto['user'] = user;
     }
-    await this.musicRepo.update(id, updateDto);
+    await this.musicRepo.update(id, updateMusicDto);
     return await this.musicRepo.findOne({
       where: { id },
       relations: ['author', 'user'],
