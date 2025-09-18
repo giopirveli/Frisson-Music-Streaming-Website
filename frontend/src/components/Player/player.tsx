@@ -1,114 +1,60 @@
 "use client";
 
-import Style from "./player.module.scss";
 import Image from "next/image";
-import { useRef, useState, useMemo, useEffect } from "react";
-import { useAudioControls } from "@/hooks/useAudioControls";
+import { useMemo, useRef } from "react";
+import Style from "./player.module.scss";
 import HeartBtn from "../HeartBtn/HeartBtn";
-import { Track } from "./playerType";
-
+import { useAudioControls } from "@/hooks/useAudioControls";
+import type { Track } from "./playerType";
 
 type PlayerProps = {
   playlist: Track[];
   initialIndex?: number;
 };
 
-/* ─────────────── Component ─────────────── */
 export default function Player({ playlist, initialIndex = 0 }: PlayerProps) {
-  /* Refs */
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const progressRef = useRef<HTMLDivElement | null>(null);
 
-  /* Local UI state */
-  const [isLiked, setIsLiked] = useState(false);
-  const [isMuted, setIsMuted] = useState(false)
-  /* Current track index + derived current track */
-  const [currentIndex, setCurrentIndex] = useState(initialIndex);
-  const currentTrack = useMemo(
-    () => playlist?.[currentIndex],
-    [playlist, currentIndex]
-  );
-
-  /* Audio controls (play/pause, time, volume, seeking etc.) */
   const {
-    isPlaying,
-    currentTime,
-    duration,
-    togglePlay,
+    // state
+    isPlaying, currentTime, duration, progressPercent,
+    isDragging, previewTime, volume,
+    currentTrack,
+
+    // transport
+    nextTrack, prevTrack,
+    isShuffle, toggleShuffle,
+    repeatMode, toggleRepeatMode,
+    isMuted, toggleMute,
+
+    // handlers
+    handlePlayPause, handleEnded,
+    handleChange, handleClickProgressBar, handleThumbMouseDown,
+
+    // utils
     formatTime,
-    reapetSong,
-    volume,
-    handleClickProgressBar,
-    handleThumbMouseDown,
-    progressPercent,
-    isDragging,
-    previewTime,
-    handleChange,
-  } = useAudioControls(audioRef, progressRef);
+  } = useAudioControls({ audioRef, progressRef, playlist, initialIndex });
 
-  const audio = audioRef.current;
+  const safeTrack = useMemo(() => currentTrack, [currentTrack]);
+  if (!playlist?.length || !safeTrack) return null;
 
-  /* ─────────────── გადასვლის გადმოსვლის შემთხვევაში ჩაირთოს ─────────────── */
-  // useEffect(() => {
-  //   if (!audio) return;
-  //   audio.load()
-  //   audio.play()
-  // }, [currentIndex]);
-
-  /* ─────────────── Guard: empty playlist ─────────────── */
-  if (!playlist || playlist.length === 0) return null;
-
-  /* ─────────────── Next / Prev handlers ─────────────── */
-  const nextTrack = () => {
-    setCurrentIndex((i) => (i + 1) % playlist.length);
-    audio?.play()
-  };
-
-  const prevTrack = () => {
-    setCurrentIndex((i) => (i - 1 + playlist.length) % playlist.length);
-    audio?.play()
-
-  };
-  /* ─────────────── autoPlay ─────────────── */
-  const handleEnded = () => {
-    nextTrack()
-  }
-  /* ─────────────── shuffle btn ─────────────── */
-  const shufflePLay = () => {
-    if (playlist.length <= 1) return; // თუ მხოლოდ ერთი სიმღერაა, არაფერი შეიცვლებაfgf
-    let newIndex = currentIndex;
-    while (newIndex === currentIndex) {
-      newIndex = Math.floor(Math.random() * playlist.length);
-    }
-    setCurrentIndex(newIndex);
-  }
-  /* ─────────────── isMuted btn ─────────────── */
-  const toggleMute = () => {
-    const newMuted = !isMuted;
-    if (audio) {
-      audio.muted = newMuted;
-      setIsMuted(!isMuted)
-    }
-  }
-  /* ─────────────── Render ─────────────── */
   return (
     <div className={Style.playerBackgraund} aria-label="Audio Player">
-      {/* Cover / background */}
+      {/* BG / Cover */}
       <div className={Style.musicPhoto}>
-        <Image fill alt="image" src={currentTrack?.imageUrl}></Image>
+        {safeTrack.imageUrl ? (
+          <Image fill alt="image" src={safeTrack.imageUrl} />
+        ) : (
+          <div className={Style.coverFallback} />
+        )}
       </div>
 
       <div className={Style.mainControlBox}>
         <div className={Style.controlBoxesDurection}>
-          {/* Left: progress + like */}
+          {/* LEFT — Heart + Progress */}
           <div className={Style.controlBoxFirstPart}>
-            <HeartBtn
-              iconColor="gray"
-              liked={isLiked}
-              onToggle={() => {
-                setIsLiked(!isLiked)
-              }}
-            />
+            <HeartBtn iconColor="gray" liked={false} onToggle={() => { /* lift state if needed */ }} />
 
             <div className={Style.rangeControlBox}>
               <span>{formatTime(isDragging ? previewTime : currentTime)}</span>
@@ -123,13 +69,10 @@ export default function Player({ playlist, initialIndex = 0 }: PlayerProps) {
                 aria-valuenow={isDragging ? previewTime : currentTime}
               >
                 <div className={Style.progressTrack}>
-                  <div
-                    className={Style.progressFill}
-                    style={{ width: `${progressPercent}%` }}
-                  />
+                  <div className={Style.progressFill} style={{ width: `${progressPercent}%` }} />
                   <div
                     className={Style.progressThumb}
-                    style={{ left: `${progressPercent}%` }}
+                    style={{ left: `calc(${progressPercent}% - 6px)` }}
                     onMouseDown={handleThumbMouseDown}
                   />
                 </div>
@@ -139,87 +82,67 @@ export default function Player({ playlist, initialIndex = 0 }: PlayerProps) {
             </div>
           </div>
 
-          {/* Right: info + controls + volume */}
+          {/* RIGHT — Info + Transport + Volume */}
           <div className={Style.controlBoxSecondPart}>
             {/* Track info */}
             <div className={Style.InfoBox}>
-              <span>{currentTrack?.title ?? "No Information"}</span>
-              <span>{currentTrack?.artistName ?? "No Information"}</span>
+              <span>{safeTrack.title ?? "No Information"}</span>
+              <span>{safeTrack.artistName ?? "No Information"}</span>
             </div>
 
-            {/* Transport controls */}
+            {/* Transport */}
             <div className={Style.functionalIconsBox}>
-              {/* (Optional) Shuffle – ჯერ ფუნქცია არ აქვს, მოგვიანებით */}
-              <button className={Style.functionalIconButton} onClick={shufflePLay} aria-label="Shuffle">
-                <Image
-                  src="/icons/Player/Shuflle.svg"
-                  alt="Shuflle"
-                  width={24}
-                  height={24}
-                  onClick={shufflePLay}
-                />
-              </button>
-
-              {/* Prev */}
               <button
-                className={Style.functionalIconButton}
-                onClick={prevTrack}
-                aria-label="Previous"
+                className={`${Style.functionalIconButton} ${isShuffle ? Style.shuffleBtnSctived : ""}`}
+                onClick={toggleShuffle}
+                aria-label="Shuffle"
+                title={isShuffle ? "Shuffle: ON" : "Shuffle: OFF"}
+                aria-pressed={isShuffle}
+                data-active={isShuffle ? "true" : "false"}
               >
-                <Image
-                  src="/icons/Player/PlayPrevious.svg"
-                  alt="PlayPrevious"
-                  width={24}
-                  height={24}
-                />
+                <Image src={"/icons/Player/Shuflle.svg"} alt="Shuffle" width={24} height={24} />
               </button>
 
-              {/* Play / Pause */}
+              <button className={Style.functionalIconButton} onClick={prevTrack} aria-label="Previous" title="Previous">
+                <Image src="/icons/Player/PlayPrevious.svg" alt="Previous" width={24} height={24} />
+              </button>
+
               <button
                 className={Style.PlayPauseButton}
-                onClick={togglePlay}
+                onClick={handlePlayPause}
                 aria-label={isPlaying ? "Pause" : "Play"}
+                title={isPlaying ? "Pause" : "Play"}
               >
                 <Image
                   src={isPlaying ? "/icons/Player/Pause.svg" : "/icons/Player/Play.svg"}
-                  alt="PlayPause"
+                  alt="Play/Pause"
                   width={48}
                   height={48}
                 />
               </button>
 
-              {/* Next */}
-              <button
-                className={Style.functionalIconButton}
-                onClick={nextTrack}
-                aria-label="Next"
-              >
-                <Image
-                  src="/icons/Player/PlayNext.svg"
-                  alt="PlayNext"
-                  width={24}
-                  height={24}
-                />
+              <button className={Style.functionalIconButton} onClick={nextTrack} aria-label="Next" title="Next">
+                <Image src="/icons/Player/PlayNext.svg" alt="Next" width={24} height={24} />
               </button>
 
-              {/* Repeat current track (as-is, შენი ჰუკიდან) */}
               <button
-                className={Style.functionalIconButton}
-                onClick={reapetSong}
+                className={`${Style.functionalIconButton} ${repeatMode === "one" ? Style.repeatBtnSctived : ""}`}
+                onClick={toggleRepeatMode}
                 aria-label="Repeat"
+                title={repeatMode === "one" ? "Repeat one" : "Repeat off"}
               >
-                <Image
-                  src="/icons/Player/Repeat.svg"
-                  alt="Repeat"
-                  width={24}
-                  height={24}
-                />
+                <Image src="/icons/Player/Repeat.svg" alt="Repeat" width={24} height={24} />
               </button>
             </div>
 
             {/* Volume */}
             <div className={Style.volumeControlBox}>
-              <button className={Style.functionalIconButton} onClick={toggleMute}>
+              <button
+                className={Style.functionalIconButton}
+                onClick={toggleMute}
+                aria-label={isMuted ? "Unmute" : "Mute"}
+                title={isMuted ? "Unmute" : "Mute"}
+              >
                 <Image
                   src={isMuted ? "/icons/Player/muted.svg" : "/icons/Player/Volume.svg"}
                   alt="Volume icon"
@@ -227,6 +150,7 @@ export default function Player({ playlist, initialIndex = 0 }: PlayerProps) {
                   height={24}
                 />
               </button>
+
               <input
                 type="range"
                 min={0}
@@ -236,7 +160,7 @@ export default function Player({ playlist, initialIndex = 0 }: PlayerProps) {
                 className={Style.slider}
                 aria-label="Volume"
                 style={{
-                  background: `linear-gradient(to right, white 0%, white ${volume}%, #444 ${volume}%, #444 100%)`,
+                  background: `linear-gradient(to right, #fff 0%, #fff ${volume}%, #444 ${volume}%, #444 100%)`,
                 }}
               />
             </div>
@@ -244,9 +168,13 @@ export default function Player({ playlist, initialIndex = 0 }: PlayerProps) {
         </div>
       </div>
 
-      {/* Audio element: დინამიკური წყარო აქტიური ტრეკიდან */}
-      <audio ref={audioRef} src={currentTrack.audioSrc} preload="metadata" onEnded={handleEnded} />
+      {/* Audio */}
+      <audio
+        ref={audioRef}
+        src={safeTrack.audioSrc}
+        preload="metadata"
+        onEnded={handleEnded}
+      />
     </div>
   );
 }
-console.log((0 - 1 + 4) % 4)

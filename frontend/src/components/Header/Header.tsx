@@ -4,7 +4,7 @@ import styles from "./Header.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import arrow from "@/../public/icons/Header/arrow.svg";
+import arrow from "@/../public/icons/Arrow/arrow.svg";
 import { useActiveTab } from "@/components/Context/ActiveTabContext";
 
 export default function Header() {

@@ -15,12 +15,15 @@
 }
 
 .musicPhoto {
-  position: relative;   /* ← fill-სთვის აუცილებელია */
+  position: relative;
+  /* ← fill-სთვის აუცილებელია */
   max-width: 88px;
   width: 100%;
-  aspect-ratio: 1 / 1;  /* ან height: 280px; როგორც გინდა */
+  aspect-ratio: 1 / 1;
+  /* ან height: 280px; როგორც გინდა */
   overflow: hidden;
-  border-radius: 12px;  /* სურვილისამებრ */
+  border-radius: 12px;
+  /* სურვილისამებრ */
 }
 
 .mainControlBox {
@@ -49,7 +52,7 @@
   width: 100%;
 }
 
-.rangeControlBox > input {
+.rangeControlBox>input {
   width: 100%;
 }
 
@@ -63,7 +66,7 @@
 
 .functionalIconsBox {
   display: flex;
-  gap: 16px;
+  gap: 8px;
   align-items: center;
 }
 
@@ -77,17 +80,36 @@
   background: none;
   border: none;
   cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
 }
 
+.shuffleBtnSctived {
+  background: $hawks-eye ;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.repeatBtnSctived{
+    background: $hawks-eye ;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .volumeControlBox {
   display: flex;
   align-items: center;
   gap: 4px;
 }
-.volumeControlBox button{
-position: relative;
-bottom: -2px;
+
+.volumeControlBox button {
+  position: relative;
+  bottom: -2px;
 }
+
 .PlayPauseButton {
   cursor: pointer;
   background: none;
@@ -245,4 +267,3 @@ bottom: -2px;
     border-radius: 4px;
   }
 }
-

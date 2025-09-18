@@ -18,7 +18,10 @@ function formatDuration(duration: number) {
   return `${minutes}:${seconds.toString().padStart(2, "0")}`;
 }
 
+
+
 export default function TopCharts({ title, artist, duration, imageUrl }: TopChartsProps) {
+  const [isLiked, setIsLiked] = useState(false);
   return (
     <div className={styles.TopChartsDiv}>
       <div className={styles.imgAndWrapperBox}>
@@ -36,7 +39,11 @@ export default function TopCharts({ title, artist, duration, imageUrl }: TopChar
 
         <div className={styles.buttons}>
           <div className={styles.buttonsWrapper}>
-            <HeartBtn iconColor="gray" />
+            <HeartBtn
+              iconColor="gray"
+              liked={isLiked}
+              onToggle={() => setIsLiked((v) => !v)}
+            />
             <ThreeDotsBtn iconColor="gray" />
           </div>
         </div>

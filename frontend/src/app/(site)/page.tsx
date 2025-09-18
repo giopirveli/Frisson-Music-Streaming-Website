@@ -8,6 +8,7 @@ import ArtistCard from "@/components/ArtistCard/ArtistCard";
 import Link from "next/link";
 
 export default function Home() {
+  
   return (
     <main className={styles.main}>
       <NewsComponent
@@ -20,7 +21,7 @@ export default function Home() {
         <div className={styles.topHitsSectionTextBox}>
           <h2>Top Hits</h2>
 
-          <Link href={"/topHitsPage"}>
+          <Link href={"/top-hits-page"}>
             <span>See all</span>
           </Link>
         </div>
@@ -51,7 +52,7 @@ export default function Home() {
       <section className={styles.topChartsSection}>
         <div className={styles.topChartsSectionTextBox}>
           <h2>Top Charts</h2>
-          <Link href={"/TopChartsPage"}>
+          <Link href={"/top-charts-page"}>
             <span>See all</span>
           </Link>
         </div>
@@ -86,7 +87,7 @@ export default function Home() {
       <section className={styles.albumSection}>
         <div className={styles.albumSectionTextBox}>
           <h2>Popular Albums</h2>
-          <Link href={"/AlbumPage"}>
+          <Link href={"/album-page"}>
             <span>See all</span>
           </Link>
         </div>
@@ -117,7 +118,7 @@ export default function Home() {
       <section className={styles.artistSection}>
         <div className={styles.artistSectionTextBox}>
           <h2>Popular Artists</h2>
-          <Link href={"/ArtistPage"}>
+          <Link href={"/artist-page"}>
             <span>See all</span>
           </Link>
         </div>
