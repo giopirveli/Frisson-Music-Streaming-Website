@@ -1,5 +1,5 @@
 "use client";
-import Button from "@/components/Button/Button";
+import Button from "@/components/Button/button";
 import plusIcon from "../../../../public/icons/Button/plusIcon.svg";
 import styles from "./page.module.scss";
 import Searchbar from "@/components/Searchbar/Searchbar";
@@ -39,7 +39,9 @@ export default function PlaylistPage() {
             <h1 className={styles.h1}>my playlists</h1>
             <div className={styles.searchbar}>
               <Searchbar placeholder="search in your album" />
-              <Button text="new playlist" icon={plusIcon} />
+              <div className={styles.addPlayListControl}>
+                <Button text="new playlist" icon={plusIcon} />
+              </div>
             </div>
           </div>
 
