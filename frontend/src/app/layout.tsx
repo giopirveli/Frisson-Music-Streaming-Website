@@ -24,12 +24,12 @@ const plusJakartaSans = localFont({
     {
       path: "./fonts/plusJakartaSans/PlusJakartaSans-VariableFont.woff",
       weight: "100 900",
-      style: "italic",
+      style: "normal",
     },
     {
       path: "./fonts/plusJakartaSans/PlusJakartaSans-VariableFont.woff2",
       weight: "100 900",
-      style: "italic",
+      style: "normal",
     },
   ],
   variable: "--font-jakarta",

@@ -36,7 +36,7 @@ export default function Sidebar() {
           />
           <NavItem href="/top-hits-page" icon="/icons/Sidebar/topHits.svg" label="top hits" />
           <NavItem
-            href="/top-charts-page "
+            href="/top-charts-page"
             icon="/icons/Sidebar/topCharts.svg"
             label="top charts"
           />
