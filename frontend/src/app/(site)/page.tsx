@@ -8,6 +8,7 @@ import ArtistCard from "@/components/ArtistCard/ArtistCard";
 import Link from "next/link";
 
 export default function Home() {
+  
   return (
     <main className={styles.main}>
       <NewsComponent
