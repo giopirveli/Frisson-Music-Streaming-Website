@@ -1,12 +1,10 @@
 import { Album } from 'src/album/entities/album.entity';
-import { Author } from 'src/author/entities/author.entity';
 import { BaseEntity } from 'src/common/base.entity';
 import { Listener } from 'src/listeners-table/entities/listeners-table.entity';
 import { User } from 'src/users/entities/user.entity';
 import {
   Column,
   Entity,
-  JoinColumn,
   ManyToMany,
   ManyToOne,
   OneToMany,
@@ -29,10 +27,6 @@ export class Music extends BaseEntity {
   @OneToMany(() => Listener, (listener) => listener.user)
   listeners: Listener[];
 
-  @ManyToOne(() => Author, (author) => author.music, { eager: true })
-  @JoinColumn({ name: 'authorId' })
-  author: Author;
-
   @ManyToOne(() => Album, (album) => album.music, { nullable: true })
   album: Album;
 
@@ -40,5 +34,5 @@ export class Music extends BaseEntity {
   user: User;
 
   @ManyToMany(() => User, (user) => user.likedMusic)
-  likedByUsers: User[]; 
+  likedByUsers: User[];
 }
