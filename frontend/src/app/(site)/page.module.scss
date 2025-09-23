@@ -6,6 +6,7 @@
   gap: 32px;
   padding: 0 24px;
 }
+
 // scroll bar
 
 
@@ -66,7 +67,7 @@
   @extend .ordinarySectionCardsBox;
 }
 
-.topHitsSectionCardsBox > * {
+.topHitsSectionCardsBox>* {
   flex: 1 0 220px;
 }
 
@@ -92,7 +93,7 @@
   @extend .ordinarySectionCardsBox;
 }
 
-.artistSectionCardsBox > * {
+.artistSectionCardsBox>* {
   flex: 1 0 220px;
 }
 
@@ -118,7 +119,7 @@
   @extend .ordinarySectionCardsBox;
 }
 
-.albumSectionCardsBox > * {
+.albumSectionCardsBox>* {
   flex: 1 0 220px;
 }
 
@@ -154,4 +155,14 @@
   & h2 {
     @extend .ordinarySectionH2;
   }
+}
+
+.topCharts {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 548px;
+  ;
+
 }
