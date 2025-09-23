@@ -2,23 +2,28 @@ import {
   Controller,
   Get,
   Post,
-  Body,
   Patch,
-  Param,
   Delete,
+  Param,
+  Body,
   ParseIntPipe,
+  Query,
 } from '@nestjs/common';
 import { MusicService } from './music.service';
 import { CreateMusicDto } from './dto/create-music.dto';
 import { UpdateMusicDto } from './dto/update-music.dto';
+import { SearchMusicDto } from 'src/search/dto/search-music.dto';
 
 @Controller('music')
 export class MusicController {
   constructor(private readonly musicService: MusicService) {}
 
-  @Post()
-  create(@Body() createMusicDto: CreateMusicDto) {
-    return this.musicService.create(createMusicDto);
+  @Post(':userId')
+  create(
+    @Param('userId', ParseIntPipe) userId: number,
+    @Body() createMusicDto: CreateMusicDto,
+  ) {
+    return this.musicService.create(userId, createMusicDto);
   }
 
   @Get()
@@ -26,21 +31,35 @@ export class MusicController {
     return this.musicService.findAll();
   }
 
+  @Get('search')
+  search(@Query() searchMusicDto: SearchMusicDto) {
+    return this.musicService.search(searchMusicDto.query);
+  }
+
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.musicService.findOne(id);
+    return this.musicService.findOneMusic(id);
   }
 
-  @Patch(':id')
+  @Get('user/:userId')
+  getUserMusic(@Param('userId', ParseIntPipe) userId: number) {
+    return this.musicService.getUserMusic(userId);
+  }
+
+  @Patch(':userId/:musicId')
   update(
-    @Param('id', ParseIntPipe) id: number,
+    @Param('userId', ParseIntPipe) userId: number,
+    @Param('musicId', ParseIntPipe) musicId: number,
     @Body() updateMusicDto: UpdateMusicDto,
   ) {
-    return this.musicService.update(id, updateMusicDto);
+    return this.musicService.updateMusic(userId, musicId, updateMusicDto);
   }
 
-  @Delete(':id')
-  delete(@Param('id', ParseIntPipe) id: number) {
-    return this.musicService.delete(id);
+  @Delete(':userId/:musicId')
+  deleteMusic(
+    @Param('userId', ParseIntPipe) userId: number,
+    @Param('musicId', ParseIntPipe) musicId: number,
+  ) {
+    return this.musicService.deleteMusic(userId, musicId);
   }
 }

@@ -7,10 +7,12 @@ import {
   Param,
   Delete,
   ParseIntPipe,
+  Query,
 } from '@nestjs/common';
 import { AuthorService } from './author.service';
 import { CreateAuthorDto } from './dto/create-author.dto';
 import { UpdateAuthorDto } from './dto/update-author.dto';
+import { SearchMusicDto } from 'src/search/dto/search-music.dto';
 
 @Controller('author')
 export class AuthorController {
@@ -24,6 +26,11 @@ export class AuthorController {
   @Get()
   findAll() {
     return this.authorService.findAll();
+  }
+
+  @Get('search')
+  search(@Query() searchMusicDto: SearchMusicDto) {
+    return this.authorService.search(searchMusicDto.query);
   }
 
   @Get(':id')

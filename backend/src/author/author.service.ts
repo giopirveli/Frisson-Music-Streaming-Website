@@ -27,6 +27,10 @@ export class AuthorService {
     return updated;
   }
 
+  async search(query: string) {
+    return this.authorRepo.search(query);
+  }
+
   async delete(id: number) {
     const author = await this.authorRepo.findOne(id);
     if (!author) throw new NotFoundException('Author not found');
