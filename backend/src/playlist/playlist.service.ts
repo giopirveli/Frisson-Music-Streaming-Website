@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { PlaylistRepository } from './playlist.repository';
 import { PlaylistType } from 'src/common/playlist.enum';
 import { Playlist } from './entities/playlist.entity';
@@ -16,12 +16,14 @@ export class PlaylistService {
       type: createPlaylistDto.type || PlaylistType.FAVORITES,
     };
     if (createPlaylistDto.musicId?.length) {
-      playlist.music = await this.playlistRepo.findMusicByIds(createPlaylistDto.musicId);
+      playlist.music = await this.playlistRepo.findMusicByIds(
+        createPlaylistDto.musicId,
+      );
     }
     return this.playlistRepo.create(playlist);
   }
 
-  async generate(userId: number, type: PlaylistType) {
+  async dynamic(userId: number, type: PlaylistType) {
     let music;
     switch (type) {
       case PlaylistType.FAVORITES:
@@ -59,7 +61,8 @@ export class PlaylistService {
     return this.playlistRepo.update(id, updatePlaylistDto);
   }
 
-  async delete(id: number) {
-    return this.playlistRepo.delete(id);
+  async delete(id: number): Promise<{ message: string }> {
+    await this.playlistRepo.delete(id);
+    return { message: 'Playlist successfully deleted' };
   }
 }
