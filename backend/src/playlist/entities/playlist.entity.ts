@@ -1,5 +1,5 @@
 import { BaseEntity } from 'src/common/base.entity';
-import { PlaylistType } from 'src/common/playlist.enum';
+import { PlaylistType } from 'src/playlist/playlist.enum';
 import { Music } from 'src/music/entities/music.entity';
 import { User } from 'src/users/entities/user.entity';
 import { Column, Entity, JoinTable, ManyToMany, ManyToOne } from 'typeorm';

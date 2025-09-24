@@ -21,6 +21,12 @@ export class MusicService {
     private readonly userRepo: Repository<User>,
   ) {}
 
+  async create(userId: number, createMusicDto: CreateMusicDto): Promise<Music> {
+    const user = await this.findUserOrFail(userId);
+    const music = this.musicRepo.create({ ...createMusicDto, user });
+    return this.musicRepo.save(music);
+  }
+
   async findMusicOrFail(musicId: number): Promise<Music> {
     const music = await this.musicRepo.findOne({
       where: { id: musicId },
@@ -34,12 +40,6 @@ export class MusicService {
     const user = await this.userRepo.findOneBy({ id: userId });
     if (!user) throw new NotFoundException('User not found');
     return user;
-  }
-
-  async create(userId: number, createMusicDto: CreateMusicDto): Promise<Music> {
-    const user = await this.findUserOrFail(userId);
-    const music = this.musicRepo.create({ ...createMusicDto, user });
-    return this.musicRepo.save(music);
   }
 
   async findAll(): Promise<Music[]> {
