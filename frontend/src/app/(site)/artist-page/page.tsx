@@ -9,6 +9,7 @@ import AlbumCard from "@/components/AlbumCard/AlbumCard";
 import photo from "../../../assets/images/table/albumphoto.png";
 import { usePathname } from "next/navigation";
 import { useActiveTab } from "@/components/Context/ActiveTabContext";
+import ArtistCard from "@/components/ArtistCard/ArtistCard";
 
 export default function ArtistPage() {
   const pathname = usePathname();
@@ -24,11 +25,12 @@ export default function ArtistPage() {
         <div className={styles.artistPage}>
           <h4>trending now</h4>
           <div className={styles.artistCard}>
-            <AlbumCard imageUrl={photo} onClick={() => setActiveTab(2)} title="taylor swift" />
-            <AlbumCard imageUrl={photo} onClick={() => setActiveTab(2)} title="bellie eilish" />
-            <AlbumCard imageUrl={photo} onClick={() => setActiveTab(2)} title="sza" />
-            <AlbumCard imageUrl={photo} onClick={() => setActiveTab(2)} title="ed sheeran" />
-            <AlbumCard imageUrl={photo} onClick={() => setActiveTab(2)} title="Ariana Grande" />
+            <ArtistCard imageUrl={photo} onClick={() => setActiveTab(2)} title="ed sheeran" />
+            <ArtistCard imageUrl={photo} onClick={() => setActiveTab(2)} title="sza" />
+            <ArtistCard imageUrl={photo} onClick={() => setActiveTab(2)} title="bellie eilish" />
+            <ArtistCard imageUrl={photo} onClick={() => setActiveTab(2)} title="taylor swift" />
+            <ArtistCard imageUrl={photo} onClick={() => setActiveTab(2)} title="bellie eilish" />
+            <ArtistCard imageUrl={photo} onClick={() => setActiveTab(2)} title="taylor swift" />
           </div>
         </div>
       )}

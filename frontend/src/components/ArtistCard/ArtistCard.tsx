@@ -1,7 +1,7 @@
 "use client";
 
-import styles from "../ArtistCard/ArtistCard.module.scss";
-import Image from "next/image";
+import styles from "./ArtistCard.module.scss";
+import Image, { StaticImageData } from "next/image";
 import { useState } from "react";
 import HeartBtn from "../HeartBtn/HeartBtn";
 import ThreeDotsBtn from "../ThreeDots/ThreeDotsBtn";
@@ -21,8 +21,8 @@ import {
 
 interface ArtistCardProps {
   title: string;
-  imageUrl: string;
-  onClick?: () => void;
+  imageUrl: string | StaticImageData;
+  onClick?: () => void;      // root card click (eg. გადადის artist page-ზე)
   hideHoverEfect?: boolean;
 }
 
@@ -36,25 +36,24 @@ export default function ArtistCard({
   const [isLiked, setIsLiked] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const PLAYER_H = 96; 
+  const PLAYER_H = 96;
 
   const { refs, floatingStyles, context } = useFloating({
     open: isMenuOpen,
     onOpenChange: setIsMenuOpen,
     placement: "bottom-end",
-    strategy: "fixed", // <- overlay όλაზე ზემოდან
+    strategy: "fixed",
     middleware: [
       offset(8),
       flip({
-        padding: PLAYER_H,                // ქვედა ზონას აფრთხილებ
-        fallbackPlacements: ["top-end"],  // თუ ქვედა ადგილი ცოტა არის — ზემოთ
+        padding: PLAYER_H,
+        fallbackPlacements: ["top-end"],
         fallbackStrategy: "bestFit",
       }),
-      shift({ padding: PLAYER_H }),       // კიდეებთან არ „ეკრას“, პლეერის ზონაც ითვლება
+      shift({ padding: PLAYER_H }),
     ],
     whileElementsMounted: autoUpdate,
   });
-
 
   const click = useClick(context, { event: "click" });
   const dismiss = useDismiss(context);
@@ -65,6 +64,7 @@ export default function ArtistCard({
     role,
   ]);
 
+  // helper to stop bubbling
   const stop = (e: React.SyntheticEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -77,7 +77,7 @@ export default function ArtistCard({
       className={styles.card}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onClick={onClick}
+      onClick={onClick} // ← root click (მაგ: ტაბს ცვლის ან გადადის გვერდზე)
     >
       <div className={`${styles.imageWrapper} ${isHovered ? styles.hoveredImgWrapper : ""}`}>
         <Image
@@ -91,6 +91,7 @@ export default function ArtistCard({
 
       {showHoverControls && (
         <div className={styles.heartButton}>
+          {/* HeartBtn — თავიდან ავიცილოთ root click */}
           <div className={styles.btnWhiteBackground} onMouseDown={stop} onClick={stop}>
             <HeartBtn
               iconColor={isLiked ? "black" : "gray"}
@@ -99,15 +100,13 @@ export default function ArtistCard({
             />
           </div>
 
-          {/* Reference wrapper — ვტოვებთ მხოლოდ stopPropagation-ს, ტოგლი ახდენს useClick */}
+          {/* ThreeDotsBtn — აქაც გავაჩეროთ bubbling */}
           <div
             ref={refs.setReference}
             {...getReferenceProps({
               className: styles.btnWhiteBackground,
-              onMouseDown: (e: any) => {
-                // IMPORTANT: არავითარი setIsMenuOpen აქ — თორემ ორჯერ ტოგლდება
-                stop(e);
-              },
+              onMouseDown: stop,
+              onClick: stop,   // ← მთავარი ფიქსი
               "aria-expanded": isMenuOpen,
               "aria-haspopup": "menu",
             })}
@@ -123,7 +122,7 @@ export default function ArtistCard({
             ref={refs.setFloating}
             {...getFloatingProps({
               style: { ...floatingStyles, zIndex: 99999 },
-              className: styles.threeDotsMeniuCoordinates, // შენს სახელებზე არ ვეხები
+              className: styles.threeDotsMeniuCoordinates,
               onMouseDown: stop,
               onClick: stop,
             })}

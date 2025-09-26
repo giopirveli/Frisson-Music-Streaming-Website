@@ -41,26 +41,26 @@ export default function AlbumCard({
   const [isHovered, setIsHovered] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const PLAYER_H = 96;
 
   const { refs, floatingStyles, context } = useFloating({
     open: isMenuOpen,
     onOpenChange: setIsMenuOpen,
     placement: "bottom-end",
-    strategy: "fixed", // <- overlay όλაზე ზემოდან
+    strategy: "fixed",
     middleware: [
       offset(8),
       flip({
-        padding: PLAYER_H,                // ქვედა ზონას აფრთხილებ
-        fallbackPlacements: ["top-end"],  // თუ ქვედა ადგილი ცოტა არის — ზემოთ
+        padding: PLAYER_H,
+        fallbackPlacements: ["top-end"],
         fallbackStrategy: "bestFit",
       }),
-      shift({ padding: PLAYER_H }),       // კიდეებთან არ „ეკრას“, პლეერის ზონაც ითვლება
+      shift({ padding: PLAYER_H }),
     ],
     whileElementsMounted: autoUpdate,
   });
 
-  // Interaction hooks: click toggle, outside-click/Escape dismiss, a11y role
   const click = useClick(context, { event: "click" });
   const dismiss = useDismiss(context);
   const role = useRole(context, { role: "menu" });
@@ -75,7 +75,6 @@ export default function AlbumCard({
     e.stopPropagation();
   };
 
-  // მენიუს გახსნისას კონტროლები მაინც ჩანდეს
   const showHoverControls = (isHovered || isMenuOpen) && !hideHoverEfect;
 
   return (
@@ -97,6 +96,7 @@ export default function AlbumCard({
 
         {showHoverControls && (
           <div className={styles.heartButton}>
+            {/* Heart – ბაბლინგის შეჩერება */}
             <div className={styles.btnWhiteBackground} onMouseDown={stop} onClick={stop}>
               <HeartBtn
                 liked={isLiked}
@@ -105,15 +105,14 @@ export default function AlbumCard({
               />
             </div>
 
-            {/* Reference wrapper — click toggle-ს უძღვება useClick; onMouseDown-ში მხოლოდ stopPropagation */}
+            {/* Three dots reference – მივამატეთ onClick და onPointerDown */}
             <div
               ref={refs.setReference}
               {...getReferenceProps({
                 className: styles.btnWhiteBackground,
-                onMouseDown: (e: any) => {
-                  // არ ვტოგლავთ აქ — თორემ ორჯერ ტოგლდება (mousedown+click)
-                  stop(e);
-                },
+                onMouseDown: stop,
+                onPointerDown: stop,     // მობაილისთვის bulletproof
+                onClick: stop,           // ← მთავარი ფიქსი
                 "aria-expanded": isMenuOpen,
                 "aria-haspopup": "menu",
               })}
@@ -129,7 +128,7 @@ export default function AlbumCard({
           <div
             ref={refs.setFloating}
             {...getFloatingProps({
-              style: { ...floatingStyles, zIndex: 9999 }, // პლეერზე მაღლა
+              style: { ...floatingStyles, zIndex: 9999 },
               className: styles.threeDotsMeniuCoordinates,
               onMouseDown: stop,
               onClick: stop,
@@ -148,3 +147,4 @@ export default function AlbumCard({
     </div>
   );
 }
+
