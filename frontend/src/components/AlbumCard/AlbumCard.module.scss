@@ -83,10 +83,12 @@
   position: relative;
   display: inline-block;
 }
-.TreeDotsMeniuCordinat{
-  position: absolute;
-  z-index: 9999;
-  bottom: -10%;
-  right: -70%;
-  width: 100%;
+.threeDotsMenuCoordinates {
+  position: absolute; // ან fixed; ორივე იმუშავებს portal-ში, მაგრამ absolute უფრო ბუნებრივია reference-თან
+  z-index: 999; // როგორც კოდში
+}
+.threeDotsBtn{
+@extend .btnWhiteBackground;
+width: 33px;
+height: 33px;
 }

@@ -1,10 +1,24 @@
 "use client";
+
 import styles from "../AlbumCard/AlbumCard.module.scss";
 import Image, { StaticImageData } from "next/image";
+import { useState } from "react";
 import HeartBtn from "../HeartBtn/HeartBtn";
 import ThreeDotsBtn from "../ThreeDots/ThreeDotsBtn";
-import ThreeDotsList from "../ThreeDots/ThreeDotsList";
-import { useEffect, useRef, useState } from "react";
+import ThreeDotsList from "../ThreeDotsList/ThreeDotsList";
+
+import {
+  useFloating,
+  offset,
+  flip,
+  shift,
+  autoUpdate,
+  FloatingPortal,
+  useClick,
+  useDismiss,
+  useRole,
+  useInteractions,
+} from "@floating-ui/react";
 
 interface AlbumCardProps {
   title: string;
@@ -18,37 +32,47 @@ interface AlbumCardProps {
 }
 
 export default function AlbumCard({
-  title, artist, imageUrl, onClick, hideHoverEfect = false,
+  title,
+  artist,
+  imageUrl,
+  onClick,
+  hideHoverEfect = false,
 }: AlbumCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
-  const [isTreeDotsMeniu, setisTreeDotsMeniu] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const dotsBtnRef = useRef<HTMLDivElement | null>(null);  // ღილაკის wrapper
-  const menuWrapRef = useRef<HTMLDivElement | null>(null); // მენიუს wrapper
+  // Floating UI — იგივე წესები რაც სხვა კარდებზე
+  const { refs, floatingStyles, context } = useFloating({
+    open: isMenuOpen,
+    onOpenChange: setIsMenuOpen,
+    placement: "bottom-end",
+    strategy: "fixed",               // პლეერზე/overlay-ზე ზემოთ
+    middleware: [
+      offset(8),
+      flip({ padding: 8 }),          // საჭიროებისას გადატრიალება
+      shift({ padding: 8 }),         // კიდეებთან არ ეკრას
+    ],
+    whileElementsMounted: autoUpdate,
+  });
 
-  // outside-click + Escape
-  useEffect(() => {
-    if (!isTreeDotsMeniu) return;
+  // Interaction hooks: click toggle, outside-click/Escape dismiss, a11y role
+  const click = useClick(context, { event: "click" });
+  const dismiss = useDismiss(context);
+  const role = useRole(context, { role: "menu" });
+  const { getReferenceProps, getFloatingProps } = useInteractions([
+    click,
+    dismiss,
+    role,
+  ]);
 
-    const onPointerDown = (e: PointerEvent) => {
-      const t = e.target as Node | null;
-      const onMenu = menuWrapRef.current?.contains(t) ?? false;
-      const onBtn = dotsBtnRef.current?.contains(t) ?? false;
-      if (!onMenu && !onBtn) setisTreeDotsMeniu(false);
-    };
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setisTreeDotsMeniu(false); };
+  const stop = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
 
-    window.addEventListener("pointerdown", onPointerDown, { capture: true });
-    window.addEventListener("keydown", onKey);
-    return () => {
-      window.removeEventListener("pointerdown", onPointerDown, { capture: true });
-      window.removeEventListener("keydown", onKey);
-    };
-  }, [isTreeDotsMeniu]);
-
-  const showHoverControls = isHovered && !hideHoverEfect;
-  const stopClick = (e: React.MouseEvent) => { e.preventDefault(); e.stopPropagation(); };
+  // მენიუს გახსნისას კონტროლები მაინც ჩანდეს
+  const showHoverControls = (isHovered || isMenuOpen) && !hideHoverEfect;
 
   return (
     <div
@@ -56,57 +80,67 @@ export default function AlbumCard({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={onClick}
-      style={{ position: "relative" }} // აუცილებელია absolute ელემენტებისთვის
     >
       <div className={styles.imageWrapperBox}>
         <div className={`${styles.imageWrapper} ${isHovered ? styles.hoveredImgWrapper : ""}`}>
-          <Image src={imageUrl} alt={`${title}${artist ? ` — ${artist}` : ""}`} className={styles.musicImage} fill />
+          <Image
+            src={imageUrl}
+            alt={`${title}${artist ? ` — ${artist}` : ""}`}
+            className={styles.musicImage}
+            fill
+          />
         </div>
 
         {showHoverControls && (
           <div className={styles.heartButton}>
-            <div className={styles.btnWhiteBackground} onMouseDown={(e) => e.stopPropagation()} onClick={stopClick}>
+            <div className={styles.btnWhiteBackground} onMouseDown={stop} onClick={stop}>
               <HeartBtn
                 liked={isLiked}
                 iconColor={isLiked ? "black" : "gray"}
-                onToggle={() => setIsLiked(v => !v)}
+                onToggle={() => setIsLiked((v) => !v)}
               />
             </div>
 
-            {/* ღილაკის wrapper + ref */}
+            {/* Reference wrapper — click toggle-ს უძღვება useClick; onMouseDown-ში მხოლოდ stopPropagation */}
             <div
-              ref={dotsBtnRef}
-              className={styles.btnWhiteBackground}
-              onMouseDown={(e) => e.stopPropagation()}
-              onClick={stopClick}
+              ref={refs.setReference}
+              {...getReferenceProps({
+                className: styles.btnWhiteBackground,
+                onMouseDown: (e: any) => {
+                  // არ ვტოგლავთ აქ — თორემ ორჯერ ტოგლდება (mousedown+click)
+                  stop(e);
+                },
+                "aria-expanded": isMenuOpen,
+                "aria-haspopup": "menu",
+              })}
             >
-              <ThreeDotsBtn
-                iconColor="black"
-                open={isTreeDotsMeniu}
-                onToggle={() => setisTreeDotsMeniu(v => !v)}
-              />
+              <ThreeDotsBtn iconColor="black" open={isMenuOpen} />
             </div>
           </div>
         )}
       </div>
 
-      {/* მენიუს wrapper + ref + stopPropagation */}
-      {isTreeDotsMeniu && (
-        <div
-          ref={menuWrapRef}
-         className={styles.TreeDotsMeniuCordinat}
-          onMouseDown={(e) => e.stopPropagation()}
-          onClick={(e) => e.stopPropagation()}
-        >
-          <ThreeDotsList />
-        </div>
-      )
-      }
+      {isMenuOpen && (
+        <FloatingPortal>
+          <div
+            ref={refs.setFloating}
+            {...getFloatingProps({
+              style: { ...floatingStyles, zIndex: 9999 }, // პლეერზე მაღლა
+              className: styles.threeDotsMeniuCoordinates,
+              onMouseDown: stop,
+              onClick: stop,
+            })}
+            data-open="true"
+          >
+            <ThreeDotsList />
+          </div>
+        </FloatingPortal>
+      )}
 
       <div className={styles.textWrapper}>
         {artist && <p className={styles.textBottom}>{artist}</p>}
         <p className={styles.textTop}>{title}</p>
       </div>
-    </div >
+    </div>
   );
 }

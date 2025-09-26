@@ -9,7 +9,6 @@
   max-width: calc(100vw - 280px - var(--scrollbar-width, 0px));
   width: 100%;
   text-align: left;
-  overflow-x: auto;
 }
 
 // list
@@ -126,7 +125,7 @@
 .imageWrapper {
   padding: 10px;
 
-  & > img {
+  &>img {
     width: 100%;
     max-width: 48px;
     height: 48px;

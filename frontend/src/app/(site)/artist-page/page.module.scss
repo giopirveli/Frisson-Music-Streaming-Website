@@ -29,13 +29,6 @@
   grid-template-columns: repeat(5, 1fr);
   gap: 16px;
 
-  & img {
-    border-radius: 9999px;
-    width: 100%;
-    max-width: 234px;
-    height: 228px;
-  }
-
   & > div {
     max-width: 266px;
     width: 100%;

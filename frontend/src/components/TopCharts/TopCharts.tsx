@@ -4,6 +4,20 @@ import styles from "../TopCharts/TopCharts.module.scss";
 import Image from "next/image";
 import HeartBtn from "../HeartBtn/HeartBtn";
 import ThreeDotsBtn from "../ThreeDots/ThreeDotsBtn";
+import ThreeDotsList from "../ThreeDotsList/ThreeDotsList";
+
+import {
+  useFloating,
+  offset,
+  flip,
+  shift,
+  autoUpdate,
+  FloatingPortal,
+  useClick,
+  useDismiss,
+  useRole,
+  useInteractions,
+} from "@floating-ui/react";
 
 interface TopChartsProps {
   title: string;
@@ -18,10 +32,38 @@ function formatDuration(duration: number) {
   return `${minutes}:${seconds.toString().padStart(2, "0")}`;
 }
 
-
-
 export default function TopCharts({ title, artist, duration, imageUrl }: TopChartsProps) {
   const [isLiked, setIsLiked] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Floating UI — ზუსტი იგივე ქცევა, რაც სხვა კარდებზე
+  const { refs, floatingStyles, context } = useFloating({
+    open: isMenuOpen,
+    onOpenChange: setIsMenuOpen,
+    placement: "bottom-end",
+    strategy: "fixed",
+    middleware: [
+      offset(8),
+      flip({ padding: 8 }),
+      shift({ padding: 8 }),
+    ],
+    whileElementsMounted: autoUpdate,
+  });
+
+  const click = useClick(context, { event: "click" });
+  const dismiss = useDismiss(context); // გარეთ-კლიკი/Escape
+  const role = useRole(context, { role: "menu" });
+  const { getReferenceProps, getFloatingProps } = useInteractions([
+    click,
+    dismiss,
+    role,
+  ]);
+
+  const stop = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
   return (
     <div className={styles.TopChartsDiv}>
       <div className={styles.imgAndWrapperBox}>
@@ -44,8 +86,35 @@ export default function TopCharts({ title, artist, duration, imageUrl }: TopChar
               liked={isLiked}
               onToggle={() => setIsLiked((v) => !v)}
             />
-            <ThreeDotsBtn iconColor="gray" />
+
+            {/* სამი დოთსის ღილაკი — ref + getReferenceProps; mousedown-ში მხოლოდ stop */}
+            <div
+              ref={refs.setReference}
+              {...getReferenceProps({
+                onMouseDown: (e: any) => stop(e),
+                "aria-expanded": isMenuOpen,
+                "aria-haspopup": "menu",
+              })}
+            >
+              <ThreeDotsBtn iconColor="gray" open={isMenuOpen} />
+            </div>
           </div>
+
+          {isMenuOpen && (
+            <FloatingPortal>
+              <div
+                ref={refs.setFloating}
+                {...getFloatingProps({
+                  style: { ...floatingStyles, zIndex: 999 },
+                  className: styles.threeDotsMeniuCoordinates,
+                  onMouseDown: stop,
+                  onClick: stop,
+                })}
+              >
+                <ThreeDotsList />
+              </div>
+            </FloatingPortal>
+          )}
         </div>
       </div>
     </div>

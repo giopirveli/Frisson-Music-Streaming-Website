@@ -119,7 +119,6 @@ export default function Table({ id, pic, name, album, time, liked, artist, biogr
               and reached number 39 on the Hot Dance/Electronic Songs chart. Her debut album I Hear
               You was released in July, 2024 through XL Recordings.
             </p>
-ნ
 
           </div>
         </div>
