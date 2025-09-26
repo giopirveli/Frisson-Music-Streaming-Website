@@ -23,7 +23,6 @@ export default function PlaylistPage() {
   const { activeTab, setActiveTab } = useActiveTab();
   const pathname = usePathname();
 
-  // 👇 დროებით ლოკალური წყარო (საჭიროებისას შეცვლი fetch-ით/Server Actions-ით)
   const albums: Album[] = [];
 
   // Reset activeTab to 1 when navigating back to this page
@@ -46,7 +45,6 @@ export default function PlaylistPage() {
           </div>
 
           <div className={styles.albumCard}>
-            {/* 7 static playlists */}
             {[...Array(7)].map((_, i) => (
               <PlaylistComponent
                 key={i}
@@ -56,7 +54,6 @@ export default function PlaylistPage() {
               />
             ))}
 
-            {/* Dynamic mapping for backend albums */}
             {albums.map((album, i) => (
               <PlaylistComponent
                 key={i + 100}
@@ -77,6 +74,7 @@ export default function PlaylistPage() {
             title={albums[0]?.albumName || "playlist 1"}
           />
           <div className={`ocdatormeti cflex`}>
+            {/* Keep page searchbar here */}
             <Searchbar />
             <Table />
           </div>

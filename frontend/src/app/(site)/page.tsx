@@ -61,7 +61,6 @@ export default function Home() {
                 imageUrl="/Images/TopCharts/TopChartsImage.jpg"
                 duration={345}
               />
-              <input type="file" />
             </div>
 
           )

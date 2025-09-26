@@ -5,28 +5,14 @@ import { useEffect, useState } from "react";
 import { Colors } from "../../../../styles/colors.enum";
 import styles from "./page.module.scss";
 import Table from "@/components/Table/Table";
-import ArtistCard from "@/components/ArtistCard/ArtistCard";
 import AlbumCard from "@/components/AlbumCard/AlbumCard";
 import photo from "../../../assets/images/table/albumphoto.png";
 import { usePathname } from "next/navigation";
 import { useActiveTab } from "@/components/Context/ActiveTabContext";
 
-interface Song {
-  id?: number | string;
-  pic?: string;
-  name?: string;
-  album?: string;
-  time?: string;
-  liked?: boolean;
-  artist?: string; // for bio
-  biography?: string;
-}
-
-// ✅ props ამოღებულია page-ის სიგნატურიდან
 export default function ArtistPage() {
-   const pathname = usePathname();
-  const [songs, setSongs] = useState<Song[]>([]);
-  const {activeTab ,setActiveTab} = useActiveTab();
+  const pathname = usePathname();
+  const { activeTab, setActiveTab } = useActiveTab();
 
   useEffect(() => {
     setActiveTab(1);
@@ -43,11 +29,6 @@ export default function ArtistPage() {
             <AlbumCard imageUrl={photo} onClick={() => setActiveTab(2)} title="sza" />
             <AlbumCard imageUrl={photo} onClick={() => setActiveTab(2)} title="ed sheeran" />
             <AlbumCard imageUrl={photo} onClick={() => setActiveTab(2)} title="Ariana Grande" />
-
-            {/* backend-ისთვის:
-            {songs.map((song) => (
-              <ArtistCard key={song.id} onClick={() => setActiveTab(2)} imageUrl={song.pic} title={song.artist} />
-            ))} */}
           </div>
         </div>
       )}
