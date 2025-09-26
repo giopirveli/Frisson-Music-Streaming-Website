@@ -22,6 +22,7 @@ export default function AlbumPage() {
 
   return (
     <main className={styles.main}>
+      <h4>trending now</h4>
       {activeTab === 1 && (
         <div className="albumCard">
           {albums.map((_, i) => (

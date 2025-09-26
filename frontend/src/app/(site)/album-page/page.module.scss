@@ -1,6 +1,16 @@
+@use "../../../../styles/colors" as *;
 .main {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 16px;
   padding: 0 24px;
+    & h4 {
+    color: $white;
+    font-family: var(--font-jakarta), sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 100%;
+    /* 20px */
+  }
 }
