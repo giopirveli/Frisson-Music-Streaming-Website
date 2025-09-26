@@ -6,9 +6,10 @@ import TopCharts from "@/components/TopCharts/TopCharts";
 import AlbumCard from "@/components/AlbumCard/AlbumCard";
 import ArtistCard from "@/components/ArtistCard/ArtistCard";
 import Link from "next/link";
+import "@/../styles/Defaults/defaultGrid.scss";
 
 export default function Home() {
-  
+
   return (
     <main className={styles.main}>
       <NewsComponent
@@ -25,27 +26,15 @@ export default function Home() {
             <span>See all</span>
           </Link>
         </div>
-        <div className={styles.topHitsSectionCardsBox}>
-          <MusicCard
-            title="Anyma"
-            artist="Genesys II"
-            imageUrl="/Images/MusicCard/MusicCardPhoto.jpg"
-          />
-          <MusicCard
-            title="Anyma"
-            artist="Genesys II"
-            imageUrl="/Images/MusicCard/MusicCardPhoto.jpg"
-          />
-          <MusicCard
-            title="Anyma"
-            artist="Genesys II"
-            imageUrl="/Images/MusicCard/MusicCardPhoto.jpg"
-          />
-          <MusicCard
-            title="Anyma"
-            artist="Genesys II"
-            imageUrl="/Images/MusicCard/MusicCardPhoto.jpg"
-          />
+        <div className={`scrollbar`}> {/*styles.topHitsSectionCardsBox*/}
+
+          {Array.from({ length: 9 }).map((_, i) =>
+            <MusicCard key={i}
+              title="Anyma"
+              artist="Genesys II"
+              imageUrl="/Images/MusicCard/MusicCardPhoto.jpg"
+            />
+          )}
         </div>
       </section>
 
@@ -56,31 +45,28 @@ export default function Home() {
             <span>See all</span>
           </Link>
         </div>
-        <div className={styles.topChartSectionCardsBox}>
-          <TopCharts
-            title="Sugar (feat. Francesco)"
-            artist="By Robin Schulz"
-            imageUrl="/Images/TopCharts/TopChartsImage.jpg"
-            duration={345}
-          />
-          <TopCharts
-            title="Sugar (feat. Francesco)"
-            artist="By Robin Schulz"
-            imageUrl="/Images/TopCharts/TopChartsImage.jpg"
-            duration={345}
-          />
-          <TopCharts
-            title="Sugar (feat. Francesco)"
-            artist="By Robin Schulz"
-            imageUrl="/Images/TopCharts/TopChartsImage.jpg"
-            duration={345}
-          />
-          <TopCharts
-            title="Sugar (feat. Francesco)"
-            artist="By Robin Schulz"
-            imageUrl="/Images/TopCharts/TopChartsImage.jpg"
-            duration={345}
-          />
+        <div className={` scrollbar`}>
+
+          {Array.from({ length: 9 }).map((_, i) =>
+            <div className={styles.topCharts} key={i}>
+              <TopCharts
+                title="Sugar (feat. Francesco)"
+                artist="By Robin Schulz"
+                imageUrl="/Images/TopCharts/TopChartsImage.jpg"
+                duration={345}
+              />
+              <TopCharts
+                title="Sugar (feat. Francesco)"
+                artist="By Robin Schulz"
+                imageUrl="/Images/TopCharts/TopChartsImage.jpg"
+                duration={345}
+              />
+            </div>
+
+          )
+          }
+
+
         </div>
       </section>
 
@@ -91,27 +77,18 @@ export default function Home() {
             <span>See all</span>
           </Link>
         </div>
-        <div className={styles.albumSectionCardsBox}>
-          <AlbumCard
-            title="Of Monsters And Men"
-            artist="Fever Dream"
-            imageUrl="/Images/AlbumCard/AlbumPhoto.jpg"
-          />
-          <AlbumCard
-            title="Of Monsters And Men"
-            artist="Fever Dream"
-            imageUrl="/Images/AlbumCard/AlbumPhoto.jpg"
-          />
-          <AlbumCard
-            title="Of Monsters And Men"
-            artist="Fever Dream"
-            imageUrl="/Images/AlbumCard/AlbumPhoto.jpg"
-          />
-          <AlbumCard
-            title="Of Monsters And Men"
-            artist="Fever Dream"
-            imageUrl="/Images/AlbumCard/AlbumPhoto.jpg"
-          />
+        <div className={`scrollbar`}>
+          {Array.from({ length: 9 }).map((_, i) =>
+            <AlbumCard key={i}
+              title="Of Monsters And Men"
+              artist="Fever Dream"
+              imageUrl="/Images/AlbumCard/AlbumPhoto.jpg"
+            />
+          )
+          }
+
+
+
         </div>
       </section>
 
@@ -122,11 +99,11 @@ export default function Home() {
             <span>See all</span>
           </Link>
         </div>
-        <div className={styles.artistSectionCardsBox}>
-          <ArtistCard title="Billie Eilish" imageUrl="/Images/ArtistCard/ArtistPhoto.jpg" />
-          <ArtistCard title="Billie Eilish" imageUrl="/Images/ArtistCard/ArtistPhoto.jpg" />
-          <ArtistCard title="Billie Eilish" imageUrl="/Images/ArtistCard/ArtistPhoto.jpg" />
-          <ArtistCard title="Billie Eilish" imageUrl="/Images/ArtistCard/ArtistPhoto.jpg" />
+        <div className={`scrollbar`}>
+          {Array.from({ length: 9 }).map((_, i) =>
+            <ArtistCard title="Billie Eilish" key={i} imageUrl="/Images/ArtistCard/ArtistPhoto.jpg" />
+          )}
+
         </div>
       </section>
     </main>

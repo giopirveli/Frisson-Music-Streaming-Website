@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Like, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { Album } from './entities/album.entity';
 import { CreateAlbumDto } from './dto/create-album.dto';
 import { UpdateAlbumDto } from './dto/update-album.dto';
@@ -38,14 +38,24 @@ export class AlbumRepository {
     return await this.albumRepo.save(album);
   }
 
+  async search(query: string): Promise<Album[]> {
+    const qb = this.albumRepo
+      .createQueryBuilder('album')
+      .leftJoinAndSelect('album.author', 'author')
+      .leftJoinAndSelect('album.music', 'music');
+
+    if (query) {
+      qb.where('album.title LIKE :query', { query: `%${query}%` })
+        .orWhere('author.name LIKE :query', { query: `%${query}%` })
+        .orWhere('music.title LIKE :query', { query: `%${query}%` });
+    } else {
+      return [];
+    }
+
+    return qb.getMany();
+  }
+  
   async delete(id: number): Promise<void> {
     await this.albumRepo.delete(id);
-  }
-
-  async search(query: string): Promise<Album[]> {
-    return await this.albumRepo.find({
-      where: { title: Like(`%${query || ''}%`) },
-      relations: ['author', 'music'],
-    });
   }
 }

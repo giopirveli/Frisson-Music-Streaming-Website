@@ -1,12 +1,14 @@
 "use client";
+
 import NewsComponent from "@/components/NewsComponent/NewsComponent";
 import styles from "./page.module.scss";
 import SongListTable from "@/components/SongListTable/SongListTable";
 import { useEffect, useMemo, useCallback } from "react";
 import AlbumCard from "@/components/AlbumCard/AlbumCard";
 import photo from "../../../assets/images/table/albumphoto.png";
-import "@/../styles/defaults/defaultGrid.scss";
 import { useActiveTab } from "@/components/Context/ActiveTabContext";
+import "@/../styles/defaults/defaultGrid.scss";
+
 
 export default function AlbumPage() {
   const { activeTab, setActiveTab } = useActiveTab();
