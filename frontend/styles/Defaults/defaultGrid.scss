@@ -56,7 +56,12 @@
 
   &>div {
     flex: 0 0 auto;
-    margin-bottom:16px;
+    margin-bottom: 16px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    scrollbar-color: aqua;
+    width:8px
   }
 
 }
