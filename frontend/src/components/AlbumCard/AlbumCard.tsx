@@ -41,17 +41,21 @@ export default function AlbumCard({
   const [isHovered, setIsHovered] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const PLAYER_H = 96;
 
-  // Floating UI — იგივე წესები რაც სხვა კარდებზე
   const { refs, floatingStyles, context } = useFloating({
     open: isMenuOpen,
     onOpenChange: setIsMenuOpen,
     placement: "bottom-end",
-    strategy: "fixed",               // პლეერზე/overlay-ზე ზემოთ
+    strategy: "fixed", // <- overlay όλაზე ზემოდან
     middleware: [
       offset(8),
-      flip({ padding: 8 }),          // საჭიროებისას გადატრიალება
-      shift({ padding: 8 }),         // კიდეებთან არ ეკრას
+      flip({
+        padding: PLAYER_H,                // ქვედა ზონას აფრთხილებ
+        fallbackPlacements: ["top-end"],  // თუ ქვედა ადგილი ცოტა არის — ზემოთ
+        fallbackStrategy: "bestFit",
+      }),
+      shift({ padding: PLAYER_H }),       // კიდეებთან არ „ეკრას“, პლეერის ზონაც ითვლება
     ],
     whileElementsMounted: autoUpdate,
   });
