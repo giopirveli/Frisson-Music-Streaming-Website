@@ -2,8 +2,8 @@
 
 .ListboxContainer {
     display: flex;
-    justify-content: center;
-    z-index: 9999;
+    justify-content: flex-end;
+    z-index: 999;
     width: 100%;
 }
 
@@ -36,11 +36,10 @@
     flex-direction: column;
     gap: 6px;
     background: #29292E;
-    max-width: 200px;
-    width: 100%;
+    max-width: 200px !important;
+    width: 100% !important;
     border-radius: 8px;
-    padding: 16px;
-    width: 100%;
+    padding: 12px;
 }
 
 .ListboxBtn img {
@@ -58,7 +57,7 @@
     border-radius: 8px;
     gap: 16px;
     padding: 16px 0px 16px 16px;
-    max-width: 240px;
+    max-width: 220px;
 }
 
 .backBtn {
@@ -79,6 +78,7 @@
     font-weight: 500;
     font-family: var(--font-jakarta), sans-serif;
     width: 100%;
+    padding-right: 16px;
 }
 
 .playListboxContentForm {
@@ -145,16 +145,44 @@
     background-color: #3E3E3E;
 }
 
-.playListboxContent {
-    width: 100%;
-}
-
 .playListboxContentForm button {
     margin-top: 8px;
     width: 100%;
     z-index: 9999;
 }
 
+
+
+
+
+/* მენიუს საერთო კეისი */
+.ListboxContainer {
+    inline-size: 280px;
+    /* იგივე რაც width */
+    /* შეგიძლია ცვლადიც: --menu-w: 280px; და მერე inline-size: var(--menu-w); */
+    padding: 8px;
+}
+
+/* ყველა ტაბის root უნდა მიღებდეს მთლიან სიგანეს */
+.Listbox,
+.playListbox,
 .CreatePlaylistCard {
-   width: 100%;
+    inline-size: 100%;
+}
+
+/* თუ „Add to playlists“-ში სია დიდია, შეზღუდე სიმაღლე */
+.playListboxContent {
+    max-block-size: 260px;
+    /* height limit */
+    overflow: auto;
+    width: 100%;
+}
+
+/* ღილაკები, ჰედერები და სხვ. რომ სიგანით არ გატყდეს */
+.ListboxBtn,
+.addPlayList,
+.playListboxHeader,
+.playListboxContentForm {
+    width: 100%;
+    box-sizing: border-box;
 }

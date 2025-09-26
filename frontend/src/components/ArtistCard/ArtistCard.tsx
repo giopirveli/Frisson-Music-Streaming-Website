@@ -1,27 +1,76 @@
 "use client";
+
 import styles from "../ArtistCard/ArtistCard.module.scss";
 import Image from "next/image";
+import { useState } from "react";
 import HeartBtn from "../HeartBtn/HeartBtn";
 import ThreeDotsBtn from "../ThreeDots/ThreeDotsBtn";
-import { useState } from "react";
+import ThreeDotsList from "../ThreeDotsList/ThreeDotsList";
+import {
+  useFloating,
+  offset,
+  flip,
+  shift,
+  autoUpdate,
+  FloatingPortal,
+  useClick,
+  useDismiss,
+  useRole,
+  useInteractions,
+} from "@floating-ui/react";
 
 interface ArtistCardProps {
   title: string;
   imageUrl: string;
-  onClick?: () => void;       
-  hideHoverEfect?: boolean;   
+  onClick?: () => void;
+  hideHoverEfect?: boolean;
 }
 
-export default function ArtistCard({ title, imageUrl, onClick, hideHoverEfect = false }: ArtistCardProps) {
+export default function ArtistCard({
+  title,
+  imageUrl,
+  onClick,
+  hideHoverEfect = false,
+}: ArtistCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const showHoverControls = isHovered && !hideHoverEfect;
+  const PLAYER_H = 96; 
 
-  const stopClick = (e: React.MouseEvent) => {
+  const { refs, floatingStyles, context } = useFloating({
+    open: isMenuOpen,
+    onOpenChange: setIsMenuOpen,
+    placement: "bottom-end",
+    strategy: "fixed", // <- overlay όλაზე ზემოდან
+    middleware: [
+      offset(8),
+      flip({
+        padding: PLAYER_H,                // ქვედა ზონას აფრთხილებ
+        fallbackPlacements: ["top-end"],  // თუ ქვედა ადგილი ცოტა არის — ზემოთ
+        fallbackStrategy: "bestFit",
+      }),
+      shift({ padding: PLAYER_H }),       // კიდეებთან არ „ეკრას“, პლეერის ზონაც ითვლება
+    ],
+    whileElementsMounted: autoUpdate,
+  });
+
+
+  const click = useClick(context, { event: "click" });
+  const dismiss = useDismiss(context);
+  const role = useRole(context, { role: "menu" });
+  const { getReferenceProps, getFloatingProps } = useInteractions([
+    click,
+    dismiss,
+    role,
+  ]);
+
+  const stop = (e: React.SyntheticEvent) => {
     e.preventDefault();
     e.stopPropagation();
   };
+
+  const showHoverControls = (isHovered || isMenuOpen) && !hideHoverEfect;
 
   return (
     <div
@@ -42,18 +91,47 @@ export default function ArtistCard({ title, imageUrl, onClick, hideHoverEfect = 
 
       {showHoverControls && (
         <div className={styles.heartButton}>
-          <div className={styles.btnWhiteBackground} onMouseDown={(e) => e.stopPropagation()} onClick={stopClick}>
+          <div className={styles.btnWhiteBackground} onMouseDown={stop} onClick={stop}>
             <HeartBtn
-              liked={isLiked}
               iconColor={isLiked ? "black" : "gray"}
-              onToggle={() => setIsLiked((prev) => !prev)}
+              liked={isLiked}
+              onToggle={() => setIsLiked((v) => !v)}
             />
           </div>
 
-          <div className={styles.btnWhiteBackground} onMouseDown={(e) => e.stopPropagation()} onClick={stopClick}>
-            <ThreeDotsBtn iconColor="black" />
+          {/* Reference wrapper — ვტოვებთ მხოლოდ stopPropagation-ს, ტოგლი ახდენს useClick */}
+          <div
+            ref={refs.setReference}
+            {...getReferenceProps({
+              className: styles.btnWhiteBackground,
+              onMouseDown: (e: any) => {
+                // IMPORTANT: არავითარი setIsMenuOpen აქ — თორემ ორჯერ ტოგლდება
+                stop(e);
+              },
+              "aria-expanded": isMenuOpen,
+              "aria-haspopup": "menu",
+            })}
+          >
+            <ThreeDotsBtn iconColor="black" open={isMenuOpen} />
           </div>
         </div>
+      )}
+
+      {isMenuOpen && (
+        <FloatingPortal>
+          <div
+            ref={refs.setFloating}
+            {...getFloatingProps({
+              style: { ...floatingStyles, zIndex: 99999 },
+              className: styles.threeDotsMeniuCoordinates, // შენს სახელებზე არ ვეხები
+              onMouseDown: stop,
+              onClick: stop,
+            })}
+            data-open="true"
+          >
+            <ThreeDotsList />
+          </div>
+        </FloatingPortal>
       )}
 
       <div className={styles.textWrapper}>

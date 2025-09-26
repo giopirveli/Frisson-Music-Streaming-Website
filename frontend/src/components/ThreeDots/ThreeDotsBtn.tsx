@@ -2,6 +2,7 @@
 "use client";
 import Style from "./ThreeDotsBtn.module.scss";
 import Image from "next/image";
+import { forwardRef } from "react";
 
 type IconColor = "gray" | "white" | "black";
 
@@ -11,24 +12,32 @@ const iconSrc: Record<IconColor, string> = {
   white: "/icons/ThreeDots/whiteThreeDots.svg",
 };
 
-export default function ThreeDotsBtn({
-  iconColor = "white",
-  open = false,
-  onToggle,
-}: {
+interface ThreeDotsBtnProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   iconColor?: IconColor;
   open?: boolean;
-  onToggle?: () => void;
-}) {
-  return (
-    <button
-      type="button"
-      className={Style.threeDotsBtn}
-      aria-haspopup="menu"
-      aria-expanded={open}
-      onClick={onToggle}
-    >
-      <Image alt="More options" src={iconSrc[iconColor]} width={24} height={24} />
-    </button>
-  );
 }
+
+const ThreeDotsBtn = forwardRef<HTMLButtonElement, ThreeDotsBtnProps>(
+  ({ iconColor = "white", open = false, ...rest }, ref) => {
+    return (
+      <button
+        ref={ref}
+        type="button"
+        className={Style.threeDotsBtn}
+        aria-haspopup="menu"
+        aria-expanded={open}
+        {...rest}
+      >
+        <Image
+          alt="More options"
+          src={iconSrc[iconColor]}
+          width={24}
+          height={24}
+        />
+      </button>
+    );
+  }
+);
+
+ThreeDotsBtn.displayName = "ThreeDotsBtn";
+export default ThreeDotsBtn;

@@ -60,10 +60,57 @@
   top: 170px;
 }
 
-.btnWhiteBackground {
+.btnWhiteBackground{
   background-color: $white;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+
+.threeDotsMeniuCoordinates {
+  position: absolute;
+  z-index: 9999;
+  bottom: -10%;
+  right: -52%;
+  width: 100%;
+}
+
+/* მენიუ — პოზიციონირება აკეთებს JS, აქ მხოლოდ ვიზუალია */
+.threeDotsMeniuCoordinates {
+  pointer-events: auto;
+  z-index: 2000;
+  /* გაზარდე თუ რამე ფარავს */
+}
+
+/* სურვილისამებრ: რბილი გამოჩენა */
+.threeDotsMeniuCoordinates {
+  opacity: 0;
+  transform: translateY(6px) scale(.98);
+  transform-origin: top right;
+  transition: opacity 160ms ease, transform 160ms cubic-bezier(.2, .7, .2, 1);
+}
+
+.threeDotsMeniuCoordinates[data-open="true"] {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .threeDotsMeniuCoordinates {
+    transition: none;
+    transform: none;
+  }
+}
+
+.threeDotsMenuCoordinates {
+  position: absolute; // ან fixed; ორივე იმუშავებს portal-ში, მაგრამ absolute უფრო ბუნებრივია reference-თან
+  z-index: 2000; // როგორც კოდში
+}
+.threeDotsBtn{
+@extend .btnWhiteBackground;
+width: 33px;
+height: 33px;
 }

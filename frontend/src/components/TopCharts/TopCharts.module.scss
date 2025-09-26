@@ -63,3 +63,6 @@
   gap: 40px;
   align-items: center;
 }
+.threeDotsMenuCoordinates {
+  position: absolute; // ან fixed; ორივე იმუშავებს portal-ში, მაგრამ absolute უფრო ბუნებრივია reference-თან
+}
