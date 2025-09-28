@@ -47,7 +47,7 @@ export default function PlaylistPage() {
     <main className={styles.main}>
       {activeTab === 1 && (
         <>
-          <div className={styles.title}>
+          <div className={styles.h1}>
             <h1 className={styles.h1}>my playlists</h1>
             <div className={styles.searchbar}>
               <Searchbar placeholder="search in your album" />
@@ -63,7 +63,7 @@ export default function PlaylistPage() {
               <PlaylistComponent
                 key={album.id}
                 title={album.albumName}
-                imageUrl={photo} // optional, can be placeholder image
+                imageUrl={photo}
                 onClick={() => setActiveTab(2)}
                 onDelete={() =>
                   setDemoAlbums(prev => prev.filter(a => a.id !== album.id))
@@ -76,7 +76,7 @@ export default function PlaylistPage() {
               <PlaylistComponent
                 key={album.id}
                 title={album.albumName || "playlist"}
-                imageUrl={album.imageUrl} // undefined → gradient placeholder
+                imageUrl={album.imageUrl} // undefined triggers gradient
                 onClick={() => setActiveTab(2)}
                 onEdit={() => console.log(`Edit playlist ${album.albumName}`)}
                 onDelete={() =>
@@ -118,7 +118,7 @@ export default function PlaylistPage() {
               previewOnClick={closeCreate}
               onSave={({ name }) => {
                 setAlbums(prev => [
-                  { id: crypto.randomUUID(), albumName: name, imageUrl: undefined }, // gradient placeholder
+                  { id: crypto.randomUUID(), albumName: name, imageUrl: undefined },
                   ...prev,
                 ]);
                 closeCreate();
