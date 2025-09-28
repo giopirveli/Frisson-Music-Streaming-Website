@@ -7,7 +7,7 @@ import { StaticImageData } from "next/image";
 
 interface PlaylistProps {
   title: string;
-  imageUrl?: string | StaticImageData; // ← optional
+  imageUrl?: string | StaticImageData;
   onClick?: () => void;
   onEdit?: () => void;
   onDelete?: () => void;
@@ -21,7 +21,6 @@ export default function PlaylistComponent({
   onDelete,
 }: PlaylistProps) {
   const [isHovered, setIsHovered] = useState(false);
-  const showHoverControls = isHovered;
 
   const stopClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -32,12 +31,12 @@ export default function PlaylistComponent({
 
   return (
     <div
-      className={`${styles.card}`}
+      className={styles.card}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={onClick}
     >
-      <div className={`${styles.imageWrapper} ${isHovered? styles.hoveredImgWrapper:""}`}>
+      <div className={`${styles.imageWrapper} ${isHovered ? styles.hoveredImgWrapper : ""}`}>
         <div className={styles.imagePad}>
           {imageUrl ? (
             <img
@@ -46,14 +45,14 @@ export default function PlaylistComponent({
               className={styles.playlistImage}
             />
           ) : (
-            <div className={styles.initialAvatar}>{initial}</div>
+            <div className={styles.gradientPlaceholder}>{initial}</div> // gradient background
           )}
         </div>
       </div>
 
-
-      {showHoverControls && (
+      {isHovered && (
         <div className={styles.PenButton}>
+          {/* Pencil button */}
           <div
             className={styles.btnWhiteBackground}
             onMouseDown={(e) => e.stopPropagation()}
@@ -66,6 +65,7 @@ export default function PlaylistComponent({
             <PenButton />
           </div>
 
+          {/* Bin button */}
           <div
             className={styles.btnWhiteBackground}
             onMouseDown={(e) => e.stopPropagation()}
