@@ -2,6 +2,7 @@
 
 .main {
   gap: 24px;
+  margin-top: -40px;
 }
 
 .h1 {
@@ -9,7 +10,7 @@
   flex-direction: column;
   gap: 24px;
 
-  & > h1 {
+  &>h1 {
     color: $white;
     font-family: var(--font-jakarta), sans-serif;
     font-size: 32px;
@@ -24,10 +25,12 @@
   align-items: center;
   justify-content: space-between;
 }
-.addPlayListControl{
-  max-width: 160px;
+
+.addPlayListControl {
+  max-width: 162px;
   width: 100%;
 }
+
 // grid
 
 .albumCard {
@@ -39,7 +42,7 @@
   @media (min-width: 1400px) and (max-width: 1620px) {
     grid-template-columns: repeat(4, 1fr);
 
-    & > div {
+    &>div {
       max-width: 270px; // ~79% of 266
       max-height: 290px; // ~80% of 288
     }
@@ -48,7 +51,7 @@
   @media (max-width: 1399px) {
     grid-template-columns: repeat(3, 1fr);
 
-    & > div {
+    &>div {
       max-width: 340px; // ~68% of 266
       max-height: 360px; // ~70% of 288
     }
@@ -57,7 +60,7 @@
   @media (max-width: 1200px) {
     grid-template-columns: repeat(2, 1fr);
 
-    & > div {
+    &>div {
       max-width: 340px; // ~56% of 266
       max-height: 360px; // ~59% of 288
     }
@@ -65,10 +68,32 @@
 
   @media (max-width: 800px) {
     grid-template-columns: 1fr;
-    & > div {
+
+    &>div {
       max-width: 300px; // ~45% of 266
       max-height: 320px; // ~49% of 288
       justify-self: center;
     }
   }
+}
+
+/* ეკრანის მთელ ზემოდან ანაბარი */
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  /* ყველაფერზე ზემოთ */
+}
+
+/* ბარათის კონტეინერი */
+.modalCenter {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.container :global(.layout) {
+  gap: 0;
 }

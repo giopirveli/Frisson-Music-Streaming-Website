@@ -11,8 +11,9 @@ import Table from "@/components/Table/Table";
 import banner from "@/../public/Images/playlistsPage/playlist.jpg";
 import { useActiveTab } from "@/components/Context/ActiveTabContext";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "@/../styles/defaults/default.scss";
+import CreatePlaylistCard from "@/components/CreatePlaylistCard/CreatePlaylistCard";
 
 interface Album {
   imageUrl?: string | StaticImageData;
@@ -23,12 +24,18 @@ export default function PlaylistPage() {
   const { activeTab, setActiveTab } = useActiveTab();
   const pathname = usePathname();
 
-  const albums: Album[] = [];
+  // ⬇️ ახლა გვაქვს state-ში
+  const [albums, setAlbums] = useState<Album[]>([
+    // შეგიძლია დატოვო ცარიელი []
+  ]);
+  const [isCreateOpen, setIsCreateOpen] = useState(false);
 
-  // Reset activeTab to 1 when navigating back to this page
   useEffect(() => {
     setActiveTab(1);
   }, [pathname, setActiveTab]);
+
+  const openCreate = () => setIsCreateOpen(true);
+  const closeCreate = () => setIsCreateOpen(false);
 
   return (
     <main className={styles.main}>
@@ -39,27 +46,29 @@ export default function PlaylistPage() {
             <div className={styles.searchbar}>
               <Searchbar placeholder="search in your album" />
               <div className={styles.addPlayListControl}>
-                <Button text="new playlist" icon={plusIcon} />
+                <Button text="new playlist" icon={plusIcon} onClick={openCreate} />
               </div>
             </div>
           </div>
 
           <div className={styles.albumCard}>
-            {[...Array(7)].map((_, i) => (
+            {/* დემო ბარათები */}
+            {[...Array(3)].map((_, i) => (
               <PlaylistComponent
                 key={i}
                 onClick={() => setActiveTab(2)}
                 imageUrl={photo}
-                title={`Playlist name 1`}
+                title={`Playlist name ${i + 1}`}
               />
             ))}
 
+            {/* რეალური state-იდან */}
             {albums.map((album, i) => (
               <PlaylistComponent
-                key={i + 100}
+                key={`pl-${i}`}
                 onClick={() => setActiveTab(2)}
-                imageUrl={album.imageUrl || photo}
                 title={album.albumName || `playlist ${i + 1}`}
+                {...(album.imageUrl ? { imageUrl: album.imageUrl } : {})}  // ⬅️ ეს ხსნის შეცდომას
               />
             ))}
           </div>
@@ -68,18 +77,38 @@ export default function PlaylistPage() {
 
       {activeTab === 2 && (
         <div className={`ormocdatotxmeti cflex ${styles.nugo}`}>
-          <NewsComponent
-            imageUrl={banner}
-            plays="11 songs"
-            title={albums[0]?.albumName || "playlist 1"}
-          />
+          <NewsComponent imageUrl={banner} plays="11 songs" title={albums[0]?.albumName || "playlist 1"} />
           <div className={`ocdatormeti cflex`}>
-            {/* Keep page searchbar here */}
             <Searchbar />
             <Table />
           </div>
         </div>
       )}
+
+      {/* ⬇️ ცენტრალური მოდალი */}
+      {isCreateOpen && (
+        <div
+          className={styles.modalBackdrop}
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setIsCreateOpen(false)}
+        >
+          <div
+            className={styles.modalCenter}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <CreatePlaylistCard
+              previewOnClick={() => setIsCreateOpen(false)}
+              onSave={({ name }) => {
+                setAlbums((prev) => [{ albumName: name, imageUrl: undefined }, ...prev]);
+                setIsCreateOpen(false);
+              }}
+            />
+          </div>
+        </div>
+      )}
+
     </main>
   );
 }
+
