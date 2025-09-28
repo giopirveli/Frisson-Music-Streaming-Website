@@ -75,3 +75,18 @@ a {
 *{ scrollbar-width: 6px;
    scrollbar-color: $fuchsia-flame $cod-grey; 
   }
+  /* NProgress overrides */
+/* Progress bar overrides */
+#nprogress .bar {
+  background: linear-gradient(90deg, #f903d0 0%, #9a16f2 100%) !important;
+  height: 3px !important;
+}
+
+#nprogress .peg {
+  box-shadow: none !important;
+}
+
+#nprogress .spinner {
+  display: none !important;
+}
+

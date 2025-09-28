@@ -7,10 +7,10 @@ import { StaticImageData } from "next/image";
 
 interface PlaylistProps {
   title: string;
-  imageUrl: string | StaticImageData;
-  onClick?: () => void;      
-  onEdit?: () => void;       
-  onDelete?: () => void;     
+  imageUrl?: string | StaticImageData; // ← optional
+  onClick?: () => void;
+  onEdit?: () => void;
+  onDelete?: () => void;
 }
 
 export default function PlaylistComponent({
@@ -28,20 +28,29 @@ export default function PlaylistComponent({
     e.stopPropagation();
   };
 
+  const initial = (title?.trim()?.charAt(0) || "?").toUpperCase();
+
   return (
     <div
-      className={styles.card}
+      className={`${styles.card}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onClick={onClick}  
+      onClick={onClick}
     >
-      <div className={`${styles.imageWrapper} ${isHovered ? styles.hoveredImgWrapper : ""}`}>
-        <img
-          src={typeof imageUrl === "string" ? imageUrl : imageUrl.src}
-          alt="Playlist"
-          className={styles.playlistImage}
-        />
+      <div className={`${styles.imageWrapper} ${isHovered? styles.hoveredImgWrapper:""}`}>
+        <div className={styles.imagePad}>
+          {imageUrl ? (
+            <img
+              src={typeof imageUrl === "string" ? imageUrl : imageUrl.src}
+              alt="Playlist"
+              className={styles.playlistImage}
+            />
+          ) : (
+            <div className={styles.initialAvatar}>{initial}</div>
+          )}
+        </div>
       </div>
+
 
       {showHoverControls && (
         <div className={styles.PenButton}>
@@ -50,7 +59,9 @@ export default function PlaylistComponent({
             onMouseDown={(e) => e.stopPropagation()}
             onClick={(e) => {
               stopClick(e);
+              onEdit?.();
             }}
+            aria-label="Edit playlist"
           >
             <PenButton />
           </div>
@@ -60,7 +71,9 @@ export default function PlaylistComponent({
             onMouseDown={(e) => e.stopPropagation()}
             onClick={(e) => {
               stopClick(e);
+              onDelete?.();
             }}
+            aria-label="Delete playlist"
           >
             <BinButton />
           </div>
