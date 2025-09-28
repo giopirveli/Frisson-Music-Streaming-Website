@@ -51,19 +51,14 @@ export default function PlaylistPage() {
             </div>
           </div>
 
-
-
-
           <div className={styles.albumCard}>
-            {
-            Array.from({length:10}).map((_, i) => (
-              
-              
+            {/* დემო ბარათები */}
+            {Array.from({length:8}).map((_, i) => (
               <PlaylistComponent
                 key={i}
                 onClick={() => setActiveTab(2)}
                 imageUrl={photo}
-                title={`Playlist name ${i+1}`}
+                title={`Playlist name ${i + 1}`}
               />
             ))}
 
@@ -71,7 +66,6 @@ export default function PlaylistPage() {
             {albums.map((album, i) => (
               <PlaylistComponent
                 key={`pl-${i}`}
-                key={i}
                 onClick={() => setActiveTab(2)}
                 title={album.albumName || `playlist ${i + 1}`}
                 {...(album.imageUrl ? { imageUrl: album.imageUrl } : {})}  // ⬅️ ეს ხსნის შეცდომას
