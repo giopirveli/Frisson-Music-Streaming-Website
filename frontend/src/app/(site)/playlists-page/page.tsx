@@ -16,18 +16,16 @@ import "@/../styles/defaults/default.scss";
 import CreatePlaylistCard from "@/components/CreatePlaylistCard/CreatePlaylistCard";
 
 interface Album {
-  imageUrl?: string | StaticImageData;
+  id: string;
   albumName?: string;
+  imageUrl?: string | StaticImageData;
 }
 
 export default function PlaylistPage() {
   const { activeTab, setActiveTab } = useActiveTab();
   const pathname = usePathname();
 
-  // ⬇️ ახლა გვაქვს state-ში
-  const [albums, setAlbums] = useState<Album[]>([
-    // შეგიძლია დატოვო ცარიელი []
-  ]);
+  const [albums, setAlbums] = useState<Album[]>([]);
   const [isCreateOpen, setIsCreateOpen] = useState(false);
 
   useEffect(() => {
@@ -36,6 +34,14 @@ export default function PlaylistPage() {
 
   const openCreate = () => setIsCreateOpen(true);
   const closeCreate = () => setIsCreateOpen(false);
+
+  // Demo playlists
+  const [demoAlbums, setDemoAlbums] = useState(
+    Array.from({ length: 8 }).map((_, i) => ({
+      id: crypto.randomUUID(),
+      albumName: `Playlist ${i + 1}`,
+    }))
+  );
 
   return (
     <main className={styles.main}>
@@ -52,23 +58,30 @@ export default function PlaylistPage() {
           </div>
 
           <div className={styles.albumCard}>
-            {/* დემო ბარათები */}
-            {Array.from({length:8}).map((_, i) => (
+            {/* Demo playlists */}
+            {demoAlbums.map((album) => (
               <PlaylistComponent
-                key={i}
-                onClick={() => setActiveTab(2)}
+                key={album.id}
+                title={album.albumName}
                 imageUrl={photo}
-                title={`Playlist name ${i + 1}`}
+                onClick={() => setActiveTab(2)}
+                onDelete={() =>
+                  setDemoAlbums(prev => prev.filter(a => a.id !== album.id))
+                }
               />
             ))}
 
-            {/* რეალური state-იდან */}
-            {albums.map((album, i) => (
+            {/* Real playlists */}
+            {albums.map((album) => (
               <PlaylistComponent
-                key={`pl-${i}`}
+                key={album.id}
+                title={album.albumName || "playlist"}
+                imageUrl={album.imageUrl} // undefined triggers gradient
                 onClick={() => setActiveTab(2)}
-                title={album.albumName || `playlist ${i + 1}`}
-                {...(album.imageUrl ? { imageUrl: album.imageUrl } : {})}  // ⬅️ ეს ხსნის შეცდომას
+                onEdit={() => console.log(`Edit playlist ${album.albumName}`)}
+                onDelete={() =>
+                  setAlbums(prev => prev.filter(a => a.id !== album.id))
+                }
               />
             ))}
           </div>
@@ -77,7 +90,11 @@ export default function PlaylistPage() {
 
       {activeTab === 2 && (
         <div className={`ormocdatotxmeti cflex ${styles.nugo}`}>
-          <NewsComponent imageUrl={banner} plays="11 songs" title={albums[0]?.albumName || "playlist 1"} />
+          <NewsComponent
+            imageUrl={banner}
+            plays="11 songs"
+            title={albums[0]?.albumName || "playlist 1"}
+          />
           <div className={`ocdatormeti cflex`}>
             <Searchbar />
             <Table />
@@ -85,30 +102,31 @@ export default function PlaylistPage() {
         </div>
       )}
 
-      {/* ⬇️ ცენტრალური მოდალი */}
+      {/* Modal to create new playlist */}
       {isCreateOpen && (
         <div
           className={styles.modalBackdrop}
           role="dialog"
           aria-modal="true"
-          onClick={() => setIsCreateOpen(false)}
+          onClick={closeCreate}
         >
           <div
             className={styles.modalCenter}
             onClick={(e) => e.stopPropagation()}
           >
             <CreatePlaylistCard
-              previewOnClick={() => setIsCreateOpen(false)}
+              previewOnClick={closeCreate}
               onSave={({ name }) => {
-                setAlbums((prev) => [{ albumName: name, imageUrl: undefined }, ...prev]);
-                setIsCreateOpen(false);
+                setAlbums(prev => [
+                  { id: crypto.randomUUID(), albumName: name, imageUrl: undefined },
+                  ...prev,
+                ]);
+                closeCreate();
               }}
             />
           </div>
         </div>
       )}
-
     </main>
   );
 }
-
