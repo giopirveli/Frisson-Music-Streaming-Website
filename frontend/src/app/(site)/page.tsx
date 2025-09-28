@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <NewsComponent
-        title="Top Hit  Of the week"
+        title="Top Hit Of The Week"
         imageUrl="/Images/NewsComponent/NewComponentTest.jpg"
         plays={`22222 Plays`}
       />

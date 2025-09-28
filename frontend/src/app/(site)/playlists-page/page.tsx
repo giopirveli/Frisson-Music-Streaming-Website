@@ -39,24 +39,45 @@ export default function PlaylistPage() {
             <div className={styles.searchbar}>
               <Searchbar placeholder="search in your album" />
               <div className={styles.addPlayListControl}>
-                <Button text="new playlist" icon={plusIcon} />
+                <Button text="new playlist" icon={plusIcon}  />
               </div>
             </div>
           </div>
 
+
+
+
           <div className={styles.albumCard}>
-            {[...Array(7)].map((_, i) => (
+            {
+            Array.from({length:10}).map((_, i) => (
+              
+              
               <PlaylistComponent
                 key={i}
                 onClick={() => setActiveTab(2)}
                 imageUrl={photo}
-                title={`Playlist name 1`}
+                title={`Playlist name ${i+1}`}
               />
-            ))}
+            
+            
+            
+            
+            ))
+            
+            
+            }
+
+
+
+
+
+
+
+
 
             {albums.map((album, i) => (
               <PlaylistComponent
-                key={i + 100}
+                key={i}
                 onClick={() => setActiveTab(2)}
                 imageUrl={album.imageUrl || photo}
                 title={album.albumName || `playlist ${i + 1}`}
