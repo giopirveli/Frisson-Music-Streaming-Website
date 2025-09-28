@@ -53,7 +53,7 @@ export default function PlaylistPage() {
 
           <div className={styles.albumCard}>
             {/* დემო ბარათები */}
-            {[...Array(3)].map((_, i) => (
+            {Array.from({length:8}).map((_, i) => (
               <PlaylistComponent
                 key={i}
                 onClick={() => setActiveTab(2)}

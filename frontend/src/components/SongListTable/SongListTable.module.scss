@@ -41,6 +41,9 @@
   font-weight: 400;
   line-height: normal;
   border-bottom: 1px solid $lead;
+  th{
+    padding-bottom: 15px;
+  }
 }
 
 // thead children

@@ -12,6 +12,7 @@ body {
   overflow-x: hidden;
   background-color: $reversed-grey;
   font-family: var(--font-jakarta), sans-serif;
+  text-transform: capitalize;
 }
 
 /* 3) Base layout */
