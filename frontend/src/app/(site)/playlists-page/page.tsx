@@ -115,15 +115,20 @@ export default function PlaylistPage() {
             onClick={(e) => e.stopPropagation()}
           >
             <CreatePlaylistCard
-              previewOnClick={closeCreate}
-              onSave={({ name }) => {
-                setAlbums(prev => [
-                  { id: crypto.randomUUID(), albumName: name, imageUrl: undefined },
+              previewOnClick={() => setIsCreateOpen(false)}
+              onSave={({ name, imageFile }) => {
+                setAlbums((prev) => [
+                  {
+                    albumName: name,
+                    // თუ ფოტოა ატვირთული → ვქმნით previewUrl-ს
+                    imageUrl: imageFile ? URL.createObjectURL(imageFile) : undefined,
+                  },
                   ...prev,
                 ]);
-                closeCreate();
+                setIsCreateOpen(false);
               }}
             />
+
           </div>
         </div>
       )}
