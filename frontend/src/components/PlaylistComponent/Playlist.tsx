@@ -4,7 +4,7 @@ import { useState } from "react";
 import PenButton from "../PenBtn/PenButton";
 import BinButton from "../DeleteBinBtn/BinButton";
 import { StaticImageData } from "next/image";
-
+import Image from "next/image";
 interface PlaylistProps {
   title: string;
   imageUrl?: string | StaticImageData; // ← optional
@@ -37,23 +37,22 @@ export default function PlaylistComponent({
       onMouseLeave={() => setIsHovered(false)}
       onClick={onClick}
     >
-      <div className={`${styles.imageWrapper} ${isHovered? styles.hoveredImgWrapper:""}`}>
-        <div className={styles.imagePad}>
-          {imageUrl ? (
-            <img
-              src={typeof imageUrl === "string" ? imageUrl : imageUrl.src}
-              alt="Playlist"
-              className={styles.playlistImage}
-            />
-          ) : (
-            <div className={styles.initialAvatar}>{initial}</div>
-          )}
-        </div>
+      <div className={`${styles.imageWrapper} ${isHovered ? styles.hoveredImgWrapper : ""}`}>
+        {imageUrl ? (
+          <Image
+            src={typeof imageUrl === "string" ? imageUrl : imageUrl.src}
+            alt="Playlist"
+            fill
+            className={styles.playlistImage}
+          />
+        ) : (
+          <div className={styles.initialAvatar}>{initial}</div>
+        )}
       </div>
 
 
       {showHoverControls && (
-        <div className={styles.PenButton}>
+        <div className={styles.btnControlBox}>
           <div
             className={styles.btnWhiteBackground}
             onMouseDown={(e) => e.stopPropagation()}
@@ -86,3 +85,4 @@ export default function PlaylistComponent({
     </div>
   );
 }
+
