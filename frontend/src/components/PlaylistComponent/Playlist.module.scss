@@ -3,31 +3,43 @@
 .card {
   background-color: $dark-void;
   box-sizing: border-box;
+  max-height: 309px;
+  max-width: 266px;
   width: 100%;
-  height: 100%;
   border-radius: 8px;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 16px;
-  gap: 8px;
+  padding-top: 16px;
 }
+
+.playlistImage {
+  width: 234px;
+  height: 251px;
+  border-radius: 8px;
+  object-fit: cover;
+  max-width: 100%;
+  transition: filter 0.3s ease;
+  display: block;
+}
+
 .textWrapper {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  padding-left: 16px;
+  padding-bottom: 16px;
   align-self: flex-start;
 }
-
-.btnControlBox {
+.PenButton {
   display: flex;
   gap: 8px;
   position: absolute;
   z-index: 10;
   left: 38%;
-  bottom: 60px;
+  top: 215px;
 }
 
 .text {
@@ -35,26 +47,46 @@
   font-size: 14px;
   font-family: var(--font-jakarta), sans-serif;
 }
-
-.hoveredImgWrapper {
-  filter: brightness(1.1) opacity(0.7);
+.hoveredImgWrapper{
+ filter: brightness(1.1) opacity(0.7);
 }
-
 .imageWrapper {
+  position: relative;
   width: 100%;
+  aspect-ratio: 1 / 1;       /* კვადრატი */
   border-radius: 12px;
   background: transparent;
-  overflow: visible;
-  position: relative;
-  height: 100vw;
-  /* შიდა pad თვითონ გაუმკლავდება overflow-ს */
+  overflow: visible;          /* შიდა pad თვითონ გაუმკლავდება overflow-ს */
 }
+
+/* ეს ქმნის თანაბარ მანძილს ოთხივე მხარეს */
+.imagePad {
+  position: absolute;
+  top: 0px;
+  right: 14px;
+  bottom: 14px;
+  left: 14px;
+  border-radius: 16px;
+  overflow: hidden;          /* კუთხეები მომრგვალდეს შიგნით */
+  background: #fff;          /* fallback/ფოტოს ქვედა ფონიც თეთრი გამოჩნდეს */
+}
+
+/* ფოტო და ფოლბექი ორივე შიგნით სრულად იკავებს სივრცეს */
+.playlistImage,
+.initialAvatar {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
+
 .playlistImage {
   object-fit: cover;
-  border-radius: 8px;
+  display: block;
 }
 
-
+/* ასოს ფოლბექი */
 .initialAvatar {
   display: flex;
   align-items: center;
@@ -62,8 +94,9 @@
   color: #000;
   font-weight: 800;
   font-size: clamp(48px, 18vw, 96px);
-  background: $gradient-apolo;
-  height: 100%;
-  border-radius: 8px;
-  /* ინარჩუნებს თეთრს, თუ გინდა, დატოვე გამჭვირვალე */
+  background: $gradient-apolo; /* ინარჩუნებს თეთრს, თუ გინდა, დატოვე გამჭვირვალე */
 }
+
+
+/* page.module.scss */
+
