@@ -2,13 +2,44 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateAuthorDto } from './dto/create-author.dto';
 import { UpdateAuthorDto } from './dto/update-author.dto';
 import { AuthorRepository } from './author.repository';
+import { S3Service } from 'src/common/s3/s3.service';
+import { Author } from './entities/author.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class AuthorService {
-  constructor(private readonly authorRepo: AuthorRepository) {}
+  constructor(
+    @InjectRepository(Author)
+    private readonly authorsRepo: Repository<Author>,
+    private readonly authorRepo: AuthorRepository,
+    private readonly s3Service: S3Service,
+  ) {}
 
   async create(createAuthorDto: CreateAuthorDto) {
     return this.authorRepo.create(createAuthorDto);
+  }
+
+  async uploadAvatar(
+    authorId: number,
+    file: Express.Multer.File,
+  ): Promise<Author> {
+    const author = await this.authorsRepo.findOne({ where: { id: authorId } });
+    if (!author) throw new NotFoundException('Author not found');
+
+    const uploaded = await this.s3Service.upload({
+      file: file.buffer,
+      name: file.originalname,
+      mimetype: file.mimetype,
+      folder: 'Artist',
+    });
+
+    author.avatarFileName = file.originalname;
+    author.avatarKey = uploaded.Key;
+    author.avatarBucket = uploaded.Bucket;
+    author.avatarUrl = uploaded.Location;
+
+    return this.authorsRepo.save(author);
   }
 
   async findAll() {

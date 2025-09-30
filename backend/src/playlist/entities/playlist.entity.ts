@@ -19,6 +19,6 @@ export class Playlist extends BaseEntity {
   user: User;
 
   @ManyToMany(() => Music)
-  @JoinTable()
+  @JoinTable({name: 'playlist_tracks'})
   music: Music[];
 }

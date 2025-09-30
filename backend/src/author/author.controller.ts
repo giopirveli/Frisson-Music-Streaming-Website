@@ -8,11 +8,14 @@ import {
   Delete,
   ParseIntPipe,
   Query,
+  UseInterceptors,
+  UploadedFile,
 } from '@nestjs/common';
 import { AuthorService } from './author.service';
 import { CreateAuthorDto } from './dto/create-author.dto';
 import { UpdateAuthorDto } from './dto/update-author.dto';
 import { SearchMusicDto } from 'src/search/dto/search-music.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('author')
 export class AuthorController {
@@ -23,6 +26,15 @@ export class AuthorController {
     return this.authorService.create(createAuthorDto);
   }
 
+  @Post(':id/upload-avatar')
+  @UseInterceptors(FileInterceptor('file'))
+  uploadAvatar(
+    @Param('id') id: number,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
+    return this.authorService.uploadAvatar(id, file);
+  }
+  
   @Get()
   findAll() {
     return this.authorService.findAll();

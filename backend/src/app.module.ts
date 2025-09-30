@@ -10,6 +10,7 @@ import { AuthModule } from './auth/auth.module';
 import { TokenBlacklistsModule } from './token-blacklists/token-blacklists.module';
 import { ListenersTableModule } from './listeners-table/listeners-table.module';
 import { PlaylistModule } from './playlist/playlist.module';
+import { S3Module } from './common/s3/s3.module';
 
 @Module({
   imports: [
@@ -40,6 +41,7 @@ import { PlaylistModule } from './playlist/playlist.module';
     TokenBlacklistsModule,
     ListenersTableModule,
     PlaylistModule,
+    S3Module,
   ],
 })
 export class AppModule {}

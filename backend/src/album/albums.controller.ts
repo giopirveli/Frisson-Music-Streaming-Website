@@ -8,11 +8,14 @@ import {
   Delete,
   ParseIntPipe,
   Query,
+  UseInterceptors,
+  UploadedFile,
 } from '@nestjs/common';
 import { AlbumsService } from './albums.service';
 import { CreateAlbumDto } from './dto/create-album.dto';
 import { UpdateAlbumDto } from './dto/update-album.dto';
 import { SearchMusicDto } from 'src/search/dto/search-music.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('albums')
 export class AlbumsController {
@@ -23,6 +26,15 @@ export class AlbumsController {
     return this.albumsService.create(createAlbumDto);
   }
 
+  @Post(':id/upload-cover')
+  @UseInterceptors(FileInterceptor('file'))
+  uploadCover(
+    @Param('id') id: number,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
+    return this.albumsService.uploadCover(id, file);
+  }
+  
   @Get()
   findAll() {
     return this.albumsService.findAll();
