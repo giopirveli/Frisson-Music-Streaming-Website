@@ -1,6 +1,6 @@
-@import '../../../styles/colors';
+@import "../../../styles/colors";
 
-.TopChartsDiv{
+.TopChartsDiv {
   display: flex;
   background-color: $dark-void;
   max-width: 548px;
@@ -13,57 +13,56 @@
   justify-content: space-between;
 }
 
-.image{
+.image {
   width: 72px;
   height: 72px;
   border-radius: 8px;
 }
 
-
-.buttons{
-  display: flex
- 
+.buttons {
+  display: flex;
 }
 
-.textTop{
-color: #FFF;
-  font-family: --var(--font-jakarta),sans-serif;
-font-size: 16px;
+.textTop {
+  color: #fff;
+  font-family: --var(--font-jakarta), sans-serif;
+  font-size: 16px;
 }
 
-.textBottom{
-  color: #9E9A9F;
-  font-family: --var(--font-jakarta),sans-serif;
+.textBottom {
+  color: #9e9a9f;
+  font-family: --var(--font-jakarta), sans-serif;
   font-size: 14px;
 }
 
-.textWrapper{
+.textWrapper {
   display: flex;
   flex-direction: column;
   gap: 8px;
   width: 100%;
 }
 
-.durationTime{
-  color: #9E9A9F;
-  font-family: --var(--font-jakarta),sans-serif;
+.durationTime {
+  color: #9e9a9f;
+  font-family: --var(--font-jakarta), sans-serif;
   font-size: 14px;
   font-weight: 600;
 }
 
-
-
-.buttonsWrapper{
+.buttonsWrapper {
   display: flex;
   gap: 8px;
 }
-.imgAndWrapperBox{
+.imgAndWrapperBox {
   display: flex;
   gap: 8px;
   align-items: center;
 }
-.durectionAndButtonsBox{
-    display: flex;
+.durectionAndButtonsBox {
+  display: flex;
   gap: 40px;
   align-items: center;
+}
+.threeDotsMenuCoordinates {
+  position: absolute; // ან fixed; ორივე იმუშავებს portal-ში, მაგრამ absolute უფრო ბუნებრივია reference-თან
 }

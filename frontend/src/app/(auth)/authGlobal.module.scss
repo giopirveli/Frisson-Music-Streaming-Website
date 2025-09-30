@@ -1,0 +1,44 @@
+@use "../../../styles/colors" as *;
+.main {
+  position: relative;
+  min-height: 100dvh;
+  /* სრულ ეკრანს დაიკავებს */
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  /* left | right */
+  overflow: hidden;
+  background: #0d0f14;
+}
+
+.imageBg {
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+  object-position: 60% 50%;
+  filter: saturate(110%);
+  z-index: 0;
+}
+
+.left {
+  position: relative;
+  z-index: 999;
+  width: 100vw;
+  bottom: -1%;
+}
+
+.hero {
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+@media (max-width: 960px) {
+  .shell {
+    grid-template-columns: 1fr;
+  }
+
+  .right {
+    height: 40vh;
+    order: -1;
+  }
+}
