@@ -5,6 +5,7 @@ import PenButton from "../PenBtn/PenButton";
 import BinButton from "../DeleteBinBtn/BinButton";
 import { StaticImageData } from "next/image";
 import Image from "next/image";
+
 interface PlaylistProps {
   title: string;
   imageUrl?: string | StaticImageData; // ← optional

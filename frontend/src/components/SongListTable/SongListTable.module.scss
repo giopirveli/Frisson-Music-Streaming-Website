@@ -9,6 +9,7 @@
   max-width: calc(100vw - 280px - var(--scrollbar-width, 0px));
   width: 100%;
   text-align: left;
+  font-family: var(--font-jakarta), sans-serif;
 }
 
 // list
@@ -41,10 +42,30 @@
   font-weight: 400;
   line-height: normal;
   border-bottom: 1px solid $lead;
-  th{
+
+  th {
     padding-bottom: 15px;
   }
 }
+
+.songNameBox {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.songNameText {
+  color: #FFF;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.songArtistText {
+  color: #9E9A9F;
+  font-size: 14px;
+  font-weight: 500;
+}
+
 
 // thead children
 

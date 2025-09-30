@@ -7,7 +7,7 @@ import arrow from "../../../public/icons/Arrow/arrow.svg";
 import Button from "../Button/button";
 import CreatePlaylistCard from "../CreatePlaylistCard/CreatePlaylistCard";
 
-type Playlist = { id: string; name: string };
+type Playlist = { id?: string; name?: string; withoutPlaylist?: boolean; };
 
 const mockPlaylists: Playlist[] = [
   { id: "1", name: "Playlist 1" },
@@ -20,7 +20,7 @@ const mockPlaylists: Playlist[] = [
   { id: "8", name: "Playlist 2" },
 ];
 
-export default function ThreeDotsList() {
+export default function ThreeDotsList({withoutPlaylist}:Playlist) {
   const [activeTab, setActiveTab] = useState<1 | 2 | 3>(1);
   const [selected, setSelected] = useState<Record<string, boolean>>({});
 
@@ -39,7 +39,7 @@ export default function ThreeDotsList() {
     >
       {activeTab === 1 && (
         <div className={styles.Listbox} role="menu" aria-label="More options">
-          <button
+          {!withoutPlaylist && <button
             type="button"
             className={styles.ListboxBtn}
             role="menuitem"
@@ -47,7 +47,7 @@ export default function ThreeDotsList() {
           >
             <Image src={"/icons/ThreeDots/disc.svg"} alt="" width={24} height={24} />
             <span>Add to playlists</span>
-          </button>
+          </button>}
 
           <button
             type="button"
@@ -104,8 +104,6 @@ export default function ThreeDotsList() {
                 <label key={pl.id} className={styles.checkboxRow}>
                   <input
                     type="checkbox"
-                    checked={!!selected[pl.id]}
-                    onChange={() => toggleCheck(pl.id)}
                   />
                   <span>{pl.name}</span>
                 </label>
