@@ -25,11 +25,11 @@ export class PlaylistController {
   }
 
   @Get('dynamic/:userId/:type')
-  generate(
+  dynamic(
     @Param('userId', ParseIntPipe) userId: number,
     @Param('type') type: PlaylistType,
   ) {
-    return this.playlistService.generate(userId, type);
+    return this.playlistService.dynamic(userId, type);
   }
 
   @Get('user/:userId')
