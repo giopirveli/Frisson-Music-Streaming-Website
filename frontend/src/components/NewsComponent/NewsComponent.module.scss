@@ -1,4 +1,4 @@
-@import '../../../styles/colors';
+@import "../../../styles/colors";
 
 .card {
   width: 100%;
@@ -19,7 +19,7 @@
 }
 
 .title {
-  color: #FFF;
+  color: #fff;
   font-family: var(--font-display), sans-serif;
   font-size: 64px;
   font-style: normal;
@@ -28,7 +28,7 @@
 }
 
 .plays {
-  color: #BCBCBE;
+  color: #bcbcbe;
   font-family: var(--font-jakarta), sans-serif;
   font-size: 24px;
   font-style: normal;
@@ -38,14 +38,21 @@
 
 .content {
   position: absolute;
-  top: 46%;
+  bottom: 32px; // top: 46%;
   color: white;
   display: flex;
   flex-direction: column;
   gap: 32px;
 }
-.textBox{
+
+.textBox {
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+.verified {
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }

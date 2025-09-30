@@ -1,26 +1,92 @@
 @use "./../../styles/colors" as *;
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-html,
 body {
+  min-height: 100%;
   max-width: 100vw;
   overflow-x: hidden;
   background-color: $reversed-grey;
   font-family: var(--font-jakarta), sans-serif;
-
+  text-transform: capitalize;
 }
 
-
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  text-transform: capitalize;
+/* 3) Base layout */
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 0 24px;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.page {
+  background: $reversed-grey;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  position: relative;
+  right: -270px;
+  width: 100%;
+  max-width: calc(100vw - 280px - var(--scrollbar-width, 0px)); // 280px width of sidebar
+  // only weakness is horizontal scroll after refreshing and disappears in seconds
+  padding-bottom: 160px;
+}
+
+/* globals.scss (გლობალში) */
+
+
+
+/* WebKit scrollbars (supported in Chrome, Edge, Safari) */
+
+// // /* Scrollbar container (the whole scrollbar bar) */
+// *::-webkit-scrollbar {
+//   width: 8px;   // vertical scrollbar width
+//   height: 8px;  // horizontal scrollbar height
+// }
+
+// /* Scrollbar track (the background behind the thumb) */
+// *::-webkit-scrollbar-track {
+//   background: $cod-grey;  // track color
+//   border-radius: 999px;   // rounded edges
+// }
+
+// /* Scrollbar thumb (the draggable part) */
+// *::-webkit-scrollbar-thumb {
+//   border-radius: 999px;          // fully rounded thumb
+//   border: 2px solid transparent; // spacing inside the thumb
+//   background-clip: content-box;  // makes the border spacing visible
+//   background: $scrollbar-gradient; // gradient applied to the thumb
+// }
+*{ scrollbar-width: 6px;
+   scrollbar-color: $fuchsia-flame $cod-grey; 
+  }
+  /* NProgress overrides */
+/* Progress bar overrides */
+#nprogress .bar {
+  background: linear-gradient(90deg, #f903d0 0%, #9a16f2 100%) !important;
+  height: 3px !important;
+}
+
+#nprogress .peg {
+  box-shadow: none !important;
+}
+
+#nprogress .spinner {
+  display: none !important;
 }
 

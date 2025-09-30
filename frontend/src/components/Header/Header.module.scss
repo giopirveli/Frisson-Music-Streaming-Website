@@ -1,45 +1,30 @@
-@use "../../../styles/colors" as *;
-
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 40px 24px 0 24px;
+  gap: 16px;
 }
-
 
 .searchbar {
+  // 548px
   display: flex;
-  width: 100%;
-  align-items: center;
-  gap: 4px;
-  max-width: 548px;
   height: 56px;
-  padding: 0 24px;
-  margin-right: 24px;
-
-
-
-
-
-
-
-  border: 1px solid $hawks-eye;
-  background-color: $black;
-  border-radius: 8px;
-  transition: background-color 0.3s ease, border 0.3s ease;
-
-  &:focus-within {
-    border: 1px solid transparent; /* Prevent default border from interfering */
-    border-image: $gradient-apolo 1;
-  }
-
+  max-width: 548px;
+  width: 100%;
+  align-items: center; // makes single arrow vertically centered
 }
 
+.arrow {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
 
-
-
-
-
-.searchbar:hover {
-  background-color: $dark-void;
+.searchArrow {
+  display: flex;
+  align-items: center; // vertically center arrow + searchbar
+  gap: 16px;
+  flex: 1;
+  min-width: 0; // ensures Searchbar can shrink correctly
 }

@@ -1,5 +1,5 @@
-'use client';
-import { useEffect } from 'react';
+"use client";
+import { useEffect } from "react";
 
 export default function MeasureWidth() {
   useEffect(() => {
@@ -8,7 +8,7 @@ export default function MeasureWidth() {
       const totalDisplayWidth = window.screen.width; // mteli ekranis zoma
 
       // Browser viewport width including scrollbar and sidebar
-      const viewportWidth = window.innerWidth; // viewport + scrollbar 
+      const viewportWidth = window.innerWidth; // viewport + scrollbar
 
       // Browser viewport width excluding scrollbar (content area)
       const contentWidth = document.documentElement.clientWidth; // viewport without scrollbar
@@ -30,29 +30,26 @@ export default function MeasureWidth() {
       // scrollbar + sidebar
 
       // Set CSS variables for use in styles
-      document.documentElement.style.setProperty('--scrollbar-width', `${scrollbarWidth}px`); // scrollbar width
-      document.documentElement.style.setProperty('--sidebar-width', `${sidebarWidthClamped}px`); // opera sidebar width might be buggy
-      document.documentElement.style.setProperty('--total-taken-width', `${totalTaken}px`);  // just scrollbar + sidebar
+      document.documentElement.style.setProperty("--scrollbar-width", `${scrollbarWidth}px`); // scrollbar width
+      document.documentElement.style.setProperty("--sidebar-width", `${sidebarWidthClamped}px`); // opera sidebar width might be buggy
+      document.documentElement.style.setProperty("--total-taken-width", `${totalTaken}px`); // just scrollbar + sidebar
     };
 
-   
-
     // Initial measurement on mount
-    updateWidths();  
+    updateWidths();
 
     // Update measurements on window resize (sidebar or scrollbar might appear/disappear)
-    window.addEventListener('resize', updateWidths);
+    window.addEventListener("resize", updateWidths);
 
     // Cleanup listener on unmount
     return () => {
-      window.removeEventListener('resize', updateWidths);
+      window.removeEventListener("resize", updateWidths);
     };
   }, []);
 
   // No UI output — just side effect
   return null;
 }
-
 
 /*
 

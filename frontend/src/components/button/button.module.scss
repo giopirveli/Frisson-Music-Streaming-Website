@@ -2,7 +2,7 @@
 
 .basicButtonStyle {
   display: flex;
-  gap: 4px;
+  gap: 8px;
   cursor: pointer;
   align-items: center;
   text-align: center;
@@ -11,8 +11,11 @@
   border-radius: 8px;
   background: $gradient-apolo;
   border: none;
+  width: 100%;
+  font-family: var(--font-jakarta), sans-serif;
 }
-.basicButtonStyle > span {
+
+.basicButtonStyle>span {
   color: #fff;
   font-size: 16px;
   font-style: normal;
@@ -21,6 +24,7 @@
   text-transform: capitalize;
   cursor: pointer;
 }
+
 .disabled {
   opacity: 0.6;
   cursor: not-allowed;

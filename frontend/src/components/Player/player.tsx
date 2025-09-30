@@ -1,155 +1,180 @@
 "use client";
-import Style from "./player.module.scss";
+
 import Image from "next/image";
-import { useRef,} from "react";
+import { useMemo, useRef } from "react";
+import Style from "./player.module.scss";
+import HeartBtn from "../HeartBtn/HeartBtn";
 import { useAudioControls } from "@/hooks/useAudioControls";
-import HeartBtn from "../heartBtn/heartBtn";
+import type { Track } from "./playerType";
 
-export default function Player() {
-    const audioRef = useRef<HTMLAudioElement | null>(null);
-    const progressRef = useRef<HTMLDivElement | null>(null);
+type PlayerProps = {
+  playlist: Track[];
+  initialIndex?: number;
+};
 
-    const {
-        isPlaying,
-        currentTime,
-        duration,
-        togglePlay,
-        formatTime,
-        reapetSong,
-        volume,
-        setVolume,
-        handleClickProgressBar,
-        handleThumbMouseDown,
-        progressPercent,
-        isDragging,
-        previewTime,
-        handleChange,        // ✅ from hook
-    } = useAudioControls(audioRef, progressRef);
+export default function Player({ playlist, initialIndex = 0 }: PlayerProps) {
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const progressRef = useRef<HTMLDivElement | null>(null);
 
+  const {
+    // state
+    isPlaying, currentTime, duration, progressPercent,
+    isDragging, previewTime, volume,
+    currentTrack,
 
+    // transport
+    nextTrack, prevTrack,
+    isShuffle, toggleShuffle,
+    repeatMode, toggleRepeatMode,
+    isMuted, toggleMute,
 
+    // handlers
+    handlePlayPause, handleEnded,
+    handleChange, handleClickProgressBar, handleThumbMouseDown,
 
- 
+    // utils
+    formatTime,
+  } = useAudioControls({ audioRef, progressRef, playlist, initialIndex });
 
+  const safeTrack = useMemo(() => currentTrack, [currentTrack]);
+  if (!playlist?.length || !safeTrack) return null;
 
+  return (
+    <div className={Style.playerBackgraund} aria-label="Audio Player">
+      {/* BG / Cover */}
+      <div className={Style.musicPhoto}>
+        {safeTrack.imageUrl ? (
+          <Image fill alt="image" src={safeTrack.imageUrl} />
+        ) : (
+          <div className={Style.coverFallback} />
+        )}
+      </div>
 
+      <div className={Style.mainControlBox}>
+        <div className={Style.controlBoxesDurection}>
+          {/* LEFT — Heart + Progress */}
+          <div className={Style.controlBoxFirstPart}>
+            <HeartBtn iconColor="gray" liked={false} onToggle={() => { /* lift state if needed */ }} />
 
+            <div className={Style.rangeControlBox}>
+              <span>{formatTime(isDragging ? previewTime : currentTime)}</span>
 
-    return (
-        <div className={Style.playerBackgraund}>
-            <div className={Style.musicPhoto}></div>
-            <div className={Style.mainControlBox}>
-                <div className={Style.controlBoxesDurection}>
-                    <div className={Style.controlBoxFirstPart}>
-                        <HeartBtn />
-
-                        <div className={Style.rangeControlBox}>
-                            <span>{formatTime(isDragging ? previewTime : currentTime)}</span>
-                            <div
-                                ref={progressRef}
-                                className={Style.progressBarWrapper}
-                                onClick={handleClickProgressBar}
-                            >
-                                <div className={Style.progressTrack}>
-                                    <div
-                                        className={Style.progressFill}
-                                        style={{ width: `${progressPercent}%` }}
-                                    ></div>
-                                    <div
-                                        className={Style.progressThumb}
-                                        style={{ left: `${progressPercent}%` }}
-                                        onMouseDown={handleThumbMouseDown}
-                                    ></div>
-                                </div>
-                            </div>
-                            <span>{formatTime(duration)}</span>
-                        </div>
-                    </div>
-
-                    <div className={Style.controlBoxSecondPart}>
-                        <div className={Style.InfoBox}>
-                            <span>No Information</span>
-                            <span>No Information</span>
-                        </div>
-
-                        <div className={Style.functionalIconsBox}>
-
-                            <button className={Style.functionalIconButton}>
-                                <Image
-                                    src="/icons/Player/Shuflle.svg"
-                                    alt="Shuflle"
-                                    width={24}
-                                    height={24}
-                                />
-                            </button>
-                            <button className={Style.functionalIconButton}>
-                                <Image
-                                    src="/icons/Player/PlayPrevious.svg"
-                                    alt="PlayPrevious"
-                                    width={24}
-                                    height={24}
-                                />
-                            </button>
-                            <button
-                                className={Style.PlayPauseButton}
-                                onClick={togglePlay}
-                            >
-                                <Image
-                                    src={
-                                        isPlaying
-                                            ? "/icons/Player/Pause.svg"
-                                            : "/icons/Player/Play.svg"
-                                    }
-                                    alt="PlayPause"
-                                    width={48}
-                                    height={48}
-                                />
-                            </button>
-                            <button className={Style.functionalIconButton}>
-                                <Image
-                                    src="/icons/Player/PlayNext.svg"
-                                    alt="PlayNext"
-                                    width={24}
-                                    height={24}
-                                />
-                            </button>
-                            <button className={Style.functionalIconButton} onClick={reapetSong} >
-                                <Image
-                                    src="/icons/Player/Repeat.svg"
-                                    alt="Repeat"
-                                    width={24}
-                                    height={24}
-                                />
-                            </button>
-                        </div>
-
-                        <div className={Style.volumeControlBox}>
-                            <Image
-                                src="/icons/Player/Volume.svg"
-                                alt="Volume icon"
-                                width={24}
-                                height={24}
-                            />
-                            <input
-                                type="range"
-                                min={0}
-                                max={100}
-                                value={volume}
-                                onChange={handleChange}
-                                style={{
-                                    background: `linear-gradient(to right, white 0%, white ${volume}%, #444 ${volume}%, #444 100%)`
-                                }}
-                                className={Style.slider}
-                            />
-
-
-
-
-                        </div>
-                    </div>
+              <div
+                ref={progressRef}
+                className={Style.progressBarWrapper}
+                onClick={handleClickProgressBar}
+                role="slider"
+                aria-valuemin={0}
+                aria-valuemax={duration || 0}
+                aria-valuenow={isDragging ? previewTime : currentTime}
+              >
+                <div className={Style.progressTrack}>
+                  <div className={Style.progressFill} style={{ width: `${progressPercent}%` }} />
+                  <div
+                    className={Style.progressThumb}
+                    style={{ left: `calc(${progressPercent}% - 6px)` }}
+                    onMouseDown={handleThumbMouseDown}
+                  />
                 </div>
+              </div>
+
+              <span>{formatTime(duration)}</span>
             </div>
-            <audio ref={audioRef} src="/songs/test.mp3" preload="metadata" />
+          </div>
+
+          {/* RIGHT — Info + Transport + Volume */}
+          <div className={Style.controlBoxSecondPart}>
+            {/* Track info */}
+            <div className={Style.InfoBox}>
+              <span>{safeTrack.title ?? "No Information"}</span>
+              <span>{safeTrack.artistName ?? "No Information"}</span>
+            </div>
+
+            {/* Transport */}
+            <div className={Style.functionalIconsBox}>
+              <button
+                className={`${Style.functionalIconButton} ${isShuffle ? Style.shuffleBtnSctived : ""}`}
+                onClick={toggleShuffle}
+                aria-label="Shuffle"
+                title={isShuffle ? "Shuffle: ON" : "Shuffle: OFF"}
+                aria-pressed={isShuffle}
+                data-active={isShuffle ? "true" : "false"}
+              >
+                <Image src={"/icons/Player/Shuflle.svg"} alt="Shuffle" width={24} height={24} />
+              </button>
+
+              <button className={Style.functionalIconButton} onClick={prevTrack} aria-label="Previous" title="Previous">
+                <Image src="/icons/Player/PlayPrevious.svg" alt="Previous" width={24} height={24} />
+              </button>
+
+              <button
+                className={Style.PlayPauseButton}
+                onClick={handlePlayPause}
+                aria-label={isPlaying ? "Pause" : "Play"}
+                title={isPlaying ? "Pause" : "Play"}
+              >
+                <Image
+                  src={isPlaying ? "/icons/Player/Pause.svg" : "/icons/Player/Play.svg"}
+                  alt="Play/Pause"
+                  width={48}
+                  height={48}
+                />
+              </button>
+
+              <button className={Style.functionalIconButton} onClick={nextTrack} aria-label="Next" title="Next">
+                <Image src="/icons/Player/PlayNext.svg" alt="Next" width={24} height={24} />
+              </button>
+
+              <button
+                className={`${Style.functionalIconButton} ${repeatMode === "one" ? Style.repeatBtnSctived : ""}`}
+                onClick={toggleRepeatMode}
+                aria-label="Repeat"
+                title={repeatMode === "one" ? "Repeat one" : "Repeat off"}
+              >
+                <Image src="/icons/Player/Repeat.svg" alt="Repeat" width={24} height={24} />
+              </button>
+            </div>
+
+            {/* Volume */}
+            <div className={Style.volumeControlBox}>
+              <button
+                className={Style.functionalIconButton}
+                onClick={toggleMute}
+                aria-label={isMuted ? "Unmute" : "Mute"}
+                title={isMuted ? "Unmute" : "Mute"}
+              >
+                <Image
+                  src={isMuted ? "/icons/Player/muted.svg" : "/icons/Player/Volume.svg"}
+                  alt="Volume icon"
+                  width={24}
+                  height={24}
+                />
+              </button>
+
+              <input
+                type="range"
+                min={0}
+                max={100}
+                value={volume}
+                onChange={handleChange}
+                className={Style.slider}
+                aria-label="Volume"
+                style={{
+                  background: `linear-gradient(to right, #fff 0%, #fff ${volume}%, #444 ${volume}%, #444 100%)`,
+                }}
+              />
+            </div>
+          </div>
         </div>
-    );
+      </div>
+
+      {/* Audio */}
+      <audio
+        ref={audioRef}
+        src={safeTrack.audioSrc}
+        preload="metadata"
+        onEnded={handleEnded}
+      />
+    </div>
+  );
 }

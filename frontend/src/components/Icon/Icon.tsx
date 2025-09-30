@@ -27,7 +27,9 @@ export default function Icon({ name, onClick }: Props) {
   }
 
   return (
-    <div onClick={onClick}> {/* Pass click function from parent if needed */}
+    <div onClick={onClick}>
+      {" "}
+      {/* Pass click function from parent if needed */}
       <IconComponent />
     </div>
   );
