@@ -18,7 +18,9 @@ export class UsersRepository {
   }
 
   async findAll(): Promise<User[]> {
-    return this.usersRepo.find();
+    return this.usersRepo.find({
+      relations:['music']
+    });
   }
 
   async findOne(id: number): Promise<User | null> {
