@@ -93,7 +93,7 @@ export default function CreatePlaylistCard({
 
       <div className={styles.footer}>
         <div className={styles.saveBtn}>
-          <Button text="Save" onClick={handleSave} />
+          <Button text="Save" onClick={handleSave} /> 
         </div>
       </div>
     </div>
