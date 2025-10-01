@@ -14,7 +14,7 @@ import {
 import { AlbumsService } from './albums.service';
 import { CreateAlbumDto } from './dto/create-album.dto';
 import { UpdateAlbumDto } from './dto/update-album.dto';
-import { SearchMusicDto } from 'src/search/dto/search-music.dto';
+import { SearchMusicDto } from 'src/common/search-music.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('albums')

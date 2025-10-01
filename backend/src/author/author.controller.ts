@@ -14,7 +14,7 @@ import {
 import { AuthorService } from './author.service';
 import { CreateAuthorDto } from './dto/create-author.dto';
 import { UpdateAuthorDto } from './dto/update-author.dto';
-import { SearchMusicDto } from 'src/search/dto/search-music.dto';
+import { SearchMusicDto } from 'src/common/search-music.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('author')
