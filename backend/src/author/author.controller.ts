@@ -14,7 +14,7 @@ import {
 import { AuthorService } from './author.service';
 import { CreateAuthorDto } from './dto/create-author.dto';
 import { UpdateAuthorDto } from './dto/update-author.dto';
-import { SearchMusicDto } from 'src/common/search-music.dto';
+import { SearchQueryDto } from 'src/common/query-dto/search-query.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('author')
@@ -34,15 +34,15 @@ export class AuthorController {
   ) {
     return this.authorService.uploadAvatar(id, file);
   }
-  
+
   @Get()
   findAll() {
     return this.authorService.findAll();
   }
 
   @Get('search')
-  search(@Query() searchMusicDto: SearchMusicDto) {
-    return this.authorService.search(searchMusicDto.query);
+  search(@Query() searchQueryDto: SearchQueryDto) {
+    return this.authorService.search(searchQueryDto.query);
   }
 
   @Get(':id')

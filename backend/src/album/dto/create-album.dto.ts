@@ -1,6 +1,7 @@
 import { IsInt, IsOptional, IsString } from 'class-validator';
+import { SearchQueryDto } from 'src/common/query-dto/search-query.dto';
 
-export class CreateAlbumDto {
+export class CreateAlbumDto extends SearchQueryDto {
   @IsString()
   title: string;
 

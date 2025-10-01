@@ -14,7 +14,7 @@ import {
 import { MusicService } from './music.service';
 import { CreateMusicDto } from './dto/create-music.dto';
 import { UpdateMusicDto } from './dto/update-music.dto';
-import { SearchMusicDto } from 'src/common/search-music.dto';
+import { SearchQueryDto } from 'src/common/query-dto/search-query.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('music')
@@ -44,8 +44,8 @@ export class MusicController {
   }
 
   @Get('search')
-  search(@Query() searchMusicDto: SearchMusicDto) {
-    return this.musicService.search(searchMusicDto.query);
+  search(@Query() searchQueryDto: SearchQueryDto) {
+    return this.musicService.search(searchQueryDto.query);
   }
 
   @Get(':id')
