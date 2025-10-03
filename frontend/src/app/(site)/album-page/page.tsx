@@ -24,7 +24,7 @@ export default function AlbumPage() {
     <main className={styles.main}>
       <h4>trending now</h4>
       {activeTab === 1 && (
-        <div className="albumCard">
+        <div className={`Grid`}>
           {albums.map((_, i) => (
             <AlbumCard
               key={i}
