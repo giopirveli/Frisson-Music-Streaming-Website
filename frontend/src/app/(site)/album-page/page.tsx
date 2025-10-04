@@ -8,6 +8,7 @@ import AlbumCard from "@/components/AlbumCard/AlbumCard";
 import photo from "../../../assets/images/table/albumphoto.png";
 import { useActiveTab } from "@/components/Context/ActiveTabContext";
 import "@/../styles/defaults/defaultGrid.scss";
+import FotosFetch from "@/components/LinkFetcher/Vcade";
 
 
 export default function AlbumPage() {
@@ -24,7 +25,7 @@ export default function AlbumPage() {
     <main className={styles.main}>
       <h4>trending now</h4>
       {activeTab === 1 && (
-        <div className="albumCard">
+        <div className={`Grid`}>
           {albums.map((_, i) => (
             <AlbumCard
               key={i}
@@ -33,6 +34,15 @@ export default function AlbumPage() {
               onClick={goDetails}
             />
           ))}
+
+
+          <FotosFetch />
+
+
+
+
+
+          
         </div>
       )}
 
@@ -45,6 +55,7 @@ export default function AlbumPage() {
           />
           <div>
             <SongListTable />
+
           </div>
         </>
       )}
