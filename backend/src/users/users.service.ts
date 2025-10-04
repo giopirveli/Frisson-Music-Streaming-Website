@@ -60,11 +60,9 @@ export class UsersService {
     const query = this.usersRepository
       .createQueryBuilder('user')
       .where('user.email = :email', { email });
-
     if (withPassword) {
       query.addSelect('user.password');
     }
-
     return query.getOne();
   }
 

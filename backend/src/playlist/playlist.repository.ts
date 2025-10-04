@@ -31,13 +31,6 @@ export class PlaylistRepository {
     });
   }
 
-  async findByUser(userId: number) {
-    return this.playlistRepo.find({
-      where: { user: { id: userId } },
-      relations: ['music', 'user'],
-    });
-  }
-
   async findMusicByIds(ids: number[]) {
     return this.musicRepo.findBy({ id: In(ids) });
   }

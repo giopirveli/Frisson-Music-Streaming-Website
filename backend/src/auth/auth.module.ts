@@ -15,7 +15,7 @@ import { JwtModule } from '@nestjs/jwt';
     ScheduleModule.forRoot(),
     JwtModule.register({
       global: true,
-      secret: process.env.JWT_SECRET || 'supersecret', //
+      secret: process.env.JWT_SECRET || 'supersecret',
       signOptions: { expiresIn: '15m' },
     }),
   ],

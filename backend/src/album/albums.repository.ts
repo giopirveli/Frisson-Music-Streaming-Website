@@ -43,7 +43,6 @@ export class AlbumRepository {
       .createQueryBuilder('album')
       .leftJoinAndSelect('album.author', 'author')
       .leftJoinAndSelect('album.music', 'music');
-
     if (query) {
       qb.where('album.title LIKE :query', { query: `%${query}%` })
         .orWhere('author.name LIKE :query', { query: `%${query}%` })

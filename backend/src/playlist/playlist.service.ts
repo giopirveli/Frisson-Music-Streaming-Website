@@ -1,6 +1,6 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { PlaylistRepository } from './playlist.repository';
-import { PlaylistType } from 'src/common/playlist.enum';
+import { PlaylistType } from 'src/playlist/playlist.enum';
 import { Playlist } from './entities/playlist.entity';
 import { User } from 'src/users/entities/user.entity';
 import { CreatePlaylistDto } from './dto/create-playlist.dto';
@@ -39,7 +39,7 @@ export class PlaylistService {
         music = await this.playlistRepo.findRecommendations(userId);
         break;
       default:
-        throw new Error(`Type ${type} not supported`);
+        throw new Error(`Type ${type} not found`);
     }
 
     return {
@@ -49,8 +49,8 @@ export class PlaylistService {
     };
   }
 
-  async getUserPlaylists(userId: number) {
-    return this.playlistRepo.findByUser(userId);
+  async getUserPlaylists(id: number) {
+    return this.playlistRepo.findById(id);
   }
 
   async getAll() {

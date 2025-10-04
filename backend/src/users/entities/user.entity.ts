@@ -1,4 +1,3 @@
-import { Album } from 'src/album/entities/album.entity';
 import { BaseEntity } from 'src/common/base.entity';
 import { Listener } from 'src/listeners-table/entities/listeners-table.entity';
 import { Music } from 'src/music/entities/music.entity';
@@ -32,9 +31,6 @@ export class User extends BaseEntity {
   music: Music[];
 
   @ManyToMany(() => Music)
-  @JoinTable()
+  @JoinTable({name: 'user_liked_tracks'})
   likedMusic: Music[];
-
-  @OneToMany(() => Album, (album) => album.user, { onDelete: 'CASCADE' })
-  albums: Album[];
 }

@@ -10,6 +10,7 @@ import { CreateMusicDto } from './dto/create-music.dto';
 import { UpdateMusicDto } from './dto/update-music.dto';
 import { User } from 'src/users/entities/user.entity';
 import { MusicRepository } from './music.repository';
+import { S3Service } from 'src/common/s3/s3.service';
 
 @Injectable()
 export class MusicService {
@@ -19,7 +20,33 @@ export class MusicService {
     private readonly musicRepository: MusicRepository,
     @InjectRepository(User)
     private readonly userRepo: Repository<User>,
+    private readonly s3Service: S3Service,
   ) {}
+
+  async create(userId: number, createMusicDto: CreateMusicDto): Promise<Music> {
+    const user = await this.findUserOrFail(userId);
+    const music = this.musicRepo.create({ ...createMusicDto, user });
+    return this.musicRepo.save(music);
+  }
+
+  async uploadFile(musicId: number, file: Express.Multer.File): Promise<Music> {
+    const music = await this.musicRepo.findOne({ where: { id: musicId } });
+    if (!music) throw new NotFoundException('Music not found');
+
+    const uploaded = await this.s3Service.upload({
+      file: file.buffer,
+      name: file.originalname,
+      mimetype: file.mimetype,
+      folder: 'Music',
+    });
+
+    music.trackFileName = file.originalname;
+    music.trackKey = uploaded.Key;
+    music.trackBucket = uploaded.Bucket;
+    music.trackUrl = uploaded.Location;
+
+    return this.musicRepo.save(music);
+  }
 
   async findMusicOrFail(musicId: number): Promise<Music> {
     const music = await this.musicRepo.findOne({
@@ -34,12 +61,6 @@ export class MusicService {
     const user = await this.userRepo.findOneBy({ id: userId });
     if (!user) throw new NotFoundException('User not found');
     return user;
-  }
-
-  async create(userId: number, createMusicDto: CreateMusicDto): Promise<Music> {
-    const user = await this.findUserOrFail(userId);
-    const music = this.musicRepo.create({ ...createMusicDto, user });
-    return this.musicRepo.save(music);
   }
 
   async findAll(): Promise<Music[]> {
