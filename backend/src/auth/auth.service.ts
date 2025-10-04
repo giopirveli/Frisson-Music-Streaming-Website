@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   HttpException,
   HttpStatus,
   Injectable,
@@ -102,9 +103,8 @@ export class AuthService {
       user && (await bcrypt.compare(password, user.password));
 
     if (!isPasswordCorrect) {
-      throw new HttpException(
+      throw new BadRequestException(
         'The email or password you entered is incorrect',
-        HttpStatus.BAD_REQUEST,
       );
     }
 

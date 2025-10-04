@@ -31,7 +31,7 @@ export class ListenersTableService {
       listener = await this.listenersRepo.createAndSave({
         user,
         music,
-        playCount: 1,
+        playCount: 0,
       });
     }
 

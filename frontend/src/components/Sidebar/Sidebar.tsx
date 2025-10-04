@@ -29,11 +29,6 @@ export default function Sidebar() {
       <nav className={styles.menu}>
         <div className={styles.mainMenu}>
           <NavItem href="/" icon="/icons/Sidebar/home.svg" label="home" />
-          <NavItem
-            href="/recommendations"
-            icon="/icons/Sidebar/recommendations.svg"
-            label="recommendations"
-          />
           <NavItem href="/top-hits-page" icon="/icons/Sidebar/topHits.svg" label="top hits" />
           <NavItem
             href="/top-charts-page"
@@ -45,7 +40,7 @@ export default function Sidebar() {
         <div className={styles.collectionMenu}>
           <h4>collection</h4>
           <NavItem href="/playlists-page" icon="/icons/Sidebar/playlists.svg" label="playlists" />
-          <NavItem href="/auth/favorites" icon="/icons/Sidebar/favorites.svg" label="favorites" />
+          <NavItem href="/favorites" icon="/icons/Sidebar/favorites.svg" label="favorites" />
         </div>
 
         <div className={styles.discoverMenu}>

@@ -9,12 +9,14 @@ import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { UsersRepository } from './users.repository';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User)
     private readonly usersRepository: Repository<User>,
+    private readonly userRepo: UsersRepository,
   ) {}
 
   async findUserOrThrowById(id: number): Promise<User> {
@@ -43,8 +45,8 @@ export class UsersService {
     return result;
   }
 
-  async findAll(): Promise<User[]> {
-    return this.usersRepository.find();
+  async findAll() {
+    return this.userRepo.findAll();
   }
 
   async findOneById(id: number): Promise<User> {
@@ -70,14 +72,16 @@ export class UsersService {
     if (updateUserDto.password) {
       updateUserDto.password = await bcrypt.hash(updateUserDto.password, 10);
     }
-    const user = await this.usersRepository.preload({ id, ...updateUserDto });
-    if (!user) throw new NotFoundException('User not found');
-    return this.usersRepository.save(user);
+    await this.usersRepository.update(id, updateUserDto);
+    const user = await this.usersRepository.findOneBy({ id });
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+    return user;
   }
 
   async delete(id: number): Promise<{ message: string }> {
-    const result = await this.usersRepository.delete(id);
-    if (result.affected === 0) throw new NotFoundException('User not found');
+    await this.usersRepository.delete(id);
     return { message: 'User deleted successfully' };
   }
 }

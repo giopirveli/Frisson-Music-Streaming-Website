@@ -14,6 +14,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import "@/../styles/defaults/default.scss";
 import CreatePlaylistCard from "@/components/CreatePlaylistCard/CreatePlaylistCard";
+import "@/../styles/defaults/defaultGrid.scss";
 
 interface Album {
   id: string;
@@ -57,7 +58,7 @@ export default function PlaylistPage() {
             </div>
           </div>
 
-          <div className={styles.albumCard}>
+          <div className={`Grid`}>
             {/* Demo playlists */}
             {demoAlbums.map((album) => (
               <PlaylistComponent
@@ -115,15 +116,25 @@ export default function PlaylistPage() {
             onClick={(e) => e.stopPropagation()}
           >
             <CreatePlaylistCard
-              previewOnClick={closeCreate}
-              onSave={({ name }) => {
-                setAlbums(prev => [
-                  { id: crypto.randomUUID(), albumName: name, imageUrl: undefined },
-                  ...prev,
-                ]);
-                closeCreate();
+              previewOnClick={() => setIsCreateOpen(false)}
+              onSave={({ name, imageFile }) => {
+                const id =
+                  (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function")
+                    ? crypto.randomUUID()
+                    : `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+
+                const newAlbum = {
+                  id,
+                  albumName: name,
+                  imageUrl: imageFile ? URL.createObjectURL(imageFile) : undefined,
+                } satisfies Album;
+
+                setAlbums((prev) => [newAlbum, ...prev]);
+                setIsCreateOpen(false);
               }}
             />
+
+
           </div>
         </div>
       )}

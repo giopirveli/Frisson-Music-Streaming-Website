@@ -13,6 +13,6 @@ export class Listener {
   @ManyToOne(() => Music, (music) => music.listeners, { eager: true })
   music: Music;
 
-  @Column({ default: 1 })
+  @Column({ default: 0 })
   playCount: number;
 }
