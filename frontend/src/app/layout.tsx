@@ -1,3 +1,10 @@
+export const metadata = {
+  title: "Frisson",
+  icons: {
+    icon: "@/../icons/Sidebar/mainLogo.png", // put your favicon in public/
+  },
+};
+
 import MeasureWidth from "../components/MeasureWidth/MeasureWidth";
 import localFont from "next/font/local";
 import "./globals.scss";
@@ -39,4 +46,3 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
-
