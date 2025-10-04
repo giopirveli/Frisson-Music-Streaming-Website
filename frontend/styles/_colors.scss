@@ -1,75 +1,83 @@
 // gradients:
+$gradient-apolo: linear-gradient(90deg, #f903d0 0%, #9a16f2 100%); // horizontal pink - purple
 
-$primary-gradient: linear-gradient(90deg, #F903D0,#9A16F2); // horizontal pink - purple
+
+// sidebar
+$sidebar-gradient: linear-gradient(-140deg,black 20%, #f903d0 40%, #9a16f2 60%, black 80%); // an erti miece an meore
+$narrow-sidebar-gradient:linear-gradient(-140deg,black 30%, #f903d0 40%, #9a16f2 60%, black 75%); // esec meore
+// laptop-sidebar
+$small-sidebar-gradient:linear-gradient(-140deg,black 40%,#f903d0 50%, #9a16f2 60%, black 70%); // patara ekranzebze laptop
+
+// scrollbar-gradient
+$scrollbar-gradient:linear-gradient(180deg,#f903d0 0%, #9a16f2 100%);
+
 
 
 // pink - purple
 
-$bonbon: #FFE6FB;               // white
-$placebo-fuchsia: #F5E7FE;      // white
+$bonbon: #ffe6fb; // white
+$placebo-fuchsia: #f5e7fe; // white
 
-$hermosa-pink: #FEB3F2;         // light pink
-$lavender-fragnance: #E0B7FB;   // light pink
+$hermosa-pink: #feb3f2; // light pink
+$lavender-fragnance: #e0b7fb; // light pink
 
-$splash-of-grenadine: #fd81e9;  // pink
-$grass-pink-orchid: #cb86f8;    // pink
+$splash-of-grenadine: #fd81e9; // pink
+$grass-pink-orchid: #cb86f8; // pink
 
-$purple-pizzazz: #fd4fe0;       // pink
-$shotoku-purple: #b656f6;       // purple
+$purple-pizzazz: #fd4fe0; // pink
+$shotoku-purple: #b656f6; // purple
 
-$fuchsia-flame: #F903D0;        // pink
-$singapore-orchid: #9A16F2;     // purple
+$fuchsia-flame: #f903d0; // pink
+$singapore-orchid: #9a16f2; // purple
 
-$passionate-pink: #e303bd;      // pink
-$indiviolet-sunset: #6909a9;    // purple
+$passionate-pink: #e303bd; // pink
+$indiviolet-sunset: #6909a9; // purple
 
-$jealous-jellyfish: #B00293;    // pink
-$invasive-indigo: #4b0779;      // purple
+$jealous-jellyfish: #b00293; // pink
+$invasive-indigo: #4b0779; // purple
 
-$pion-purple: #4C013F;          // dark purple
-$cotinga-purple: #39055C;       // dark purple
+$pion-purple: #4c013f; // dark purple
+$cotinga-purple: #39055c; // dark purple
 
-$globe-thistle: #32012A;        // dark purple
-$edge-of-space: #2d0448;        // dark purple
-
+$globe-thistle: #32012a; // dark purple
+$edge-of-space: #2d0448; // dark purple
 
 // Monochromes:
 
-$dynamic-black: #1D1D1D;        // black
+$dynamic-black: #1d1d1d; // black
 
-$lead: #202020;                 // black
+$lead: #202020; // black
 
-$cod-grey: #2E3133;             // dark grey
+$cod-grey: #2e3133; // dark grey
 
-$hawks-eye: #35353B;            // dark grey
+$hawks-eye: #35353b; // dark grey
 
-$stone-cold: #565657;           // grey
+$stone-cold: #565657; // grey
 
-$mission-control: #818385;      // light grey
+$mission-control: #818385; // light grey
 
-$shady-lady: #9E9A9F;           // light grey
+$shady-lady: #9e9a9f; // light grey
 
-$palladium: #B1B1B1;            // light grey
+$palladium: #b1b1b1; // light grey
 
-$glacier-grey: #BCBCBE;         // white
+$glacier-grey: #bcbcbe; // white
 
-
+$log-reg-text: #c5b0c9; // ახალი ფერი ლოგინ და რეგისტრაციისათვის
 // State:
 
-$success: #27AE60;              // green
-$error: #EB5757;                // red
-$info: #2F80ED;                 // blue
-$warning: #E2B93B;              // yellow
-
+$success: #27ae60; // green
+$error: #eb5757; // red
+$info: #2f80ed; // blue
+$warning: #e2b93b; // yellow
 
 // Black:
 
-$dark-void: #151519;            // black
-$reversed-grey: #080808;        // black
-$black-metal: #050506;          // black
-$background: #000000;           // black
+$dark-void: #151519; // black
+$reversed-grey: #080808; // black
+$black-metal: #050506; // black
+$background: #000000; // black
 
+// white
 
-// white 
-
-$white: #fff;                   // white
+$white: #fff; // white
+$black: #000; // black

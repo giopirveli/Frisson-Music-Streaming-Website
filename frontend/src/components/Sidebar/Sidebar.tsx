@@ -1,68 +1,54 @@
+"use client";
+
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import styles from "./Sidebar.module.scss";
 
+function NavItem({ href, icon, label }: { href: string; icon: string; label: string }) {
+  const pathname = usePathname();
+  const isActive = pathname === href || (href !== "/" && pathname.startsWith(href));
+  return (
+    <Link
+      href={href}
+      className={`${styles.item} ${isActive ? styles.active : ""}`}
+      aria-current={isActive ? "page" : undefined}
+    >
+      <Image src={icon} width={20} height={20} alt="" />
+      <span>{label}</span>
+    </Link>
+  );
+}
+
 export default function Sidebar() {
-   return (
-<>
-      <aside className={styles.sidebar}>
-      <Image src="/icons/Sidebar/logo.png" className={styles.frisson} width={98} height={83} alt="logo" />
-      
-      
-      <div className={styles.menu}>
-<div className={styles.mainMenu}>
+  return (
+    <aside className={styles.sidebar}>
+      <Link href="/" aria-label="Home" className={styles.frissonMainLogo}>
+        <Image src="/icons/Sidebar/mainLogo.png" fill alt="Frisson logo" />
+      </Link>
+      <nav className={styles.menu}>
+        <div className={styles.mainMenu}>
+          <NavItem href="/" icon="/icons/Sidebar/home.svg" label="home" />
+          <NavItem href="/top-hits-page" icon="/icons/Sidebar/topHits.svg" label="top hits" />
+          <NavItem
+            href="/top-charts-page"
+            icon="/icons/Sidebar/topCharts.svg"
+            label="top charts"
+          />
+        </div>
 
-         <div>
-            <Image src="/icons/Sidebar/home.svg" width={24} height={24} alt="logo" />
-            <p>home</p>
-         </div>
-         <div>
-            <Image src="/icons/Sidebar/recommendations.svg" width={24} height={24} alt="logo" />
-            <p>recommendations</p>
+        <div className={styles.collectionMenu}>
+          <h4>collection</h4>
+          <NavItem href="/playlists-page" icon="/icons/Sidebar/playlists.svg" label="playlists" />
+          <NavItem href="/favorites" icon="/icons/Sidebar/favorites.svg" label="favorites" />
+        </div>
 
-         </div>
-         <div>
-            <Image src="/icons/Sidebar/topHits.svg" width={24} height={24} alt="logo" />
-            <p>top hits</p>
-         </div>
-         <div>
-            <Image src="/icons/Sidebar/topCharts.svg" width={24} height={24} alt="logo" />            
-            <p>top charts</p>
-
-         </div>
-</div>
-
-      <div className={styles.collectionMenu}>
-         <h4>collection</h4>
-         <div>
-            <Image src="/icons/Sidebar/playlists.svg" width={24} height={24} alt="logo" />
-            <p>playlists</p>
-         </div>
-         <div>
-            <Image src="/icons/Sidebar/favorites.svg" width={24} height={24} alt="logo" />            
-            <p>favorites</p>
-         </div>
-      </div>
-
-
-      <div className={styles.discoverMenu}>
-         <h4>discover</h4>
-         <div>
-            <Image src="/icons/Sidebar/artist.svg" width={24} height={24} alt="logo" />
-            <p>artist</p>
-         </div>
-         <div>
-            <Image src="/icons/Sidebar/album.svg" width={24} height={24} alt="logo" />            
-            <p>album</p>
-         </div>
-      </div>
-
-
-      </div>
-
-      </aside>
-
-
-</>
-   )
-
+        <div className={styles.discoverMenu}>
+          <h4>discover</h4>
+          <NavItem href="/artist-page" icon="/icons/Sidebar/artist.svg" label="artist" />
+          <NavItem href={`/album-page`} icon="/icons/Sidebar/album.svg" label="album" />
+        </div>
+      </nav>
+    </aside>
+  );
 }

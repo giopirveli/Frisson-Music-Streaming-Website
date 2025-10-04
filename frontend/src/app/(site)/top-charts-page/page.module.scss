@@ -1,0 +1,13 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 0 24px;
+    margin-top: -20px;
+}
+
+.searchBar {
+  width: 100%;
+  max-width: 548px;
+  height: 56px;
+}

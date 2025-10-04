@@ -1,0 +1,71 @@
+@import "../../../styles/colors";
+
+.card {
+  background-color: $dark-void;
+  box-sizing: border-box;
+  height: 288px;
+  max-width: 266px;
+  width: 100%;
+  border-radius: 8px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.artistImage {
+  width: 234px;
+  height: 226px;
+  border-radius: 200px;
+  object-fit: cover;
+  max-width: 100%;
+  transition: filter 0.3s ease;
+  display: block;
+}
+
+.textWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-left: 16px;
+  padding-bottom: 16px;
+  align-self: flex-start;
+}
+
+.textTop {
+  font-size: 16px;
+  color: #ffff;
+  font-family: var(--font-jakarta), sans-serif;
+}
+
+.btnWhiteBackground {
+  background-color: $white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.heartButton {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  position: absolute;
+  top: 190px;
+  z-index: 10;
+  left: 36%;
+}
+.hoveredImgWrapper {
+  filter: brightness(1.1) opacity(0.7);
+}
+.threeDotsMenuCoordinates {
+  position: absolute; // ან fixed; ორივე იმუშავებს portal-ში, მაგრამ absolute უფრო ბუნებრივია reference-თან
+  z-index: 999; // როგორც კოდში
+}
+.threeDotsBtn{
+@extend .btnWhiteBackground;
+width: 33px;
+height: 33px;
+}
