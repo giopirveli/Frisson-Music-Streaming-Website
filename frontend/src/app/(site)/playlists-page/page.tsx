@@ -14,6 +14,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import "@/../styles/defaults/default.scss";
 import CreatePlaylistCard from "@/components/CreatePlaylistCard/CreatePlaylistCard";
+import "@/../styles/defaults/defaultGrid.scss";
 
 interface Album {
   id: string;
@@ -57,7 +58,7 @@ export default function PlaylistPage() {
             </div>
           </div>
 
-          <div className={styles.albumCard}>
+          <div className={`Grid`}>
             {/* Demo playlists */}
             {demoAlbums.map((album) => (
               <PlaylistComponent

@@ -8,11 +8,14 @@ import {
   Body,
   ParseIntPipe,
   Query,
+  UseInterceptors,
+  UploadedFile,
 } from '@nestjs/common';
 import { MusicService } from './music.service';
 import { CreateMusicDto } from './dto/create-music.dto';
 import { UpdateMusicDto } from './dto/update-music.dto';
-import { SearchMusicDto } from 'src/search/dto/search-music.dto';
+import { SearchQueryDto } from 'src/common/query-dto/search-query.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('music')
 export class MusicController {
@@ -26,14 +29,23 @@ export class MusicController {
     return this.musicService.create(userId, createMusicDto);
   }
 
+  @Post(':id/upload')
+  @UseInterceptors(FileInterceptor('file'))
+  uploadFile(
+    @Param('id') id: number,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
+    return this.musicService.uploadFile(id, file);
+  }
+
   @Get()
   findAll() {
     return this.musicService.findAll();
   }
 
   @Get('search')
-  search(@Query() searchMusicDto: SearchMusicDto) {
-    return this.musicService.search(searchMusicDto.query);
+  search(@Query() searchQueryDto: SearchQueryDto) {
+    return this.musicService.search(searchQueryDto.query);
   }
 
   @Get(':id')

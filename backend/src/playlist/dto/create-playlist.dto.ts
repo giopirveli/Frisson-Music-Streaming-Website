@@ -5,7 +5,7 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
-import { PlaylistType } from 'src/common/playlist.enum';
+import { PlaylistType } from 'src/playlist/playlist.enum';
 
 export class CreatePlaylistDto {
   @IsString()

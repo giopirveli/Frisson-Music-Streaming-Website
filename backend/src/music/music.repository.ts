@@ -21,8 +21,6 @@ export class MusicRepository {
 
     const music = this.musicRepo.create({ ...createMusicDto, user });
     await this.musicRepo.save(music);
-
-    return { message: 'Successfully created music' };
   }
 
   async findAll(): Promise<Music[]> {

@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AuthorModule } from './author/author.module';
 import { MusicModule } from './music/music.module';
+// import { SearchModule } from './search/search.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AlbumsModule } from './album/albums.module';
@@ -34,6 +35,7 @@ import { S3Module } from './common/s3/s3.module';
     AuthorModule,
     MusicModule,
     AlbumsModule,
+    SearchModule,
     UsersModule,
     AuthModule,
     TokenBlacklistsModule,
