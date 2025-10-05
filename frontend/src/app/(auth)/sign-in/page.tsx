@@ -16,6 +16,7 @@ const schema = yup.object({
   rememberMe: yup.boolean().optional().default(false),
 });
 
+
 type FormData = yup.InferType<typeof schema>;
 
 export default function SignInPage() {
@@ -51,7 +52,9 @@ export default function SignInPage() {
     <div className={styles.container}>
       <div className={styles.left}>
         <div className={styles.logoSizeControl}>
-          <Image src="/icons/Sidebar/mainLogo.png" fill alt="Frisson logo" />
+          <Link href="/">
+            <Image src="/icons/Sidebar/mainLogo.png" fill alt="Frisson logo" />
+          </Link>
         </div>
         <div className={styles.leftMainContent}>
           <div className={styles.header}>
@@ -99,7 +102,7 @@ export default function SignInPage() {
               </Link>
             </div>
 
-            <Button text="Sign up" type="submit" />
+            <Button text="Sign in" type="submit" />
             <span className={styles.switchPage}>
               Don’t have an account?
               <Link href="/sign-up"> Sign up</Link>

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./ThreeDotsList.module.scss";
 import arrow from "../../../public/icons/Arrow/arrow.svg";
-import Button from "../Button/button";
+import Button from "../Button/Button";
 import CreatePlaylistCard, { CreatePlaylistPayload } from "../CreatePlaylistCard/CreatePlaylistCard";
 
 type Playlist = { id: string; name: string; imageUrl?: string };
