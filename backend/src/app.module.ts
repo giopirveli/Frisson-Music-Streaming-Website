@@ -6,7 +6,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AlbumsModule } from './album/albums.module';
 import { UsersModule } from './users/users.module';
-import { AuthModule } from './auth/auth.module';
+// import { AuthModule } from './auth/auth.module';
 import { TokenBlacklistsModule } from './token-blacklists/token-blacklists.module';
 import { ListenersTableModule } from './listeners-table/listeners-table.module';
 import { PlaylistModule } from './playlist/playlist.module';
@@ -37,7 +37,7 @@ import { S3Module } from './common/s3/s3.module';
     AlbumsModule,
     // SearchModule,
     UsersModule,
-    AuthModule,
+    //AuthModule,
     TokenBlacklistsModule,
     ListenersTableModule,
     PlaylistModule,

@@ -87,6 +87,7 @@ export default function PlaylistPage() {
               />
             ))}
 
+            <MusicList />
 
           </div>
         </>

@@ -14,28 +14,12 @@ interface Album {
 }
 
 
-const a = [{
-  "id": 1,
-  "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-  "price": 109.95,
-  "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-  "category": "men's clothing",
-  "rating": {
-    "rate": 3.9,
-    "count": 120
-  }
-},{
-  "id":2,
-  "title":"asdadsasd"
-}
-]
-
 const Albums: React.FC = () => {
   const [albums, setAlbums] = useState<Album[]>([]);
 
   useEffect(() => {
     axios
-      .get<Album[]>(`http://localhost:4000/albums/1`)
+      .get<Album[]>(`http://localhost:4000/albums/`)
       .then((response) => {
         console.log("📦 Received from backend:", response.data);
         setAlbums(response.data);
