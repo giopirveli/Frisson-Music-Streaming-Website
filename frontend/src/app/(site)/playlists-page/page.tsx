@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
 import "@/../styles/defaults/default.scss";
 import CreatePlaylistCard from "@/components/CreatePlaylistCard/CreatePlaylistCard";
 import "@/../styles/defaults/defaultGrid.scss";
-import MusicList from "@/components/LinkFetcher/Vcade";
+import Albums from "@/components/LinkFetcher/Albums";
 
 interface Album {
   id: string;
@@ -87,7 +87,7 @@ export default function PlaylistPage() {
               />
             ))}
 
-            <MusicList />
+            <Albums />
 
           </div>
         </>
