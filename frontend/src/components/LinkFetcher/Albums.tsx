@@ -19,7 +19,7 @@ const Albums: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get<Album[]>(`http://localhost:4000/albums/`)
+      .get<Album[]>(`http://localhost:4000/author/`)
       .then((response) => {
         console.log("📦 Received from backend:", response.data);
         setAlbums(response.data);
@@ -30,7 +30,7 @@ const Albums: React.FC = () => {
   }, []);
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div style={{ padding: "20px",color:"white" }}>
       <h1>🎵 Albums</h1>
       <div
         style={{
