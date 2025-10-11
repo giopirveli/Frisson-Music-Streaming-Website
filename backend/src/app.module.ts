@@ -1,12 +1,11 @@
 import { Module } from '@nestjs/common';
 import { AuthorModule } from './author/author.module';
 import { MusicModule } from './music/music.module';
-// import { SearchModule } from './search/search.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AlbumsModule } from './album/albums.module';
 import { UsersModule } from './users/users.module';
-import { AuthModule } from './auth/auth.module';
+// import { AuthModule } from './auth/auth.module';
 import { TokenBlacklistsModule } from './token-blacklists/token-blacklists.module';
 import { ListenersTableModule } from './listeners-table/listeners-table.module';
 import { PlaylistModule } from './playlist/playlist.module';
@@ -35,9 +34,8 @@ import { S3Module } from './common/s3/s3.module';
     AuthorModule,
     MusicModule,
     AlbumsModule,
-    SearchModule,
     UsersModule,
-    AuthModule,
+    // AuthModule,
     TokenBlacklistsModule,
     ListenersTableModule,
     PlaylistModule,
