@@ -3,7 +3,7 @@
 import { useState, useRef } from "react";
 import styles from "./CreatePlaylistCard.module.scss";
 import Image from "next/image";
-import Button from "../Button/button";
+import Button from "../Button/Button";
 
 export type CreatePlaylistPayload = {
   name: string;
