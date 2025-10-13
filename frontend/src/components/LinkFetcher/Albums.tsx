@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-// Define the Album type so TypeScript knows the shape of data
-interface Album {
+// Define the authors type so TypeScript knows the shape of data
+interface Authors {
   id: number;
   title: string;
   cover: string;
@@ -14,24 +14,24 @@ interface Album {
 }
 
 
-const Albums: React.FC = () => {
-  const [albums, setAlbums] = useState<Album[]>([]);
+const authors: React.FC = () => {
+  const [authors, setAuthors] = useState<Authors[]>([]);
 
   useEffect(() => {
     axios
-      .get<Album[]>(`http://localhost:4000/author/`)
+      .get<Authors[]>(`http://localhost:4000/authors/`)
       .then((response) => {
         console.log("📦 Received from backend:", response.data);
-        setAlbums(response.data);
+        setAuthors(response.data);
       })
       .catch((error) => {
-        console.error("Error loading albums:", error);
+        console.error("Error loading authors:", error);
       });
   }, []);
 
   return (
     <div style={{ padding: "20px",color:"white" }}>
-      <h1>🎵 Albums</h1>
+      <h1>🎵 authors</h1>
       <div
         style={{
           display: "grid",
@@ -39,9 +39,9 @@ const Albums: React.FC = () => {
           gap: "20px",
         }}
       >
-        {albums.map((album) => (
+        {authors.map((authors) => (
           <div
-            key={album.id}
+            key={authors.id}
             style={{
               backgroundColor: "#1e1e1e",
               padding: "15px",
@@ -51,14 +51,14 @@ const Albums: React.FC = () => {
             }}
           >
             <img
-              src={album.cover}
-              alt={album.title}
+              src={authors.cover}
+              alt={authors.title}
               width="150"
               style={{ borderRadius: "10px", marginBottom: "10px" }}
             />
-            <h3>{album.title}</h3>
-            <p>{album.releaseDate}</p>
-            <p style={{ color: "#aaa" }}>by {album.author?.name}</p>
+            <h3>{authors.title}</h3>
+            <p>{authors.releaseDate}</p>
+            <p style={{ color: "#aaa" }}>by {authors.author?.name}</p>
           </div>
         ))}
       </div>
@@ -66,4 +66,4 @@ const Albums: React.FC = () => {
   );
 };
 
-export default Albums;
+export default authors;
