@@ -1,6 +1,10 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
+import styles from "./Authors.module.scss";
+import "@/../styles/Defaults/defaultGrid.scss";
+  
 interface Author {
   id: number;
   name: string;
@@ -34,11 +38,7 @@ const Authors: React.FC = () => {
     <div style={{ padding: "20px", color: "white" }}>
       <h1>🎵 Authors</h1>
       <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))",
-          gap: "20px",
-        }}
+        className={`${styles.grid} Grid`}
       >
         {authors.map((a) => (
           <div

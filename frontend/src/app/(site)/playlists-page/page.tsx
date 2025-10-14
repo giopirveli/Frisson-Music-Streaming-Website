@@ -1,5 +1,5 @@
 "use client";
-import Button from "@/components/Button/button";
+import Button from "@/components/Button/Button";
 import plusIcon from "../../../../public/icons/Button/plusIcon.svg";
 import styles from "./page.module.scss";
 import Searchbar from "@/components/Searchbar/Searchbar";
@@ -37,13 +37,7 @@ export default function PlaylistPage() {
   const openCreate = () => setIsCreateOpen(true);
   const closeCreate = () => setIsCreateOpen(false);
 
-  // Demo playlists
-  const [demoAlbums, setDemoAlbums] = useState(
-    Array.from({ length: 8 }).map((_, i) => ({
-      id: crypto.randomUUID(),
-      albumName: `Playlist ${i + 1}`,
-    }))
-  );
+
 
   return (
     <main className={styles.main}>
@@ -60,19 +54,7 @@ export default function PlaylistPage() {
           </div>
 
           <div className={`Grid`}>
-            {/* Demo playlists */}
-            {demoAlbums.map((album) => (
-              <PlaylistComponent
-                key={album.id}
-                title={album.albumName}
-                imageUrl={photo}
-                onClick={() => setActiveTab(2)}
-                onDelete={() =>
-                  setDemoAlbums(prev => prev.filter(a => a.id !== album.id))
-                }
-              />
-            ))}
-
+      
             {/* Real playlists */}
             {albums.map((album) => (
               <PlaylistComponent
@@ -87,7 +69,6 @@ export default function PlaylistPage() {
               />
             ))}
 
-            <Albums />
 
           </div>
         </>
