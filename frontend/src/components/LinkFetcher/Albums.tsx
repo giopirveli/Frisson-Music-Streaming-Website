@@ -1,25 +1,26 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-// Define the authors type so TypeScript knows the shape of data
-interface Authors {
+interface Author {
   id: number;
-  title: string;
-  cover: string;
-  releaseDate: string;
+  name: string;
+  avatarFileName: string;
+  avatarUrl:string;
+  cover?: string;
+  title?: string;
+  releaseDate?: string;
   author?: {
     id: number;
     name: string;
   };
 }
 
-
-const authors: React.FC = () => {
-  const [authors, setAuthors] = useState<Authors[]>([]);
+const Authors: React.FC = () => {
+  const [authors, setAuthors] = useState<Author[]>([]);
 
   useEffect(() => {
     axios
-      .get<Authors[]>(`http://localhost:4000/authors/`)
+      .get<Author[]>(`http://localhost:4000/authors/`)
       .then((response) => {
         console.log("📦 Received from backend:", response.data);
         setAuthors(response.data);
@@ -30,8 +31,8 @@ const authors: React.FC = () => {
   }, []);
 
   return (
-    <div style={{ padding: "20px",color:"white" }}>
-      <h1>🎵 authors</h1>
+    <div style={{ padding: "20px", color: "white" }}>
+      <h1>🎵 Authors</h1>
       <div
         style={{
           display: "grid",
@@ -39,26 +40,29 @@ const authors: React.FC = () => {
           gap: "20px",
         }}
       >
-        {authors.map((authors) => (
+        {authors.map((a) => (
           <div
-            key={authors.id}
+            key={a.id}
             style={{
               backgroundColor: "#1e1e1e",
               padding: "15px",
               borderRadius: "10px",
               textAlign: "center",
-              color: "white",
             }}
           >
-            <img
-              src={authors.cover}
-              alt={authors.title}
-              width="150"
-              style={{ borderRadius: "10px", marginBottom: "10px" }}
-            />
-            <h3>{authors.title}</h3>
-            <p>{authors.releaseDate}</p>
-            <p style={{ color: "#aaa" }}>by {authors.author?.name}</p>
+            {a.name && (
+              <img
+                src={a.avatarUrl}
+                alt={a.title || "cover"}
+                width="200"
+                style={{ borderRadius: "10px", marginBottom: "10px" }}
+              />
+            )}
+            <h3>{a.name}</h3>
+            <p>{a.avatarFileName}</p>
+            {a.author?.name && (
+              <p style={{ color: "#aaa" }}>by {a.author.name}</p>
+            )}
           </div>
         ))}
       </div>
@@ -66,4 +70,4 @@ const authors: React.FC = () => {
   );
 };
 
-export default authors;
+export default Authors;
