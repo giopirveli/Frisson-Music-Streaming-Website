@@ -4,9 +4,12 @@ import axios from "axios";
 // Define the Album type so TypeScript knows the shape of data
 interface Album {
   id: number;
-  title: string;
-  cover: string;
-  releaseDate: string;
+  name: string;
+  avatarFileName: string;
+  coverUrl: string;
+  cover?: string;
+  title?: string;
+  releaseDate?: string;
   author?: {
     id: number;
     name: string;
@@ -19,7 +22,7 @@ const Albums: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get<Album[]>(`http://localhost:4000/author/`)
+      .get<Author[]>(`https://frisson-music-app.s3.eu-north-1.amazonaws.com/albums`)
       .then((response) => {
         console.log("📦 Received from backend:", response.data);
         setAlbums(response.data);
@@ -50,15 +53,19 @@ const Albums: React.FC = () => {
               color: "white",
             }}
           >
-            <img
-              src={album.cover}
-              alt={album.title}
-              width="150"
-              style={{ borderRadius: "10px", marginBottom: "10px" }}
-            />
-            <h3>{album.title}</h3>
-            <p>{album.releaseDate}</p>
-            <p style={{ color: "#aaa" }}>by {album.author?.name}</p>
+            {a.name && (
+              <img
+                src={a.coverUrl}
+                alt={a.title || "cover"}
+                width="200"
+                style={{ borderRadius: "10px", marginBottom: "10px" }}
+              />
+            )}
+            <h3>{a.name}</h3>
+            <p>{a.avatarFileName}</p>
+            {a.author?.name && (
+              <p style={{ color: "#aaa" }}>by {a.author.name}</p>
+            )}
           </div>
         ))}
       </div>

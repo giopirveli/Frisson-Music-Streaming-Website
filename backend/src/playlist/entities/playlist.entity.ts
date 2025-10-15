@@ -15,10 +15,13 @@ export class Playlist extends BaseEntity {
   @Column({ type: 'enum', enum: PlaylistType, default: PlaylistType.FAVORITES })
   type: PlaylistType;
 
+  @Column()
+  imageUrl: string;
+
   @ManyToOne(() => User, (user) => user.playlists, { onDelete: 'CASCADE' })
   user: User;
 
   @ManyToMany(() => Music)
-  @JoinTable({name: 'playlist_tracks'})
+  @JoinTable({ name: 'playlist_tracks' })
   music: Music[];
 }
