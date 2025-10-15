@@ -17,7 +17,7 @@ import { UpdateAuthorDto } from './dto/update-author.dto';
 import { SearchQueryDto } from 'src/common/query-dto/search-query.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 
-@Controller('author')
+@Controller('authors')
 export class AuthorController {
   constructor(private readonly authorService: AuthorService) {}
 
