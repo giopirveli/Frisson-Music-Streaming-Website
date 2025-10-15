@@ -8,7 +8,7 @@ import AlbumCard from "@/components/AlbumCard/AlbumCard";
 import photo from "../../../assets/images/table/albumphoto.png";
 import { useActiveTab } from "@/components/Context/ActiveTabContext";
 import "@/../styles/defaults/defaultGrid.scss";
-import Authors from "@/components/Authors/Authors";
+import FotosFetch from "@/components/LinkFetcher/Albums";
 
 
 export default function AlbumPage() {
@@ -36,7 +36,7 @@ export default function AlbumPage() {
           ))}
 
 
-          <Authors />
+          <FotosFetch />
 
 
 
