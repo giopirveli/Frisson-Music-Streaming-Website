@@ -6,7 +6,7 @@ import styles from "./Authors.module.scss";
 import "@/../styles/Defaults/defaultGrid.scss";
   
 interface Author {
-  id: number;
+  id?: number;
   name: string;
   avatarFileName: string;
   avatarUrl:string;
