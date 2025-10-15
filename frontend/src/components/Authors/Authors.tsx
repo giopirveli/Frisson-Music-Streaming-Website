@@ -5,7 +5,7 @@ interface Author {
   id: number;
   name: string;
   avatarFileName: string;
-  avatarUrl:string;
+  coverUrl: string;
   cover?: string;
   title?: string;
   releaseDate?: string;
@@ -20,7 +20,7 @@ const Authors: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get<Author[]>(`http://localhost:4000/authors/`)
+      .get<Author[]>(`https://frisson-music-app.s3.eu-north-1.amazonaws.com/albums`)
       .then((response) => {
         console.log("📦 Received from backend:", response.data);
         setAuthors(response.data);
@@ -52,7 +52,7 @@ const Authors: React.FC = () => {
           >
             {a.name && (
               <img
-                src={a.avatarUrl}
+                src={a.coverUrl}
                 alt={a.title || "cover"}
                 width="200"
                 style={{ borderRadius: "10px", marginBottom: "10px" }}
