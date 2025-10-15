@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
 import "@/../styles/defaults/default.scss";
 import CreatePlaylistCard from "@/components/CreatePlaylistCard/CreatePlaylistCard";
 import "@/../styles/defaults/defaultGrid.scss";
-import Albums from "@/components/Authors/Albums";
+import Albums from "@/components/Authors/Authors";
 
 interface Album {
   id: string;
@@ -54,24 +54,20 @@ export default function PlaylistPage() {
           </div>
 
           <div className={`Grid`}>
-
+      
             {/* Real playlists */}
-            {Array.from({ length: 7 }).map((_, i) => {
-              const album = albums[i] || {};
-              return (
-                <PlaylistComponent
-                  key={album.id || i}
-                  title={album.albumName || "playlist"}
-                  imageUrl={album.imageUrl}
-                  onClick={() => setActiveTab(2)}
-                  onEdit={() => console.log(`Edit playlist ${album.albumName || i}`)}
-                  onDelete={() =>
-                    setAlbums(prev => prev.filter(a => a.id !== album.id))
-                  }
-                />
-              );
-            })}
-
+            {albums.map((album) => (
+              <PlaylistComponent
+                key={album.id}
+                title={album.albumName || "playlist"}
+                imageUrl={album.imageUrl} // undefined triggers gradient
+                onClick={() => setActiveTab(2)}
+                onEdit={() => console.log(`Edit playlist ${album.albumName}`)}
+                onDelete={() =>
+                  setAlbums(prev => prev.filter(a => a.id !== album.id))
+                }
+              />
+            ))}
 
 
           </div>
