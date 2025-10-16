@@ -24,7 +24,7 @@ const Authors: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get<Author[]>(`http://localhost:4000/authors/`)
+      .get<Author[]>(`http://localhost:4000/albums/`)
       .then((response) => {
         console.log("📦 Received from backend:", response.data);
         setAuthors(response.data);
