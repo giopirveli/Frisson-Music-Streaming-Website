@@ -2,8 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import styles from "./Authors.module.scss";
-import "@/../styles/Defaults/defaultGrid.scss";
 
 interface Album {
   id: number;
@@ -28,30 +26,19 @@ const Albums: React.FC = () => {
   }, []);
 
   return (
-    <div style={{ padding: "20px", color: "white" }}>
-      <h1>🎵 Albums</h1>
-      <div className={`${styles.grid} Grid`}>
-        {albums.map((a) => (
-          <div
-            key={a.id}
-            style={{
-              backgroundColor: "#1e1e1e",
-              padding: "15px",
-              borderRadius: "10px",
-              textAlign: "center",
-            }}
-          >
-            <img
-              src={a.coverUrl}
-              alt={a.title}
-              width="200"
-              style={{ borderRadius: "10px", marginBottom: "10px" }}
-            />
-            <h3>{a.title}</h3>
-            <p style={{ color: "#aaa" }}>{a.artistName}</p>
-          </div>
-        ))}
-      </div>
+    <div>
+      {albums.map((a) => (
+        <div key={a.id}>
+          <img
+            src={a.coverUrl}
+            alt={a.title}
+            width="200"
+            style={{ borderRadius: "10px", marginBottom: "10px" }}
+          />
+          <h3>{a.title}</h3>
+          <p style={{ color: "#aaa" }}>{a.artistName}</p>
+        </div>
+      ))}
     </div>
   );
 };
