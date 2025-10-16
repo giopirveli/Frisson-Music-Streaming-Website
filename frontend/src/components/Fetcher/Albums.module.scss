@@ -1,0 +1,95 @@
+@use "styles/colors" as *;
+
+.card {
+  background-color: $dark-void;
+  box-sizing: border-box;
+  height: 288px;
+  max-width: 266px;
+  max-height:309px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  position: relative;
+}
+
+.albumImage {
+  border-radius: 8px;
+  object-fit: cover;
+  width: 100%;
+  transition: filter 0.3s ease;
+}
+
+.textWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-self: flex-start;
+}
+
+.textTop {
+  font-size: 16px;
+  color: #ffff;
+  font-family: var(--font-jakarta), sans-serif;
+}
+
+.textBottom {
+  font-size: 14px;
+  color: $shady-lady;
+  font-family: var(--font-jakarta), sans-serif;
+}
+
+.imageWrapper {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.heartButton {
+  display: flex;
+  gap: 8px;
+  position: absolute;
+  bottom: 8%;
+  z-index: 10;
+  left: 35%;
+}
+
+.btnWhiteBackground {
+  background-color: $white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
+
+.hoveredImgWrapper {
+  filter: brightness(1.1) opacity(0.7);
+}
+
+.imageWrapperBox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.musicImage {
+  border-radius: 8px;
+}
+
+.wrapper {
+  position: relative;
+  display: inline-block;
+}
+.threeDotsMenuCoordinates {
+  position: absolute; // ან fixed; ორივე იმუშავებს portal-ში, მაგრამ absolute უფრო ბუნებრივია reference-თან
+  z-index: 999; // როგორც კოდში
+}
+.threeDotsBtn{
+@extend .btnWhiteBackground;
+width: 33px;
+height: 33px;
+}

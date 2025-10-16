@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import styles from "./Albums.module.scss";
 
 interface Album {
   id: number;
@@ -15,7 +16,9 @@ const Albums: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get<Album[]>("https://frisson-music-app.s3.eu-north-1.amazonaws.com/albums.json")
+      .get<Album[]>(
+        "https://frisson-music-app.s3.eu-north-1.amazonaws.com/albums.json"
+      )
       .then((response) => {
         console.log("📦 Received from backend:", response.data);
         setAlbums(response.data);
@@ -28,15 +31,19 @@ const Albums: React.FC = () => {
   return (
     <div>
       {albums.map((a) => (
-        <div key={a.id}>
-          <img
-            src={a.coverUrl}
-            alt={a.title}
-            width="200"
-            style={{ borderRadius: "10px", marginBottom: "10px" }}
-          />
-          <h3>{a.title}</h3>
-          <p style={{ color: "#aaa" }}>{a.artistName}</p>
+        <div key={a.id} className={styles.card}>
+          <div className={styles.imageWrapperBox}>
+            <img
+              src={a.coverUrl}
+              alt={a.title}
+              className={`${styles.albumImage} ${styles.musicImage}`}
+            />
+          </div>
+
+          <div className={styles.textWrapper}>
+            <h3 className={styles.textTop}>{a.title}</h3>
+            <p className={styles.textBottom}>{a.artistName}</p>
+          </div>
         </div>
       ))}
     </div>
