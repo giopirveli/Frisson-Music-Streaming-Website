@@ -12,8 +12,8 @@ import banner from "@/../public/Images/playlistsPage/playlist.jpg";
 import { useActiveTab } from "@/components/Context/ActiveTabContext";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import "@/../styles/defaults/default.scss";
 import CreatePlaylistCard from "@/components/CreatePlaylistCard/CreatePlaylistCard";
+import "@/../styles/defaults/default.scss";
 import "@/../styles/defaults/defaultGrid.scss";
 
 interface Album {
