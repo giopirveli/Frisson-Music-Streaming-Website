@@ -4,12 +4,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "./Authors.module.scss";
 import "@/../styles/Defaults/defaultGrid.scss";
-  
-interface Author {
+
+interface Album {
   id?: number;
   name?: string;
   avatarFileName?: string;
-  coverUrl:string;
+  coverUrl: string;
   cover?: string;
   title?: string;
   releaseDate?: string;
@@ -19,28 +19,26 @@ interface Author {
   };
 }
 
-const Authors: React.FC = () => {
-  const [authors, setAuthors] = useState<Author[]>([]);
+const Albums: React.FC = () => {
+  const [albums, setAlbums] = useState<Album[]>([]);
 
   useEffect(() => {
     axios
-      .get<Author[]>(`https://frisson-music-app.s3.eu-north-1.amazonaws.com/albums`)
+      .get<Album[]>(`https://frisson-music-app.s3.eu-north-1.amazonaws.com/albums`)
       .then((response) => {
         console.log("📦 Received from backend:", response.data);
-        setAuthors(response.data);
+        setAlbums(response.data);
       })
       .catch((error) => {
-        console.error("Error loading authors:", error);
+        console.error("Error loading albums:", error);
       });
   }, []);
 
   return (
     <div style={{ padding: "20px", color: "white" }}>
-      <h1>🎵 Authors</h1>
-      <div
-        className={`${styles.grid} Grid`}
-      >
-        {authors.map((a) => (
+      <h1>🎵 Albums</h1>
+      <div className={`${styles.grid} Grid`}>
+        {albums.map((a) => (
           <div
             key={a.id}
             style={{
@@ -70,4 +68,4 @@ const Authors: React.FC = () => {
   );
 };
 
-export default Authors;
+export default Albums;
