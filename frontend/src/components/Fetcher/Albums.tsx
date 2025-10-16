@@ -6,17 +6,10 @@ import styles from "./Authors.module.scss";
 import "@/../styles/Defaults/defaultGrid.scss";
 
 interface Album {
-  id?: number;
-  name?: string;
-  avatarFileName?: string;
+  id: number;
+  title: string;
+  artistName: string;
   coverUrl: string;
-  cover?: string;
-  title?: string;
-  releaseDate?: string;
-  author?: {
-    id: number;
-    name: string;
-  };
 }
 
 const Albums: React.FC = () => {
@@ -24,7 +17,7 @@ const Albums: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get<Album[]>(`https://frisson-music-app.s3.eu-north-1.amazonaws.com/albums/albums.json`)
+      .get<Album[]>("https://frisson-music-app.s3.eu-north-1.amazonaws.com/albums.json")
       .then((response) => {
         console.log("📦 Received from backend:", response.data);
         setAlbums(response.data);
@@ -48,19 +41,14 @@ const Albums: React.FC = () => {
               textAlign: "center",
             }}
           >
-            {a.name && (
-              <img
-                src={a.coverUrl}
-                alt={a.title || "cover"}
-                width="200"
-                style={{ borderRadius: "10px", marginBottom: "10px" }}
-              />
-            )}
-            <h3>{a.name}</h3>
-            <p>{a.avatarFileName}</p>
-            {a.author?.name && (
-              <p style={{ color: "#aaa" }}>by {a.author.name}</p>
-            )}
+            <img
+              src={a.coverUrl}
+              alt={a.title}
+              width="200"
+              style={{ borderRadius: "10px", marginBottom: "10px" }}
+            />
+            <h3>{a.title}</h3>
+            <p style={{ color: "#aaa" }}>{a.artistName}</p>
           </div>
         ))}
       </div>
