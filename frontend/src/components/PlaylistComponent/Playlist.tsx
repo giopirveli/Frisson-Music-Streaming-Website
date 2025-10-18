@@ -3,18 +3,21 @@ import styles from "../PlaylistComponent/Playlist.module.scss";
 import { useState } from "react";
 import PenButton from "../PenBtn/PenButton";
 import BinButton from "../DeleteBinBtn/BinButton";
-import { StaticImageData } from "next/image";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 
 interface PlaylistProps {
-  title: string;
-  imageUrl?: string | StaticImageData; // ← optional
+  id: number | string;
+  description?: string;
+  title?: string;
+  imageUrl?: string | StaticImageData;
   onClick?: () => void;
   onEdit?: () => void;
   onDelete?: () => void;
 }
 
 export default function PlaylistComponent({
+  id,
+  description,
   title,
   imageUrl,
   onClick,
@@ -33,12 +36,17 @@ export default function PlaylistComponent({
 
   return (
     <div
-      className={`${styles.card}`}
+      key={id}
+      className={styles.card}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={onClick}
     >
-      <div className={`${styles.imageWrapper} ${isHovered ? styles.hoveredImgWrapper : ""}`}>
+      <div
+        className={`${styles.imageWrapper} ${
+          isHovered ? styles.hoveredImgWrapper : ""
+        }`}
+      >
         {imageUrl ? (
           <Image
             src={typeof imageUrl === "string" ? imageUrl : imageUrl.src}
@@ -50,7 +58,6 @@ export default function PlaylistComponent({
           <div className={styles.initialAvatar}>{initial}</div>
         )}
       </div>
-
 
       {showHoverControls && (
         <div className={styles.btnControlBox}>
@@ -81,9 +88,9 @@ export default function PlaylistComponent({
       )}
 
       <div className={styles.textWrapper}>
-        <p className={styles.text}>{title}</p>
+        <p className={styles.text}>{title || "Playlist"}</p>
+        {description && <p>{description}</p>}
       </div>
     </div>
   );
 }
-

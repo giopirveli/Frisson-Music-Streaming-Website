@@ -1,7 +1,14 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import NewsComponent from "@/components/NewsComponent/NewsComponent";
+import styles from "./page.module.scss";
+import SongListTable from "@/components/SongListTable/SongListTable";
+import { useEffect, useMemo, useCallback } from "react";
+import AlbumCard from "@/components/AlbumCard/AlbumCard";
+import photo from "../../../assets/images/table/albumphoto.png";
+import { useActiveTab } from "@/components/Context/ActiveTabContext";
+import "@/../styles/defaults/defaultGrid.scss";
+import AlbumFetch from "@/components/Fetcher/Albums";
 
 interface Album {
   id: number;
@@ -47,11 +54,29 @@ export default function AlbumPage() {
               alt={album.title}
               style={{ width: "150px", height: "150px", borderRadius: "8px", objectFit: "cover" }}
             />
-            <p style={{ marginTop: "8px" }}>
-              <strong>{album.title}</strong>
-              <br />
-              {album.artistName}
-            </p>
+          ))}
+
+
+          <AlbumFetch />
+
+
+
+
+
+          
+        </div>
+      )}
+
+      {activeTab === 2 && (
+        <>
+          <NewsComponent
+            plays={"Released 07/12/2023"}
+            title="Seek For Marktoop"
+            imageUrl="/Images/NewsComponent/banner.jpg"
+          />
+          <div>
+            <SongListTable />
+
           </div>
         ))}
       </div>

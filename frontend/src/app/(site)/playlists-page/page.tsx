@@ -1,10 +1,10 @@
 "use client";
-import Button from "@/components/Button/button";
+
+import Button from "@/components/Button/Button";
 import plusIcon from "../../../../public/icons/Button/plusIcon.svg";
 import styles from "./page.module.scss";
 import Searchbar from "@/components/Searchbar/Searchbar";
 import PlaylistComponent from "@/components/PlaylistComponent/Playlist";
-import photo from "../../../assets/images/table/albumphoto.png";
 import { StaticImageData } from "next/image";
 import NewsComponent from "@/components/NewsComponent/NewsComponent";
 import Table from "@/components/Table/Table";
@@ -12,13 +12,13 @@ import banner from "@/../public/Images/playlistsPage/playlist.jpg";
 import { useActiveTab } from "@/components/Context/ActiveTabContext";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import "@/../styles/defaults/default.scss";
 import CreatePlaylistCard from "@/components/CreatePlaylistCard/CreatePlaylistCard";
+import "@/../styles/defaults/default.scss";
 import "@/../styles/defaults/defaultGrid.scss";
-import Albums from "@/components/Authors/Authors";
 
 interface Album {
   id: string;
+  description?: string;
   albumName?: string;
   imageUrl?: string | StaticImageData;
 }
@@ -37,14 +37,6 @@ export default function PlaylistPage() {
   const openCreate = () => setIsCreateOpen(true);
   const closeCreate = () => setIsCreateOpen(false);
 
-  // Demo playlists
-  const [demoAlbums, setDemoAlbums] = useState(
-    Array.from({ length: 8 }).map((_, i) => ({
-      id: crypto.randomUUID(),
-      albumName: `Playlist ${i + 1}`,
-    }))
-  );
-
   return (
     <main className={styles.main}>
       {activeTab === 1 && (
@@ -60,25 +52,13 @@ export default function PlaylistPage() {
           </div>
 
           <div className={`Grid`}>
-            {/* Demo playlists */}
-            {demoAlbums.map((album) => (
-              <PlaylistComponent
-                key={album.id}
-                title={album.albumName}
-                imageUrl={photo}
-                onClick={() => setActiveTab(2)}
-                onDelete={() =>
-                  setDemoAlbums(prev => prev.filter(a => a.id !== album.id))
-                }
-              />
-            ))}
-
             {/* Real playlists */}
             {albums.map((album) => (
               <PlaylistComponent
                 key={album.id}
+                id={album.id}                // ✅ add this line
                 title={album.albumName || "playlist"}
-                imageUrl={album.imageUrl} // undefined triggers gradient
+                imageUrl={album.imageUrl}
                 onClick={() => setActiveTab(2)}
                 onEdit={() => console.log(`Edit playlist ${album.albumName}`)}
                 onDelete={() =>
@@ -86,8 +66,6 @@ export default function PlaylistPage() {
                 }
               />
             ))}
-
-            <Albums />
 
           </div>
         </>
@@ -123,22 +101,23 @@ export default function PlaylistPage() {
               previewOnClick={() => setIsCreateOpen(false)}
               onSave={({ name, imageFile }) => {
                 const id =
-                  (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function")
+                  typeof crypto !== "undefined" &&
+                    typeof crypto.randomUUID === "function"
                     ? crypto.randomUUID()
                     : `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
 
                 const newAlbum = {
                   id,
                   albumName: name,
-                  imageUrl: imageFile ? URL.createObjectURL(imageFile) : undefined,
+                  imageUrl: imageFile
+                    ? URL.createObjectURL(imageFile)
+                    : undefined,
                 } satisfies Album;
 
                 setAlbums((prev) => [newAlbum, ...prev]);
                 setIsCreateOpen(false);
               }}
             />
-
-
           </div>
         </div>
       )}
