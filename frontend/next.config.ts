@@ -1,10 +1,12 @@
-import type { NextConfig } from "next";
-import path from "path";
+const path = require('path');
 
-const nextConfig: NextConfig = {
-  sassOptions: {
-    includePaths: [path.join(__dirname, "frontend/styles")],
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  webpack(config) {
+    config.resolve.alias['@'] = path.resolve(__dirname, 'src');
+    config.resolve.alias['@styles'] = path.resolve(__dirname, 'src/styles');
+    return config;
   },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
