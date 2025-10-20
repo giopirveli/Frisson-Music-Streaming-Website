@@ -1,18 +1,19 @@
 "use client";
-import styles from "../PlaylistComponent/Playlist.module.scss";
+
+import styles from "./Playlist.module.scss";
 import { useState } from "react";
 import PenButton from "../PenBtn/PenButton";
 import BinButton from "../DeleteBinBtn/BinButton";
 import Image, { StaticImageData } from "next/image";
 
 interface PlaylistProps {
-  id: number | string;
-  description?: string;
-  title?: string;
-  imageUrl?: string | StaticImageData;
-  onClick?: () => void;
-  onEdit?: () => void;
-  onDelete?: () => void;
+  id: number | string;           // ✅ required
+  description?: string;          // optional
+  title?: string;                // optional
+  imageUrl?: string | StaticImageData; // optional
+  onClick?: () => void;          // optional
+  onEdit?: () => void;           // optional
+  onDelete?: () => void;         // optional
 }
 
 export default function PlaylistComponent({

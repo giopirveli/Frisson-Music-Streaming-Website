@@ -16,7 +16,6 @@ import CreatePlaylistCard from "@/components/CreatePlaylistCard/CreatePlaylistCa
 import "@/styles/defaults/default.scss";
 import "@/styles/defaults/defaultGrid.scss";
 
-
 interface Album {
   id: string;
   description?: string;
@@ -52,41 +51,38 @@ export default function PlaylistPage() {
             </div>
           </div>
 
-          <div className={`Grid`}>
-            {/* Real playlists */}
+          <div className="Grid">
             {albums.map((album) => (
               <PlaylistComponent
                 key={album.id}
-                id={album.id}                // ✅ add this line
+                id={album.id} // ✅ required
                 title={album.albumName || "playlist"}
                 imageUrl={album.imageUrl}
                 onClick={() => setActiveTab(2)}
                 onEdit={() => console.log(`Edit playlist ${album.albumName}`)}
                 onDelete={() =>
-                  setAlbums(prev => prev.filter(a => a.id !== album.id))
+                  setAlbums((prev) => prev.filter((a) => a.id !== album.id))
                 }
               />
             ))}
-
           </div>
         </>
       )}
 
-      {activeTab === 2 && (
+      {activeTab === 2 && albums.length > 0 && (
         <div className={`ormocdatotxmeti cflex ${styles.nugo}`}>
           <NewsComponent
             imageUrl={banner}
             plays="11 songs"
             title={albums[0]?.albumName || "playlist 1"}
           />
-          <div className={`ocdatormeti cflex`}>
+          <div className="ocdatormeti cflex">
             <Searchbar />
             <Table />
           </div>
         </div>
       )}
 
-      {/* Modal to create new playlist */}
       {isCreateOpen && (
         <div
           className={styles.modalBackdrop}
@@ -103,17 +99,17 @@ export default function PlaylistPage() {
               onSave={({ name, imageFile }) => {
                 const id =
                   typeof crypto !== "undefined" &&
-                    typeof crypto.randomUUID === "function"
+                  typeof crypto.randomUUID === "function"
                     ? crypto.randomUUID()
                     : `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
 
-                const newAlbum = {
+                const newAlbum: Album = {
                   id,
                   albumName: name,
                   imageUrl: imageFile
                     ? URL.createObjectURL(imageFile)
                     : undefined,
-                } satisfies Album;
+                };
 
                 setAlbums((prev) => [newAlbum, ...prev]);
                 setIsCreateOpen(false);
