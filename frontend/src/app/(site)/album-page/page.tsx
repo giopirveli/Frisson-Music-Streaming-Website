@@ -7,7 +7,7 @@ import { useEffect, useMemo, useCallback } from "react";
 import AlbumCard from "@/components/AlbumCard/AlbumCard";
 import photo from "../../../assets/images/table/albumphoto.png";
 import { useActiveTab } from "@/components/Context/ActiveTabContext";
-import "@\/styles\/defaults/defaultGrid.scss";
+import "@/styles/defaults/defaultGrid.scss";
 import AlbumFetch from "@/components/Fetcher/Albums";
 
 
