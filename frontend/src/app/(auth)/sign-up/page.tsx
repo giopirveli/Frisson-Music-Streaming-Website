@@ -67,9 +67,10 @@ export default function SignUpPage() {
     <div className={styles.container}>
       <div className={styles.left}>
         <div className={styles.logoSizeControl}>
-          <Image src="/icons/Sidebar/mainLogo.png" fill alt="Frisson logo" />
+          <Link href="/">
+            <Image src="/icons/Sidebar/mainLogo.png" fill alt="Frisson logo" />
+          </Link>
         </div>
-
         <div className={styles.leftMainContent}>
           <div className={styles.header}>
             <h1 className={styles.title}>
