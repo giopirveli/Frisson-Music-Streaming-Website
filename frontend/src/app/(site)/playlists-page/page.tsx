@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
 import CreatePlaylistCard from "@/components/CreatePlaylistCard/CreatePlaylistCard";
 import "@/styles/defaults/default.scss";
 import "@/styles/defaults/defaultGrid.scss";
-  
+
 
 interface Album {
   id: string;
