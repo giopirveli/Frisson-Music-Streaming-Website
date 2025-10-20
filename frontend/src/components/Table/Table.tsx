@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import styles from "./Table.module.scss";
 import { useState, useEffect } from "react";
 // import axios from "axios";
