@@ -2,7 +2,7 @@
 
 import NewsComponent from "@/components/NewsComponent/NewsComponent";
 import { useEffect, useState } from "react";
-import { Colors } from "../../../../styles/colors.enum";
+import { Colors } from "../../../styles/colors.enum";
 import styles from "./page.module.scss";
 import Table from "@/components/Table/Table";
 import AlbumCard from "@/components/AlbumCard/AlbumCard";

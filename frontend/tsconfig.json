@@ -23,7 +23,7 @@
         "src/*"
       ],
       "@/styles/*": [
-        "styles/*"
+        "src/styles/*"
       ]
     },
     "incremental": true,

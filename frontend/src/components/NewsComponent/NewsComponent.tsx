@@ -2,7 +2,7 @@
 import Button from "../Button/Button";
 import styles from "./NewsComponent.module.scss";
 import Image, { StaticImageData } from "next/image";
-import { Colors } from "../../../styles/colors.enum";
+import { Colors } from "../../styles/colors.enum";
 
 interface NewsComponentProps {
   imageUrl: string | StaticImageData;
