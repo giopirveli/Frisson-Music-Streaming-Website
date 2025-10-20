@@ -1,9 +1,11 @@
-const path = require('path');
+const path = require("path");
 
 module.exports = {
-  webpack(config) {
-    config.resolve.alias['@'] = path.join(__dirname, 'src');
-    config.resolve.alias['@styles'] = path.join(__dirname, 'src/styles');
+  webpack: (config) => {
+    config.resolve.alias["@"] = path.resolve(__dirname, "src");
     return config;
+  },
+  experimental: {
+    outputFileTracingRoot: path.join(__dirname, "../"),
   },
 };
