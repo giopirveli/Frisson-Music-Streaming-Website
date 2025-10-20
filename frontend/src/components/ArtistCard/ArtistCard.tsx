@@ -3,7 +3,7 @@
 import styles from "./ArtistCard.module.scss";
 import Image, { StaticImageData } from "next/image";
 import { useState } from "react";
-import HeartBtn from "../heartbtn/heartBtn";
+import HeartBtn from "../Heartbtn/HeartBtn";
 import ThreeDotsBtn from "../ThreeDots/ThreeDotsBtn";
 import ThreeDotsList from "../ThreeDotsList/ThreeDotsList";
 import {

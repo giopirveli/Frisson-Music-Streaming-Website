@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import styles from "./SongListTable.module.scss";
-import HeartBtn from "../heartbtn/heartBtn";
+import HeartBtn from "../Heartbtn/HeartBtn";
 import photo from "../../assets/images/table/artistphoto.png";
 import ThreeDotsBtn from "../ThreeDots/ThreeDotsBtn";
 import ThreeDotsList from "../ThreeDotsList/ThreeDotsList";
