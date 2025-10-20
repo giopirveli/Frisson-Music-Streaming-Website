@@ -1,7 +1,10 @@
+// next.config.ts
 import { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  outputFileTracingRoot: "/opt/build/repo/",
+  outputFileTracingRoot: __dirname, // <-- fix here
+  reactStrictMode: true,
+  // other settings...
 };
 
 export default nextConfig;

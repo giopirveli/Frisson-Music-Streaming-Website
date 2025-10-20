@@ -6,7 +6,7 @@ import TopCharts from "@/components/TopCharts/TopCharts";
 import AlbumCard from "@/components/AlbumCard/AlbumCard";
 import ArtistCard from "@/components/ArtistCard/ArtistCard";
 import Link from "next/link";
-import "@/../styles/Defaults/defaultGrid.scss";
+import "@/styles/Defaults/defaultGrid.scss";
 
 export default function Home() {
 
