@@ -1,11 +1,7 @@
-const path = require("path");
+import { NextConfig } from 'next';
 
-module.exports = {
-  webpack: (config) => {
-    config.resolve.alias["@"] = path.resolve(__dirname, "src");
-    return config;
-  },
-  experimental: {
-    outputFileTracingRoot: path.join(__dirname, "../"),
-  },
+const nextConfig: NextConfig = {
+  outputFileTracingRoot: "/opt/build/repo/",
 };
+
+export default nextConfig;
