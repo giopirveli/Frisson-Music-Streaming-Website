@@ -1,4 +1,4 @@
-import style from "./Heart.module.scss";
+import style from "./HeartBtn.module.scss";
 import Image from "next/image";
 import black from "/public/icons/HeartButton/defaultBlack.svg";
 import gray from "/public/icons/HeartButton/defaultGray.svg";
