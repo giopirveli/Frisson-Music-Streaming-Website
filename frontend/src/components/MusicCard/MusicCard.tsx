@@ -2,7 +2,7 @@
 
 import styles from "./MusicCard.module.scss";
 import { useState } from "react";
-import HeartBtn from "../HeartBtn/HeartBtn";
+import HeartBtn from "../heartbtn/heartBtn";
 import ThreeDotsBtn from "../ThreeDots/ThreeDotsBtn";
 import ThreeDotsList from "../ThreeDotsList/ThreeDotsList";
 import {
