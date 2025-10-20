@@ -1,14 +1,12 @@
 "use client";
 
+import { useState, useEffect } from "react";
+import axios from "axios";
 import NewsComponent from "@/components/NewsComponent/NewsComponent";
-import styles from "./page.module.scss";
 import SongListTable from "@/components/SongListTable/SongListTable";
-import { useEffect, useMemo, useCallback } from "react";
-import AlbumCard from "@/components/AlbumCard/AlbumCard";
-import photo from "../../../assets/images/table/albumphoto.png";
+import AlbumFetch from "@/components/Fetcher/Albums";
 import { useActiveTab } from "@/components/Context/ActiveTabContext";
 import "@/../styles/defaults/defaultGrid.scss";
-import AlbumFetch from "@/components/Fetcher/Albums";
 
 interface Album {
   id: number;
@@ -22,12 +20,13 @@ export default function AlbumPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Get activeTab from your context
+  const { activeTab } = useActiveTab();
+
   useEffect(() => {
     const fetchAlbums = async () => {
       try {
-        const { data } = await axios.get<Album[]>(
-          "http://localhost:4000/albums" 
-        );
+        const { data } = await axios.get<Album[]>("http://localhost:4000/albums");
         setAlbums(data);
       } catch (err: any) {
         console.error(err);
@@ -52,20 +51,18 @@ export default function AlbumPage() {
             <img
               src={album.coverUrl}
               alt={album.title}
-              style={{ width: "150px", height: "150px", borderRadius: "8px", objectFit: "cover" }}
+              style={{
+                width: "150px",
+                height: "150px",
+                borderRadius: "8px",
+                objectFit: "cover",
+              }}
             />
-          ))}
+          </div>
+        ))}
 
-
-          <AlbumFetch />
-
-
-
-
-
-          
-        </div>
-      )}
+        <AlbumFetch />
+      </div>
 
       {activeTab === 2 && (
         <>
@@ -76,10 +73,9 @@ export default function AlbumPage() {
           />
           <div>
             <SongListTable />
-
           </div>
-        ))}
-      </div>
+        </>
+      )}
     </div>
   );
 }
