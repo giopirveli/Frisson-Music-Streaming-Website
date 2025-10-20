@@ -14,7 +14,7 @@ import ArtistCard from "@/components/ArtistCard/ArtistCard";
 export default function ArtistPage() {
   const pathname = usePathname();
   const { activeTab, setActiveTab } = useActiveTab();
-  let songs = [{ title: "ed sheeran",img:"" }, { title: "sza" }, { title: "bellie eilishi" }, { title: "taylor swift" }, { title: "bellie eilish" }, { title: "taylor swift" }]
+  const songs = [{ title: "ed sheeran",img:"" }, { title: "sza" }, { title: "bellie eilishi" }, { title: "taylor swift" }, { title: "bellie eilish" }, { title: "taylor swift" }]
 
   useEffect(() => {
     setActiveTab(1);

@@ -37,24 +37,14 @@ export default function MusicCard({
   const [isLiked, setIsLiked] = useState(false);
   const [open, setOpen] = useState(false);
 
-  // === Floating core (replaces custom useFloatingMenu)
-  const {
-    refs,
-    floatingStyles,
-    context,
-  } = useFloating({
+  const { refs, floatingStyles, context } = useFloating({
     open,
     onOpenChange: setOpen,
     placement: "bottom-end",
-    middleware: [
-      offset(8),        // მოაშორე ღილაკს 8px
-      flip({ padding: 8 }), // თუ არ ეტევა, გადაფლიპე
-      shift({ padding: 8 }), // ეკრანის კიდეებიდან ჩამოწევა
-    ],
+    middleware: [offset(8), flip({ padding: 8 }), shift({ padding: 8 })],
     whileElementsMounted: autoUpdate,
   });
 
-  // Click to toggle, click outside/Escape to close, a11y role
   const click = useClick(context, { event: "click" });
   const dismiss = useDismiss(context);
   const role = useRole(context, { role: "menu" });
@@ -69,7 +59,6 @@ export default function MusicCard({
     e.stopPropagation();
   };
 
-  // ღია მენიუზე კონტროლები არ უნდა გაქრეს
   const showHoverControls = (isHovered || open) && !hideHoverEfect;
 
   return (
@@ -79,13 +68,25 @@ export default function MusicCard({
       onMouseLeave={() => setIsHovered(false)}
       onClick={onClick}
     >
-      <div className={`${styles.imageWrapper} ${isHovered ? styles.hoveredImgWrapper : ""}`}>
-        <img src={imageUrl} alt={`${title} — ${artist}`} className={styles.musicImage} />
+      <div
+        className={`${styles.imageWrapper} ${
+          isHovered ? styles.hoveredImgWrapper : ""
+        }`}
+      >
+        <img
+          src={imageUrl}
+          alt={`${title} — ${artist}`}
+          className={styles.musicImage}
+        />
       </div>
 
       {showHoverControls && (
         <div className={styles.heartButton}>
-          <div className={styles.btnWhiteBackground} onMouseDown={stop} onClick={stop}>
+          <div
+            className={styles.btnWhiteBackground}
+            onMouseDown={stop}
+            onClick={stop}
+          >
             <HeartBtn
               iconColor={isLiked ? "black" : "gray"}
               liked={isLiked}
@@ -93,19 +94,17 @@ export default function MusicCard({
             />
           </div>
 
-          {/* სამ დოთსის ღილაკი — ვაკეთებთ ნამდვილი <button>-ად */}
           <ThreeDotsBtn
             ref={refs.setReference}
             {...getReferenceProps({
               className: styles.threeDotsBtn,
-              onMouseDown: (e: any) => e.stopPropagation(),
+              onMouseDown: (e: React.MouseEvent) => e.stopPropagation(),
               "aria-expanded": open,
               "aria-haspopup": "menu",
             })}
             iconColor="black"
             open={open}
           />
-
         </div>
       )}
 
@@ -115,7 +114,7 @@ export default function MusicCard({
             ref={refs.setFloating}
             {...getFloatingProps({
               style: { ...floatingStyles, zIndex: 99999 },
-              className: styles.threeDotsMenuCoordinates, // გაითვალისწინე სახელწოდება!
+              className: styles.threeDotsMenuCoordinates,
               onMouseDown: stop,
               onClick: stop,
             })}
@@ -132,5 +131,3 @@ export default function MusicCard({
     </div>
   );
 }
-
-

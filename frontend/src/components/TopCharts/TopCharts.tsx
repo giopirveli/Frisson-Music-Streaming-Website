@@ -32,26 +32,26 @@ function formatDuration(duration: number) {
   return `${minutes}:${seconds.toString().padStart(2, "0")}`;
 }
 
-export default function TopCharts({ title, artist, duration, imageUrl }: TopChartsProps) {
+export default function TopCharts({
+  title,
+  artist,
+  duration,
+  imageUrl,
+}: TopChartsProps) {
   const [isLiked, setIsLiked] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Floating UI — ზუსტი იგივე ქცევა, რაც სხვა კარდებზე
   const { refs, floatingStyles, context } = useFloating({
     open: isMenuOpen,
     onOpenChange: setIsMenuOpen,
     placement: "bottom-end",
     strategy: "fixed",
-    middleware: [
-      offset(8),
-      flip({ padding: 8 }),
-      shift({ padding: 8 }),
-    ],
+    middleware: [offset(8), flip({ padding: 8 }), shift({ padding: 8 })],
     whileElementsMounted: autoUpdate,
   });
 
   const click = useClick(context, { event: "click" });
-  const dismiss = useDismiss(context); // გარეთ-კლიკი/Escape
+  const dismiss = useDismiss(context);
   const role = useRole(context, { role: "menu" });
   const { getReferenceProps, getFloatingProps } = useInteractions([
     click,
@@ -68,7 +68,13 @@ export default function TopCharts({ title, artist, duration, imageUrl }: TopChar
     <div className={styles.TopChartsDiv}>
       <div className={styles.imgAndWrapperBox}>
         <div className={styles.imageWrapper}>
-          <Image src={imageUrl} alt="Top Chart" className={styles.image} width={72} height={72} />
+          <Image
+            src={imageUrl}
+            alt="Top Chart"
+            className={styles.image}
+            width={72}
+            height={72}
+          />
         </div>
         <div className={styles.textWrapper}>
           <p className={styles.textTop}>{title}</p>
@@ -87,11 +93,10 @@ export default function TopCharts({ title, artist, duration, imageUrl }: TopChar
               onToggle={() => setIsLiked((v) => !v)}
             />
 
-            {/* სამი დოთსის ღილაკი — ref + getReferenceProps; mousedown-ში მხოლოდ stop */}
             <div
               ref={refs.setReference}
               {...getReferenceProps({
-                onMouseDown: (e: any) => stop(e),
+                onMouseDown: (e: React.MouseEvent) => stop(e),
                 "aria-expanded": isMenuOpen,
                 "aria-haspopup": "menu",
               })}
