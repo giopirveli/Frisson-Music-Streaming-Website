@@ -32,7 +32,7 @@ export default function SignUpPage() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting }, // isSubmitting შესაძლოა build-ს უშლის
+    formState: { errors }, // removed isSubmitting
     resetField,
   } = useForm<SignUpForm>({
     resolver: yupResolver(schema),
@@ -101,8 +101,6 @@ export default function SignUpPage() {
               type="password"
               placeholder="Password"
               hideBtn
-              // rules ❌ არ არსებობს ეს props, build-ს უშლის
-              // rules
               autoComplete="new-password"
               {...register("password")}
               error={errors.password?.message}
@@ -120,7 +118,7 @@ export default function SignUpPage() {
             <Button
               text="Sign up"
               type="submit"
-              // disabled={isSubmitting} ❌ გამორთე თუ build-ს უშლის
+              // disabled={isSubmitting} ❌ removed
             />
 
             <span className={styles.switchPage}>

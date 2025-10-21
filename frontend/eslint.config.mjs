@@ -2,7 +2,7 @@ import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { FlatCompat } from "@eslint/eslintrc";
 import prettierPlugin from "eslint-plugin-prettier";
-import js from "@eslint/js"; // ეს გაკლდა – აუცილებელია
+import js from "@eslint/js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -11,8 +11,8 @@ const compat = new FlatCompat({
   baseDirectory: __dirname,
 });
 
-export default [
-  js.configs.recommended, // ახლა იმუშავებს
+const config = [
+  js.configs.recommended,
 
   ...compat.extends("next/core-web-vitals", "next/typescript"),
 
@@ -41,3 +41,5 @@ export default [
     },
   },
 ];
+
+export default config;

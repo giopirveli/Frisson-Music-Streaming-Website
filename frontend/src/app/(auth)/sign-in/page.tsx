@@ -12,9 +12,7 @@ import * as yup from "yup";
 // ✅ Yup სქემა (Email + ძლიერი პაროლი) + rememberMe (არავალდ)
 const schema = yup.object({
   email: yup.string().required("ელფოსტა სავალდებულოა").email("ელფოსტის ფორმატი არასწორია"),
-  // ეს წესი უნდა შეამოწმოს მომხმარებელი არსებობს თუ არა
   password: yup.string().required("პაროლი არასწორია"),
-  // ეს წესი უნდა შეამოწმოს მომხმარებელი არსებობს თუ არა
   rememberMe: yup.boolean().optional().default(false),
 });
 
@@ -24,7 +22,7 @@ export default function SignInPage() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting }, // isSubmitting შესაძლოა არ იყოს საჭირო build-ში
+    formState: { errors /* , isSubmitting */ }, // keep errors
     setError,
     resetField,
   } = useForm<FormData>({
@@ -34,11 +32,9 @@ export default function SignInPage() {
     defaultValues: { rememberMe: false },
   });
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async (/* data: FormData */) => {
     try {
-      // ❌ ის ნაწილი თუ signIn ფუნქცია არ არის იმპორტირებული
       // await signIn(data.email, data.password, { remember: data.rememberMe });
-      // redirect...
     } catch {
       setError("password", { message: "არასწორი ელფოსტა ან პაროლი" });
       resetField("password", { keepError: true });
@@ -46,7 +42,6 @@ export default function SignInPage() {
   };
 
   const onInvalid = () => {
-    // თუ რამე არასწორია, პაროლის value მაინც იშლება
     resetField("password", { keepError: true });
   };
 
@@ -73,7 +68,6 @@ export default function SignInPage() {
             <span className={styles.subtitle}>The Future Of Music Streaming</span>
           </div>
 
-          {/* ✅ RHF + Yup */}
           <form className={styles.form} noValidate onSubmit={handleSubmit(onSubmit, onInvalid)}>
             <Input
               type="email"
@@ -92,7 +86,6 @@ export default function SignInPage() {
               error={errors.password?.message}
             />
 
-            {/* ✅ Checkbox + "Forgot your password?" */}
             <div className={styles.options}>
               <label className={styles.remember}>
                 <input type="checkbox" {...register("rememberMe")} />
@@ -108,7 +101,6 @@ export default function SignInPage() {
               text="Sign in"
               type="submit"
               // disabled={isSubmitting}
-              // ❌ disabled-ს გამორთეთ თუ build-ს უშლის
             />
             <span className={styles.switchPage}>
               Don’t have an account?

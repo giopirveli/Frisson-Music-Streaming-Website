@@ -15,7 +15,7 @@ export default function AlbumPage() {
 
   useEffect(() => {
     setActiveTab(1);
-  }, []);
+  }, [setActiveTab]);
 
   const albums = useMemo(() => Array.from({ length: 6 }), []);
   const goDetails = useCallback(() => setActiveTab(2), [setActiveTab]);
