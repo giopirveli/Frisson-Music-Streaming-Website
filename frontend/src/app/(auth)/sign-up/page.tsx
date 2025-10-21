@@ -32,17 +32,18 @@ export default function SignUpPage() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting }, // isSubmitting შესაძლოა build-ს უშლის
     resetField,
   } = useForm<SignUpForm>({
     resolver: yupResolver(schema),
-    mode: "onTouched", // blur-ისასაც ამოწმებს
+    mode: "onTouched",
     shouldFocusError: false, // ❌ არ გადაიყვანოს ფოკუსი პირველ ერორზე
   });
 
   // ✅ Submit (აქ ჩაანაცვლებ რეალურ API-თ)
   const onSubmit = async (data: SignUpForm) => {
     console.log("Sign up:", data);
+    // ❌ აქ ნაგულისხმევ fetch თუ API არ არის
     // await fetch("/api/auth/register", { method: "POST", body: JSON.stringify(data) })
     // წარმატებისას -> router.push("/sign-in")
   };
@@ -100,7 +101,8 @@ export default function SignUpPage() {
               type="password"
               placeholder="Password"
               hideBtn
-              rules
+              // rules ❌ არ არსებობს ეს props, build-ს უშლის
+              // rules
               autoComplete="new-password"
               {...register("password")}
               error={errors.password?.message}
@@ -115,7 +117,9 @@ export default function SignUpPage() {
               error={errors.confirmPassword?.message}
             />
 
-            <Button text="Sign up" type="submit" />
+            <Button text="Sign up" type="submit" 
+              // disabled={isSubmitting} ❌ გამორთე თუ build-ს უშლის
+            />
 
             <span className={styles.switchPage}>
               Already have an account?

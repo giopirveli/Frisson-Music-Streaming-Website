@@ -11,11 +11,15 @@ import * as yup from "yup";
 
 // ✅ Yup სქემა (Email + ძლიერი პაროლი) + rememberMe (არავალდ)
 const schema = yup.object({
-  email: yup.string().required("ელფოსტა სავალდებულოა").email("ელფოსტის ფორმატი არასწორია"), // აქ უნდა დავამათოთ წესი რომ შეამოწმოს არსებობს თუ არა მომხმარებელი
-  password: yup.string().required("პაროლი არასწორია"), // აქ უნდა დავამათოთ წესი რომ შეამოწმოს არსებობს თუ არა მომხმარებელი
+  email: yup
+    .string()
+    .required("ელფოსტა სავალდებულოა")
+    .email("ელფოსტის ფორმატი არასწორია"), 
+    // ეს წესი უნდა შეამოწმოს მომხმარებელი არსებობს თუ არა
+  password: yup.string().required("პაროლი არასწორია"), 
+    // ეს წესი უნდა შეამოწმოს მომხმარებელი არსებობს თუ არა
   rememberMe: yup.boolean().optional().default(false),
 });
-
 
 type FormData = yup.InferType<typeof schema>;
 
@@ -23,7 +27,7 @@ export default function SignInPage() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting }, // isSubmitting შესაძლოა არ იყოს საჭირო build-ში
     setError,
     resetField,
   } = useForm<FormData>({
@@ -35,6 +39,7 @@ export default function SignInPage() {
 
   const onSubmit = async (data: FormData) => {
     try {
+      // ❌ ის ნაწილი თუ signIn ფუნქცია არ არის იმპორტირებული
       // await signIn(data.email, data.password, { remember: data.rememberMe });
       // redirect...
     } catch {
@@ -90,7 +95,7 @@ export default function SignInPage() {
               error={errors.password?.message}
             />
 
-            {/* ✅ ეს ბლოკი ამატებს checkbox-ს და "Forgot your password?"-ს */}
+            {/* ✅ Checkbox + "Forgot your password?" */}
             <div className={styles.options}>
               <label className={styles.remember}>
                 <input type="checkbox" {...register("rememberMe")} />
@@ -102,7 +107,10 @@ export default function SignInPage() {
               </Link>
             </div>
 
-            <Button text="Sign in" type="submit" />
+            <Button text="Sign in" type="submit" 
+              // disabled={isSubmitting} 
+              // ❌ disabled-ს გამორთეთ თუ build-ს უშლის
+            />
             <span className={styles.switchPage}>
               Don’t have an account?
               <Link href="/sign-up"> Sign up</Link>
