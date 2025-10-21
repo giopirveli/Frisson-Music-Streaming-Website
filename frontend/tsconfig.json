@@ -1,45 +1,28 @@
 {
-  "compilerOptions": {
-    "target": "es6",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "src/*"
-      ],
-      "@/styles/*": [
-        "src/styles/*"
-      ]
-    },
-    "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
+  "name": "frisson-frontend",
+  "version": "1.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "next-env.d.ts",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
+  "dependencies": {
+    "next": "13.5.6",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "18.2.21",
+    "@types/node": "20.6.3",
+    "typescript": "5.2.2",
+    "eslint": "8.48.0",
+    "eslint-config-next": "13.5.6",
+    "sass": "2.2.3"
+  },
+  "browserslist": [
+    "defaults"
   ]
 }
