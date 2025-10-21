@@ -1,11 +1,10 @@
 "use client";
 
+import { useEffect } from "react";
 import NewsComponent from "@/components/NewsComponent/NewsComponent";
-import { useEffect, useState } from "react";
 import { Colors } from "../../../styles/colors.enum";
 import styles from "./page.module.scss";
 import Table from "@/components/Table/Table";
-import AlbumCard from "@/components/AlbumCard/AlbumCard";
 import photo from "../../../assets/images/table/albumphoto.png";
 import { usePathname } from "next/navigation";
 import { useActiveTab } from "@/components/Context/ActiveTabContext";
