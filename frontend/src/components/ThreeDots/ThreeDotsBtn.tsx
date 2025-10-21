@@ -28,12 +28,7 @@ const ThreeDotsBtn = forwardRef<HTMLButtonElement, ThreeDotsBtnProps>(
         aria-expanded={open}
         {...rest}
       >
-        <Image
-          alt="More options"
-          src={iconSrc[iconColor]}
-          width={24}
-          height={24}
-        />
+        <Image alt="More options" src={iconSrc[iconColor]} width={24} height={24} />
       </button>
     );
   }

@@ -10,7 +10,6 @@ import { useActiveTab } from "@/components/Context/ActiveTabContext";
 import "@/styles/defaults/defaultGrid.scss";
 import AlbumFetch from "@/components/Fetcher/Albums";
 
-
 export default function AlbumPage() {
   const { activeTab, setActiveTab } = useActiveTab();
 
@@ -27,22 +26,10 @@ export default function AlbumPage() {
       {activeTab === 1 && (
         <div className={`Grid`}>
           {albums.map((_, i) => (
-            <AlbumCard
-              key={i}
-              title="album title"
-              imageUrl={photo}
-              onClick={goDetails}
-            />
+            <AlbumCard key={i} title="album title" imageUrl={photo} onClick={goDetails} />
           ))}
 
-
           <AlbumFetch />
-
-
-
-
-
-          
         </div>
       )}
 
@@ -55,7 +42,6 @@ export default function AlbumPage() {
           />
           <div>
             <SongListTable />
-
           </div>
         </>
       )}

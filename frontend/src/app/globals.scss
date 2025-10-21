@@ -49,8 +49,6 @@ a {
 
 /* globals.scss (გლობალში) */
 
-
-
 /* WebKit scrollbars (supported in Chrome, Edge, Safari) */
 
 // // /* Scrollbar container (the whole scrollbar bar) */
@@ -72,10 +70,11 @@ a {
 //   background-clip: content-box;  // makes the border spacing visible
 //   background: $scrollbar-gradient; // gradient applied to the thumb
 // }
-*{ scrollbar-width: 6px;
-   scrollbar-color: $fuchsia-flame $cod-grey; 
-  }
-  /* NProgress overrides */
+* {
+  scrollbar-width: 6px;
+  scrollbar-color: $fuchsia-flame $cod-grey;
+}
+/* NProgress overrides */
 /* Progress bar overrides */
 #nprogress .bar {
   background: linear-gradient(90deg, #f903d0 0%, #9a16f2 100%) !important;
@@ -89,4 +88,3 @@ a {
 #nprogress .spinner {
   display: none !important;
 }
-

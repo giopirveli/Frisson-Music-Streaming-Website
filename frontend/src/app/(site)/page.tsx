@@ -9,7 +9,6 @@ import Link from "next/link";
 import "@/styles/defaults/defaultGrid.scss";
 
 export default function Home() {
-
   return (
     <main className={styles.main}>
       <NewsComponent
@@ -26,15 +25,17 @@ export default function Home() {
             <span>See all</span>
           </Link>
         </div>
-        <div className={`scrollbar`}> {/*styles.topHitsSectionCardsBox*/}
-
-          {Array.from({ length: 9 }).map((_, i) =>
-            <MusicCard key={i}
+        <div className={`scrollbar`}>
+          {" "}
+          {/*styles.topHitsSectionCardsBox*/}
+          {Array.from({ length: 9 }).map((_, i) => (
+            <MusicCard
+              key={i}
               title="Anyma"
               artist="Genesys II"
               imageUrl="/Images/MusicCard/MusicCardPhoto.jpg"
             />
-          )}
+          ))}
         </div>
       </section>
 
@@ -46,8 +47,7 @@ export default function Home() {
           </Link>
         </div>
         <div className={` scrollbar`}>
-
-          {Array.from({ length: 9 }).map((_, i) =>
+          {Array.from({ length: 9 }).map((_, i) => (
             <div className={styles.topCharts} key={i}>
               <TopCharts
                 title="Sugar (feat. Francesco)"
@@ -62,11 +62,7 @@ export default function Home() {
                 duration={345}
               />
             </div>
-
-          )
-          }
-
-
+          ))}
         </div>
       </section>
 
@@ -78,17 +74,14 @@ export default function Home() {
           </Link>
         </div>
         <div className={`scrollbar`}>
-          {Array.from({ length: 9 }).map((_, i) =>
-            <AlbumCard key={i}
+          {Array.from({ length: 9 }).map((_, i) => (
+            <AlbumCard
+              key={i}
               title="Of Monsters And Men"
               artist="Fever Dream"
               imageUrl="/Images/AlbumCard/AlbumPhoto.jpg"
             />
-          )
-          }
-
-
-
+          ))}
         </div>
       </section>
 
@@ -100,10 +93,13 @@ export default function Home() {
           </Link>
         </div>
         <div className={`scrollbar`}>
-          {Array.from({ length: 9 }).map((_, i) =>
-            <ArtistCard title="Billie Eilish" key={i} imageUrl="/Images/ArtistCard/ArtistPhoto.jpg" />
-          )}
-
+          {Array.from({ length: 9 }).map((_, i) => (
+            <ArtistCard
+              title="Billie Eilish"
+              key={i}
+              imageUrl="/Images/ArtistCard/ArtistPhoto.jpg"
+            />
+          ))}
         </div>
       </section>
     </main>

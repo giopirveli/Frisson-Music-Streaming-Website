@@ -32,12 +32,7 @@ function formatDuration(duration: number) {
   return `${minutes}:${seconds.toString().padStart(2, "0")}`;
 }
 
-export default function TopCharts({
-  title,
-  artist,
-  duration,
-  imageUrl,
-}: TopChartsProps) {
+export default function TopCharts({ title, artist, duration, imageUrl }: TopChartsProps) {
   const [isLiked, setIsLiked] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -53,11 +48,7 @@ export default function TopCharts({
   const click = useClick(context, { event: "click" });
   const dismiss = useDismiss(context);
   const role = useRole(context, { role: "menu" });
-  const { getReferenceProps, getFloatingProps } = useInteractions([
-    click,
-    dismiss,
-    role,
-  ]);
+  const { getReferenceProps, getFloatingProps } = useInteractions([click, dismiss, role]);
 
   const stop = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -68,13 +59,7 @@ export default function TopCharts({
     <div className={styles.TopChartsDiv}>
       <div className={styles.imgAndWrapperBox}>
         <div className={styles.imageWrapper}>
-          <Image
-            src={imageUrl}
-            alt="Top Chart"
-            className={styles.image}
-            width={72}
-            height={72}
-          />
+          <Image src={imageUrl} alt="Top Chart" className={styles.image} width={72} height={72} />
         </div>
         <div className={styles.textWrapper}>
           <p className={styles.textTop}>{title}</p>
@@ -87,11 +72,7 @@ export default function TopCharts({
 
         <div className={styles.buttons}>
           <div className={styles.buttonsWrapper}>
-            <HeartBtn
-              iconColor="gray"
-              liked={isLiked}
-              onToggle={() => setIsLiked((v) => !v)}
-            />
+            <HeartBtn iconColor="gray" liked={isLiked} onToggle={() => setIsLiked((v) => !v)} />
 
             <div
               ref={refs.setReference}

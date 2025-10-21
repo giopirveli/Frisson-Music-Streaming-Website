@@ -30,11 +30,7 @@ export default function Sidebar() {
         <div className={styles.mainMenu}>
           <NavItem href="/" icon="/icons/Sidebar/home.svg" label="home" />
           <NavItem href="/top-hits-page" icon="/icons/Sidebar/topHits.svg" label="top hits" />
-          <NavItem
-            href="/top-charts-page"
-            icon="/icons/Sidebar/topCharts.svg"
-            label="top charts"
-          />
+          <NavItem href="/top-charts-page" icon="/icons/Sidebar/topCharts.svg" label="top charts" />
         </div>
 
         <div className={styles.collectionMenu}>

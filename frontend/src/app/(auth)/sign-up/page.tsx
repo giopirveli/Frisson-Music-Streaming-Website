@@ -117,7 +117,9 @@ export default function SignUpPage() {
               error={errors.confirmPassword?.message}
             />
 
-            <Button text="Sign up" type="submit" 
+            <Button
+              text="Sign up"
+              type="submit"
               // disabled={isSubmitting} ❌ გამორთე თუ build-ს უშლის
             />
 

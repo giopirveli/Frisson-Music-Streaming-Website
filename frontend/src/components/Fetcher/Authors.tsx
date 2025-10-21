@@ -60,9 +60,7 @@ const Albums: React.FC = () => {
             )}
             <h3>{album.name}</h3>
             <p>{album.avatarFileName}</p>
-            {album.author?.name && (
-              <p style={{ color: "#aaa" }}>by {album.author.name}</p>
-            )}
+            {album.author?.name && <p style={{ color: "#aaa" }}>by {album.author.name}</p>}
           </div>
         ))}
       </div>

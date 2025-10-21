@@ -18,19 +18,31 @@ export default function Player({ playlist, initialIndex = 0 }: PlayerProps) {
 
   const {
     // state
-    isPlaying, currentTime, duration, progressPercent,
-    isDragging, previewTime, volume,
+    isPlaying,
+    currentTime,
+    duration,
+    progressPercent,
+    isDragging,
+    previewTime,
+    volume,
     currentTrack,
 
     // transport
-    nextTrack, prevTrack,
-    isShuffle, toggleShuffle,
-    repeatMode, toggleRepeatMode,
-    isMuted, toggleMute,
+    nextTrack,
+    prevTrack,
+    isShuffle,
+    toggleShuffle,
+    repeatMode,
+    toggleRepeatMode,
+    isMuted,
+    toggleMute,
 
     // handlers
-    handlePlayPause, handleEnded,
-    handleChange, handleClickProgressBar, handleThumbMouseDown,
+    handlePlayPause,
+    handleEnded,
+    handleChange,
+    handleClickProgressBar,
+    handleThumbMouseDown,
 
     // utils
     formatTime,
@@ -54,7 +66,13 @@ export default function Player({ playlist, initialIndex = 0 }: PlayerProps) {
         <div className={Style.controlBoxesDurection}>
           {/* LEFT — Heart + Progress */}
           <div className={Style.controlBoxFirstPart}>
-            <HeartBtn iconColor="gray" liked={false} onToggle={() => { /* lift state if needed */ }} />
+            <HeartBtn
+              iconColor="gray"
+              liked={false}
+              onToggle={() => {
+                /* lift state if needed */
+              }}
+            />
 
             <div className={Style.rangeControlBox}>
               <span>{formatTime(isDragging ? previewTime : currentTime)}</span>
@@ -103,7 +121,12 @@ export default function Player({ playlist, initialIndex = 0 }: PlayerProps) {
                 <Image src={"/icons/Player/Shuflle.svg"} alt="Shuffle" width={24} height={24} />
               </button>
 
-              <button className={Style.functionalIconButton} onClick={prevTrack} aria-label="Previous" title="Previous">
+              <button
+                className={Style.functionalIconButton}
+                onClick={prevTrack}
+                aria-label="Previous"
+                title="Previous"
+              >
                 <Image src="/icons/Player/PlayPrevious.svg" alt="Previous" width={24} height={24} />
               </button>
 
@@ -121,7 +144,12 @@ export default function Player({ playlist, initialIndex = 0 }: PlayerProps) {
                 />
               </button>
 
-              <button className={Style.functionalIconButton} onClick={nextTrack} aria-label="Next" title="Next">
+              <button
+                className={Style.functionalIconButton}
+                onClick={nextTrack}
+                aria-label="Next"
+                title="Next"
+              >
                 <Image src="/icons/Player/PlayNext.svg" alt="Next" width={24} height={24} />
               </button>
 
@@ -169,12 +197,7 @@ export default function Player({ playlist, initialIndex = 0 }: PlayerProps) {
       </div>
 
       {/* Audio */}
-      <audio
-        ref={audioRef}
-        src={safeTrack.audioSrc}
-        preload="metadata"
-        onEnded={handleEnded}
-      />
+      <audio ref={audioRef} src={safeTrack.audioSrc} preload="metadata" onEnded={handleEnded} />
     </div>
   );
 }

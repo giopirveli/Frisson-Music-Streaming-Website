@@ -11,13 +11,10 @@ import * as yup from "yup";
 
 // ✅ Yup სქემა (Email + ძლიერი პაროლი) + rememberMe (არავალდ)
 const schema = yup.object({
-  email: yup
-    .string()
-    .required("ელფოსტა სავალდებულოა")
-    .email("ელფოსტის ფორმატი არასწორია"), 
-    // ეს წესი უნდა შეამოწმოს მომხმარებელი არსებობს თუ არა
-  password: yup.string().required("პაროლი არასწორია"), 
-    // ეს წესი უნდა შეამოწმოს მომხმარებელი არსებობს თუ არა
+  email: yup.string().required("ელფოსტა სავალდებულოა").email("ელფოსტის ფორმატი არასწორია"),
+  // ეს წესი უნდა შეამოწმოს მომხმარებელი არსებობს თუ არა
+  password: yup.string().required("პაროლი არასწორია"),
+  // ეს წესი უნდა შეამოწმოს მომხმარებელი არსებობს თუ არა
   rememberMe: yup.boolean().optional().default(false),
 });
 
@@ -107,8 +104,10 @@ export default function SignInPage() {
               </Link>
             </div>
 
-            <Button text="Sign in" type="submit" 
-              // disabled={isSubmitting} 
+            <Button
+              text="Sign in"
+              type="submit"
+              // disabled={isSubmitting}
               // ❌ disabled-ს გამორთეთ თუ build-ს უშლის
             />
             <span className={styles.switchPage}>

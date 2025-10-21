@@ -20,10 +20,26 @@ const manrope = localFont({
 });
 const plusJakartaSans = localFont({
   src: [
-    { path: "./fonts/plusJakartaSans/PlusJakartaSans-Italic-VariableFont.woff", weight: "100 900", style: "italic" },
-    { path: "./fonts/plusJakartaSans/PlusJakartaSans-Italic-VariableFont.woff2", weight: "100 900", style: "italic" },
-    { path: "./fonts/plusJakartaSans/PlusJakartaSans-VariableFont.woff", weight: "100 900", style: "normal" },
-    { path: "./fonts/plusJakartaSans/PlusJakartaSans-VariableFont.woff2", weight: "100 900", style: "normal" },
+    {
+      path: "./fonts/plusJakartaSans/PlusJakartaSans-Italic-VariableFont.woff",
+      weight: "100 900",
+      style: "italic",
+    },
+    {
+      path: "./fonts/plusJakartaSans/PlusJakartaSans-Italic-VariableFont.woff2",
+      weight: "100 900",
+      style: "italic",
+    },
+    {
+      path: "./fonts/plusJakartaSans/PlusJakartaSans-VariableFont.woff",
+      weight: "100 900",
+      style: "normal",
+    },
+    {
+      path: "./fonts/plusJakartaSans/PlusJakartaSans-VariableFont.woff2",
+      weight: "100 900",
+      style: "normal",
+    },
   ],
   variable: "--font-jakarta",
 });
@@ -39,7 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={`${manrope.variable} ${plusJakartaSans.variable} ${sfProDisplay.variable}`}>
-        <RouteProgress />   {/* ✅ progress bar */}
+        <RouteProgress /> {/* ✅ progress bar */}
         <MeasureWidth />
         {children}
       </body>

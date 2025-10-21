@@ -60,9 +60,7 @@ export default function PlaylistPage() {
                 imageUrl={album.imageUrl}
                 onClick={() => setActiveTab(2)}
                 onEdit={() => console.log(`Edit playlist ${album.albumName}`)}
-                onDelete={() =>
-                  setAlbums((prev) => prev.filter((a) => a.id !== album.id))
-                }
+                onDelete={() => setAlbums((prev) => prev.filter((a) => a.id !== album.id))}
               />
             ))}
           </div>
@@ -84,31 +82,20 @@ export default function PlaylistPage() {
       )}
 
       {isCreateOpen && (
-        <div
-          className={styles.modalBackdrop}
-          role="dialog"
-          aria-modal="true"
-          onClick={closeCreate}
-        >
-          <div
-            className={styles.modalCenter}
-            onClick={(e) => e.stopPropagation()}
-          >
+        <div className={styles.modalBackdrop} role="dialog" aria-modal="true" onClick={closeCreate}>
+          <div className={styles.modalCenter} onClick={(e) => e.stopPropagation()}>
             <CreatePlaylistCard
               previewOnClick={() => setIsCreateOpen(false)}
               onSave={({ name, imageFile }) => {
                 const id =
-                  typeof crypto !== "undefined" &&
-                  typeof crypto.randomUUID === "function"
+                  typeof crypto !== "undefined" && typeof crypto.randomUUID === "function"
                     ? crypto.randomUUID()
                     : `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
 
                 const newAlbum: Album = {
                   id,
                   albumName: name,
-                  imageUrl: imageFile
-                    ? URL.createObjectURL(imageFile)
-                    : undefined,
+                  imageUrl: imageFile ? URL.createObjectURL(imageFile) : undefined,
                 };
 
                 setAlbums((prev) => [newAlbum, ...prev]);

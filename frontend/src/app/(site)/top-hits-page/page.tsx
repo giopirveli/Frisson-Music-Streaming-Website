@@ -14,7 +14,7 @@ export default function ExamplePage() {
       <div className={styles.searchbar}>
         <Searchbar placeholder={"Search Top Hit"} />
       </div>
-      <SongListTable/>
+      <SongListTable />
     </main>
   );
 }

@@ -16,9 +16,7 @@ const Albums: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get<Album[]>(
-        "https://frisson-music-app.s3.eu-north-1.amazonaws.com/albums.json"
-      )
+      .get<Album[]>("https://frisson-music-app.s3.eu-north-1.amazonaws.com/albums.json")
       .then((response) => {
         console.log("📦 Received from backend:", response.data);
         setAlbums(response.data);

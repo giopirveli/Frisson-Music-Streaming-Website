@@ -14,7 +14,14 @@ import ArtistCard from "@/components/ArtistCard/ArtistCard";
 export default function ArtistPage() {
   const pathname = usePathname();
   const { activeTab, setActiveTab } = useActiveTab();
-  const songs = [{ title: "ed sheeran",img:"" }, { title: "sza" }, { title: "bellie eilishi" }, { title: "taylor swift" }, { title: "bellie eilish" }, { title: "taylor swift" }]
+  const songs = [
+    { title: "ed sheeran", img: "" },
+    { title: "sza" },
+    { title: "bellie eilishi" },
+    { title: "taylor swift" },
+    { title: "bellie eilish" },
+    { title: "taylor swift" },
+  ];
 
   useEffect(() => {
     setActiveTab(1);
@@ -26,10 +33,14 @@ export default function ArtistPage() {
         <div className={styles.artistPage}>
           <h4>trending now</h4>
           <div className={styles.artistCard}>
-
-            {Array.from(songs).map((_, i) =>
-              <ArtistCard key={i} imageUrl={photo} onClick={() => setActiveTab(2)} title={songs[i].title} />
-            )}
+            {Array.from(songs).map((_, i) => (
+              <ArtistCard
+                key={i}
+                imageUrl={photo}
+                onClick={() => setActiveTab(2)}
+                title={songs[i].title}
+              />
+            ))}
           </div>
         </div>
       )}

@@ -1,17 +1,32 @@
 // gradients:
 $gradient-apolo: linear-gradient(90deg, #f903d0 0%, #9a16f2 100%); // horizontal pink - purple
 
-
 // sidebar
-$sidebar-gradient: linear-gradient(-140deg,black 20%, #f903d0 40%, #9a16f2 60%, black 80%); // an erti miece an meore
-$narrow-sidebar-gradient:linear-gradient(-140deg,black 30%, #f903d0 40%, #9a16f2 60%, black 75%); // esec meore
+$sidebar-gradient: linear-gradient(
+  -140deg,
+  black 20%,
+  #f903d0 40%,
+  #9a16f2 60%,
+  black 80%
+); // an erti miece an meore
+$narrow-sidebar-gradient: linear-gradient(
+  -140deg,
+  black 30%,
+  #f903d0 40%,
+  #9a16f2 60%,
+  black 75%
+); // esec meore
 // laptop-sidebar
-$small-sidebar-gradient:linear-gradient(-140deg,black 40%,#f903d0 50%, #9a16f2 60%, black 70%); // patara ekranzebze laptop
+$small-sidebar-gradient: linear-gradient(
+  -140deg,
+  black 40%,
+  #f903d0 50%,
+  #9a16f2 60%,
+  black 70%
+); // patara ekranzebze laptop
 
 // scrollbar-gradient
-$scrollbar-gradient:linear-gradient(180deg,#f903d0 0%, #9a16f2 100%);
-
-
+$scrollbar-gradient: linear-gradient(180deg, #f903d0 0%, #9a16f2 100%);
 
 // pink - purple
 

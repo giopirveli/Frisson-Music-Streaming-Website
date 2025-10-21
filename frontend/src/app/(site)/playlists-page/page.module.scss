@@ -10,7 +10,7 @@
   flex-direction: column;
   gap: 24px;
 
-  &>h1 {
+  & > h1 {
     color: $white;
     font-family: var(--font-jakarta), sans-serif;
     font-size: 32px;
@@ -30,8 +30,6 @@
   max-width: 162px;
   width: 100%;
 }
-
-
 
 /* ეკრანის მთელ ზემოდან ანაბარი */
 .modalBackdrop {

@@ -64,11 +64,7 @@ export default function AlbumCard({
   const click = useClick(context, { event: "click" });
   const dismiss = useDismiss(context);
   const role = useRole(context, { role: "menu" });
-  const { getReferenceProps, getFloatingProps } = useInteractions([
-    click,
-    dismiss,
-    role,
-  ]);
+  const { getReferenceProps, getFloatingProps } = useInteractions([click, dismiss, role]);
 
   const stop = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -111,8 +107,8 @@ export default function AlbumCard({
               {...getReferenceProps({
                 className: styles.btnWhiteBackground,
                 onMouseDown: stop,
-                onPointerDown: stop,     // მობაილისთვის bulletproof
-                onClick: stop,           // ← მთავარი ფიქსი
+                onPointerDown: stop, // მობაილისთვის bulletproof
+                onClick: stop, // ← მთავარი ფიქსი
                 "aria-expanded": isMenuOpen,
                 "aria-haspopup": "menu",
               })}
@@ -147,4 +143,3 @@ export default function AlbumCard({
     </div>
   );
 }
-

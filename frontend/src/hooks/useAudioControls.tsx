@@ -80,10 +80,14 @@ export function useAudioControls({
 
   // Live refs stale-closure-ის თავიდან ასაცილებლად
   const isShuffleRef = useRef(isShuffle);
-  useEffect(() => { isShuffleRef.current = isShuffle; }, [isShuffle]);
+  useEffect(() => {
+    isShuffleRef.current = isShuffle;
+  }, [isShuffle]);
 
   const currentIndexRef = useRef(currentIndex);
-  useEffect(() => { currentIndexRef.current = currentIndex; }, [currentIndex]);
+  useEffect(() => {
+    currentIndexRef.current = currentIndex;
+  }, [currentIndex]);
 
   // Fisher–Yates ჩანთა
   const makeBag = (len: number, exclude?: number) => {
@@ -137,8 +141,12 @@ export function useAudioControls({
 
     const onPlay = () => setIsPlaying(true);
     const onPause = () => setIsPlaying(false);
-    const onTime = () => { if (!isDragging) setCurrentTime(a.currentTime); };
-    const onMeta = () => { if (!Number.isNaN(a.duration)) setDuration(a.duration); };
+    const onTime = () => {
+      if (!isDragging) setCurrentTime(a.currentTime);
+    };
+    const onMeta = () => {
+      if (!Number.isNaN(a.duration)) setDuration(a.duration);
+    };
 
     if (a.readyState >= 1) onMeta();
 
@@ -172,7 +180,9 @@ export function useAudioControls({
     const a = audioRef.current;
     if (!a) return;
     if (a.paused) {
-      try { await a.play(); } catch {}
+      try {
+        await a.play();
+      } catch {}
     } else {
       a.pause();
     }
@@ -182,7 +192,9 @@ export function useAudioControls({
     const a = audioRef.current;
     if (!a) return;
     if (a.paused) {
-      try { await togglePlay(); } catch {}
+      try {
+        await togglePlay();
+      } catch {}
     } else {
       a.pause();
       playReqIdRef.current++; // გააუქმე pending autoplay
@@ -252,7 +264,7 @@ export function useAudioControls({
       const prevIdx = h[h.length - 1];
 
       // სურვილისამებრ: მიმდინარე ჩავაგდოთ ჩანთის ბოლოში, რომ მომავალში ისევ გამოჩნდეს
-      setShuffleBag((bag) => ([...(bag ?? []), currentIndexRef.current]));
+      setShuffleBag((bag) => [...(bag ?? []), currentIndexRef.current]);
 
       setCurrentIndex(prevIdx);
       return h.slice(0, -1);
@@ -350,17 +362,27 @@ export function useAudioControls({
 
   return {
     // base
-    isPlaying, currentTime, duration, volume,
-    isDragging, previewTime, progressPercent,
+    isPlaying,
+    currentTime,
+    duration,
+    volume,
+    isDragging,
+    previewTime,
+    progressPercent,
 
     // transport / queue
-    currentIndex, currentTrack,
-    nextTrack, prevTrack,
+    currentIndex,
+    currentTrack,
+    nextTrack,
+    prevTrack,
 
     // shuffle / repeat / mute
-    isShuffle, toggleShuffle,
-    repeatMode, toggleRepeatMode,
-    isMuted, toggleMute,
+    isShuffle,
+    toggleShuffle,
+    repeatMode,
+    toggleRepeatMode,
+    isMuted,
+    toggleMute,
 
     // handlers
     togglePlay,

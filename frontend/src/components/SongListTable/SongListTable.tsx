@@ -111,9 +111,9 @@ export default function SongListTable() {
     stop(e);
     const el = e.currentTarget as HTMLElement;
     lastTriggerRef.current = el;
-    refs.setReference(el);           // ამ ელემენტზე მიაბი მენიუ
+    refs.setReference(el); // ამ ელემენტზე მიაბი მენიუ
     setActiveRowId(rowId);
-    setMenuOpen((v) => !v);          // ტოგლი
+    setMenuOpen((v) => !v); // ტოგლი
   };
 
   return (
@@ -151,7 +151,12 @@ export default function SongListTable() {
               <td>
                 <span style={{ display: "inline-flex", gap: 8, alignItems: "center" }}>
                   <span onMouseDown={stop} onClick={stop}>
-                    <HeartBtn iconColor="gray" onToggle={() => { /* wire later */ }} />
+                    <HeartBtn
+                      iconColor="gray"
+                      onToggle={() => {
+                        /* wire later */
+                      }}
+                    />
                   </span>
 
                   <span
@@ -188,4 +193,3 @@ export default function SongListTable() {
     </div>
   );
 }
-

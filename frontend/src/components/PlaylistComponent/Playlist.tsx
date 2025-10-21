@@ -7,13 +7,13 @@ import BinButton from "../DeleteBinBtn/BinButton";
 import Image, { StaticImageData } from "next/image";
 
 interface PlaylistProps {
-  id: number | string;           // ✅ required
-  description?: string;          // optional
-  title?: string;                // optional
+  id: number | string; // ✅ required
+  description?: string; // optional
+  title?: string; // optional
   imageUrl?: string | StaticImageData; // optional
-  onClick?: () => void;          // optional
-  onEdit?: () => void;           // optional
-  onDelete?: () => void;         // optional
+  onClick?: () => void; // optional
+  onEdit?: () => void; // optional
+  onDelete?: () => void; // optional
 }
 
 export default function PlaylistComponent({
@@ -43,11 +43,7 @@ export default function PlaylistComponent({
       onMouseLeave={() => setIsHovered(false)}
       onClick={onClick}
     >
-      <div
-        className={`${styles.imageWrapper} ${
-          isHovered ? styles.hoveredImgWrapper : ""
-        }`}
-      >
+      <div className={`${styles.imageWrapper} ${isHovered ? styles.hoveredImgWrapper : ""}`}>
         {imageUrl ? (
           <Image
             src={typeof imageUrl === "string" ? imageUrl : imageUrl.src}

@@ -48,11 +48,7 @@ export default function MusicCard({
   const click = useClick(context, { event: "click" });
   const dismiss = useDismiss(context);
   const role = useRole(context, { role: "menu" });
-  const { getReferenceProps, getFloatingProps } = useInteractions([
-    click,
-    dismiss,
-    role,
-  ]);
+  const { getReferenceProps, getFloatingProps } = useInteractions([click, dismiss, role]);
 
   const stop = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -68,25 +64,13 @@ export default function MusicCard({
       onMouseLeave={() => setIsHovered(false)}
       onClick={onClick}
     >
-      <div
-        className={`${styles.imageWrapper} ${
-          isHovered ? styles.hoveredImgWrapper : ""
-        }`}
-      >
-        <img
-          src={imageUrl}
-          alt={`${title} — ${artist}`}
-          className={styles.musicImage}
-        />
+      <div className={`${styles.imageWrapper} ${isHovered ? styles.hoveredImgWrapper : ""}`}>
+        <img src={imageUrl} alt={`${title} — ${artist}`} className={styles.musicImage} />
       </div>
 
       {showHoverControls && (
         <div className={styles.heartButton}>
-          <div
-            className={styles.btnWhiteBackground}
-            onMouseDown={stop}
-            onClick={stop}
-          >
+          <div className={styles.btnWhiteBackground} onMouseDown={stop} onClick={stop}>
             <HeartBtn
               iconColor={isLiked ? "black" : "gray"}
               liked={isLiked}

@@ -22,7 +22,7 @@ import {
 interface ArtistCardProps {
   title: string;
   imageUrl: string | StaticImageData;
-  onClick?: () => void;      // root card click (eg. გადადის artist page-ზე)
+  onClick?: () => void; // root card click (eg. გადადის artist page-ზე)
   hideHoverEfect?: boolean;
 }
 
@@ -58,11 +58,7 @@ export default function ArtistCard({
   const click = useClick(context, { event: "click" });
   const dismiss = useDismiss(context);
   const role = useRole(context, { role: "menu" });
-  const { getReferenceProps, getFloatingProps } = useInteractions([
-    click,
-    dismiss,
-    role,
-  ]);
+  const { getReferenceProps, getFloatingProps } = useInteractions([click, dismiss, role]);
 
   // helper to stop bubbling
   const stop = (e: React.SyntheticEvent) => {
@@ -106,7 +102,7 @@ export default function ArtistCard({
             {...getReferenceProps({
               className: styles.btnWhiteBackground,
               onMouseDown: stop,
-              onClick: stop,   // ← მთავარი ფიქსი
+              onClick: stop, // ← მთავარი ფიქსი
               "aria-expanded": isMenuOpen,
               "aria-haspopup": "menu",
             })}
