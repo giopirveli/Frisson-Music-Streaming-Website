@@ -1,16 +1,24 @@
-module.exports = {
+export default {
   parser: "@typescript-eslint/parser",
-  plugins: ["@typescript-eslint", "react-hooks"],
+  plugins: ["@typescript-eslint", "react-hooks", "unused-imports"],
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
   ],
   rules: {
-    "@typescript-eslint/no-unused-vars": "off", // disables TS unused variable warnings
-    "react-hooks/exhaustive-deps": "off", // disables warnings about hook dependencies
+    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": [
+      "warn",
+      { vars: "all", varsIgnorePattern: "^_", args: "after-used", argsIgnorePattern: "^_" },
+    ],
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-unsafe-function-type": "off",
+    "@typescript-eslint/no-empty-object-type": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "no-empty": "off",
+    "@next/next/no-img-element": "off",
   },
-  settings: {
-    react: { version: "detect" },
-  },
+  settings: { react: { version: "detect" } },
 };

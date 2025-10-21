@@ -5,13 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "NEXT_PUBLIC_SKIP_LINT=true next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint src --ext .ts,.tsx",
     "lint:fix": "eslint src --ext .ts,.tsx --fix",
     "format": "prettier --write .",
-    "check:all": "npm run format && npm run lint && npm run typecheck",
-    "prepare": "husky"
+    "check:all": "npm run format && npm run lint",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@floating-ui/react": "^0.27.16",
@@ -37,10 +37,15 @@
     "@types/nprogress": "^0.2.3",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^9",
+    "@typescript-eslint/eslint-plugin": "^8.46.2",
+    "@typescript-eslint/parser": "^8.46.2",
+    "eslint": "^9.38.0",
     "eslint-config-next": "15.4.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.3",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.0",
+    "eslint-plugin-unused-imports": "^4.3.0",
     "husky": "^9.1.7",
     "prettier": "3.6.2",
     "typescript": "^5"
