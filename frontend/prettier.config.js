@@ -6,7 +6,5 @@ const config = {
   tabWidth: 2,
   trailingComma: "es5",
   arrowParens: "always",
-  endOfLine: "lf", // ✅ fixes build warnings about prettier/prettier (␍⏎)
 };
-
 export default config;
