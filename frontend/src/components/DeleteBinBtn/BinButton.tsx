@@ -1,5 +1,4 @@
 "use client";
-import { Colors } from "../../styles/colors.enum";
 import styles from "../DeleteBinBtn/Bin.module.scss";
 import Image from "next/image";
 

@@ -2,9 +2,9 @@
 
 import styles from "../AlbumCard/AlbumCard.module.scss";
 import Image, { StaticImageData } from "next/image";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import HeartBtn from "../Heartbtn/HeartBtn";
-import ThreeDotsBtn from "../ThreeDots/ThreeDotsBtn";
+import ThreeDotsBtn from "../ThreeDotsBtn/ThreeDotsBtn";
 import ThreeDotsList from "../ThreeDotsList/ThreeDotsList";
 
 import {
@@ -73,6 +73,14 @@ export default function AlbumCard({
 
   const showHoverControls = (isHovered || isMenuOpen) && !hideHoverEfect;
 
+  // Fixed: assign floating ref via useRef + useEffect
+  const floatingDivRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    if (floatingDivRef.current) {
+      refs.setFloating(floatingDivRef.current);
+    }
+  }, [refs, isMenuOpen]);
+
   return (
     <div
       className={`${styles.card} ${artist ? "" : styles.cardHightPx}`}
@@ -92,7 +100,7 @@ export default function AlbumCard({
 
         {showHoverControls && (
           <div className={styles.heartButton}>
-            {/* Heart – ბაბლინგის შეჩერება */}
+            {/* Heart button */}
             <div className={styles.btnWhiteBackground} onMouseDown={stop} onClick={stop}>
               <HeartBtn
                 liked={isLiked}
@@ -101,14 +109,14 @@ export default function AlbumCard({
               />
             </div>
 
-            {/* Three dots reference – მივამატეთ onClick და onPointerDown */}
+            {/* Three dots button */}
             <div
-              ref={refs.setReference}
+              ref={(el) => refs.setReference(el)} // fixed callback ref
               {...getReferenceProps({
                 className: styles.btnWhiteBackground,
                 onMouseDown: stop,
-                onPointerDown: stop, // მობაილისთვის bulletproof
-                onClick: stop, // ← მთავარი ფიქსი
+                onPointerDown: stop,
+                onClick: stop,
                 "aria-expanded": isMenuOpen,
                 "aria-haspopup": "menu",
               })}
@@ -117,24 +125,24 @@ export default function AlbumCard({
             </div>
           </div>
         )}
-      </div>
 
-      {isMenuOpen && (
-        <FloatingPortal>
-          <div
-            ref={refs.setFloating}
-            {...getFloatingProps({
-              style: { ...floatingStyles, zIndex: 9999 },
-              className: styles.threeDotsMeniuCoordinates,
-              onMouseDown: stop,
-              onClick: stop,
-            })}
-            data-open="true"
-          >
-            <ThreeDotsList />
-          </div>
-        </FloatingPortal>
-      )}
+        {isMenuOpen && (
+          <FloatingPortal>
+            <div
+              ref={floatingDivRef} // fixed via useEffect
+              {...getFloatingProps({
+                style: { ...floatingStyles, zIndex: 9999 },
+                className: styles.threeDotsMeniuCoordinates,
+                onMouseDown: stop,
+                onClick: stop,
+              })}
+              data-open="true"
+            >
+              <ThreeDotsList />
+            </div>
+          </FloatingPortal>
+        )}
+      </div>
 
       <div className={styles.textWrapper}>
         {artist && <p className={styles.textBottom}>{artist}</p>}
