@@ -12,14 +12,11 @@ type Playlist = { id: string; name: string; imageUrl?: string };
 
 export default function ThreeDotsList({ withoutPlaylist }: { withoutPlaylist?: boolean }) {
   const [activeTab, setActiveTab] = useState<1 | 2 | 3>(1);
-  const [playlists, setPlaylists] = useState<Playlist[]>([]);
   const [selected, setSelected] = useState<Record<string, boolean>>({});
-
-  // Загружаем сохранённые плейлисты при старте
-  useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem("playlists") || "[]");
-    setPlaylists(saved);
-  }, []);
+  const [playlists, setPlaylists] = useState<Playlist[]>(() => {
+    const saved = localStorage.getItem("playlists");
+    return saved ? JSON.parse(saved) : [];
+  });
 
   // Сохраняем в localStorage при каждом изменении
   useEffect(() => {

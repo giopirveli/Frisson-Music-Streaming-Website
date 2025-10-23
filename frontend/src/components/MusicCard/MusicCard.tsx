@@ -1,9 +1,9 @@
 "use client";
 
 import styles from "./MusicCard.module.scss";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import HeartBtn from "../Heartbtn/HeartBtn";
-import ThreeDotsBtn from "../ThreeDots/ThreeDotsBtn";
+import ThreeDotsBtn from "../ThreeDotsBtn/ThreeDotsBtn";
 import ThreeDotsList from "../ThreeDotsList/ThreeDotsList";
 import {
   useFloating,
@@ -57,6 +57,14 @@ export default function MusicCard({
 
   const showHoverControls = (isHovered || open) && !hideHoverEfect;
 
+  // ⚡ fix floating ref
+  const floatingDivRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    if (floatingDivRef.current) {
+      refs.setFloating(floatingDivRef.current);
+    }
+  }, [refs, open]);
+
   return (
     <div
       className={styles.card}
@@ -79,23 +87,25 @@ export default function MusicCard({
           </div>
 
           <ThreeDotsBtn
-            ref={refs.setReference}
+            ref={(el) => refs.setReference(el)} // ✅ fixed
             {...getReferenceProps({
               className: styles.threeDotsBtn,
-              onMouseDown: (e: React.MouseEvent) => e.stopPropagation(),
+              onMouseDown: stop,
+              onClick: stop,
               "aria-expanded": open,
               "aria-haspopup": "menu",
             })}
             iconColor="black"
             open={open}
           />
+
         </div>
       )}
 
       {open && (
         <FloatingPortal>
           <div
-            ref={refs.setFloating}
+            ref={floatingDivRef} // ⚡ fixed
             {...getFloatingProps({
               style: { ...floatingStyles, zIndex: 99999 },
               className: styles.threeDotsMenuCoordinates,
