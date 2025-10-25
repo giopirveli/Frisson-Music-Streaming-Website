@@ -44,6 +44,6 @@ npm run start:dev
 
 
 CodeNest Team — 2025
-GitHub: https://github.com/your-username/Frisson-Music-Streaming-Website
+GitHub: https://github.com/giopirveli/Frisson-Music-Streaming-Website
 
 
