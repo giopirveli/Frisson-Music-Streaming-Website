@@ -1,6 +1,6 @@
 # 🎧 Frisson Music Streaming Website
 
-Frisson არის თანამედროვე მუსიკალური სტრიმინგის ვებსაიტი, რომელიც აგებულია **Next.js (frontend)** და **NestJS (backend)** ტექნოლოგიებზე. პროექტი იყენებს TypeScript-ს, მოდულურ არქიტექტურას და გაყოფილია ფრონტ- და ბექენდ ნაწილებად.
+Frisson არის თანამედროვე მუსიკალური სტრიმინგის ვებსაიტი, რომელიც აგებულია Next.js (frontend) და NestJS (backend) ტექნოლოგიებზე. პროექტი იყენებს TypeScript-ს, მოდულურ არქიტექტურას და გაყოფილია ფრონტ- და ბექენდ ნაწილებად.
 
 Frisson is a modern music streaming web application built with Next.js on the frontend and NestJS on the backend. The project is developed using TypeScript, follows a modular architecture, and is structured into separate frontend and backend components.
 ---
