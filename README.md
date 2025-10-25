@@ -31,7 +31,7 @@ cd backend
 npm install
 npm run start:dev
 
-➡️ იხილე: http://localhost:5000
+➡️ იხილე: http://localhost:4000
 
  ### 📦 ძირითადი სქრიპტები
 
