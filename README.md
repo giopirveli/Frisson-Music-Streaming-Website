@@ -16,7 +16,7 @@ Frisson-Music-Streaming-Website/
 
 ## 🚀 გაშვების ინსტრუქცია
 
-### 🔷 Front ntend (Next.js)
+### 🔷 Frontend (Next.js)
 
 ```bash
 cd frontend
