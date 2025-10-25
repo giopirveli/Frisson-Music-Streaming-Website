@@ -43,7 +43,7 @@ npm run start:dev
 | ორივე  | `npm install`        | პაკეტების დაყენება           |
 
 
-Frisson Team — 2025
+CodeNest Team — 2025
 GitHub: https://github.com/your-username/Frisson-Music-Streaming-Website
 
 
