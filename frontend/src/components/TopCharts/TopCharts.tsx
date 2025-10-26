@@ -54,12 +54,16 @@ export default function TopCharts({ title, artist, duration, imageUrl }: TopChar
     e.stopPropagation();
   };
 
-  // ⚡ fix floating ref
+  // ✅ Fix for refs warning
+  const referenceRef = useRef<HTMLDivElement | null>(null);
   const floatingDivRef = useRef<HTMLDivElement | null>(null);
+
   useEffect(() => {
-    if (floatingDivRef.current) {
-      refs.setFloating(floatingDivRef.current);
-    }
+    if (referenceRef.current) refs.setReference(referenceRef.current);
+  }, [refs]);
+
+  useEffect(() => {
+    if (floatingDivRef.current) refs.setFloating(floatingDivRef.current);
   }, [refs, isMenuOpen]);
 
   return (
@@ -82,7 +86,7 @@ export default function TopCharts({ title, artist, duration, imageUrl }: TopChar
             <HeartBtn iconColor="gray" liked={isLiked} onToggle={() => setIsLiked((v) => !v)} />
 
             <div
-              ref={refs.setReference}
+              ref={referenceRef}
               {...getReferenceProps({
                 onMouseDown: stop,
                 onClick: stop,
@@ -97,7 +101,7 @@ export default function TopCharts({ title, artist, duration, imageUrl }: TopChar
           {isMenuOpen && (
             <FloatingPortal>
               <div
-                ref={floatingDivRef} // ⚡ fixed
+                ref={floatingDivRef}
                 {...getFloatingProps({
                   style: { ...floatingStyles, zIndex: 999 },
                   className: styles.threeDotsMeniuCoordinates,

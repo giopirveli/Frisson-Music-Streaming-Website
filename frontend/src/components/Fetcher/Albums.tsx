@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "./Albums.module.scss";
+import Image from "next/image";
 
 interface Album {
   id: number;
@@ -31,7 +32,7 @@ const Albums: React.FC = () => {
       {albums.map((a) => (
         <div key={a.id} className={styles.card}>
           <div className={styles.imageWrapperBox}>
-            <img
+            <Image
               src={a.coverUrl}
               alt={a.title}
               className={`${styles.albumImage} ${styles.musicImage}`}

@@ -56,3 +56,10 @@
   align-items: center;
   gap: 4px;
 }
+
+
+.button {
+  width: 100%; // fills parent but not more than max
+  max-width: 170px; // absolute max
+  min-width: 160px; // absolute min
+}

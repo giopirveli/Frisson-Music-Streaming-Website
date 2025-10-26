@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import NewsComponent from "@/components/NewsComponent/NewsComponent";
-import { Colors } from "../../../styles/colors.enum";
+// import { Colors } from "../../../styles/colors.enum";
 import styles from "./page.module.scss";
 import Table from "@/components/Table/Table";
 import photo from "../../../assets/images/table/albumphoto.png";
@@ -47,7 +47,7 @@ export default function ArtistPage() {
       {activeTab === 2 && (
         <>
           <NewsComponent
-            color={Colors.White}
+            // color={Colors.White}
             title="peggy gou"
             button="follow"
             imageUrl="/Images/NewsComponent/peggyGou.jpg"
