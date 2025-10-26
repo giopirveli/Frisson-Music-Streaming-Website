@@ -30,7 +30,7 @@ export default function AlbumPage() {
           ))}
 
           {/* <AlbumFetch /> */}
-          </div>
+        </div>
       )}
 
       {activeTab === 2 && (
