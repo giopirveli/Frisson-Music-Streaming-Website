@@ -56,3 +56,7 @@
   align-items: center;
   gap: 4px;
 }
+
+.button {
+  width: clamp(160px, 10%, 170px); // scales between 150px and 170px based on container
+}

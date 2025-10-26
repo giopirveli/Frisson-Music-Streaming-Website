@@ -46,8 +46,8 @@ export default function NewsComponent({
           <p className={styles.plays}>{plays.toLocaleString()} </p>
         </div>
         <Button
+          className={styles.button}
           text={button || "Listen Now"}
-          width={150}
           height={50}
           icon="/icons/Button/Play.svg"
         />
