@@ -17,6 +17,7 @@ import {
   useRole,
   useInteractions,
 } from "@floating-ui/react";
+import Image from "next/image";
 
 interface MusicCardProps {
   title: string;
@@ -73,7 +74,7 @@ export default function MusicCard({
       onClick={onClick}
     >
       <div className={`${styles.imageWrapper} ${isHovered ? styles.hoveredImgWrapper : ""}`}>
-        <img src={imageUrl} alt={`${title} — ${artist}`} className={styles.musicImage} />
+        <Image src={imageUrl} alt={`${title} — ${artist}`} className={styles.musicImage} />
       </div>
 
       {showHoverControls && (
@@ -98,7 +99,6 @@ export default function MusicCard({
             iconColor="black"
             open={open}
           />
-
         </div>
       )}
 

@@ -1,24 +1,24 @@
 "use client";
 import styles from "./Table.module.scss";
 import { useState } from "react";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import albumPhoto from "../../assets/images/table/albumphoto.png";
 import AlbumCard from "../AlbumCard/AlbumCard";
 import SongListTable from "../SongListTable/SongListTable";
 
-interface Song {
-  /*
-  // Song aris prop
-  id?: number | string;
-  pic?: string | StaticImageData;
-  name?: string;
-  album?: string;
-  time?: string;
-  liked?: boolean;
-  artist?: string; // for bio
-  biography?: string;
-*/
-}
+// interface Song {
+
+//   // Song aris prop
+//   id?: number | string;
+//   pic?: string | StaticImageData;
+//   name?: string;
+//   album?: string;
+//   time?: string;
+//   liked?: boolean;
+//   artist?: string; // for bio
+//   biography?: string;
+
+// }
 
 export default function Table() {
   //{ id, pic, name, album, time, liked, artist, biography }: Song

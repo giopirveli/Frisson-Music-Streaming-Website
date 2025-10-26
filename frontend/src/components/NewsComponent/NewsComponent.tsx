@@ -2,7 +2,6 @@
 import Button from "../Button/Button";
 import styles from "./NewsComponent.module.scss";
 import Image, { StaticImageData } from "next/image";
-import { Colors } from "../../styles/colors.enum";
 
 interface NewsComponentProps {
   imageUrl: string | StaticImageData;
@@ -11,7 +10,6 @@ interface NewsComponentProps {
   artist?: string;
   verified?: boolean;
   button?: string;
-  color?: Colors; // გამოიყენებ თუ გჭირდება
 }
 
 export default function NewsComponent({
@@ -21,7 +19,6 @@ export default function NewsComponent({
   artist,
   verified,
   button,
-  color,
 }: NewsComponentProps) {
   return (
     <div className={styles.wrapper}>
@@ -46,9 +43,7 @@ export default function NewsComponent({
             </div>
           )}
           <h1 className={styles.title}>{artist || title}</h1>
-          <p className={styles.plays} style={{ color: Colors.White }}>
-            {plays.toLocaleString()}{" "}
-          </p>
+          <p className={styles.plays}>{plays.toLocaleString()} </p>
         </div>
         <Button
           text={button || "Listen Now"}
