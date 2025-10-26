@@ -74,7 +74,13 @@ export default function MusicCard({
       onClick={onClick}
     >
       <div className={`${styles.imageWrapper} ${isHovered ? styles.hoveredImgWrapper : ""}`}>
-        <Image src={imageUrl} alt={`${title} — ${artist}`} className={styles.musicImage} width={234} height={200} />
+        <Image
+          src={imageUrl}
+          alt={`${title} — ${artist}`}
+          className={styles.musicImage}
+          width={234}
+          height={200}
+        />
       </div>
 
       {showHoverControls && (
