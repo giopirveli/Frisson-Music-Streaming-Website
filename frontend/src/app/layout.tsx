@@ -8,8 +8,9 @@ export const metadata = {
 import MeasureWidth from "../components/MeasureWidth/MeasureWidth";
 import localFont from "next/font/local";
 import "./globals.scss";
-import RouteProgress from "@/components/RouteProgress/RouteProgress"; // ✅ progress bar კომპონენტი
+import RouteProgress from "@/components/RouteProgress/RouteProgress";
 import "nprogress/nprogress.css";
+import { Suspense } from "react";
 
 const manrope = localFont({
   src: [
@@ -18,6 +19,7 @@ const manrope = localFont({
   ],
   variable: "--font-manrope",
 });
+
 const plusJakartaSans = localFont({
   src: [
     {
@@ -43,6 +45,7 @@ const plusJakartaSans = localFont({
   ],
   variable: "--font-jakarta",
 });
+
 const sfProDisplay = localFont({
   src: [
     { path: "./fonts/sfprodisplayheavy/sfprodisplayheavy.woff2", weight: "900", style: "normal" },
@@ -55,7 +58,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={`${manrope.variable} ${plusJakartaSans.variable} ${sfProDisplay.variable}`}>
-        <RouteProgress /> {/* ✅ progress bar */}
+        <Suspense fallback={null}>
+          <RouteProgress />
+        </Suspense>
         <MeasureWidth />
         {children}
       </body>

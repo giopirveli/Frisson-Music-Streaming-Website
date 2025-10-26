@@ -1,29 +1,29 @@
 "use client";
 import styles from "./Table.module.scss";
-import { useState, useEffect } from "react";
-// import axios from "axios";
-import Image, { StaticImageData } from "next/image";
-import photo from "../../assets/images/table/artistphoto.png";
+import { useState } from "react";
+import Image from "next/image";
 import albumPhoto from "../../assets/images/table/albumphoto.png";
-import ThreeDotsBtn from "../ThreeDots/ThreeDotsBtn";
 import AlbumCard from "../AlbumCard/AlbumCard";
 import SongListTable from "../SongListTable/SongListTable";
 
-interface Song {
-  // Song aris prop
-  id?: number | string;
-  pic?: string | StaticImageData;
-  name?: string;
-  album?: string;
-  time?: string;
-  liked?: boolean;
-  artist?: string; // for bio
-  biography?: string;
-}
+// interface Song {
 
-export default function Table({ id, pic, name, album, time, liked, artist, biography }: Song) {
+//   // Song aris prop
+//   id?: number | string;
+//   pic?: string | StaticImageData;
+//   name?: string;
+//   album?: string;
+//   time?: string;
+//   liked?: boolean;
+//   artist?: string; // for bio
+//   biography?: string;
+
+// }
+
+export default function Table() {
+  //{ id, pic, name, album, time, liked, artist, biography }: Song
   const [activeTab, setActiveTab] = useState(1);
-  const [songs, setSongs] = useState<Song[]>([]); // songs aris array
+  // const [songs, setSongs] = useState<Song[]>([]); // songs aris array
 
   /*
       useEffect(() => {

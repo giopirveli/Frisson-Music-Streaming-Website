@@ -1,11 +1,10 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import styles from "../TopCharts/TopCharts.module.scss";
 import Image from "next/image";
 import HeartBtn from "../Heartbtn/HeartBtn";
-import ThreeDotsBtn from "../ThreeDots/ThreeDotsBtn";
+import ThreeDotsBtn from "../ThreeDotsBtn/ThreeDotsBtn";
 import ThreeDotsList from "../ThreeDotsList/ThreeDotsList";
-
 import {
   useFloating,
   offset,
@@ -55,6 +54,18 @@ export default function TopCharts({ title, artist, duration, imageUrl }: TopChar
     e.stopPropagation();
   };
 
+  // ✅ Fix for refs warning
+  const referenceRef = useRef<HTMLDivElement | null>(null);
+  const floatingDivRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (referenceRef.current) refs.setReference(referenceRef.current);
+  }, [refs]);
+
+  useEffect(() => {
+    if (floatingDivRef.current) refs.setFloating(floatingDivRef.current);
+  }, [refs, isMenuOpen]);
+
   return (
     <div className={styles.TopChartsDiv}>
       <div className={styles.imgAndWrapperBox}>
@@ -75,9 +86,10 @@ export default function TopCharts({ title, artist, duration, imageUrl }: TopChar
             <HeartBtn iconColor="gray" liked={isLiked} onToggle={() => setIsLiked((v) => !v)} />
 
             <div
-              ref={refs.setReference}
+              ref={referenceRef}
               {...getReferenceProps({
-                onMouseDown: (e: React.MouseEvent) => stop(e),
+                onMouseDown: stop,
+                onClick: stop,
                 "aria-expanded": isMenuOpen,
                 "aria-haspopup": "menu",
               })}
@@ -89,7 +101,7 @@ export default function TopCharts({ title, artist, duration, imageUrl }: TopChar
           {isMenuOpen && (
             <FloatingPortal>
               <div
-                ref={refs.setFloating}
+                ref={floatingDivRef}
                 {...getFloatingProps({
                   style: { ...floatingStyles, zIndex: 999 },
                   className: styles.threeDotsMeniuCoordinates,

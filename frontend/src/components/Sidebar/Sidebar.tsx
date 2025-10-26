@@ -24,7 +24,7 @@ export default function Sidebar() {
   return (
     <aside className={styles.sidebar}>
       <Link href="/" aria-label="Home" className={styles.frissonMainLogo}>
-        <Image src="/icons/Sidebar/mainLogo.png" fill alt="Frisson logo" />
+        <Image src="/icons/Sidebar/mainLogo.png" width={200} height={200} className={styles.frissonMainLogo} alt="Frisson logo" />
       </Link>
       <nav className={styles.menu}>
         <div className={styles.mainMenu}>

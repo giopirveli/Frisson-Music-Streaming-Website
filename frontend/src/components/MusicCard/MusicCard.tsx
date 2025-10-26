@@ -1,9 +1,9 @@
 "use client";
 
 import styles from "./MusicCard.module.scss";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import HeartBtn from "../Heartbtn/HeartBtn";
-import ThreeDotsBtn from "../ThreeDots/ThreeDotsBtn";
+import ThreeDotsBtn from "../ThreeDotsBtn/ThreeDotsBtn";
 import ThreeDotsList from "../ThreeDotsList/ThreeDotsList";
 import {
   useFloating,
@@ -17,6 +17,7 @@ import {
   useRole,
   useInteractions,
 } from "@floating-ui/react";
+import Image from "next/image";
 
 interface MusicCardProps {
   title: string;
@@ -57,6 +58,14 @@ export default function MusicCard({
 
   const showHoverControls = (isHovered || open) && !hideHoverEfect;
 
+  // ⚡ fix floating ref
+  const floatingDivRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    if (floatingDivRef.current) {
+      refs.setFloating(floatingDivRef.current);
+    }
+  }, [refs, open]);
+
   return (
     <div
       className={styles.card}
@@ -65,7 +74,13 @@ export default function MusicCard({
       onClick={onClick}
     >
       <div className={`${styles.imageWrapper} ${isHovered ? styles.hoveredImgWrapper : ""}`}>
-        <img src={imageUrl} alt={`${title} — ${artist}`} className={styles.musicImage} />
+        <Image
+          src={imageUrl}
+          alt={`${title} — ${artist}`}
+          className={styles.musicImage}
+          width={234}
+          height={200}
+        />
       </div>
 
       {showHoverControls && (
@@ -79,10 +94,11 @@ export default function MusicCard({
           </div>
 
           <ThreeDotsBtn
-            ref={refs.setReference}
+            ref={(el) => refs.setReference(el)} // ✅ fixed
             {...getReferenceProps({
               className: styles.threeDotsBtn,
-              onMouseDown: (e: React.MouseEvent) => e.stopPropagation(),
+              onMouseDown: stop,
+              onClick: stop,
               "aria-expanded": open,
               "aria-haspopup": "menu",
             })}
@@ -95,7 +111,7 @@ export default function MusicCard({
       {open && (
         <FloatingPortal>
           <div
-            ref={refs.setFloating}
+            ref={floatingDivRef} // ⚡ fixed
             {...getFloatingProps({
               style: { ...floatingStyles, zIndex: 99999 },
               className: styles.threeDotsMenuCoordinates,

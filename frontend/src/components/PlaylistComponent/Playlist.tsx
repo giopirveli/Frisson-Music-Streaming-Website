@@ -2,8 +2,8 @@
 
 import styles from "./Playlist.module.scss";
 import { useState } from "react";
-import PenButton from "../PenBtn/PenButton";
-import BinButton from "../DeleteBinBtn/BinButton";
+import PenButton from "../PenButton/PenButton";
+import BinButton from "../DeleteBinBtn/DeleteBinBtn";
 import Image, { StaticImageData } from "next/image";
 
 interface PlaylistProps {

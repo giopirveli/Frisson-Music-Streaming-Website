@@ -1,6 +1,5 @@
 "use client";
-import { Colors } from "../../styles/colors.enum";
-import styles from "../DeleteBinBtn/Bin.module.scss";
+import styles from "../DeleteBinBtn/DeleteBinBtn.module.scss";
 import Image from "next/image";
 
 export default function BinButton() {

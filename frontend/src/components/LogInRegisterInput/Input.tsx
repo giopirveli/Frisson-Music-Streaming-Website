@@ -21,7 +21,7 @@ const Input = forwardRef<HTMLInputElement, Props>(function Input(
     name,
     onChange,
     onBlur,
-    className,
+    //className,
     ...rest
   },
   ref

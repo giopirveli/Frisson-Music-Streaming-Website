@@ -29,7 +29,7 @@ export default function AlbumPage() {
             <AlbumCard key={i} title="album title" imageUrl={photo} onClick={goDetails} />
           ))}
 
-          <AlbumFetch />
+          {/* <AlbumFetch /> */}
         </div>
       )}
 
