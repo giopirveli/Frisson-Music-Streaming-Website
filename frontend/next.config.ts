@@ -1,9 +1,9 @@
-// next.config.ts
 import { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  outputFileTracingRoot: __dirname, // <-- fix here
+  outputFileTracingRoot: __dirname, // existing
   reactStrictMode: true,
+  output: "export", // ✅ enables static export
   // other settings...
 };
 
