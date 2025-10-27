@@ -31,8 +31,6 @@ It’s designed to deliver a smooth and responsive music experience — inspired
 
 📱 Responsive design
 
-📘 Swagger documentation for backend APIs
-
 🧱 Scalable modular architecture
 
 
