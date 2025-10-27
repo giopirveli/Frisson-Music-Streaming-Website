@@ -12,10 +12,10 @@ It’s designed to deliver a smooth and responsive music experience — inspired
 
 | Layer | Technology | Purpose |
 |-------|-------------|----------|
-| 🎨 Frontend | [Next.js](https://nextjs.org/) + TypeScript | Interactive UI, server-side rendering |
-| ⚙️ Backend | [NestJS](https://nestjs.com/) + TypeScript | RESTful API, authentication, data logic |
+| 🎨 Frontend | [Next.js](https://nextjs.org/) + TypeScript | Interactive UI, TSX, SCSS, server-side rendering |
+| ⚙️ Backend | [NestJS](https://nestjs.com/) + TypeScript | RESTful API, Authentication, data logic |
 | 🗄️ Database | MySQL / TypeORM | Data storage with relationships |
-| 🔐 Auth | JWT + bcrypt | Secure authentication flow |
+| 🔐 Auth | JWT + bcrypt + guards | Secure authentication flow |
 | 🧩 Architecture | Modular, Scalable | Clean separation between layers |
 
 
