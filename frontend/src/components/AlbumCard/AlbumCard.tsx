@@ -2,7 +2,7 @@
 
 import styles from "./AlbumCard.module.scss";
 import Image, { StaticImageData } from "next/image";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import HeartBtn from "../HeartBtn/HeartBtn";
 import ThreeDotsBtn from "../ThreeDotsBtn/ThreeDotsBtn";
 import ThreeDotsList from "../ThreeDotsList/ThreeDotsList";
@@ -58,10 +58,18 @@ export default function AlbumCard({
 
   const stop = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    e.stopPropagation();
+    e.stopPropagation(); // prevents hover buttons from triggering onClick
   };
 
   const showHoverControls = (isHovered || isMenuOpen) && !hideHoverEfect;
+
+  // Fix for Floating UI warning
+  const floatingDivRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    if (floatingDivRef.current) {
+      refs.setFloating(floatingDivRef.current);
+    }
+  }, [refs, isMenuOpen]);
 
   return (
     <div
@@ -109,7 +117,7 @@ export default function AlbumCard({
         {isMenuOpen && (
           <FloatingPortal>
             <div
-              ref={refs.setFloating}
+              ref={floatingDivRef} // fix applied here
               {...getFloatingProps({
                 style: { ...floatingStyles, zIndex: 9999 },
                 className: styles.threeDotsMeniuCoordinates,

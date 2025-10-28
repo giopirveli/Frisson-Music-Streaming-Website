@@ -15,7 +15,6 @@ export default function ArtistPage() {
   const pathname = usePathname();
   const { activeTab, setActiveTab } = useActiveTab();
 
-
   useEffect(() => {
     setActiveTab(1);
   }, [pathname, setActiveTab]);
