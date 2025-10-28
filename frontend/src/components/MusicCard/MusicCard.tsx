@@ -1,9 +1,9 @@
 "use client";
 
 import styles from "./MusicCard.module.scss";
-import { useState } from "react";
-import HeartBtn from "../HeartBtn/HeartBtn";
-import ThreeDotsBtn from "../ThreeDots/ThreeDotsBtn";
+import { useState, useRef, useEffect } from "react";
+import HeartBtn from "../Heartbtn/HeartBtn";
+import ThreeDotsBtn from "../ThreeDotsBtn/ThreeDotsBtn";
 import ThreeDotsList from "../ThreeDotsList/ThreeDotsList";
 import {
   useFloating,
@@ -17,6 +17,7 @@ import {
   useRole,
   useInteractions,
 } from "@floating-ui/react";
+import Image from "next/image";
 
 interface MusicCardProps {
   title: string;
@@ -37,40 +38,33 @@ export default function MusicCard({
   const [isLiked, setIsLiked] = useState(false);
   const [open, setOpen] = useState(false);
 
-  // === Floating core (replaces custom useFloatingMenu)
-  const {
-    refs,
-    floatingStyles,
-    context,
-  } = useFloating({
+  const { refs, floatingStyles, context } = useFloating({
     open,
     onOpenChange: setOpen,
     placement: "bottom-end",
-    middleware: [
-      offset(8),        // მოაშორე ღილაკს 8px
-      flip({ padding: 8 }), // თუ არ ეტევა, გადაფლიპე
-      shift({ padding: 8 }), // ეკრანის კიდეებიდან ჩამოწევა
-    ],
+    middleware: [offset(8), flip({ padding: 8 }), shift({ padding: 8 })],
     whileElementsMounted: autoUpdate,
   });
 
-  // Click to toggle, click outside/Escape to close, a11y role
   const click = useClick(context, { event: "click" });
   const dismiss = useDismiss(context);
   const role = useRole(context, { role: "menu" });
-  const { getReferenceProps, getFloatingProps } = useInteractions([
-    click,
-    dismiss,
-    role,
-  ]);
+  const { getReferenceProps, getFloatingProps } = useInteractions([click, dismiss, role]);
 
   const stop = (e: React.SyntheticEvent) => {
     e.preventDefault();
     e.stopPropagation();
   };
 
-  // ღია მენიუზე კონტროლები არ უნდა გაქრეს
   const showHoverControls = (isHovered || open) && !hideHoverEfect;
+
+  // ⚡ fix floating ref
+  const floatingDivRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    if (floatingDivRef.current) {
+      refs.setFloating(floatingDivRef.current);
+    }
+  }, [refs, open]);
 
   return (
     <div
@@ -80,7 +74,13 @@ export default function MusicCard({
       onClick={onClick}
     >
       <div className={`${styles.imageWrapper} ${isHovered ? styles.hoveredImgWrapper : ""}`}>
-        <img src={imageUrl} alt={`${title} — ${artist}`} className={styles.musicImage} />
+        <Image
+          src={imageUrl}
+          alt={`${title} — ${artist}`}
+          className={styles.musicImage}
+          width={234}
+          height={200}
+        />
       </div>
 
       {showHoverControls && (
@@ -93,29 +93,28 @@ export default function MusicCard({
             />
           </div>
 
-          {/* სამ დოთსის ღილაკი — ვაკეთებთ ნამდვილი <button>-ად */}
           <ThreeDotsBtn
-            ref={refs.setReference}
+            ref={(el) => refs.setReference(el)} // ✅ fixed
             {...getReferenceProps({
               className: styles.threeDotsBtn,
-              onMouseDown: (e: any) => e.stopPropagation(),
+              onMouseDown: stop,
+              onClick: stop,
               "aria-expanded": open,
               "aria-haspopup": "menu",
             })}
             iconColor="black"
             open={open}
           />
-
         </div>
       )}
 
       {open && (
         <FloatingPortal>
           <div
-            ref={refs.setFloating}
+            ref={floatingDivRef} // ⚡ fixed
             {...getFloatingProps({
               style: { ...floatingStyles, zIndex: 99999 },
-              className: styles.threeDotsMenuCoordinates, // გაითვალისწინე სახელწოდება!
+              className: styles.threeDotsMenuCoordinates,
               onMouseDown: stop,
               onClick: stop,
             })}
@@ -132,5 +131,3 @@ export default function MusicCard({
     </div>
   );
 }
-
-

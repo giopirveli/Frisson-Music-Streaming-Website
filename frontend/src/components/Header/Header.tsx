@@ -26,36 +26,29 @@ export default function Header() {
   if (isHomePage) {
     content = <Searchbar placeholder="artists, tracks, albums" />;
 
-  // 2️⃣ Pages with nothing in header (Top-Hits / Top-Charts)
-  } else if (noHeaderPages.some(route => normalizedPath.startsWith(route))) {
+    // 2️⃣ Pages with nothing in header (Top-Hits / Top-Charts)
+  } else if (noHeaderPages.some((route) => normalizedPath.startsWith(route))) {
     content = null;
 
-  // 3️⃣ Playlists page: arrow only when activeTab === 2, no searchbar
-  } else if (normalizedPath.startsWith("/playlists") || normalizedPath.startsWith("/playlists-page")) {
+    // 3️⃣ Playlists page: arrow only when activeTab === 2, no searchbar
+  } else if (
+    normalizedPath.startsWith("/playlists") ||
+    normalizedPath.startsWith("/playlists-page")
+  ) {
     content = (
       <div className={styles.searchArrow}>
         {activeTab === 2 && (
-          <Image
-            src={arrow}
-            className={styles.arrow}
-            alt="arrow"
-            onClick={() => setActiveTab(1)}
-          />
+          <Image src={arrow} className={styles.arrow} alt="arrow" onClick={() => setActiveTab(1)} />
         )}
       </div>
     );
 
-  // 4️⃣ Artist & Album pages: search + conditional arrow
-  } else if (arrowConditionalPages.some(route => normalizedPath.startsWith(route))) {
+    // 4️⃣ Artist & Album pages: search + conditional arrow
+  } else if (arrowConditionalPages.some((route) => normalizedPath.startsWith(route))) {
     content = (
       <div className={styles.searchArrow}>
         {activeTab === 2 && (
-          <Image
-            src={arrow}
-            className={styles.arrow}
-            alt="arrow"
-            onClick={() => setActiveTab(1)}
-          />
+          <Image src={arrow} className={styles.arrow} alt="arrow" onClick={() => setActiveTab(1)} />
         )}
         <Searchbar placeholder="artists, tracks, albums" />
       </div>
@@ -64,9 +57,7 @@ export default function Header() {
 
   return (
     <header className={styles.header}>
-      <div className={styles.searchbar}>
-        {content}
-      </div>
+      <div className={styles.searchbar}>{content}</div>
 
       <Link href="sign-in">
         <Image

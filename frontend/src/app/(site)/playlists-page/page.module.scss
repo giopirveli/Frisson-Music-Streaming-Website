@@ -1,4 +1,4 @@
-@use "../../../../styles/colors" as *;
+@use "./../../../styles/colors" as *;
 
 .main {
   gap: 24px;
@@ -10,7 +10,7 @@
   flex-direction: column;
   gap: 24px;
 
-  &>h1 {
+  & > h1 {
     color: $white;
     font-family: var(--font-jakarta), sans-serif;
     font-size: 32px;
@@ -29,52 +29,6 @@
 .addPlayListControl {
   max-width: 162px;
   width: 100%;
-}
-
-// grid
-
-.albumCard {
-  justify-content: space-between;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 16px;
-
-  @media (min-width: 1400px) and (max-width: 1620px) {
-    grid-template-columns: repeat(4, 1fr);
-
-    &>div {
-      max-width: 270px; // ~79% of 266
-      max-height: 290px; // ~80% of 288
-    }
-  }
-
-  @media (max-width: 1399px) {
-    grid-template-columns: repeat(3, 1fr);
-
-    &>div {
-      max-width: 340px; // ~68% of 266
-      max-height: 360px; // ~70% of 288
-    }
-  }
-
-  @media (max-width: 1200px) {
-    grid-template-columns: repeat(2, 1fr);
-
-    &>div {
-      max-width: 340px; // ~56% of 266
-      max-height: 360px; // ~59% of 288
-    }
-  }
-
-  @media (max-width: 800px) {
-    grid-template-columns: 1fr;
-
-    &>div {
-      max-width: 300px; // ~45% of 266
-      max-height: 320px; // ~49% of 288
-      justify-self: center;
-    }
-  }
 }
 
 /* ეკრანის მთელ ზემოდან ანაბარი */

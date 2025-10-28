@@ -4,15 +4,15 @@ import Image from "next/image";
 import styles from "./signIn.module.scss";
 import Input from "@/components/LogInRegisterInput/Input";
 import Link from "next/link";
-import Button from "@/components/Button/button";
+import Button from "@/components/Button/Button";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 // ✅ Yup სქემა (Email + ძლიერი პაროლი) + rememberMe (არავალდ)
 const schema = yup.object({
-  email: yup.string().required("ელფოსტა სავალდებულოა").email("ელფოსტის ფორმატი არასწორია"), // აქ უნდა დავამათოთ წესი რომ შეამოწმოს არსებობს თუ არა მომხმარებელი
-  password: yup.string().required("პაროლი არასწორია"), // აქ უნდა დავამათოთ წესი რომ შეამოწმოს არსებობს თუ არა მომხმარებელი
+  email: yup.string().required("ელფოსტა სავალდებულოა").email("ელფოსტის ფორმატი არასწორია"),
+  password: yup.string().required("პაროლი არასწორია"),
   rememberMe: yup.boolean().optional().default(false),
 });
 
@@ -22,7 +22,7 @@ export default function SignInPage() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors /* , isSubmitting */ }, // keep errors
     setError,
     resetField,
   } = useForm<FormData>({
@@ -32,10 +32,9 @@ export default function SignInPage() {
     defaultValues: { rememberMe: false },
   });
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async (/* data: FormData */) => {
     try {
       // await signIn(data.email, data.password, { remember: data.rememberMe });
-      // redirect...
     } catch {
       setError("password", { message: "არასწორი ელფოსტა ან პაროლი" });
       resetField("password", { keepError: true });
@@ -43,7 +42,6 @@ export default function SignInPage() {
   };
 
   const onInvalid = () => {
-    // თუ რამე არასწორია, პაროლის value მაინც იშლება
     resetField("password", { keepError: true });
   };
 
@@ -51,7 +49,9 @@ export default function SignInPage() {
     <div className={styles.container}>
       <div className={styles.left}>
         <div className={styles.logoSizeControl}>
-          <Image src="/icons/Sidebar/mainLogo.png" fill alt="Frisson logo" />
+          <Link href="/">
+            <Image src="/icons/Sidebar/mainLogo.png" fill alt="Frisson logo" />
+          </Link>
         </div>
         <div className={styles.leftMainContent}>
           <div className={styles.header}>
@@ -68,7 +68,6 @@ export default function SignInPage() {
             <span className={styles.subtitle}>The Future Of Music Streaming</span>
           </div>
 
-          {/* ✅ RHF + Yup */}
           <form className={styles.form} noValidate onSubmit={handleSubmit(onSubmit, onInvalid)}>
             <Input
               type="email"
@@ -87,7 +86,6 @@ export default function SignInPage() {
               error={errors.password?.message}
             />
 
-            {/* ✅ ეს ბლოკი ამატებს checkbox-ს და "Forgot your password?"-ს */}
             <div className={styles.options}>
               <label className={styles.remember}>
                 <input type="checkbox" {...register("rememberMe")} />
@@ -99,7 +97,11 @@ export default function SignInPage() {
               </Link>
             </div>
 
-            <Button text="Sign up" type="submit" />
+            <Button
+              text="Sign in"
+              type="submit"
+              // disabled={isSubmitting}
+            />
             <span className={styles.switchPage}>
               Don’t have an account?
               <Link href="/sign-up"> Sign up</Link>

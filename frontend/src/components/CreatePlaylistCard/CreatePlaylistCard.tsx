@@ -3,7 +3,7 @@
 import { useState, useRef } from "react";
 import styles from "./CreatePlaylistCard.module.scss";
 import Image from "next/image";
-import Button from "../Button/button";
+import Button from "../Button/Button";
 
 export type CreatePlaylistPayload = {
   name: string;
@@ -65,10 +65,7 @@ export default function CreatePlaylistCard({
         />
 
         {/* Upload zone */}
-        <div
-          className={styles.dropZone}
-          onClick={() => inputRef.current?.click()}
-        >
+        <div className={styles.dropZone} onClick={() => inputRef.current?.click()}>
           {previewUrl ? (
             <Image
               src={previewUrl}
@@ -93,11 +90,9 @@ export default function CreatePlaylistCard({
 
       <div className={styles.footer}>
         <div className={styles.saveBtn}>
-          <Button text="Save" onClick={handleSave} /> 
+          <Button text="Save" onClick={handleSave} />
         </div>
       </div>
     </div>
   );
 }
-
-

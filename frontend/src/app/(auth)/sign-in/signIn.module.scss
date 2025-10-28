@@ -1,4 +1,4 @@
-@use "../../../../styles/colors" as *;
+@use "../../../styles/colors" as *;
 
 /* =======================
    Layout
@@ -185,7 +185,7 @@
 ======================= */
 .right {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   width: 100%;
 }
 

@@ -1,10 +1,12 @@
-@import "../../../styles/colors";
+@use "../../styles/colors" as *;
 
 .card {
   background-color: $dark-void;
   box-sizing: border-box;
   width: 100%;
   height: 100%;
+  max-height: 288px;
+  max-width: 260px;
   border-radius: 8px;
   position: relative;
   display: flex;
@@ -14,6 +16,7 @@
   padding: 16px;
   gap: 8px;
 }
+
 .textWrapper {
   display: flex;
   flex-direction: column;
@@ -46,14 +49,13 @@
   background: transparent;
   overflow: visible;
   position: relative;
-  height: 100vw;
-  /* შიდა pad თვითონ გაუმკლავდება overflow-ს */
+  height: 100vh; /* adjust if needed */
 }
+
 .playlistImage {
   object-fit: cover;
   border-radius: 8px;
 }
-
 
 .initialAvatar {
   display: flex;
@@ -65,5 +67,4 @@
   background: $gradient-apolo;
   height: 100%;
   border-radius: 8px;
-  /* ინარჩუნებს თეთრს, თუ გინდა, დატოვე გამჭვირვალე */
 }

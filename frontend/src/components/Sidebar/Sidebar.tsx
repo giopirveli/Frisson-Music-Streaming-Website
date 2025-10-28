@@ -24,17 +24,13 @@ export default function Sidebar() {
   return (
     <aside className={styles.sidebar}>
       <Link href="/" aria-label="Home" className={styles.frissonMainLogo}>
-        <Image src="/icons/Sidebar/mainLogo.png" fill alt="Frisson logo" />
+        <Image src="/icons/Sidebar/mainLogo.png" width={200} height={200} className={styles.frissonMainLogo} alt="Frisson logo" />
       </Link>
       <nav className={styles.menu}>
         <div className={styles.mainMenu}>
           <NavItem href="/" icon="/icons/Sidebar/home.svg" label="home" />
           <NavItem href="/top-hits-page" icon="/icons/Sidebar/topHits.svg" label="top hits" />
-          <NavItem
-            href="/top-charts-page"
-            icon="/icons/Sidebar/topCharts.svg"
-            label="top charts"
-          />
+          <NavItem href="/top-charts-page" icon="/icons/Sidebar/topCharts.svg" label="top charts" />
         </div>
 
         <div className={styles.collectionMenu}>

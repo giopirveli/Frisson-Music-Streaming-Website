@@ -1,4 +1,4 @@
-@use "../../../styles/colors" as *;
+@use "../../styles/colors" as *;
 
 .main {
   display: flex;
@@ -8,7 +8,6 @@
 }
 
 // scroll bar
-
 
 // --------------------------------------------------
 // Reusable style classes
@@ -67,7 +66,7 @@
   @extend .ordinarySectionCardsBox;
 }
 
-.topHitsSectionCardsBox>* {
+.topHitsSectionCardsBox > * {
   flex: 1 0 220px;
 }
 
@@ -93,7 +92,7 @@
   @extend .ordinarySectionCardsBox;
 }
 
-.artistSectionCardsBox>* {
+.artistSectionCardsBox > * {
   flex: 1 0 220px;
 }
 
@@ -119,7 +118,7 @@
   @extend .ordinarySectionCardsBox;
 }
 
-.albumSectionCardsBox>* {
+.albumSectionCardsBox > * {
   flex: 1 0 220px;
 }
 
@@ -163,5 +162,4 @@
   gap: 20px;
   width: 100%;
   max-width: 548px;
-
 }

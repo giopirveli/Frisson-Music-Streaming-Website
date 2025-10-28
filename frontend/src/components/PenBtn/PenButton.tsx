@@ -1,5 +1,5 @@
 "use client";
-import { Colors } from "../../../styles/colors.enum";
+import { Colors } from "../../styles/colors.enum";
 import { useState } from "react";
 import styles from "../PenBtn/Pen.module.scss";
 import Image from "next/image";

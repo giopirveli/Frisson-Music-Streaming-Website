@@ -1,4 +1,4 @@
-@import "../../../styles/colors";
+@use "../../styles/colors" as *;
 
 .playerBackgraund {
   background-color: $dark-void;
@@ -52,7 +52,7 @@
   width: 100%;
 }
 
-.rangeControlBox>input {
+.rangeControlBox > input {
   width: 100%;
 }
 
@@ -86,14 +86,14 @@
 }
 
 .shuffleBtnSctived {
-  background: $hawks-eye ;
+  background: $hawks-eye;
   border-radius: 999px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.repeatBtnSctived{
-    background: $hawks-eye ;
+.repeatBtnSctived {
+  background: $hawks-eye;
   border-radius: 999px;
   display: flex;
   align-items: center;

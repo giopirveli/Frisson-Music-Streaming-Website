@@ -1,20 +1,24 @@
 "use client";
-import styles from "../PlaylistComponent/Playlist.module.scss";
+
+import styles from "./Playlist.module.scss";
 import { useState } from "react";
-import PenButton from "../PenBtn/PenButton";
-import BinButton from "../DeleteBinBtn/BinButton";
-import { StaticImageData } from "next/image";
-import Image from "next/image";
+import PenButton from "../PenButton/PenButton";
+import BinButton from "../DeleteBinBtn/DeleteBinBtn";
+import Image, { StaticImageData } from "next/image";
 
 interface PlaylistProps {
-  title: string;
-  imageUrl?: string | StaticImageData; // ← optional
-  onClick?: () => void;
-  onEdit?: () => void;
-  onDelete?: () => void;
+  id: number | string; // ✅ required
+  description?: string; // optional
+  title?: string; // optional
+  imageUrl?: string | StaticImageData; // optional
+  onClick?: () => void; // optional
+  onEdit?: () => void; // optional
+  onDelete?: () => void; // optional
 }
 
 export default function PlaylistComponent({
+  id,
+  description,
   title,
   imageUrl,
   onClick,
@@ -33,7 +37,8 @@ export default function PlaylistComponent({
 
   return (
     <div
-      className={`${styles.card}`}
+      key={id}
+      className={styles.card}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={onClick}
@@ -50,7 +55,6 @@ export default function PlaylistComponent({
           <div className={styles.initialAvatar}>{initial}</div>
         )}
       </div>
-
 
       {showHoverControls && (
         <div className={styles.btnControlBox}>
@@ -81,9 +85,9 @@ export default function PlaylistComponent({
       )}
 
       <div className={styles.textWrapper}>
-        <p className={styles.text}>{title}</p>
+        <p className={styles.text}>{title || "Playlist"}</p>
+        {description && <p>{description}</p>}
       </div>
     </div>
   );
 }
-

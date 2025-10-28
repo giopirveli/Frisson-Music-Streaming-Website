@@ -1,5 +1,5 @@
 import { BaseEntity } from 'src/common/base.entity';
-import { PlaylistType } from 'src/common/playlist.enum';
+import { PlaylistType } from 'src/playlist/playlist.enum';
 import { Music } from 'src/music/entities/music.entity';
 import { User } from 'src/users/entities/user.entity';
 import { Column, Entity, JoinTable, ManyToMany, ManyToOne } from 'typeorm';
@@ -15,10 +15,13 @@ export class Playlist extends BaseEntity {
   @Column({ type: 'enum', enum: PlaylistType, default: PlaylistType.FAVORITES })
   type: PlaylistType;
 
+  @Column()
+  imageUrl: string;
+
   @ManyToOne(() => User, (user) => user.playlists, { onDelete: 'CASCADE' })
   user: User;
 
   @ManyToMany(() => Music)
-  @JoinTable()
+  @JoinTable({ name: 'playlist_tracks' })
   music: Music[];
 }

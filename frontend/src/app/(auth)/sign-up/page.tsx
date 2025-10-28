@@ -32,17 +32,18 @@ export default function SignUpPage() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors }, // removed isSubmitting
     resetField,
   } = useForm<SignUpForm>({
     resolver: yupResolver(schema),
-    mode: "onTouched", // blur-ისასაც ამოწმებს
+    mode: "onTouched",
     shouldFocusError: false, // ❌ არ გადაიყვანოს ფოკუსი პირველ ერორზე
   });
 
   // ✅ Submit (აქ ჩაანაცვლებ რეალურ API-თ)
   const onSubmit = async (data: SignUpForm) => {
     console.log("Sign up:", data);
+    // ❌ აქ ნაგულისხმევ fetch თუ API არ არის
     // await fetch("/api/auth/register", { method: "POST", body: JSON.stringify(data) })
     // წარმატებისას -> router.push("/sign-in")
   };
@@ -67,9 +68,10 @@ export default function SignUpPage() {
     <div className={styles.container}>
       <div className={styles.left}>
         <div className={styles.logoSizeControl}>
-          <Image src="/icons/Sidebar/mainLogo.png" fill alt="Frisson logo" />
+          <Link href="/">
+            <Image src="/icons/Sidebar/mainLogo.png" fill alt="Frisson logo" />
+          </Link>
         </div>
-
         <div className={styles.leftMainContent}>
           <div className={styles.header}>
             <h1 className={styles.title}>
@@ -99,7 +101,6 @@ export default function SignUpPage() {
               type="password"
               placeholder="Password"
               hideBtn
-              rules
               autoComplete="new-password"
               {...register("password")}
               error={errors.password?.message}
@@ -114,7 +115,11 @@ export default function SignUpPage() {
               error={errors.confirmPassword?.message}
             />
 
-            <Button text="Sign up" type="submit" />
+            <Button
+              text="Sign up"
+              type="submit"
+              // disabled={isSubmitting} ❌ removed
+            />
 
             <span className={styles.switchPage}>
               Already have an account?

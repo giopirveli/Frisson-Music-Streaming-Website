@@ -8,13 +8,16 @@ import {
   Delete,
   ParseIntPipe,
   Query,
+  UseInterceptors,
+  UploadedFile,
 } from '@nestjs/common';
 import { AuthorService } from './author.service';
 import { CreateAuthorDto } from './dto/create-author.dto';
 import { UpdateAuthorDto } from './dto/update-author.dto';
-import { SearchMusicDto } from 'src/search/dto/search-music.dto';
+import { SearchQueryDto } from 'src/common/query-dto/search-query.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
 
-@Controller('author')
+@Controller('authors')
 export class AuthorController {
   constructor(private readonly authorService: AuthorService) {}
 
@@ -23,14 +26,23 @@ export class AuthorController {
     return this.authorService.create(createAuthorDto);
   }
 
+  @Post(':id/upload-avatar')
+  @UseInterceptors(FileInterceptor('file'))
+  uploadAvatar(
+    @Param('id') id: number,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
+    return this.authorService.uploadAvatar(id, file);
+  }
+
   @Get()
   findAll() {
     return this.authorService.findAll();
   }
 
   @Get('search')
-  search(@Query() searchMusicDto: SearchMusicDto) {
-    return this.authorService.search(searchMusicDto.query);
+  search(@Query() searchQueryDto: SearchQueryDto) {
+    return this.authorService.search(searchQueryDto.query);
   }
 
   @Get(':id')

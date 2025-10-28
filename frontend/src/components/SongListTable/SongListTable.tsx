@@ -1,11 +1,10 @@
 "use client";
-
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import styles from "./SongListTable.module.scss";
-import HeartBtn from "../HeartBtn/HeartBtn";
+import HeartBtn from "../Heartbtn/HeartBtn";
 import photo from "../../assets/images/table/artistphoto.png";
-import ThreeDotsBtn from "../ThreeDots/ThreeDotsBtn";
+import ThreeDotsBtn from "../ThreeDotsBtn/ThreeDotsBtn";
 import ThreeDotsList from "../ThreeDotsList/ThreeDotsList";
 import {
   useFloating,
@@ -40,17 +39,17 @@ export default function SongListTable() {
     }))
   );
 
-  // === 3 დოთსის საერთო მენიუ (ერთი მთელ ცხრილზე) ===
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeRowId, setActiveRowId] = useState<number | string | null>(null);
   const lastTriggerRef = useRef<HTMLElement | null>(null);
+  const floatingDivRef = useRef<HTMLDivElement | null>(null);
 
   const stop = (e: React.SyntheticEvent) => {
     e.preventDefault();
     e.stopPropagation();
   };
 
-  const PLAYER_H = 96; // შენი ფლეიერის სიმაღლე
+  const PLAYER_H = 96;
 
   const { refs, floatingStyles } = useFloating({
     open: menuOpen,
@@ -59,9 +58,7 @@ export default function SongListTable() {
     strategy: "fixed",
     whileElementsMounted: autoUpdate,
     middleware: [
-      // ოდნავ ახლოს და ზემოთ დააყენე თუ გინდა (0/2/4 ან -2)
       offset(2),
-      // კიდეებთან არ „გაიჭრას“
       flip({
         crossAxis: true,
         rootBoundary: "viewport",
@@ -69,13 +66,11 @@ export default function SongListTable() {
         fallbackStrategy: "bestFit",
         padding: 8,
       }),
-      // ფლეიერის თავზე დარჩეს
       shift({
         crossAxis: true,
         rootBoundary: "viewport",
         padding: PLAYER_H + 8,
       }),
-      // ადგილი რომ არ ჰყოფნის, შიდა scroll
       size({
         apply({ availableWidth, availableHeight, elements }) {
           Object.assign(elements.floating.style, {
@@ -90,7 +85,12 @@ export default function SongListTable() {
     ],
   });
 
-  // გარეთ დაჭერაზე დახურვა
+  useEffect(() => {
+    if (floatingDivRef.current) {
+      refs.setFloating(floatingDivRef.current);
+    }
+  }, [refs, menuOpen]);
+
   useEffect(() => {
     if (!menuOpen) return;
     const onDocClick = (e: MouseEvent) => {
@@ -106,14 +106,13 @@ export default function SongListTable() {
     return () => document.removeEventListener("mousedown", onDocClick);
   }, [menuOpen, refs.floating, refs.reference]);
 
-  // trigger ჰენდლერი თითოეულ რიგზე
   const onThreeDotsClick = (e: React.MouseEvent<HTMLElement>, rowId: number | string) => {
     stop(e);
     const el = e.currentTarget as HTMLElement;
     lastTriggerRef.current = el;
-    refs.setReference(el);           // ამ ელემენტზე მიაბი მენიუ
+    refs.setReference(el);
     setActiveRowId(rowId);
-    setMenuOpen((v) => !v);          // ტოგლი
+    setMenuOpen((v) => !v);
   };
 
   return (
@@ -128,12 +127,10 @@ export default function SongListTable() {
             <th></th>
           </tr>
         </thead>
-
         <tbody className={styles.tbody}>
           {songs.map((song, i) => (
             <tr key={song.id}>
               <td className={styles.songId}>{i + 1}</td>
-
               <td className={styles.songName}>
                 <div className={styles.imageWrapper}>
                   <Image src={song.pic || photo} alt={song.name ?? "song"} />
@@ -143,17 +140,18 @@ export default function SongListTable() {
                   <span className={styles.songArtistText}>{song.artist}</span>
                 </div>
               </td>
-
               <td>{song.album}</td>
               <td>{song.time}</td>
-
-              {/* Heart უცვლელად + მის გვერდით 3 დოთსი (არანაირი შიდა კომპონენტები) */}
               <td>
                 <span style={{ display: "inline-flex", gap: 8, alignItems: "center" }}>
                   <span onMouseDown={stop} onClick={stop}>
-                    <HeartBtn iconColor="gray" onToggle={() => { /* wire later */ }} />
+                    <HeartBtn
+                      iconColor="gray"
+                      onToggle={() => {
+                        /* wire later */
+                      }}
+                    />
                   </span>
-
                   <span
                     onMouseDown={stop}
                     onClick={(e) => onThreeDotsClick(e, song.id)}
@@ -170,17 +168,15 @@ export default function SongListTable() {
         </tbody>
       </table>
 
-      {/* ერთჯერადი Floating მენიუ — მიბმულია ბოლო დაჭერილ 3 დოთსზე */}
       {menuOpen && (
         <FloatingPortal>
           <div
-            ref={refs.setFloating}
+            ref={floatingDivRef}
             style={{ ...floatingStyles, zIndex: 99999 }}
             onMouseDown={stop}
             onClick={stop}
             data-open="true"
           >
-            {/* სურვილისამებრ შეგიძლია გადააწოდო props ( напр. withoutPlaylist ) */}
             <ThreeDotsList withoutPlaylist />
           </div>
         </FloatingPortal>
@@ -188,4 +184,3 @@ export default function SongListTable() {
     </div>
   );
 }
-

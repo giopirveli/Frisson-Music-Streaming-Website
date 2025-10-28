@@ -1,10 +1,11 @@
-@import "../../../styles/colors";
+@use "../../styles/colors" as *;
 
 .card {
   background-color: $dark-void;
   box-sizing: border-box;
   height: 288px;
   max-width: 266px;
+  max-height: 309px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -87,8 +88,8 @@
   position: absolute; // ან fixed; ორივე იმუშავებს portal-ში, მაგრამ absolute უფრო ბუნებრივია reference-თან
   z-index: 999; // როგორც კოდში
 }
-.threeDotsBtn{
-@extend .btnWhiteBackground;
-width: 33px;
-height: 33px;
+.threeDotsBtn {
+  @extend .btnWhiteBackground;
+  width: 33px;
+  height: 33px;
 }

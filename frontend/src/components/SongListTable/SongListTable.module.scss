@@ -1,4 +1,4 @@
-@use "../../../styles/colors" as *;
+@use "../../styles/colors" as *;
 
 // table
 
@@ -55,17 +55,16 @@
 }
 
 .songNameText {
-  color: #FFF;
+  color: #fff;
   font-size: 14px;
   font-weight: 500;
 }
 
 .songArtistText {
-  color: #9E9A9F;
+  color: #9e9a9f;
   font-size: 14px;
   font-weight: 500;
 }
-
 
 // thead children
 
@@ -149,7 +148,7 @@
 .imageWrapper {
   padding: 10px;
 
-  &>img {
+  & > img {
     width: 100%;
     max-width: 48px;
     height: 48px;

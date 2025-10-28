@@ -1,135 +1,132 @@
 .card {
-    max-width: 320px;
-    width: 100%;
-    padding: 16px 16px 18px;
-    border-radius: 16px;
-    background: #26262b;
-    color: #f1f1f3;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+  max-width: 320px;
+  width: 100%;
+  padding: 16px 16px 18px;
+  border-radius: 16px;
+  background: #26262b;
+  color: #f1f1f3;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .header {
-    display: flex;
-    justify-content: center;
-
+  display: flex;
+  justify-content: center;
 }
 
 .headerWithgap {
-    justify-content: unset;
-    align-items: center;
-    gap: 12px;
+  justify-content: unset;
+  align-items: center;
+  gap: 12px;
 }
 
 .backBtn {
-    display: grid;
-    place-items: center;
-    border-radius: 10px;
-    color: #e5e5ea;
-    background: transparent;
-    border: none;
-    cursor: pointer;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  color: #e5e5ea;
+  background: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 .title {
-    color: #FFF;
-    text-align: center;
-    font-family: var(--font-jakarta), sans-serif;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 600;
+  color: #fff;
+  text-align: center;
+  font-family: var(--font-jakarta), sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
 }
 
 .body {
-    display: grid;
-    gap: 12px;
-    margin-top: 8px;
+  display: grid;
+  gap: 12px;
+  margin-top: 8px;
 }
 
 .inputLabel {
-    font-size: 0.875rem;
-    color: rgba(255, 255, 255, .8);
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .textInput {
-    padding: 12px 24px;
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, .08);
-    background: #18181b;
-    color: #FFF;
-    font-family: var(--font-jakarta), sans-serif;
-    font-size: 14px;
-    font-weight: 400;
+  padding: 12px 24px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #18181b;
+  color: #fff;
+  font-family: var(--font-jakarta), sans-serif;
+  font-size: 14px;
+  font-weight: 400;
 }
 
 .textInput::placeholder {
-    color: rgba(255, 255, 255, .55);
+  color: rgba(255, 255, 255, 0.55);
 }
 
 .textInput:focus {
-    outline: 2px solid rgba(154, 22, 242, .45);
-    outline-offset: 1px;
+  outline: 2px solid rgba(154, 22, 242, 0.45);
+  outline-offset: 1px;
 }
 
 .dropZone {
-    height: 180px;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, .12);
-    background: #141416;
-    display: grid;
-    place-items: center;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
+  height: 180px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #141416;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 
 .dropZone:hover {
-    background: #101013;
+  background: #101013;
 }
 
 .preview {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .cameraIcon {
-    position: relative;
-    max-width: 88px;
-    width: 100%;
-    height: 80px;
-    color: #dcdce1;
-    gap: 8px;
+  position: relative;
+  max-width: 88px;
+  width: 100%;
+  height: 80px;
+  color: #dcdce1;
+  gap: 8px;
 }
 
 .dropHint {
-    font-size: 12px;
-    opacity: .7;
+  font-size: 12px;
+  opacity: 0.7;
 }
 
-
-
 .saveBtn {
-    width: 100%;
-    border: none;
-    border-radius: 12px;
-    font-weight: 700;
-    color: white;
-    cursor: pointer;
-    background: linear-gradient(90deg, #f903d0 0%, #9a16f2 100%);
-    box-shadow: 0 6px 20px rgba(154, 22, 242, .35);
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  background: linear-gradient(90deg, #f903d0 0%, #9a16f2 100%);
+  box-shadow: 0 6px 20px rgba(154, 22, 242, 0.35);
 }
 
 .saveBtn:disabled {
-    cursor: not-allowed;
-    opacity: .5;
-    box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+  box-shadow: none;
 }
 
 .controlSize {
-    max-width: 88px;
-    height: 80px;
-    position: relative;
-    width: 100%;
+  max-width: 88px;
+  height: 80px;
+  position: relative;
+  width: 100%;
 }

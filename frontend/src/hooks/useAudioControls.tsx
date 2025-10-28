@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-// საჭიროების მიხედვით მოარგე ბილიკი:
 import type { Track } from "@/components/Player/playerType";
 
 type RepeatMode = "off" | "one";
@@ -14,7 +13,6 @@ type UseAudioControlsArgs = {
 };
 
 type UseAudioControlsReturn = {
-  // ಮೂಲ Control-ები
   isPlaying: boolean;
   currentTime: number;
   duration: number;
@@ -23,7 +21,6 @@ type UseAudioControlsReturn = {
   previewTime: number;
   progressPercent: number;
 
-  // ახალი Transport/Queue/Repeat/Mute
   currentIndex: number;
   currentTrack?: Track;
   nextTrack: () => void;
@@ -38,17 +35,14 @@ type UseAudioControlsReturn = {
   isMuted: boolean;
   toggleMute: () => void;
 
-  // Handlers
   togglePlay: () => Promise<void> | void;
   handlePlayPause: () => Promise<void> | void;
   handleEnded: () => void;
 
-  // Volume / Progress
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleClickProgressBar: (e: React.MouseEvent<HTMLDivElement>) => void;
   handleThumbMouseDown: () => void;
 
-  // Utils
   formatTime: (t: number) => string;
 };
 
@@ -58,7 +52,6 @@ export function useAudioControls({
   playlist,
   initialIndex = 0,
 }: UseAudioControlsArgs): UseAudioControlsReturn {
-  // ======== Base audio state (იქიდან, რაც უკვე გქონდა) ========
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -66,26 +59,27 @@ export function useAudioControls({
   const [isDragging, setIsDragging] = useState(false);
   const [previewTime, setPreviewTime] = useState(0);
 
-  // ======== Track / Index ========
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const currentTrack = useMemo(
     () => (playlist && playlist.length ? playlist[currentIndex] : undefined),
     [playlist, currentIndex]
   );
 
-  // ======== Shuffle Queue (bag + history) ========
   const [isShuffle, setIsShuffle] = useState(false);
-  const [shuffleBag, setShuffleBag] = useState<number[]>([]);
-  const [shuffleHistory, setShuffleHistory] = useState<number[]>([]);
+  // keep vars to avoid warnings, for future use
+  const shuffleBag = useRef<number[]>([]);
+  const shuffleHistory = useRef<number[]>([]);
 
-  // Live refs stale-closure-ის თავიდან ასაცილებლად
   const isShuffleRef = useRef(isShuffle);
-  useEffect(() => { isShuffleRef.current = isShuffle; }, [isShuffle]);
+  useEffect(() => {
+    isShuffleRef.current = isShuffle;
+  }, [isShuffle]);
 
   const currentIndexRef = useRef(currentIndex);
-  useEffect(() => { currentIndexRef.current = currentIndex; }, [currentIndex]);
+  useEffect(() => {
+    currentIndexRef.current = currentIndex;
+  }, [currentIndex]);
 
-  // Fisher–Yates ჩანთა
   const makeBag = (len: number, exclude?: number) => {
     const arr = Array.from({ length: len }, (_, i) => i);
     if (exclude != null && len > 1) arr.splice(exclude, 1);
@@ -96,23 +90,23 @@ export function useAudioControls({
     return arr;
   };
 
-  // ======== Auto-play cancel token ========
   const forcePlayRef = useRef(false);
   const playReqIdRef = useRef(0);
 
-  // src ცვლისას — დატვირთე და თუ მოთხოვნილია, აუტოპლეი მხოლოდ user action-ის შემდეგ
   useEffect(() => {
     const a = audioRef.current;
     if (!a || !currentTrack) return;
 
-    a.load(); // არ ვაძალებთ ავტოპლეის — გადაწყვეტა ქვემოთ
+    a.load();
 
     if (!forcePlayRef.current) return;
     const myId = ++playReqIdRef.current;
 
     const tryPlay = () => {
       if (playReqIdRef.current !== myId) return;
-      a.play().catch(() => {});
+      a.play().catch(() => {
+        /* ignored */
+      });
     };
 
     if (a.readyState >= 2) tryPlay();
@@ -120,25 +114,27 @@ export function useAudioControls({
 
     forcePlayRef.current = false;
     return () => a.removeEventListener("loadeddata", tryPlay);
-  }, [currentTrack?.audioSrc, audioRef]);
+  }, [audioRef, currentTrack]);
 
-  // playlist-ის ზომის ცვლილებაზე — shuffle ჩანთა განახლდეს
   useEffect(() => {
     if (isShuffle && playlist?.length) {
-      setShuffleBag(makeBag(playlist.length, currentIndexRef.current));
-      setShuffleHistory([currentIndexRef.current]);
+      shuffleBag.current = makeBag(playlist.length, currentIndexRef.current);
+      shuffleHistory.current = [currentIndexRef.current];
     }
   }, [isShuffle, playlist?.length]);
 
-  // ======== Audio events ========
   useEffect(() => {
     const a = audioRef.current;
     if (!a) return;
 
     const onPlay = () => setIsPlaying(true);
     const onPause = () => setIsPlaying(false);
-    const onTime = () => { if (!isDragging) setCurrentTime(a.currentTime); };
-    const onMeta = () => { if (!Number.isNaN(a.duration)) setDuration(a.duration); };
+    const onTime = () => {
+      if (!isDragging) setCurrentTime(a.currentTime);
+    };
+    const onMeta = () => {
+      if (!Number.isNaN(a.duration)) setDuration(a.duration);
+    };
 
     if (a.readyState >= 1) onMeta();
 
@@ -155,7 +151,6 @@ export function useAudioControls({
     };
   }, [audioRef, isDragging]);
 
-  // გლობალური volume (0–100 → 0–1)
   useEffect(() => {
     const a = audioRef.current;
     if (!a) return;
@@ -167,12 +162,15 @@ export function useAudioControls({
     setVolume(Math.min(Math.max(v, 0), 100));
   };
 
-  // ======== Play / Pause ========
   const togglePlay = async () => {
     const a = audioRef.current;
     if (!a) return;
     if (a.paused) {
-      try { await a.play(); } catch {}
+      try {
+        await a.play();
+      } catch {
+        /* ignored */
+      }
     } else {
       a.pause();
     }
@@ -182,18 +180,20 @@ export function useAudioControls({
     const a = audioRef.current;
     if (!a) return;
     if (a.paused) {
-      try { await togglePlay(); } catch {}
+      try {
+        await togglePlay();
+      } catch {
+        /* ignored */
+      }
     } else {
       a.pause();
-      playReqIdRef.current++; // გააუქმე pending autoplay
+      playReqIdRef.current++;
     }
   };
 
-  // ======== Repeat ========
   const [repeatMode, setRepeatMode] = useState<RepeatMode>("off");
   const toggleRepeatMode = () => setRepeatMode((m) => (m === "off" ? "one" : "off"));
 
-  // ======== Mute ========
   const [isMuted, setIsMuted] = useState(false);
   const toggleMute = () => {
     const a = audioRef.current;
@@ -203,76 +203,20 @@ export function useAudioControls({
     setIsMuted(next);
   };
 
-  // ======== Transport (Next / Prev + Shuffle bag/history) ========
   const nextTrack = () => {
     if (!playlist?.length) return;
     forcePlayRef.current = true;
-
-    if (!isShuffleRef.current) {
-      setCurrentIndex((i) => (i + 1) % playlist.length);
-      return;
-    }
-
-    // Shuffle: ისტორია + ჩანთა
-    setShuffleHistory((h) => [...h, currentIndexRef.current]);
-
-    setShuffleBag((bag) => {
-      let nextBag = bag ?? [];
-      if (playlist.length <= 1) {
-        setCurrentIndex(currentIndexRef.current);
-        return [];
-      }
-      if (nextBag.length === 0) {
-        nextBag = makeBag(playlist.length, currentIndexRef.current);
-      }
-      const nextIdx = nextBag[0];
-      if (nextIdx == null) {
-        setCurrentIndex((i) => (i + 1) % playlist.length);
-        return [];
-      }
-      setCurrentIndex(nextIdx);
-      return nextBag.slice(1);
-    });
+    setCurrentIndex((i) => (i + 1) % playlist.length);
   };
 
   const prevTrack = () => {
     if (!playlist?.length) return;
     forcePlayRef.current = true;
-
-    if (!isShuffleRef.current) {
-      setCurrentIndex((i) => (i - 1 + playlist.length) % playlist.length);
-      return;
-    }
-
-    setShuffleHistory((h) => {
-      if (h.length === 0) {
-        setCurrentIndex((i) => (i - 1 + playlist.length) % playlist.length);
-        return h;
-      }
-      const prevIdx = h[h.length - 1];
-
-      // სურვილისამებრ: მიმდინარე ჩავაგდოთ ჩანთის ბოლოში, რომ მომავალში ისევ გამოჩნდეს
-      setShuffleBag((bag) => ([...(bag ?? []), currentIndexRef.current]));
-
-      setCurrentIndex(prevIdx);
-      return h.slice(0, -1);
-    });
+    setCurrentIndex((i) => (i - 1 + playlist.length) % playlist.length);
   };
 
-  const toggleShuffle = () => {
-    setIsShuffle((on) => {
-      if (!on) {
-        setShuffleBag(makeBag(playlist.length, currentIndexRef.current));
-        setShuffleHistory([currentIndexRef.current]);
-      } else {
-        setShuffleBag([]);
-        setShuffleHistory([]);
-      }
-      return !on;
-    });
-  };
+  const toggleShuffle = () => setIsShuffle((on) => !on);
 
-  // ======== Progress Bar ========
   const handleClickProgressBar = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
       const a = audioRef.current;
@@ -322,7 +266,6 @@ export function useAudioControls({
     };
   }, [isDragging, onMouseMove, onMouseUp]);
 
-  // ======== Format / Percent ========
   const formatTime = (t: number) => {
     if (!Number.isFinite(t)) return "00:00";
     const m = Math.floor(t / 60);
@@ -333,7 +276,6 @@ export function useAudioControls({
   const progressPercent =
     duration > 0 ? ((isDragging ? previewTime : currentTime) / duration) * 100 : 0;
 
-  // ======== Ended Handler (Repeat One / Next) ========
   const handleEnded = () => {
     const a = audioRef.current;
     if (!a) return;
@@ -341,7 +283,9 @@ export function useAudioControls({
     if (repeatMode === "one") {
       forcePlayRef.current = true;
       a.currentTime = 0;
-      a.play().catch(() => {});
+      a.play().catch(() => {
+        /* ignored */
+      });
       return;
     }
     forcePlayRef.current = true;
@@ -349,30 +293,29 @@ export function useAudioControls({
   };
 
   return {
-    // base
-    isPlaying, currentTime, duration, volume,
-    isDragging, previewTime, progressPercent,
-
-    // transport / queue
-    currentIndex, currentTrack,
-    nextTrack, prevTrack,
-
-    // shuffle / repeat / mute
-    isShuffle, toggleShuffle,
-    repeatMode, toggleRepeatMode,
-    isMuted, toggleMute,
-
-    // handlers
+    isPlaying,
+    currentTime,
+    duration,
+    volume,
+    isDragging,
+    previewTime,
+    progressPercent,
+    currentIndex,
+    currentTrack,
+    nextTrack,
+    prevTrack,
+    isShuffle,
+    toggleShuffle,
+    repeatMode,
+    toggleRepeatMode,
+    isMuted,
+    toggleMute,
     togglePlay,
     handlePlayPause,
     handleEnded,
-
-    // volume / progress
     handleChange,
     handleClickProgressBar,
     handleThumbMouseDown,
-
-    // utils
     formatTime,
   };
 }

@@ -1,68 +1,79 @@
-// components/ThreeDots/ThreeDotsList.tsx
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./ThreeDotsList.module.scss";
 import arrow from "../../../public/icons/Arrow/arrow.svg";
-import Button from "../Button/button";
-import CreatePlaylistCard from "../CreatePlaylistCard/CreatePlaylistCard";
+import Button from "../Button/Button";
+import CreatePlaylistCard, {
+  CreatePlaylistPayload,
+} from "../CreatePlaylistCard/CreatePlaylistCard";
 
-type Playlist = { id?: string; name?: string; withoutPlaylist?: boolean; };
+type Playlist = { id: string; name: string; imageUrl?: string };
 
-const mockPlaylists: Playlist[] = [
-  { id: "1", name: "Playlist 1" },
-  { id: "2", name: "Playlist 2" },
-  { id: "3", name: "Playlist 3" },
-  { id: "4", name: "Playlist 1" },
-  { id: "5", name: "Playlist 2" },
-  { id: "6", name: "Playlist 3" },
-  { id: "7", name: "Playlist 1" },
-  { id: "8", name: "Playlist 2" },
-];
-
-export default function ThreeDotsList({withoutPlaylist}:Playlist) {
+export default function ThreeDotsList({ withoutPlaylist }: { withoutPlaylist?: boolean }) {
   const [activeTab, setActiveTab] = useState<1 | 2 | 3>(1);
   const [selected, setSelected] = useState<Record<string, boolean>>({});
+  const [playlists, setPlaylists] = useState<Playlist[]>(() => {
+    const saved = localStorage.getItem("playlists");
+    return saved ? JSON.parse(saved) : [];
+  });
 
-  const stop = (e: React.SyntheticEvent) => {
-    e.stopPropagation();
+  // Сохраняем в localStorage при каждом изменении
+  useEffect(() => {
+    if (playlists.length > 0) {
+      localStorage.setItem("playlists", JSON.stringify(playlists));
+    }
+  }, [playlists]);
+
+  const stop = (e: React.SyntheticEvent) => e.stopPropagation();
+
+  const handleSavePlaylist = (payload: CreatePlaylistPayload) => {
+    const id = Date.now().toString();
+
+    if (payload.imageFile) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const base64 = reader.result as string;
+        const newPlaylist = { id, name: payload.name, imageUrl: base64 };
+        setPlaylists((prev) => [...prev, newPlaylist]);
+
+        // сохраняем сразу
+        const updated = [...playlists, newPlaylist];
+        localStorage.setItem("playlists", JSON.stringify(updated));
+      };
+      reader.readAsDataURL(payload.imageFile);
+    } else {
+      const newPlaylist = { id, name: payload.name };
+      const updated = [...playlists, newPlaylist];
+      setPlaylists(updated);
+      localStorage.setItem("playlists", JSON.stringify(updated));
+    }
+
+    setActiveTab(2);
   };
 
-  const toggleCheck = (id: string) =>
-    setSelected((p) => ({ ...p, [id]: !p[id] }));
-
   return (
-    <div
-      className={styles.ListboxContainer}
-      onMouseDown={stop}
-      onClick={stop}
-    >
+    <div className={styles.ListboxContainer} onMouseDown={stop} onClick={stop}>
       {activeTab === 1 && (
         <div className={styles.Listbox} role="menu" aria-label="More options">
-          {!withoutPlaylist && <button
-            type="button"
-            className={styles.ListboxBtn}
-            role="menuitem"
-            onClick={() => setActiveTab(2)}
-          >
-            <Image src={"/icons/ThreeDots/disc.svg"} alt="" width={24} height={24} />
-            <span>Add to playlists</span>
-          </button>}
+          {!withoutPlaylist && (
+            <button
+              type="button"
+              className={styles.ListboxBtn}
+              role="menuitem"
+              onClick={() => setActiveTab(2)}
+            >
+              <Image src={"/icons/ThreeDots/disc.svg"} alt="" width={24} height={24} />
+              <span>Add to playlists</span>
+            </button>
+          )}
 
-          <button
-            type="button"
-            className={styles.ListboxBtn}
-            role="menuitem"
-          >
+          <button type="button" className={styles.ListboxBtn} role="menuitem">
             <Image src={"/icons/ThreeDots/album.svg"} alt="" width={24} height={24} />
             <span>View Album</span>
           </button>
 
-          <button
-            type="button"
-            className={styles.ListboxBtn}
-            role="menuitem"
-          >
+          <button type="button" className={styles.ListboxBtn} role="menuitem">
             <Image src={"/icons/ThreeDots/artist.svg"} alt="" width={24} height={24} />
             <span>View Artist</span>
           </button>
@@ -83,11 +94,7 @@ export default function ThreeDotsList({withoutPlaylist}:Playlist) {
             <span className={styles.title}>Add To Playlist</span>
           </div>
 
-          <button
-            type="button"
-            className={styles.addPlayList}
-            onClick={() => setActiveTab(3)}
-          >
+          <button type="button" className={styles.addPlayList} onClick={() => setActiveTab(3)}>
             <Image src={"/icons/ThreeDots/ic_round-plus.svg"} alt="" width={20} height={20} />
             New playlist
           </button>
@@ -97,13 +104,15 @@ export default function ThreeDotsList({withoutPlaylist}:Playlist) {
               className={styles.playListboxContentForm}
               onSubmit={(e) => {
                 e.preventDefault();
-                // TODO: handle selected playlist IDs
+                console.log("Selected playlists:", selected);
               }}
             >
-              {mockPlaylists.map((pl) => (
+              {playlists.map((pl) => (
                 <label key={pl.id} className={styles.checkboxRow}>
                   <input
                     type="checkbox"
+                    checked={!!selected[pl.id]}
+                    onChange={() => setSelected((p) => ({ ...p, [pl.id]: !p[pl.id] }))}
                   />
                   <span>{pl.name}</span>
                 </label>
@@ -119,6 +128,7 @@ export default function ThreeDotsList({withoutPlaylist}:Playlist) {
           <CreatePlaylistCard
             isPreviousArrow
             previewOnClick={() => setActiveTab(2)}
+            onSave={handleSavePlaylist}
           />
         </div>
       )}

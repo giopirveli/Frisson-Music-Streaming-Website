@@ -19,7 +19,7 @@ export class UsersRepository {
 
   async findAll(): Promise<User[]> {
     return this.usersRepo.find({
-      relations:['music']
+      relations: ['music'],
     });
   }
 

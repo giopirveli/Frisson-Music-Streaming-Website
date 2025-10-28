@@ -1,181 +1,177 @@
-@use "../../../styles/colors" as *;
+@use "../../styles/colors" as *;
 
 .ListboxContainer {
-    display: flex;
-    justify-content: flex-end;
-    z-index: 999;
-    width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  z-index: 999;
+  width: 100%;
 }
 
 .ListboxBtn {
-    display: flex;
-    gap: 6px;
-    width: 100%;
-    align-items: center;
-    position: relative;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    color: #FFF;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    font-family: var(--font-jakarta), sans-serif;
-    padding: 6px;
+  display: flex;
+  gap: 6px;
+  width: 100%;
+  align-items: center;
+  position: relative;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: #fff;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  font-family: var(--font-jakarta), sans-serif;
+  padding: 6px;
 
-    &:hover {
-        border-radius: 8px;
-        background: #141414;
-        display: flex;
-        align-items: center;
-    }
+  &:hover {
+    border-radius: 8px;
+    background: #141414;
+    display: flex;
+    align-items: center;
+  }
 }
 
 .Listbox {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    background: #29292E;
-    max-width: 190px !important;
-    width: 100% !important;
-    border-radius: 8px;
-    padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: #29292e;
+  max-width: 190px !important;
+  width: 100% !important;
+  border-radius: 8px;
+  padding: 12px;
 }
 
 .ListboxBtn img {
-    max-width: 24px;
-    width: 100%;
-    height: 24px;
+  max-width: 24px;
+  width: 100%;
+  height: 24px;
 }
 
 .playListbox {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    background: #29292E;
-    width: 100%;
-    border-radius: 8px;
-    gap: 16px;
-    padding: 16px 0px 16px 16px;
-    max-width: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: #29292e;
+  width: 100%;
+  border-radius: 8px;
+  gap: 16px;
+  padding: 16px 0px 16px 16px;
+  max-width: 220px;
 }
 
 .backBtn {
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    display: flex;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
 }
 
 .playListboxHeader {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: #FFF;
-    text-align: center;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    font-family: var(--font-jakarta), sans-serif;
-    width: 100%;
-    padding-right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  font-family: var(--font-jakarta), sans-serif;
+  width: 100%;
+  padding-right: 16px;
 }
 
 .playListboxContentForm {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-    scrollbar-width: none;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0.45) rgba(255, 255, 255, 0.08);
-    overflow-x: hidden;
-    max-height: 180px;
-    padding-right: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  scrollbar-width: none;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.45) rgba(255, 255, 255, 0.08);
+  overflow-x: hidden;
+  max-height: 180px;
+  padding-right: 12px;
 }
 
 .checkboxRow {
-    display: flex;
-    gap: 6px;
-    align-items: center;
-    color: #FFF;
-    font-size: 16px;
-    font-weight: 500;
-    font-family: var(--font-jakarta), sans-serif;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: var(--font-jakarta), sans-serif;
 }
 
 .playListboxContentFormList {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    overflow-y: auto;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow-y: auto;
+  width: 100%;
 }
 
 .checkboxRow input {
-    display: flex;
-    width: 16px;
-    height: 16px;
-    justify-content: center;
-    align-items: center;
-    color: transparent;
-    border: solid white 1px;
-    accent-color: $singapore-orchid;
+  display: flex;
+  width: 16px;
+  height: 16px;
+  justify-content: center;
+  align-items: center;
+  color: transparent;
+  border: solid white 1px;
+  accent-color: $singapore-orchid;
 }
 
 .addPlayList {
-    display: flex;
-    padding: 4px 8px 4px 2px;
-    align-items: center;
-    gap: 4px;
-    width: 100%;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    display: flex;
-    color: #FFF;
-    font-family: var(--font-jakarta), sans-serif;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    align-self: flex-start;
+  display: flex;
+  padding: 4px 8px 4px 2px;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  color: #fff;
+  font-family: var(--font-jakarta), sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  align-self: flex-start;
 }
 
 .addPlayList:hover {
-    background-color: #3E3E3E;
+  background-color: #3e3e3e;
 }
 
 .playListboxContentForm button {
-    margin-top: 8px;
-    width: 100%;
-    z-index: 9999;
+  margin-top: 8px;
+  width: 100%;
+  z-index: 9999;
 }
-
-
-
-
 
 /* მენიუს საერთო კეისი */
 .ListboxContainer {
-    inline-size: 280px;
-    /* იგივე რაც width */
-    /* შეგიძლია ცვლადიც: --menu-w: 280px; და მერე inline-size: var(--menu-w); */
-    padding: 8px;
+  inline-size: 280px;
+  /* იგივე რაც width */
+  /* შეგიძლია ცვლადიც: --menu-w: 280px; და მერე inline-size: var(--menu-w); */
+  padding: 8px;
 }
 
 /* ყველა ტაბის root უნდა მიღებდეს მთლიან სიგანეს */
 .Listbox,
 .playListbox,
 .CreatePlaylistCard {
-    inline-size: 100%;
+  inline-size: 100%;
 }
 
 /* თუ „Add to playlists“-ში სია დიდია, შეზღუდე სიმაღლე */
 .playListboxContent {
-    max-block-size: 260px;
-    /* height limit */
-    overflow: auto;
-    width: 100%;
+  max-block-size: 260px;
+  /* height limit */
+  overflow: auto;
+  width: 100%;
 }
 
 /* ღილაკები, ჰედერები და სხვ. რომ სიგანით არ გატყდეს */
@@ -183,6 +179,6 @@
 .addPlayList,
 .playListboxHeader,
 .playListboxContentForm {
-    width: 100%;
-    box-sizing: border-box;
+  width: 100%;
+  box-sizing: border-box;
 }

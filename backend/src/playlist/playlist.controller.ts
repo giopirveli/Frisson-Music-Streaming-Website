@@ -9,7 +9,7 @@ import {
   Patch,
 } from '@nestjs/common';
 import { PlaylistService } from './playlist.service';
-import { PlaylistType } from 'src/common/playlist.enum';
+import { PlaylistType } from 'src/playlist/playlist.enum';
 import { CreatePlaylistDto } from './dto/create-playlist.dto';
 
 @Controller('playlists')

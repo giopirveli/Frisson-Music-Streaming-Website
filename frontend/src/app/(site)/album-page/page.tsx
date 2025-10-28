@@ -7,15 +7,15 @@ import { useEffect, useMemo, useCallback } from "react";
 import AlbumCard from "@/components/AlbumCard/AlbumCard";
 import photo from "../../../assets/images/table/albumphoto.png";
 import { useActiveTab } from "@/components/Context/ActiveTabContext";
-import "@/../styles/defaults/defaultGrid.scss";
-
+import "@/styles/defaults/defaultGrid.scss";
+import AlbumFetch from "@/components/Fetcher/Albums";
 
 export default function AlbumPage() {
   const { activeTab, setActiveTab } = useActiveTab();
 
   useEffect(() => {
     setActiveTab(1);
-  }, []);
+  }, [setActiveTab]);
 
   const albums = useMemo(() => Array.from({ length: 6 }), []);
   const goDetails = useCallback(() => setActiveTab(2), [setActiveTab]);
@@ -24,15 +24,12 @@ export default function AlbumPage() {
     <main className={styles.main}>
       <h4>trending now</h4>
       {activeTab === 1 && (
-        <div className="albumCard">
+        <div className={`Grid`}>
           {albums.map((_, i) => (
-            <AlbumCard
-              key={i}
-              title="album title"
-              imageUrl={photo}
-              onClick={goDetails}
-            />
+            <AlbumCard key={i} title="album title" imageUrl={photo} onClick={goDetails} />
           ))}
+
+          {/* <AlbumFetch /> */}
         </div>
       )}
 
