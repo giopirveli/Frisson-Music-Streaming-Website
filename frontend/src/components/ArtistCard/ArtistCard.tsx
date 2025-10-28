@@ -3,7 +3,7 @@
 import styles from "./ArtistCard.module.scss";
 import Image, { StaticImageData } from "next/image";
 import { useState, useRef, useEffect } from "react";
-import HeartBtn from "../Heartbtn/HeartBtn";
+import HeartBtn from "../HeartBtn/HeartBtn";
 import ThreeDotsBtn from "../ThreeDotsBtn/ThreeDotsBtn";
 import ThreeDotsList from "../ThreeDotsList/ThreeDotsList";
 import {
@@ -20,7 +20,7 @@ import {
 } from "@floating-ui/react";
 
 interface ArtistCardProps {
-  id : number|string,
+  id: number | string;
   name: string;
   artistUrl: string | StaticImageData;
   onClick?: () => void;
@@ -80,6 +80,7 @@ export default function ArtistCard({
   return (
     <div
       className={styles.card}
+      data-id={id}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={onClick}

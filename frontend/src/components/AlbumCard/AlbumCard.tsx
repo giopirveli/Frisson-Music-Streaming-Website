@@ -1,32 +1,28 @@
 "use client";
 
-import styles from "../AlbumCard/AlbumCard.module.scss";
+import styles from "./AlbumCard.module.scss";
 import Image, { StaticImageData } from "next/image";
-import { useState, useEffect, useRef } from "react";
-import HeartBtn from "../Heartbtn/HeartBtn";
+import { useState } from "react";
+import HeartBtn from "../HeartBtn/HeartBtn";
 import ThreeDotsBtn from "../ThreeDotsBtn/ThreeDotsBtn";
 import ThreeDotsList from "../ThreeDotsList/ThreeDotsList";
-
 import {
   useFloating,
   offset,
   flip,
   shift,
   autoUpdate,
-  FloatingPortal,
   useClick,
   useDismiss,
   useRole,
   useInteractions,
+  FloatingPortal,
 } from "@floating-ui/react";
 
 interface AlbumCardProps {
   title: string;
   artist?: string;
   imageUrl: string | StaticImageData;
-  width?: string | number;
-  height?: string | number;
-  hight?: string | number;
   onClick?: () => void;
   hideHoverEfect?: boolean;
 }
@@ -42,8 +38,6 @@ export default function AlbumCard({
   const [isLiked, setIsLiked] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const PLAYER_H = 96;
-
   const { refs, floatingStyles, context } = useFloating({
     open: isMenuOpen,
     onOpenChange: setIsMenuOpen,
@@ -51,12 +45,8 @@ export default function AlbumCard({
     strategy: "fixed",
     middleware: [
       offset(8),
-      flip({
-        padding: PLAYER_H,
-        fallbackPlacements: ["top-end"],
-        fallbackStrategy: "bestFit",
-      }),
-      shift({ padding: PLAYER_H }),
+      flip({ padding: 96, fallbackPlacements: ["top-end"], fallbackStrategy: "bestFit" }),
+      shift({ padding: 96 }),
     ],
     whileElementsMounted: autoUpdate,
   });
@@ -73,20 +63,12 @@ export default function AlbumCard({
 
   const showHoverControls = (isHovered || isMenuOpen) && !hideHoverEfect;
 
-  // Fixed: assign floating ref via useRef + useEffect
-  const floatingDivRef = useRef<HTMLDivElement | null>(null);
-  useEffect(() => {
-    if (floatingDivRef.current) {
-      refs.setFloating(floatingDivRef.current);
-    }
-  }, [refs, isMenuOpen]);
-
   return (
     <div
       className={`${styles.card} ${artist ? "" : styles.cardHightPx}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onClick={onClick}
+      onClick={onClick} // triggers parent tab change
     >
       <div className={styles.imageWrapperBox}>
         <div className={`${styles.imageWrapper} ${isHovered ? styles.hoveredImgWrapper : ""}`}>
@@ -100,7 +82,6 @@ export default function AlbumCard({
 
         {showHoverControls && (
           <div className={styles.heartButton}>
-            {/* Heart button */}
             <div className={styles.btnWhiteBackground} onMouseDown={stop} onClick={stop}>
               <HeartBtn
                 liked={isLiked}
@@ -109,9 +90,8 @@ export default function AlbumCard({
               />
             </div>
 
-            {/* Three dots button */}
             <div
-              ref={(el) => refs.setReference(el)} // fixed callback ref
+              ref={(el) => refs.setReference(el)}
               {...getReferenceProps({
                 className: styles.btnWhiteBackground,
                 onMouseDown: stop,
@@ -129,7 +109,7 @@ export default function AlbumCard({
         {isMenuOpen && (
           <FloatingPortal>
             <div
-              ref={floatingDivRef} // fixed via useEffect
+              ref={refs.setFloating}
               {...getFloatingProps({
                 style: { ...floatingStyles, zIndex: 9999 },
                 className: styles.threeDotsMeniuCoordinates,

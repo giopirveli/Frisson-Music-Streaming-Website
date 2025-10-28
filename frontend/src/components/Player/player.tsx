@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useMemo, useRef } from "react";
 import Style from "./player.module.scss";
-import HeartBtn from "../Heartbtn/HeartBtn";
+import HeartBtn from "../HeartBtn/HeartBtn";
 import { useAudioControls } from "@/hooks/useAudioControls";
 import type { Track } from "./playerType";
 

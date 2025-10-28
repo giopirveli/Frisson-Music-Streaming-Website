@@ -95,9 +95,10 @@ export default function Home() {
         <div className={`scrollbar`}>
           {Array.from({ length: 9 }).map((_, i) => (
             <ArtistCard
-              title="Billie Eilish"
+              name="Billie Eilish"
               key={i}
-              imageUrl="/Images/ArtistCard/ArtistPhoto.jpg"
+              id={i}
+              artistUrl="/Images/ArtistCard/ArtistPhoto.jpg"
             />
           ))}
         </div>

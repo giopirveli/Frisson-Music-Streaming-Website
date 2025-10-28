@@ -2,7 +2,7 @@
 import { useState, useRef, useEffect } from "react";
 import styles from "../TopCharts/TopCharts.module.scss";
 import Image from "next/image";
-import HeartBtn from "../Heartbtn/HeartBtn";
+import HeartBtn from "../HeartBtn/HeartBtn";
 import ThreeDotsBtn from "../ThreeDotsBtn/ThreeDotsBtn";
 import ThreeDotsList from "../ThreeDotsList/ThreeDotsList";
 import {
