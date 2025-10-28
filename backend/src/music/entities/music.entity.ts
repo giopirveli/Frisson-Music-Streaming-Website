@@ -11,9 +11,6 @@ export class Music extends BaseEntity {
   title: string;
 
   @Column({ nullable: true })
-  url: string;
-
-  @Column({ nullable: true })
   image: string;
 
   @Column({ type: 'int', default: 0 })

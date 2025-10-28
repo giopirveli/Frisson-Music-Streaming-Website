@@ -32,9 +32,9 @@
 //     return this.authService.login(body.email, body.password);
 //   }
 
+//   @Public()
 //   @Post('login/admin')
 //   @Roles(Role.ADMIN)
-//   @Public()
 //   async loginAdmin(@Body() loginAdminDto: LoginAdminDto) {
 //     return this.authService.loginAdmin(loginAdminDto);
 //   }

@@ -2,7 +2,6 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Album } from './entities/album.entity';
-import { CreateAlbumDto } from './dto/create-album.dto';
 import { UpdateAlbumDto } from './dto/update-album.dto';
 
 @Injectable()
@@ -12,8 +11,8 @@ export class AlbumRepository {
     private readonly albumRepo: Repository<Album>,
   ) {}
 
-  async create(createAlbumDto: CreateAlbumDto): Promise<Album> {
-    const album = this.albumRepo.create(createAlbumDto);
+  async create(data: Partial<Album>): Promise<Album> {
+    const album = this.albumRepo.create(data);
     return await this.albumRepo.save(album);
   }
 
@@ -53,7 +52,7 @@ export class AlbumRepository {
 
     return qb.getMany();
   }
-  
+
   async delete(id: number): Promise<void> {
     await this.albumRepo.delete(id);
   }
