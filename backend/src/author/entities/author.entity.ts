@@ -9,16 +9,16 @@ export class Author extends BaseEntity {
   name: string;
 
   @Column({ nullable: true })
-  avatarFileName: string;
+  artistImage: string;
 
   @Column({ nullable: true })
-  avatarKey: string;
+  artistKey: string;
 
   @Column({ nullable: true })
-  avatarBucket: string;
+  artistBucket: string;
 
   @Column({ type: 'text', nullable: true })
-  avatarUrl: string;
+  artistUrl: string;
 
   @OneToMany(() => Album, (album) => album.author)
   albums: Album[];
