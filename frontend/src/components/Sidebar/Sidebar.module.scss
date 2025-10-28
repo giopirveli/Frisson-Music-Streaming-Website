@@ -1,0 +1,168 @@
+@use "../../styles/colors" as *;
+
+.sidebar {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 270px;
+  top: 0;
+  left: 0;
+  padding: 30px 20px;
+  height: 100vh;
+  z-index: 1000;
+
+  @media (max-height: 763px) {
+    padding: 30px 20px;
+  }
+}
+
+.frissonMainLogo {
+  display: flex;
+  align-self: center;
+  position: relative;
+  width: 100%;
+  height: 85px;
+  object-fit: cover;
+  @media (max-height: 763px) {
+    height: 80px;
+  }
+}
+.frissonMainLogo img {
+  object-fit: cover;
+}
+.menu {
+  width: 100%;
+  max-width: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 25px; //32px
+
+  @media (max-height: 763px) {
+    gap: 12px;
+  }
+}
+
+.menu {
+  .mainMenu,
+  .collectionMenu,
+  .discoverMenu {
+    .item {
+      // default styles
+      padding: 6px 0 9px 20px;
+      & > img {
+        width: 24px;
+        height: 24px;
+      }
+
+      @media (max-height: 763px) {
+        padding: 6px 0 9px 16px;
+      }
+    }
+  }
+}
+
+.mainMenu,
+.collectionMenu,
+.discoverMenu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  @media (max-height: 763px) {
+    gap: 6px;
+  }
+}
+
+.mainMenu div,
+.collectionMenu div,
+.discoverMenu div {
+  justify-content: flex-start;
+  align-items: center;
+  font-family: var(--font-jakarta), sans-serif;
+  color: $mission-control;
+  display: flex;
+  gap: 8px;
+
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.collectionMenu h4,
+.discoverMenu h4 {
+  text-transform: uppercase;
+  font-family: var(--font-jakarta), sans-serif;
+  color: $white;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  padding: 0 0 12px 16px;
+}
+
+/* Sidebar.module.scss */
+// .sidebar {
+//   /* შენი wrapper სტილები */
+// }
+
+/* ერთი ელემენტი (Link) */
+.item {
+  padding: 12px 0 12px 16px;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: var(--font-jakarta), sans-serif;
+  color: $mission-control;
+  display: flex;
+  gap: 8px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  background: $reversed-grey;
+  /* Neutral */
+  transition: all 0.5s;
+
+  /* Hover */
+  &:hover {
+    background: $dynamic-black;
+    /* Hovered */
+  }
+
+  /* აიკონის პატარა დაკლება/გათეთრება აქტივისას */
+  img {
+    opacity: 0.9;
+    transition:
+      opacity 160ms ease,
+      filter 160ms ease;
+  }
+}
+
+/* Active მდგომარეობა (მიმდინარე route) */
+.active {
+  background: $dynamic-black;
+  color: $white;
+
+  /* Optional: icon brighten */
+  img {
+    filter: brightness(1.4);
+    opacity: 1;
+  }
+
+  /* როცა active-ზე mouse hover-დება — ცოტათი უფრო ნათელი */
+  &:hover {
+    background: #1a1a1a;
+  }
+}
+
+// .sidebar{
+//   // background: $sidebar-gradient;
+//   // @media (max-height:763px){
+//   //   background: $small-sidebar-gradient;
+
+//   // }
+// }

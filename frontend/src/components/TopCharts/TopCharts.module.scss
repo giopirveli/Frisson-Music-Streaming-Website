@@ -1,0 +1,68 @@
+@use "../../styles/colors" as *;
+
+.TopChartsDiv {
+  display: flex;
+  background-color: $dark-void;
+  max-width: 548px;
+  height: 104px;
+  width: 100%;
+  border-radius: 8px;
+  position: relative;
+  padding: 16px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.image {
+  width: 72px;
+  height: 72px;
+  border-radius: 8px;
+}
+
+.buttons {
+  display: flex;
+}
+
+.textTop {
+  color: #fff;
+  font-family: --var(--font-jakarta), sans-serif;
+  font-size: 16px;
+}
+
+.textBottom {
+  color: #9e9a9f;
+  font-family: --var(--font-jakarta), sans-serif;
+  font-size: 14px;
+}
+
+.textWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.durationTime {
+  color: #9e9a9f;
+  font-family: --var(--font-jakarta), sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.buttonsWrapper {
+  display: flex;
+  gap: 8px;
+}
+.imgAndWrapperBox {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.durectionAndButtonsBox {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+.threeDotsMenuCoordinates {
+  position: absolute; // ან fixed; ორივე იმუშავებს portal-ში, მაგრამ absolute უფრო ბუნებრივია reference-თან
+}

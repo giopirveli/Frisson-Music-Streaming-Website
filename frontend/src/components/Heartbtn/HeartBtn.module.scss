@@ -1,0 +1,20 @@
+.heartButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.heartButton img {
+  display: block;
+  width: 25px;
+  height: 25px;
+}
+
+.heartButton:hover img {
+  content: url("/icons/HeartButton/heart-syle-2.svg");
+}
+
+.heartButton.liked img {
+  content: url("/icons/HeartButton/heart-syle-3.svg");
+}
