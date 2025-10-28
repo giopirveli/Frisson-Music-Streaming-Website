@@ -20,15 +20,17 @@ import {
 } from "@floating-ui/react";
 
 interface ArtistCardProps {
-  title: string;
-  imageUrl: string | StaticImageData;
+  id : number|string,
+  name: string;
+  artistUrl: string | StaticImageData;
   onClick?: () => void;
   hideHoverEfect?: boolean;
 }
 
 export default function ArtistCard({
-  title,
-  imageUrl,
+  id,
+  name,
+  artistUrl,
   onClick,
   hideHoverEfect = false,
 }: ArtistCardProps) {
@@ -84,8 +86,8 @@ export default function ArtistCard({
     >
       <div className={`${styles.imageWrapper} ${isHovered ? styles.hoveredImgWrapper : ""}`}>
         <Image
-          src={imageUrl}
-          alt={`${title} Artist`}
+          src={artistUrl}
+          alt={`${name} Artist`}
           className={styles.artistImage}
           width={234}
           height={226}
@@ -136,7 +138,7 @@ export default function ArtistCard({
       )}
 
       <div className={styles.textWrapper}>
-        <p className={styles.textTop}>{title}</p>
+        <p className={styles.textTop}>{name}</p>
       </div>
     </div>
   );

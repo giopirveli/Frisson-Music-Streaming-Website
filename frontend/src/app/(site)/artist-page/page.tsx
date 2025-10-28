@@ -10,26 +10,50 @@ import photo from "../../../assets/images/table/albumphoto.png";
 import { usePathname } from "next/navigation";
 import { useActiveTab } from "@/components/Context/ActiveTabContext";
 import ArtistCard from "@/components/ArtistCard/ArtistCard";
+import axios from "axios";
 
 export default function ArtistPage() {
   const pathname = usePathname();
   const { activeTab, setActiveTab } = useActiveTab();
-  let songs = [{ title: "ed sheeran",img:"" }, { title: "sza" }, { title: "bellie eilishi" }, { title: "taylor swift" }, { title: "bellie eilish" }, { title: "taylor swift" }]
+  let songs = [{ title: "ed sheeran", img: "" }, { title: "sza" }, { title: "bellie eilishi" }, { title: "taylor swift" }, { title: "bellie eilish" }, { title: "taylor swift" }]
 
   useEffect(() => {
     setActiveTab(1);
   }, [pathname, setActiveTab]);
 
+  type Artist = {
+    id: number | string,
+    artistUrl: string,
+    name: string
+  }
+
+  const [res, setRes] = useState<Artist[]>([])
+
+
+  useEffect(() => {
+
+    axios.get("https://frisson-music-app.s3.eu-north-1.amazonaws.com/Artist/artists.json")
+      .then(res => setRes(res.data))
+      .catch(err => console.log(err))
+  }, []
+  )
+
+
   return (
+
     <main className={styles.main}>
       {activeTab === 1 && (
         <div className={styles.artistPage}>
           <h4>trending now</h4>
           <div className={styles.artistCard}>
 
-            {Array.from(songs).map((_, i) =>
-              <ArtistCard key={i} imageUrl={photo} onClick={() => setActiveTab(2)} title={songs[i].title} />
-            )}
+            {res.length > 0 && res.map((_, i) =>
+            (
+              <ArtistCard key={i} id={i} artistUrl={res[i].artistUrl} name={res[i].name} onClick={() => setActiveTab(2)} />
+            ))}
+
+
+
           </div>
         </div>
       )}
