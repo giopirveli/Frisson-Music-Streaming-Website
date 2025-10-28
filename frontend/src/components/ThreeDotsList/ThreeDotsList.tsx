@@ -4,20 +4,19 @@ import { useEffect, useState } from "react";
 import styles from "./ThreeDotsList.module.scss";
 import arrow from "../../../public/icons/Arrow/arrow.svg";
 import Button from "../Button/Button";
-import CreatePlaylistCard, { CreatePlaylistPayload } from "../CreatePlaylistCard/CreatePlaylistCard";
+import CreatePlaylistCard, {
+  CreatePlaylistPayload,
+} from "../CreatePlaylistCard/CreatePlaylistCard";
 
 type Playlist = { id: string; name: string; imageUrl?: string };
 
 export default function ThreeDotsList({ withoutPlaylist }: { withoutPlaylist?: boolean }) {
   const [activeTab, setActiveTab] = useState<1 | 2 | 3>(1);
-  const [playlists, setPlaylists] = useState<Playlist[]>([]);
   const [selected, setSelected] = useState<Record<string, boolean>>({});
-
-  // Загружаем сохранённые плейлисты при старте
-  useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem("playlists") || "[]");
-    setPlaylists(saved);
-  }, []);
+  const [playlists, setPlaylists] = useState<Playlist[]>(() => {
+    const saved = localStorage.getItem("playlists");
+    return saved ? JSON.parse(saved) : [];
+  });
 
   // Сохраняем в localStorage при каждом изменении
   useEffect(() => {
@@ -54,11 +53,7 @@ export default function ThreeDotsList({ withoutPlaylist }: { withoutPlaylist?: b
   };
 
   return (
-    <div
-      className={styles.ListboxContainer}
-      onMouseDown={stop}
-      onClick={stop}
-    >
+    <div className={styles.ListboxContainer} onMouseDown={stop} onClick={stop}>
       {activeTab === 1 && (
         <div className={styles.Listbox} role="menu" aria-label="More options">
           {!withoutPlaylist && (
@@ -99,11 +94,7 @@ export default function ThreeDotsList({ withoutPlaylist }: { withoutPlaylist?: b
             <span className={styles.title}>Add To Playlist</span>
           </div>
 
-          <button
-            type="button"
-            className={styles.addPlayList}
-            onClick={() => setActiveTab(3)}
-          >
+          <button type="button" className={styles.addPlayList} onClick={() => setActiveTab(3)}>
             <Image src={"/icons/ThreeDots/ic_round-plus.svg"} alt="" width={20} height={20} />
             New playlist
           </button>
@@ -121,9 +112,7 @@ export default function ThreeDotsList({ withoutPlaylist }: { withoutPlaylist?: b
                   <input
                     type="checkbox"
                     checked={!!selected[pl.id]}
-                    onChange={() =>
-                      setSelected((p) => ({ ...p, [pl.id]: !p[pl.id] }))
-                    }
+                    onChange={() => setSelected((p) => ({ ...p, [pl.id]: !p[pl.id] }))}
                   />
                   <span>{pl.name}</span>
                 </label>

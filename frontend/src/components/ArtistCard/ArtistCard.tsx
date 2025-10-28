@@ -2,9 +2,9 @@
 
 import styles from "./ArtistCard.module.scss";
 import Image, { StaticImageData } from "next/image";
-import { useState } from "react";
-import HeartBtn from "../HeartBtn/HeartBtn";
-import ThreeDotsBtn from "../ThreeDots/ThreeDotsBtn";
+import { useState, useRef, useEffect } from "react";
+import HeartBtn from "../Heartbtn/HeartBtn";
+import ThreeDotsBtn from "../ThreeDotsBtn/ThreeDotsBtn";
 import ThreeDotsList from "../ThreeDotsList/ThreeDotsList";
 import {
   useFloating,
@@ -22,7 +22,7 @@ import {
 interface ArtistCardProps {
   title: string;
   imageUrl: string | StaticImageData;
-  onClick?: () => void;      // root card click (eg. გადადის artist page-ზე)
+  onClick?: () => void;
   hideHoverEfect?: boolean;
 }
 
@@ -58,13 +58,8 @@ export default function ArtistCard({
   const click = useClick(context, { event: "click" });
   const dismiss = useDismiss(context);
   const role = useRole(context, { role: "menu" });
-  const { getReferenceProps, getFloatingProps } = useInteractions([
-    click,
-    dismiss,
-    role,
-  ]);
+  const { getReferenceProps, getFloatingProps } = useInteractions([click, dismiss, role]);
 
-  // helper to stop bubbling
   const stop = (e: React.SyntheticEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -72,12 +67,20 @@ export default function ArtistCard({
 
   const showHoverControls = (isHovered || isMenuOpen) && !hideHoverEfect;
 
+  // Fixed floating ref
+  const floatingDivRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    if (floatingDivRef.current) {
+      refs.setFloating(floatingDivRef.current);
+    }
+  }, [refs, isMenuOpen]);
+
   return (
     <div
       className={styles.card}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onClick={onClick} // ← root click (მაგ: ტაბს ცვლის ან გადადის გვერდზე)
+      onClick={onClick}
     >
       <div className={`${styles.imageWrapper} ${isHovered ? styles.hoveredImgWrapper : ""}`}>
         <Image
@@ -91,7 +94,6 @@ export default function ArtistCard({
 
       {showHoverControls && (
         <div className={styles.heartButton}>
-          {/* HeartBtn — თავიდან ავიცილოთ root click */}
           <div className={styles.btnWhiteBackground} onMouseDown={stop} onClick={stop}>
             <HeartBtn
               iconColor={isLiked ? "black" : "gray"}
@@ -100,13 +102,13 @@ export default function ArtistCard({
             />
           </div>
 
-          {/* ThreeDotsBtn — აქაც გავაჩეროთ bubbling */}
+          {/* Fixed ref using callback */}
           <div
-            ref={refs.setReference}
+            ref={(el) => refs.setReference(el)}
             {...getReferenceProps({
               className: styles.btnWhiteBackground,
               onMouseDown: stop,
-              onClick: stop,   // ← მთავარი ფიქსი
+              onClick: stop,
               "aria-expanded": isMenuOpen,
               "aria-haspopup": "menu",
             })}
@@ -119,7 +121,7 @@ export default function ArtistCard({
       {isMenuOpen && (
         <FloatingPortal>
           <div
-            ref={refs.setFloating}
+            ref={floatingDivRef}
             {...getFloatingProps({
               style: { ...floatingStyles, zIndex: 99999 },
               className: styles.threeDotsMeniuCoordinates,

@@ -1,11 +1,10 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import styles from "../TopCharts/TopCharts.module.scss";
 import Image from "next/image";
-import HeartBtn from "../HeartBtn/HeartBtn";
-import ThreeDotsBtn from "../ThreeDots/ThreeDotsBtn";
+import HeartBtn from "../Heartbtn/HeartBtn";
+import ThreeDotsBtn from "../ThreeDotsBtn/ThreeDotsBtn";
 import ThreeDotsList from "../ThreeDotsList/ThreeDotsList";
-
 import {
   useFloating,
   offset,
@@ -36,33 +35,36 @@ export default function TopCharts({ title, artist, duration, imageUrl }: TopChar
   const [isLiked, setIsLiked] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Floating UI — ზუსტი იგივე ქცევა, რაც სხვა კარდებზე
   const { refs, floatingStyles, context } = useFloating({
     open: isMenuOpen,
     onOpenChange: setIsMenuOpen,
     placement: "bottom-end",
     strategy: "fixed",
-    middleware: [
-      offset(8),
-      flip({ padding: 8 }),
-      shift({ padding: 8 }),
-    ],
+    middleware: [offset(8), flip({ padding: 8 }), shift({ padding: 8 })],
     whileElementsMounted: autoUpdate,
   });
 
   const click = useClick(context, { event: "click" });
-  const dismiss = useDismiss(context); // გარეთ-კლიკი/Escape
+  const dismiss = useDismiss(context);
   const role = useRole(context, { role: "menu" });
-  const { getReferenceProps, getFloatingProps } = useInteractions([
-    click,
-    dismiss,
-    role,
-  ]);
+  const { getReferenceProps, getFloatingProps } = useInteractions([click, dismiss, role]);
 
   const stop = (e: React.SyntheticEvent) => {
     e.preventDefault();
     e.stopPropagation();
   };
+
+  // ✅ Fix for refs warning
+  const referenceRef = useRef<HTMLDivElement | null>(null);
+  const floatingDivRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (referenceRef.current) refs.setReference(referenceRef.current);
+  }, [refs]);
+
+  useEffect(() => {
+    if (floatingDivRef.current) refs.setFloating(floatingDivRef.current);
+  }, [refs, isMenuOpen]);
 
   return (
     <div className={styles.TopChartsDiv}>
@@ -81,17 +83,13 @@ export default function TopCharts({ title, artist, duration, imageUrl }: TopChar
 
         <div className={styles.buttons}>
           <div className={styles.buttonsWrapper}>
-            <HeartBtn
-              iconColor="gray"
-              liked={isLiked}
-              onToggle={() => setIsLiked((v) => !v)}
-            />
+            <HeartBtn iconColor="gray" liked={isLiked} onToggle={() => setIsLiked((v) => !v)} />
 
-            {/* სამი დოთსის ღილაკი — ref + getReferenceProps; mousedown-ში მხოლოდ stop */}
             <div
-              ref={refs.setReference}
+              ref={referenceRef}
               {...getReferenceProps({
-                onMouseDown: (e: any) => stop(e),
+                onMouseDown: stop,
+                onClick: stop,
                 "aria-expanded": isMenuOpen,
                 "aria-haspopup": "menu",
               })}
@@ -103,7 +101,7 @@ export default function TopCharts({ title, artist, duration, imageUrl }: TopChar
           {isMenuOpen && (
             <FloatingPortal>
               <div
-                ref={refs.setFloating}
+                ref={floatingDivRef}
                 {...getFloatingProps({
                   style: { ...floatingStyles, zIndex: 999 },
                   className: styles.threeDotsMeniuCoordinates,
