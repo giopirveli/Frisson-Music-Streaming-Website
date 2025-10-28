@@ -5,7 +5,7 @@ import NewsComponent from "@/components/NewsComponent/NewsComponent";
 import SongListTable from "@/components/SongListTable/SongListTable";
 import AlbumFetch from "@/components/Fetcher/Albums";
 import { useActiveTab } from "@/components/Context/ActiveTabContext";
-import "../../../styles/defaults";
+import "../../../styles/Defaults/defaultGrid.scss";
 import styles from "./page.module.scss";
 
 interface Album {
