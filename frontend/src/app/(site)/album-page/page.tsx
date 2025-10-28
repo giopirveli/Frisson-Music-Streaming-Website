@@ -1,12 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useMemo, useCallback } from "react";
 import NewsComponent from "@/components/NewsComponent/NewsComponent";
 import SongListTable from "@/components/SongListTable/SongListTable";
 import AlbumFetch from "@/components/Fetcher/Albums";
 import { useActiveTab } from "@/components/Context/ActiveTabContext";
-import "@/../styles/defaults/defaultGrid.scss";
+import "../../../styles/defaults";
 import styles from "./page.module.scss";
 
 interface Album {
@@ -19,24 +18,16 @@ interface Album {
 export default function AlbumPage() {
   const { activeTab, setActiveTab } = useActiveTab();
 
-  const { activeTab } = useActiveTab();
+  // placeholder albums
+  const albums: Album[] = [
+    { id: 1, title: "Album 1", artistName: "Artist 1", coverUrl: "/Images/placeholder.jpg" },
+    { id: 2, title: "Album 2", artistName: "Artist 2", coverUrl: "/Images/placeholder.jpg" },
+    { id: 3, title: "Album 3", artistName: "Artist 3", coverUrl: "/Images/placeholder.jpg" },
+    { id: 4, title: "Album 4", artistName: "Artist 4", coverUrl: "/Images/placeholder.jpg" },
+    { id: 5, title: "Album 5", artistName: "Artist 5", coverUrl: "/Images/placeholder.jpg" },
+    { id: 6, title: "Album 6", artistName: "Artist 6", coverUrl: "/Images/placeholder.jpg" },
+  ];
 
-  useEffect(() => {
-    const fetchAlbums = async () => {
-      try {
-        const { data } = await axios.get<Album[]>(
-          "http://localhost:4000/albums"
-        );
-        setAlbums(data);
-      } catch (err: any) {
-        console.error(err);
-        setError("Ошибка при загрузке альбомов");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-  const albums = useMemo(() => Array.from({ length: 6 }), []);
   const goDetails = useCallback(() => setActiveTab(2), [setActiveTab]);
 
   return (
@@ -65,6 +56,7 @@ export default function AlbumPage() {
           </div>
         ))}
       </div>
+
       <AlbumFetch />
 
       {activeTab === 2 && (
