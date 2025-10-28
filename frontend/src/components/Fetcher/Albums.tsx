@@ -4,12 +4,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "./Albums.module.scss";
 import Image from "next/image";
+import "../../styles/Defaults/defaultGrid.scss"
 
 interface Album {
   id: number;
-  title: string;
-  artistName: string;
-  coverUrl: string;
+  name: string;
+  artistUrl: string;
 }
 
 const Albums: React.FC = () => {
@@ -17,7 +17,7 @@ const Albums: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get<Album[]>("https://frisson-music-app.s3.eu-north-1.amazonaws.com/albums.json")
+      .get<Album[]>("https://frisson-music-app.s3.eu-north-1.amazonaws.com/Artist/artists.json")
       .then((response) => {
         console.log("📦 Received from backend:", response.data);
         setAlbums(response.data);
@@ -28,20 +28,22 @@ const Albums: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <div className={`Grid`}>
       {albums.map((a) => (
         <div key={a.id} className={styles.card}>
           <div className={styles.imageWrapperBox}>
             <Image
-              src={a.coverUrl}
-              alt={a.title}
+              src={a.artistUrl}
+              alt={a.name}
+              width={234}
+              height={201}
               className={`${styles.albumImage} ${styles.musicImage}`}
             />
           </div>
 
           <div className={styles.textWrapper}>
-            <h3 className={styles.textTop}>{a.title}</h3>
-            <p className={styles.textBottom}>{a.artistName}</p>
+            <h3 className={styles.textTop}>{a.name}</h3>
+            <p className={styles.textBottom}>{a.name}</p>
           </div>
         </div>
       ))}
