@@ -34,10 +34,10 @@ export class AuthorService {
       folder: 'Artist',
     });
 
-    author.avatarFileName = file.originalname;
-    author.avatarKey = uploaded.Key;
-    author.avatarBucket = uploaded.Bucket;
-    author.avatarUrl = uploaded.Location;
+    author.artistImage = file.originalname;
+    author.artistKey = uploaded.Key;
+    author.artistBucket = uploaded.Bucket;
+    author.artistUrl = uploaded.Location;
 
     return this.authorsRepo.save(author);
   }

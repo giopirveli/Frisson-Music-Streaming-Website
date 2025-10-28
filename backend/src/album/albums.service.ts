@@ -12,10 +12,10 @@ import { Repository } from 'typeorm';
 export class AlbumsService {
   constructor(
     @InjectRepository(Album)
-    private readonly albumsRepo: Repository<Album>,
-    private readonly albumRepo: AlbumRepository,
-    private readonly authorRepo: AuthorRepository,
-    private readonly s3Service: S3Service,
+  private readonly albumsRepo: Repository<Album>,
+  private readonly albumRepo: AlbumRepository,   
+  private readonly authorRepo: AuthorRepository,
+  private readonly s3Service: S3Service,
   ) {}
 
   async create(createAlbumDto: CreateAlbumDto) {
@@ -23,7 +23,13 @@ export class AlbumsService {
     if (!author) {
       throw new NotFoundException('Author not found');
     }
-    return this.albumRepo.create(createAlbumDto);
+
+    const album = await this.albumRepo.create({
+      ...createAlbumDto,
+      author,
+    });
+
+    return album;
   }
 
   async uploadCover(

@@ -26,7 +26,7 @@ export class AuthorController {
     return this.authorService.create(createAuthorDto);
   }
 
-  @Post(':id/upload-avatar')
+  @Post(':id/upload-artistImg')
   @UseInterceptors(FileInterceptor('file'))
   uploadAvatar(
     @Param('id') id: number,

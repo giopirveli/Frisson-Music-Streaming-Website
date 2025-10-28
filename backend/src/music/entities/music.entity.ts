@@ -11,9 +11,6 @@ export class Music extends BaseEntity {
   title: string;
 
   @Column({ nullable: true })
-  url: string;
-
-  @Column({ nullable: true })
   image: string;
 
   @Column({ type: 'int', default: 0 })
@@ -34,13 +31,15 @@ export class Music extends BaseEntity {
   @OneToMany(() => Listener, (listener) => listener.user)
   listeners: Listener[];
 
-  @ManyToOne(() => Album, (album) => album.music, { nullable: true })
+  @ManyToOne(() => Album, (album) => album.music, {
+  onDelete: 'CASCADE',
+})
   album: Album;
 
   @ManyToOne(() => User, (user) => user.music, { onDelete: 'CASCADE' })
   user: User;
 
-  @ManyToOne(() => Author, (author) => author.music, { nullable: true })
+  @ManyToOne(() => Author, (author) => author.music, {onDelete: 'CASCADE'})
   author: Author;
 
   @ManyToMany(() => User, (user) => user.likedMusic)

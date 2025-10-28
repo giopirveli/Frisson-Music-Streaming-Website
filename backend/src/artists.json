@@ -1,0 +1,120 @@
+[
+  {
+    "id": 1,
+    "createdAt": "2025-10-28T16:32:03.039Z",
+    "updatedAt": "2025-10-28T16:32:54.000Z",
+    "deletedAt": null,
+    "name": "Travis Scott",
+    "artistImage": "Frame 325.png",
+    "artistKey": "Artist/Frame 325.png",
+    "artistBucket": "frisson-music-app",
+    "artistUrl": "https://frisson-music-app.s3.eu-north-1.amazonaws.com/Artist/Frame%20325.png"
+  },
+
+  {
+    "id": 2,
+    "createdAt": "2025-10-28T16:34:23.272Z",
+    "updatedAt": "2025-10-28T16:34:46.000Z",
+    "deletedAt": null,
+    "name": "Dmx",
+    "artistImage": "Frame 326.png",
+    "artistKey": "Artist/Frame 326.png",
+    "artistBucket": "frisson-music-app",
+    "artistUrl": "https://frisson-music-app.s3.eu-north-1.amazonaws.com/Artist/Frame%20326.png"
+  },
+
+  {
+    "id": 3,
+    "createdAt": "2025-10-28T16:32:03.040Z",
+    "updatedAt": "2025-10-28T16:35:10.000Z",
+    "deletedAt": null,
+    "name": "Future",
+    "artistImage": "Frame 327.png",
+    "artistKey": "Artist/Frame 327.png",
+    "artistBucket": "frisson-music-app",
+    "artistUrl": "https://frisson-music-app.s3.eu-north-1.amazonaws.com/Artist/Frame%20327.png"
+  },
+
+  {
+    "id": 4,
+    "createdAt": "2025-10-28T16:32:03.040Z",
+    "updatedAt": "2025-10-28T16:35:29.000Z",
+    "deletedAt": null,
+    "name": "Big Pun",
+    "artistImage": "Frame 328.png",
+    "artistKey": "Artist/Frame 328.png",
+    "artistBucket": "frisson-music-app",
+    "artistUrl": "https://frisson-music-app.s3.eu-north-1.amazonaws.com/Artist/Frame%20328.png"
+  },
+
+  {
+    "id": 5,
+    "createdAt": "2025-10-28T16:32:03.040Z",
+    "updatedAt": "2025-10-28T16:35:56.000Z",
+    "deletedAt": null,
+    "name": "Eazy-E",
+    "artistImage": "Frame 329.png",
+    "artistKey": "Artist/Frame 329.png",
+    "artistBucket": "frisson-music-app",
+    "artistUrl": "https://frisson-music-app.s3.eu-north-1.amazonaws.com/Artist/Frame%20329.png"
+  },
+  {
+    "id": 6,
+    "createdAt": "2025-10-28T16:32:03.041Z",
+    "updatedAt": "2025-10-28T16:36:34.000Z",
+    "deletedAt": null,
+    "name": "Astrix",
+    "artistImage": "Frame 330.png",
+    "artistKey": "Artist/Frame 330.png",
+    "artistBucket": "frisson-music-app",
+    "artistUrl": "https://frisson-music-app.s3.eu-north-1.amazonaws.com/Artist/Frame%20330.png"
+  },
+
+  {
+    "id": 7,
+    "createdAt": "2025-10-28T16:32:03.041Z",
+    "updatedAt": "2025-10-28T16:36:55.000Z",
+    "deletedAt": null,
+    "name": "Vini Vici",
+    "artistImage": "Frame 331.png",
+    "artistKey": "Artist/Frame 331.png",
+    "artistBucket": "frisson-music-app",
+    "artistUrl": "https://frisson-music-app.s3.eu-north-1.amazonaws.com/Artist/Frame%20331.png"
+  },
+
+  {
+    "id": 8,
+    "createdAt": "2025-10-28T16:32:03.041Z",
+    "updatedAt": "2025-10-28T16:37:13.000Z",
+    "deletedAt": null,
+    "name": "Metronome",
+    "artistImage": "Frame 332.png",
+    "artistKey": "Artist/Frame 332.png",
+    "artistBucket": "frisson-music-app",
+    "artistUrl": "https://frisson-music-app.s3.eu-north-1.amazonaws.com/Artist/Frame%20332.png"
+  },
+
+  {
+    "id": 9,
+    "createdAt": "2025-10-28T16:32:03.042Z",
+    "updatedAt": "2025-10-28T16:37:35.000Z",
+    "deletedAt": null,
+    "name": "Suduaya",
+    "artistImage": "Frame 347.png",
+    "artistKey": "Artist/Frame 347.png",
+    "artistBucket": "frisson-music-app",
+    "artistUrl": "https://frisson-music-app.s3.eu-north-1.amazonaws.com/Artist/Frame%20347.png"
+  },
+
+  {
+    "id": 10,
+    "createdAt": "2025-10-28T16:32:03.042Z",
+    "updatedAt": "2025-10-28T16:37:58.000Z",
+    "deletedAt": null,
+    "name": "Boris Brejcha",
+    "artistImage": "Frame 21027275.png",
+    "artistKey": "Artist/Frame 21027275.png",
+    "artistBucket": "frisson-music-app",
+    "artistUrl": "https://frisson-music-app.s3.eu-north-1.amazonaws.com/Artist/Frame%2021027275.png"
+  }
+]

@@ -26,7 +26,7 @@ export class Album extends BaseEntity {
   @Column({ type: 'text', nullable: true })
   coverUrl: string;
 
-  @ManyToOne(() => Author, (author) => author.albums, { eager: true })
+  @ManyToOne(() => Author, (author) => author.albums, {onDelete: 'CASCADE'})
   @JoinColumn({ name: 'authorId' })
   author: Author;
 
