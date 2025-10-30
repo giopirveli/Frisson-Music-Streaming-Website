@@ -7,8 +7,9 @@ import "../../styles/Defaults/defaultGrid.scss";
 
 interface Album {
   id: number;
-  name: string;
-  artistUrl: string;
+  title:string;
+  artistName: string;
+  coverUrl: string;
 }
 
 interface AlbumsProps {
@@ -21,7 +22,7 @@ const Albums: React.FC<AlbumsProps> = ({ onClick }) => {
 
   useEffect(() => {
     axios
-      .get<Album[]>("https://frisson-music-app.s3.eu-north-1.amazonaws.com/Artist/artists.json")
+      .get<Album[]>("http://localhost:4000/albums")
       .then((response) => {
         setAlbums(response.data);
       })
@@ -35,8 +36,10 @@ const Albums: React.FC<AlbumsProps> = ({ onClick }) => {
       {albums.map((album) => (
         <AlbumCard
           key={album.id}
-          title={album.name}
-          imageUrl={album.artistUrl}
+          title={album.title}
+          artistName={album.artistName}
+          coverUrl={album.coverUrl}
+
           onClick={onClick} // <- pass the prop
         />
       ))}

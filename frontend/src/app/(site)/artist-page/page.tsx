@@ -10,6 +10,7 @@ import { usePathname } from "next/navigation";
 import { useActiveTab } from "@/components/Context/ActiveTabContext";
 import ArtistCard from "@/components/ArtistCard/ArtistCard";
 import axios from "axios";
+import SongListTable from "@/components/SongListTable/SongListTable";
 
 export default function ArtistPage() {
   const pathname = usePathname();
@@ -29,7 +30,7 @@ export default function ArtistPage() {
 
   useEffect(() => {
     axios
-      .get("https://frisson-music-app.s3.eu-north-1.amazonaws.com/Artist/artists.json")
+      .get("http://localhost:4000/authors")
       .then((res) => setRes(res.data))
       .catch((err) => console.log(err));
   }, []);
@@ -63,7 +64,7 @@ export default function ArtistPage() {
             verified
             plays={`745,090 fans`}
           />
-          <Table />
+          <SongListTable />
         </>
       )}
     </main>

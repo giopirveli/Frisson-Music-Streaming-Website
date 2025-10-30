@@ -20,17 +20,17 @@ import {
 } from "@floating-ui/react";
 
 interface AlbumCardProps {
-  title: string;
-  artist?: string;
-  imageUrl: string | StaticImageData;
+  title?: string;
+  artistName?: string;
+  coverUrl: string | StaticImageData;
   onClick?: () => void;
   hideHoverEfect?: boolean;
 }
 
 export default function AlbumCard({
   title,
-  artist,
-  imageUrl,
+  artistName,
+  coverUrl,
   onClick,
   hideHoverEfect = false,
 }: AlbumCardProps) {
@@ -73,7 +73,7 @@ export default function AlbumCard({
 
   return (
     <div
-      className={`${styles.card} ${artist ? "" : styles.cardHightPx}`}
+      className={`${styles.card} ${artistName ? "" : styles.cardHightPx}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={onClick} // triggers parent tab change
@@ -81,8 +81,8 @@ export default function AlbumCard({
       <div className={styles.imageWrapperBox}>
         <div className={`${styles.imageWrapper} ${isHovered ? styles.hoveredImgWrapper : ""}`}>
           <Image
-            src={imageUrl}
-            alt={`${title}${artist ? ` — ${artist}` : ""}`}
+            src={coverUrl}
+            alt={`${title}${artistName ? ` — ${artistName}` : ""}`}
             className={styles.musicImage}
             fill
           />
@@ -133,7 +133,7 @@ export default function AlbumCard({
       </div>
 
       <div className={styles.textWrapper}>
-        {artist && <p className={styles.textBottom}>{artist}</p>}
+        {artistName && <p className={styles.textBottom}>{artistName}</p>}
         <p className={styles.textTop}>{title}</p>
       </div>
     </div>
