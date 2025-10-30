@@ -15,29 +15,28 @@ import {
   FloatingPortal,
   size,
 } from "@floating-ui/react";
+import axios from "axios";
 
 type Song = {
   id: number | string;
-  pic?: string;
-  name?: string;
-  album?: string;
+  image: string;
+  title: string;
+  albumId: string;
+  duration: string;
   artist?: string;
-  time?: string;
-  liked?: boolean;
 };
 
+
+
+
 export default function SongListTable() {
-  const [songs] = useState<Song[]>(
-    Array.from({ length: 4 }).map((_, i) => ({
-      id: i + 1,
-      pic: "",
-      name: "No information",
-      album: "No information",
-      artist: "No information",
-      time: "No information",
-      liked: false,
-    }))
-  );
+
+  axios.get("http://localhost:4000/music")
+    .then(res => setSongs(res.data))
+    .catch(err => console.error(err))
+
+
+  const [songs, setSongs] = useState<Song[]>([])
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeRowId, setActiveRowId] = useState<number | string | null>(null);
@@ -122,8 +121,8 @@ export default function SongListTable() {
           <tr className={styles.thead}>
             <th>#</th>
             <th>Song Name</th>
-            <th>Album</th>
-            <th>Time</th>
+            <th>album</th>
+            <th>duration</th>
             <th></th>
           </tr>
         </thead>
@@ -133,15 +132,15 @@ export default function SongListTable() {
               <td className={styles.songId}>{i + 1}</td>
               <td className={styles.songName}>
                 <div className={styles.imageWrapper}>
-                  <Image src={song.pic || photo} alt={song.name ?? "song"} />
+                  <Image src={song.image || photo} alt={song.title ?? "song"} width={48} height={48}/>
                 </div>
                 <div className={styles.songNameBox}>
-                  <span className={styles.songNameText}>{song.name}</span>
+                  <span className={styles.songNameText}>{song.title}</span>
                   <span className={styles.songArtistText}>{song.artist}</span>
                 </div>
               </td>
-              <td>{song.album}</td>
-              <td>{song.time}</td>
+              <td>{song.albumId}</td>
+              <td>{song.duration}</td>
               <td>
                 <span style={{ display: "inline-flex", gap: 8, alignItems: "center" }}>
                   <span onMouseDown={stop} onClick={stop}>
