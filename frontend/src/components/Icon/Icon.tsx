@@ -1,5 +1,3 @@
-import styles from "./Icon.module.scss";
-
 import { MouseEventHandler } from "react";
 import { FiHome, FiUser, FiSettings } from "react-icons/fi"; // Import icons
 

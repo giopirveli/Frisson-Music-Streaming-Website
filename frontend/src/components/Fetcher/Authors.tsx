@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Image from "next/image";
 
 interface Album {
   id: number;
@@ -51,7 +52,7 @@ const Albums: React.FC = () => {
             }}
           >
             {album.coverUrl && (
-              <img
+              <Image
                 src={album.coverUrl}
                 alt={album.title || "cover"}
                 width="200"
@@ -60,9 +61,7 @@ const Albums: React.FC = () => {
             )}
             <h3>{album.name}</h3>
             <p>{album.avatarFileName}</p>
-            {album.author?.name && (
-              <p style={{ color: "#aaa" }}>by {album.author.name}</p>
-            )}
+            {album.author?.name && <p style={{ color: "#aaa" }}>by {album.author.name}</p>}
           </div>
         ))}
       </div>

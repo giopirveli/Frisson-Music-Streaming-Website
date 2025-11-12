@@ -1,4 +1,4 @@
-@use "../../../styles/colors" as *;
+@use "../../styles/colors" as *;
 
 .sidebar {
   position: fixed;
@@ -10,13 +10,12 @@
   top: 0;
   left: 0;
   padding: 30px 20px;
+  height: 100vh;
+  z-index: 1000;
 
   @media (max-height: 763px) {
     padding: 30px 20px;
   }
-
-  height: 100vh;
-  z-index: 1000;
 }
 
 .frissonMainLogo {
@@ -159,7 +158,6 @@
     background: #1a1a1a;
   }
 }
-
 
 // .sidebar{
 //   // background: $sidebar-gradient;

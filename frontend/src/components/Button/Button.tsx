@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import styles from "./Button.module.scss";
 import Image, { StaticImageData } from "next/image";
-import plusIcon from "@/../public/icons/Button/plusIcon.svg";
 
 interface Props {
   icon?: string | StaticImageData;
@@ -42,13 +41,14 @@ export default function Button(props: Props) {
       style={{ width, height }}
     >
       {icon && (
-        <img
-          src={typeof icon === "string" ? icon : (icon as StaticImageData).src}
-          width={iwidth}
-          height={iheight}
-          className={styles.icon}
-          alt="icon"
-        />
+        <div style={{ width: iwidth ?? 20, height: iheight ?? 20, position: "relative" }}>
+          <Image
+            src={typeof icon === "string" ? icon : (icon as StaticImageData)}
+            alt="icon"
+            fill
+            style={{ objectFit: "contain" }}
+          />
+        </div>
       )}
 
       <span className={styles.label}>{text}</span>

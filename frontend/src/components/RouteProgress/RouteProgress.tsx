@@ -11,10 +11,10 @@ export default function RouteProgress() {
   const search = useSearchParams();
 
   useEffect(() => {
-    NProgress.start();                     // ↙️ როგორც კი route იცვლება, იწყებს progress bar-ს
-    const t = setTimeout(() => NProgress.done(), 400); 
+    NProgress.start(); // ↙️ როგორც კი route იცვლება, იწყებს progress bar-ს
+    const t = setTimeout(() => NProgress.done(), 400);
     // ↳ ცოტა ხნის მერე (400ms) ასრულებს progress-ს
-    return () => clearTimeout(t);          // cleanup, თუ route ისევ შეიცვალა
+    return () => clearTimeout(t); // cleanup, თუ route ისევ შეიცვალა
   }, [pathname, search]); // effect ჩაირთვება ყოველ ჯერზე, როცა URL შეიცვლება
 
   return null;

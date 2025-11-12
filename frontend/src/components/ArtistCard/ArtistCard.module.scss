@@ -1,4 +1,4 @@
-@import "../../../styles/colors";
+@use "./../../styles/colors" as *;
 
 .card {
   background-color: $dark-void;
@@ -64,8 +64,8 @@
   position: absolute; // ან fixed; ორივე იმუშავებს portal-ში, მაგრამ absolute უფრო ბუნებრივია reference-თან
   z-index: 999; // როგორც კოდში
 }
-.threeDotsBtn{
-@extend .btnWhiteBackground;
-width: 33px;
-height: 33px;
+.threeDotsBtn {
+  @extend .btnWhiteBackground;
+  width: 33px;
+  height: 33px;
 }
