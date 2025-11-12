@@ -28,7 +28,10 @@ export class AuthorRepository {
     });
   }
 
-  async update(id: number, updateAuthorDto: UpdateAuthorDto): Promise<Author | null> {
+  async update(
+    id: number,
+    updateAuthorDto: UpdateAuthorDto,
+  ): Promise<Author | null> {
     await this.authorRepo.update(id, updateAuthorDto);
     return await this.authorRepo.findOneBy({ id });
   }
@@ -48,8 +51,7 @@ export class AuthorRepository {
     return qb.getMany();
   }
 
-  async delete(id: number): Promise<{ message: string }> {
+  async delete(id: number) {
     await this.authorRepo.delete(id);
-    return { message: 'Author successfully deleted' };
   }
 }

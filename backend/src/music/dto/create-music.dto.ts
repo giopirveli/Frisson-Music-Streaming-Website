@@ -15,13 +15,13 @@ export class CreateMusicDto {
   @IsUrl()
   url: string;
 
-  @IsNumber()
+  @IsInt()
   albumId?: number;
 
   @IsInt()
   authorId?: number;
 
-  @IsNumber()
+  @IsInt()
   userId?: number;
 
   @IsString()

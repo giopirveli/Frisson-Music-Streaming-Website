@@ -17,7 +17,7 @@ export class ListenersTableService {
     const user = await this.usersService.findOneById(createListenersTableDto.userId);
     if (!user) throw new NotFoundException('User not found');
 
-    const music = await this.musicService.findMusicOrFail(createListenersTableDto.musicId);
+    const music = await this.musicService.findMusic(createListenersTableDto.musicId);
     if (!music) throw new NotFoundException('Music not found');
 
     let listener = await this.listenersRepo.findByUserAndMusic(

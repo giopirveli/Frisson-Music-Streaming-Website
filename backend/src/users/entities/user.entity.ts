@@ -1,8 +1,8 @@
 import { BaseEntity } from 'src/common/base.entity';
+import { Role } from 'src/common/roles/roles';
 import { Listener } from 'src/listeners-table/entities/listeners-table.entity';
 import { Music } from 'src/music/entities/music.entity';
 import { Playlist } from 'src/playlist/entities/playlist.entity';
-import { Role } from 'src/roles/roles';
 import { Column, Entity, JoinTable, ManyToMany, OneToMany } from 'typeorm';
 
 @Entity('users')
@@ -31,6 +31,6 @@ export class User extends BaseEntity {
   music: Music[];
 
   @ManyToMany(() => Music)
-  @JoinTable({name: 'user_liked_tracks'})
+  @JoinTable({ name: 'user_liked_tracks' })
   likedMusic: Music[];
 }

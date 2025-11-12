@@ -24,7 +24,7 @@ export class MusicService {
   ) {}
 
   async create(userId: number, createMusicDto: CreateMusicDto): Promise<Music> {
-    const user = await this.findUserOrFail(userId);
+    const user = await this.findUser(userId);
     const music = this.musicRepo.create({ ...createMusicDto, user });
     return this.musicRepo.save(music);
   }
@@ -48,7 +48,7 @@ export class MusicService {
     return this.musicRepo.save(music);
   }
 
-  async findMusicOrFail(musicId: number): Promise<Music> {
+  async findMusic(musicId: number): Promise<Music> {
     const music = await this.musicRepo.findOne({
       where: { id: musicId },
       relations: ['user', 'author', 'album'],
@@ -57,7 +57,7 @@ export class MusicService {
     return music;
   }
 
-  async findUserOrFail(userId: number): Promise<User> {
+  async findUser(userId: number): Promise<User> {
     const user = await this.userRepo.findOneBy({ id: userId });
     if (!user) throw new NotFoundException('User not found');
     return user;
@@ -67,16 +67,12 @@ export class MusicService {
     return this.musicRepo.find({ relations: ['user', 'author', 'album'] });
   }
 
-  async findByIds(ids: number[]): Promise<Music[]> {
-    return this.musicRepo.findBy({ id: In(ids) });
-  }
-
   async findOneMusic(id: number): Promise<Music> {
-    return this.findMusicOrFail(id);
+    return this.findMusic(id);
   }
 
   async getUserMusic(userId: number): Promise<Music[]> {
-    await this.findUserOrFail(userId);
+    await this.findUser(userId);
     return this.musicRepo.find({
       where: { user: { id: userId } },
       relations: ['user', 'author', 'album'],
@@ -88,7 +84,7 @@ export class MusicService {
     musicId: number,
     updateMusicDto: UpdateMusicDto,
   ): Promise<Music> {
-    const music = await this.findMusicOrFail(musicId);
+    const music = await this.findMusic(musicId);
     if (music.user.id !== userId)
       throw new ForbiddenException('Cannot edit music of another user');
     Object.assign(music, updateMusicDto);
@@ -103,7 +99,7 @@ export class MusicService {
     userId: number,
     musicId: number,
   ): Promise<{ message: string }> {
-    const music = await this.findMusicOrFail(musicId);
+    const music = await this.findMusic(musicId);
     if (music.user.id !== userId)
       throw new ForbiddenException('Cannot delete music of another user');
     await this.musicRepo.delete(musicId);

@@ -1,17 +1,17 @@
 import {
-  Injectable,
   CanActivate,
   ExecutionContext,
+  Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
-import { UsersRepository } from 'src/users/users.repository';
-import { IS_PUBLIC_KEY } from './jwt-strategies';
-import { Role } from 'src/roles/roles';
-import { ROLES_KEY } from './jwt-roles.guard';
+import { Role } from 'src/common/roles/roles';
 import { TokenBlacklistService } from 'src/token-blacklists/token-blacklists.service';
+import { UsersRepository } from 'src/users/users.repository';
+import { ROLES_KEY } from './jwt-roles.guard';
+import { IS_PUBLIC_KEY } from './jwt-strategies';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
