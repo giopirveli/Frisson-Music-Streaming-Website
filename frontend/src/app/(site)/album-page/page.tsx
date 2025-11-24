@@ -17,7 +17,7 @@ export default function AlbumPage() {
       {activeTab === 2 && (
         <div className={`cflex ocdatormeti`}>
           <NewsComponent
-            plays="Released 07/12/2023"
+            plays="Released 07/12/14124125"
             title="Seek For Marktoop"
             imageUrl="/Images/NewsComponent/banner.jpg"
           />
