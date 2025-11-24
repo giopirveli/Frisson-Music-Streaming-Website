@@ -1,0 +1,250 @@
+/* RadioPlayer სტილები */
+
+.playerContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 40px;
+    border-radius: 32px;
+    background-color: rgba(21, 21, 21, 0.85);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+    color: white;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .playerBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+  }
+  
+  .languageButtons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 10px;
+  }
+  
+  .languageButtons button {
+    background: linear-gradient(135deg, #ff5f6d, #ffc371);
+    border: none;
+    border-radius: 25px;
+    padding: 8px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .languageButtons button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.35);
+    background: linear-gradient(135deg, #ffc371, #ff5f6d);
+  }
+  
+  .languageButtons button:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .languageButtons .activeLang {
+    background: linear-gradient(135deg, #00ffea, #00c3ff);
+    box-shadow: 0 4px 10px rgba(0, 255, 234, 0.5);
+    color: #000;
+  }
+  
+  /* Players box */
+  .playersBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+  }
+  
+  .playerButton {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, filter 0.2s;
+  }
+  
+  .playerButton:hover {
+    transform: scale(1.1);
+    filter: brightness(1.3);
+  }
+  
+  .radioList {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 15px;
+    gap: 8px;
+  }
+  
+  .radioItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    border-radius: 12px;
+    transition: background-color 0.3s;
+  }
+  
+  .radioItem:hover {
+    background-color: rgba(255, 0, 0, 0.3);
+  }
+  
+  .radioItem.active {
+    background-color: rgba(255, 0, 0, 0.5);
+  }
+  
+  .search {
+    width: 80%;
+    max-width: 500px;
+    padding: 10px 15px;
+    border-radius: 12px;
+    border: 1px solid #555;
+    background-color: #111;
+    color: white;
+    text-align: center;
+  }
+  
+  .search:focus {
+    outline: none;
+    border-color: red;
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
+  }
+  
+  .radioName {
+    cursor: pointer;
+  }
+  
+  .volumeControl {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .muteBtn {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .volumeLine {
+    position: relative;
+    height: 120px;
+    width: 8px;
+    background: #444;
+    border-radius: 4px;
+    display: flex;
+    align-items: flex-end;
+  }
+  
+  .volumeSlider {
+    width: 120px;
+    height: 8px;
+    background: #ffffff;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .volumeSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 50%;
+    border: 2px solid #fc0015;
+    cursor: pointer;
+  }
+  
+  .volumeSlider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 50%;
+    border: 2px solid #ff5f6d;
+    cursor: pointer;
+  }
+  
+  .radioBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+  }
+  
+  .radioItemLogo,
+  .radioLogo {
+    border-radius: 50%;
+  }
+  
+  .currentRadio {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 22px;
+  }
+  
+  /* სექციის ტიტულები */
+  .title {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 20px 0 10px;
+    text-align: center;
+    color: #ff5f6d;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+  }
+  
+  /* showAll ღილაკები */
+  .showAllButton {
+    display: block;
+    margin: 10px auto 0;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg, #ff5f6d, #ffc371);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .showAllButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.35);
+    background: linear-gradient(135deg, #ffc371, #ff5f6d);
+  }
+  
+  .showAllButton:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  @keyframes rotateDisc {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .radioLogo.rotating {
+    animation: rotateDisc 5s linear infinite;
+  }
+  
