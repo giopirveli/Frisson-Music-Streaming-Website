@@ -107,12 +107,6 @@ export const GET = async () => {
       language: "FRA",
     },
     {
-      name: "Radio Paris",
-      url: "http://generationfm.ice.infomaniak.ch:80/generationfm-high.mp3.m3u",
-      logo: "/images/radios/radio-generations.jpg",
-      language: "FRA",
-    },
-    {
       name: "Radio Skyrock",
       url: "https://icecast.skyrock.net/s/natio_aac_128k",
       logo: "/images/radios/radio-skyrock.png",

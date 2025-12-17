@@ -8,7 +8,7 @@ interface Radio {
   name: string;
   url: string;
   logo: string;
-  language: "GE" | "ITA" | "FRA"; // ენები
+  language: "GE" | "ITA" | "FRA";
 }
 
 const RadioPlayer: React.FC = () => {
@@ -22,6 +22,7 @@ const RadioPlayer: React.FC = () => {
   const [selectedLanguage, setSelectedLanguage] = useState<"GE" | "ITA" | "FRA">("GE");
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const volumeRef = useRef<HTMLInputElement | null>(null); // React ref for slider
 
   // რადიოების ჩატვირთვა API-დან
   useEffect(() => {
@@ -35,6 +36,13 @@ const RadioPlayer: React.FC = () => {
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.volume = isMuted ? 0 : volume;
+    }
+    // CSS gradient width
+    if (volumeRef.current) {
+      volumeRef.current.style.setProperty(
+        "--slider-fill",
+        `${isMuted ? 0 : volume * 100}%`
+      );
     }
   }, [volume, isMuted]);
 
@@ -69,7 +77,6 @@ const RadioPlayer: React.FC = () => {
 
   const radiosToShow = showAll ? filteredRadios : filteredRadios.slice(0, 3);
 
-  // ენის არჩევა
   const handleLanguageChange = (lang: "GE" | "ITA" | "FRA") => {
     setSelectedLanguage(lang);
     setCurrentIndex(0);
@@ -163,12 +170,19 @@ const RadioPlayer: React.FC = () => {
                   {isMuted ? "🔇" : "🔊"}
                 </button>
                 <input
+                  ref={volumeRef}
                   type="range"
                   min={0}
                   max={1}
                   step={0.01}
                   value={isMuted ? 0 : volume}
-                  onChange={(e) => setVolume(Number(e.target.value))}
+                  onChange={(e) => {
+                    const val = Number(e.target.value);
+                    setVolume(val);
+                    if (volumeRef.current) {
+                      volumeRef.current.style.setProperty("--slider-fill", `${val * 100}%`);
+                    }
+                  }}
                   className={styles.volumeSlider}
                 />
               </div>
