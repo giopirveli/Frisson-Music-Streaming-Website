@@ -49,6 +49,7 @@ export default function Sidebar() {
           <h4>discover</h4>
           <NavItem href="/artist-page" icon="/icons/Sidebar/artist.svg" label="artist" />
           <NavItem href={`/album-page`} icon="/icons/Sidebar/album.svg" label="album" />
+          <NavItem href={`/radio-page`} icon="/icons/Sidebar/radio.svg" label="radio" />
         </div>
       </nav>
     </aside>
