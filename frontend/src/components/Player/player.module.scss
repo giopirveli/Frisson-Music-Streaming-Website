@@ -1,7 +1,6 @@
 @use "../../styles/colors" as *;
 
 .playerBackgraund {
-  background-color: $dark-void;
   display: flex;
   width: 100%;
   padding: 16px;
@@ -10,20 +9,17 @@
   position: fixed;
   z-index: 999999;
   bottom: 0;
-  height: 125px;
   margin-right: 5px;
+  background-color: $dark-void;
 }
 
 .musicPhoto {
   position: relative;
-  /* ← fill-სთვის აუცილებელია */
-  max-width: 88px;
+  max-width: 100px;
   width: 100%;
   aspect-ratio: 1 / 1;
-  /* ან height: 280px; როგორც გინდა */
   overflow: hidden;
   border-radius: 12px;
-  /* სურვილისამებრ */
 }
 
 .mainControlBox {
@@ -266,4 +262,33 @@
     height: 6px;
     border-radius: 4px;
   }
+}
+
+
+.playerToggleButtons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.toggleButton {
+  width: 70px;
+  height: 50px;
+  padding: 6px 14px;
+  border: 1px solid #666;
+  background-color: #222;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toggleButton:hover {
+  background-color: #333;
+}
+
+.activeButton {
+  background-color: #fff;
+  color: #000;
+  border-color: #fff;
 }
